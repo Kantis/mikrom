@@ -42,36 +42,16 @@ public final class io/github/kantis/mikrom/Query {
 	public final synthetic fun unbox-impl ()Ljava/lang/String;
 }
 
+public final class io/github/kantis/mikrom/Rollback {
+	public static final field INSTANCE Lio/github/kantis/mikrom/Rollback;
+}
+
 public abstract interface class io/github/kantis/mikrom/RowMapper {
 	public abstract fun mapRow (Ljava/util/Map;)Ljava/lang/Object;
 }
 
-public final class io/github/kantis/mikrom/SuspendQueriesKt {
-	public static final fun execute-CQkImio (Lio/github/kantis/mikrom/datasource/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun execute-DOpdqmY (Lio/github/kantis/mikrom/datasource/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun execute-DOpdqmY (Lio/github/kantis/mikrom/datasource/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Lkotlinx/coroutines/flow/Flow;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun execute-DOpdqmY (Lio/github/kantis/mikrom/datasource/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
 public abstract interface class io/github/kantis/mikrom/datasource/DataSource {
 	public abstract fun transaction (Lkotlin/jvm/functions/Function1;)Ljava/lang/Object;
-}
-
-public final class io/github/kantis/mikrom/datasource/Rollback {
-	public static final field INSTANCE Lio/github/kantis/mikrom/datasource/Rollback;
-}
-
-public abstract interface class io/github/kantis/mikrom/datasource/SuspendingDataSource {
-	public abstract fun suspendingTransaction (Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public abstract interface class io/github/kantis/mikrom/datasource/SuspendingTransaction {
-	public abstract fun executeInTransaction-RFpYPog (Ljava/lang/String;Lkotlinx/coroutines/flow/Flow;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun query-RFpYPog (Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class io/github/kantis/mikrom/datasource/SuspendingTransaction$DefaultImpls {
-	public static synthetic fun query-RFpYPog$default (Lio/github/kantis/mikrom/datasource/SuspendingTransaction;Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public abstract interface class io/github/kantis/mikrom/datasource/Transaction {
@@ -98,5 +78,26 @@ public abstract interface annotation class io/github/kantis/mikrom/generator/Row
 public final class io/github/kantis/mikrom/internal/FindCompiledRowMapperKt {
 	public static final fun compiledRowMapper (Lkotlin/reflect/KClass;)Lio/github/kantis/mikrom/RowMapper;
 	public static final fun invokeRowMapperOnDefaultCompanion (Ljava/lang/Class;)Lio/github/kantis/mikrom/RowMapper;
+}
+
+public final class io/github/kantis/mikrom/suspend/SuspendQueriesKt {
+	public static final fun execute-CQkImio (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun execute-DOpdqmY (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun execute-DOpdqmY (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun executeStreaming-DOpdqmY (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Lkotlinx/coroutines/flow/Flow;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class io/github/kantis/mikrom/suspend/SuspendingDataSource {
+	public abstract fun suspendingTransaction (Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class io/github/kantis/mikrom/suspend/SuspendingTransaction : kotlinx/coroutines/CoroutineScope {
+	public abstract fun executeInTransaction-RFpYPog (Ljava/lang/String;Lkotlinx/coroutines/flow/Flow;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun executeInTransaction-RFpYPog (Ljava/lang/String;[Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun query-RFpYPog (Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class io/github/kantis/mikrom/suspend/SuspendingTransaction$DefaultImpls {
+	public static synthetic fun query-RFpYPog$default (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 

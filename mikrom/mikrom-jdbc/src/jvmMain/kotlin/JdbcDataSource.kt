@@ -1,7 +1,7 @@
 package io.github.kantis.mikrom.jdbc
 
+import io.github.kantis.mikrom.Rollback
 import io.github.kantis.mikrom.datasource.DataSource
-import io.github.kantis.mikrom.datasource.Rollback
 import io.github.kantis.mikrom.datasource.Transaction
 import org.slf4j.LoggerFactory
 

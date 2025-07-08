@@ -1,4 +1,4 @@
-package io.github.kantis.mikrom.r2dbc
+package io.github.kantis.mikrom.r2dbc.stream
 
 import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Query
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.toList
 
 private data class Book(val author: String, val title: String, val numberOfPages: Int)
 
-class MikromR2dbcTest : FunSpec(
+class StreamingMikromR2dbcTest : FunSpec(
    {
       test("integrate with R2DBC PostgreSQL data source") {
          val mikrom = Mikrom {

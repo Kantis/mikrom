@@ -5,14 +5,14 @@ import io.r2dbc.pool.ConnectionPool
 import io.r2dbc.pool.ConnectionPoolConfiguration
 import io.r2dbc.postgresql.PostgresqlConnectionConfiguration
 import io.r2dbc.postgresql.PostgresqlConnectionFactory
-import kotlinx.coroutines.reactive.asFlow
-import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.reactive.awaitFirstOrNull
 import kotlinx.coroutines.reactive.awaitSingle
 import org.intellij.lang.annotations.Language
 import org.testcontainers.containers.PostgreSQLContainer
 
-suspend fun preparePostgresDatabase(@Language("SQL")vararg statements: String): PooledR2dbcDataSource {
+suspend fun preparePostgresDatabase(
+   @Language("SQL")vararg statements: String,
+): PooledR2dbcDataSource {
    val postgres = PostgreSQLContainer<Nothing>("postgres:16-alpine")
       .apply {
          withDatabaseName("testdb")

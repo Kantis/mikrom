@@ -2,7 +2,7 @@ package io.github.kantis.mikrom.jdbc
 
 import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Query
-import io.github.kantis.mikrom.datasource.Rollback
+import io.github.kantis.mikrom.Rollback
 import io.github.kantis.mikrom.execute
 import io.github.kantis.mikrom.queryFor
 import io.kotest.core.extensions.install

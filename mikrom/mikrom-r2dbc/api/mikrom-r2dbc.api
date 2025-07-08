@@ -1,11 +1,13 @@
-public final class io/github/kantis/mikrom/r2dbc/PooledR2dbcDataSource : io/github/kantis/mikrom/datasource/SuspendingDataSource {
+public final class io/github/kantis/mikrom/r2dbc/PooledR2dbcDataSource : io/github/kantis/mikrom/suspend/SuspendingDataSource {
 	public fun <init> (Lio/r2dbc/pool/ConnectionPool;)V
 	public fun suspendingTransaction (Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class io/github/kantis/mikrom/r2dbc/R2dbcTransaction : io/github/kantis/mikrom/datasource/SuspendingTransaction {
-	public fun <init> (Lio/r2dbc/spi/Connection;)V
+public final class io/github/kantis/mikrom/r2dbc/R2dbcTransaction : io/github/kantis/mikrom/suspend/SuspendingTransaction {
+	public fun <init> (Lio/r2dbc/spi/Connection;Lkotlin/coroutines/CoroutineContext;)V
 	public fun executeInTransaction-RFpYPog (Ljava/lang/String;Lkotlinx/coroutines/flow/Flow;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun executeInTransaction-RFpYPog (Ljava/lang/String;[Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun getCoroutineContext ()Lkotlin/coroutines/CoroutineContext;
 	public fun query-RFpYPog (Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 

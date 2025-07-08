@@ -1,8 +1,8 @@
 package io.github.kantis.mikrom.r2dbc
 
-import io.github.kantis.mikrom.datasource.Rollback
-import io.github.kantis.mikrom.datasource.SuspendingDataSource
-import io.github.kantis.mikrom.datasource.SuspendingTransaction
+import io.github.kantis.mikrom.Rollback
+import io.github.kantis.mikrom.suspend.SuspendingDataSource
+import io.github.kantis.mikrom.suspend.SuspendingTransaction
 import io.r2dbc.pool.ConnectionPool
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.reactive.awaitFirstOrNull

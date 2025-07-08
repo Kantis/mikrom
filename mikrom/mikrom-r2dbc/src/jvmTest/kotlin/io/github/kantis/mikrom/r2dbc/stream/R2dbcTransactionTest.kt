@@ -1,14 +1,17 @@
-package io.github.kantis.mikrom.r2dbc
+package io.github.kantis.mikrom.r2dbc.stream
 
 import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.Rollback
+import io.github.kantis.mikrom.r2dbc.PooledR2dbcDataSource
 import io.github.kantis.mikrom.r2dbc.helpers.preparePostgresDatabase
 import io.github.kantis.mikrom.suspend.execute
+import io.github.kantis.mikrom.suspend.executeStreaming
 import io.github.kantis.mikrom.suspend.queryFor
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.toList
 
 private data class TestRecord(val id: Int, val name: String)
@@ -45,9 +48,9 @@ class R2dbcTransactionTest : FunSpec(
 
       test("transaction commits successfully") {
          dataSource.suspendingTransaction {
-            mikrom.execute(
+            mikrom.executeStreaming(
                Query("INSERT INTO test_records (name) VALUES ($1)"),
-               listOf("test record"),
+               flowOf(listOf("test record")),
             )
          }
 
@@ -61,10 +64,10 @@ class R2dbcTransactionTest : FunSpec(
 
       test("transaction rolls back on explicit rollback") {
          val result = dataSource.suspendingTransaction {
-            mikrom.execute(
+            mikrom.executeStreaming(
                Query("INSERT INTO test_records (name) VALUES ($1)"),
-               listOf("record to rollback"),
-            )
+               flowOf(listOf("record to rollback")),
+            ).join()
 
             Rollback
          }
@@ -81,10 +84,10 @@ class R2dbcTransactionTest : FunSpec(
       test("transaction rolls back on exception") {
          try {
             dataSource.suspendingTransaction {
-               mikrom.execute(
+               mikrom.executeStreaming(
                   Query("INSERT INTO test_records (name) VALUES ($1)"),
-                  listOf("test record"),
-               )
+                  flowOf(listOf("test record")),
+               ).join()
 
                throw RuntimeException("Test exception")
             }
