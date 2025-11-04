@@ -17,17 +17,11 @@ dependencies {
    testImplementation(libs.kotest.runnerJunit5)
 }
 
-val buildLogicJvmTarget = "11"
+val buildLogicJvmTarget = "17"
 
 kotlin {
    jvmToolchain {
       languageVersion.set(JavaLanguageVersion.of(buildLogicJvmTarget))
-   }
-}
-
-tasks.withType<KotlinCompile>().configureEach {
-   kotlinOptions {
-      jvmTarget = buildLogicJvmTarget
    }
 }
 

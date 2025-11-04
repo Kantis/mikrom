@@ -1,7 +1,6 @@
 package mikrom.conventions.lang
 
 import mikrom.conventions.MikromBuildLogicSettings
-import org.gradle.configurationcache.extensions.capitalized
 import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 import org.jetbrains.kotlin.gradle.targets.jvm.KotlinJvmTarget
 import org.jetbrains.kotlin.gradle.testing.KotlinTaskTestRun
@@ -54,9 +53,11 @@ kotlin {
    }
 }
 
+fun String.capitalize(): String = replaceFirstChar { if (it.isLowerCase()) it.titlecase() else this }
+
 // create lifecycle task for each Kotlin Platform, that will run all tests
 KotlinPlatformType.values().forEach { kotlinPlatform ->
-   val kotlinPlatformName = kotlinPlatform.name.capitalized()
+   val kotlinPlatformName = kotlinPlatform.name.capitalize()
 
    val testKotlinTargetLifecycleTask =
       tasks.create("allKotlin${kotlinPlatformName}Tests") {

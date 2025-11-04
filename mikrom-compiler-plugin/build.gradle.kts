@@ -1,3 +1,5 @@
+import org.jlleitschuh.gradle.ktlint.tasks.KtLintCheckTask
+
 plugins {
    id("mikrom.conventions.lang.kotlin-jvm")
    id("mikrom.conventions.publishing.maven-publish")
@@ -80,6 +82,11 @@ val generateTests by tasks.registering(JavaExec::class) {
       .withPathSensitivity(PathSensitivity.RELATIVE)
    outputs.dir(layout.projectDirectory.dir("test-gen"))
       .withPropertyName("generatedTests")
+}
+
+// TODO: Only disable for the generated tests?
+tasks.withType<KtLintCheckTask> {
+   enabled = false
 }
 
 tasks.compileTestKotlin {
