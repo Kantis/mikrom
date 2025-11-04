@@ -3,6 +3,7 @@ package mikrom.conventions.publishing
 import mikrom.conventions.MikromBuildLogicSettings
 
 plugins {
+   id("com.gradleup.nmcp")
    signing
    `maven-publish`
 }
@@ -15,32 +16,8 @@ val javadocJarStub by tasks.registering(Jar::class) {
    archiveClassifier.set("javadoc")
 }
 
-// can be set with environment variables: ORG_GRADLE_PROJECT_ossrhUsername and ORG_GRADLE_PROJECT_ossrhPassword
-val ossrhUsername: Provider<String> = providers.gradleProperty("ossrhUsername")
-val ossrhPassword: Provider<String> = providers.gradleProperty("ossrhPassword")
-
-val isReleaseVersion = provider { version.toString().matches(MikromBuildLogicSettings.releaseVersionRegex) }
-
-val sonatypeReleaseUrl: Provider<String> = isReleaseVersion.map { isRelease ->
-   if (isRelease) {
-      "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-   } else {
-      "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-   }
-}
-
 publishing {
    repositories {
-      if (ossrhUsername.isPresent && ossrhPassword.isPresent) {
-         maven(sonatypeReleaseUrl) {
-            name = "SonatypeRelease"
-            credentials {
-               username = ossrhUsername.get()
-               password = ossrhPassword.get()
-            }
-         }
-      }
-
       // Publish to a project-local Maven directory, for verification. To test, run:
       // ./gradlew publishAllPublicationsToMavenProjectLocalRepository
       // and check $rootDir/build/maven-project-local
