@@ -1,11 +1,27 @@
 plugins {
    id("mikrom.conventions.base")
    id("mikrom.conventions.api-validation")
+   alias(libs.plugins.nmcpAggregation)
    idea
 }
 
 group = "io.github.kantis"
 version = "0.1.0-SNAPSHOT"
+
+nmcpAggregation {
+   centralPortal {
+      // New secrets need to be generated at https://central.sonatype.com/account w/ Generate User Token
+      username.set(System.getenv("NEW_MAVEN_CENTRAL_USERNAME"))
+      password.set(System.getenv("NEW_MAVEN_CENTRAL_PASSWORD"))
+      publishingType = "AUTOMATIC"
+   }
+}
+
+dependencies  {
+   nmcpAggregation(projects.mikrom.mikromCore)
+   nmcpAggregation(projects.mikrom.mikromJdbc)
+   nmcpAggregation(projects.mikrom.mikromR2dbc)
+}
 
 idea {
    module {
