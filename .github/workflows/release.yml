@@ -35,7 +35,7 @@ jobs:
           ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.SIGNING_PASSWORD }}
           NEW_MAVEN_CENTRAL_USERNAME: ${{ secrets.NEW_MAVEN_CENTRAL_USERNAME }}
           NEW_MAVEN_CENTRAL_PASSWORD: ${{ secrets.NEW_MAVEN_CENTRAL_PASSWORD }}
-        run: ./gradlew publishAllPublicationsToSonatypeReleaseRepository
+        run: ./gradlew publishAggregationToCentralPortal
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
