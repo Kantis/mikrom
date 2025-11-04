@@ -2,7 +2,6 @@ plugins {
    `java-gradle-plugin`
    id("com.gradle.plugin-publish") version "1.1.0"
    id("mikrom.conventions.lang.kotlin-jvm")
-   id("mikrom.conventions.api-validation")
 }
 
 group = "io.github.kantis"

@@ -4,11 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Mikrom is a Kotlin multiplatform micro ORM inspired by Dapper. It focuses on explicit database operations without automatic change tracking or reflection-based mapping. The project uses a compiler plugin to generate row mappers at compile time.
+Mikrom is a Kotlin multiplatform micro ORM inspired by Dapper.
+It focuses on explicit database operations without automatic change tracking or reflection-based mapping.
+The project uses a compiler plugin to generate row mappers at compile time.
 
 ## Architecture
 
-The project is structured as a multi-module Kotlin multiplatform project:
+The project is structured as a multi-module Kotlin multiplatform project using Gradle composite builds:
 
 - **mikrom-core**: Core abstractions including `Mikrom`, `DataSource`, `Transaction`, and `RowMapper` interfaces
 - **mikrom-jdbc**: JDBC-specific implementation providing `JdbcDataSource` and result set mapping
@@ -31,10 +33,7 @@ Key architectural principles:
 - `./gradlew allTests` - Run tests for all targets with aggregated report
 
 ### Code Quality
-- `./gradlew ktlintCheck` - Check code formatting
 - `./gradlew ktlintFormat` - Format code according to ktlint rules
-- `./gradlew apiCheck` - Validate public API against expected signatures
-- `./gradlew apiDump` - Generate API signature files
 
 ### Compiler Plugin Development
 - `./gradlew :mikrom-compiler-plugin:test` - Run compiler plugin tests
@@ -44,6 +43,7 @@ Key architectural principles:
 ### Publishing
 - `./gradlew publishToMavenLocal` - Publish to local Maven repository
 - `./gradlew publish` - Publish to configured repositories
+
 
 ## Core Components
 

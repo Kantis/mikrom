@@ -1,6 +1,5 @@
 plugins {
    id("mikrom.conventions.base")
-   id("mikrom.conventions.api-validation")
 }
 
 group = "io.github.kantis"

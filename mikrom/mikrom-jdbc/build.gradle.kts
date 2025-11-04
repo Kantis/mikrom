@@ -17,7 +17,7 @@ kotlin {
       if (mikromSettings.enableKotlinJvm.get()) {
          jvmMain {
             dependencies {
-               api(projects.mikromCore)
+               api(projects.mikrom.mikromCore)
                implementation(kotlin("reflect"))
                implementation(libs.slf4j.api)
             }

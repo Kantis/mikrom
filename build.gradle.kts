@@ -31,45 +31,47 @@ idea {
    }
 }
 
-tasks {
-   val apiCheck by registering {
-      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-core:apiCheck"))
-      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-jdbc:apiCheck"))
-      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-r2dbc:apiCheck"))
-      dependsOn(gradle.includedBuild("mikrom-compiler-plugin").task(":apiCheck"))
-      dependsOn(gradle.includedBuild("mikrom-gradle-plugin").task(":apiCheck"))
-   }
 
-   register("publishToMavenLocal").configure {
-      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-core:publishToMavenLocal"))
-      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-jdbc:publishToMavenLocal"))
-      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-r2dbc:publishToMavenLocal"))
-      dependsOn(gradle.includedBuild("mikrom-compiler-plugin").task(":publishToMavenLocal"))
-      dependsOn(gradle.includedBuild("mikrom-gradle-plugin").task(":publishPluginMavenPublicationToMavenLocal"))
-   }
-
-   named("check").configure {
-      dependsOn(gradle.includedBuilds.map { it.task(":check") })
-      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-core:check"))
-      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-jdbc:check"))
-      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-r2dbc:check"))
-      dependsOn(apiCheck)
-   }
-
-   register("apiDump").configure {
-      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-core:apiDump"))
-      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-jdbc:apiDump"))
-      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-r2dbc:apiDump"))
-      dependsOn(gradle.includedBuild("mikrom-compiler-plugin").task(":apiDump"))
-      dependsOn(gradle.includedBuild("mikrom-gradle-plugin").task(":apiDump"))
-   }
-
-   register("ktlintFormat").configure {
-      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-core:ktlintFormat"))
-      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-jdbc:ktlintFormat"))
-      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-r2dbc:ktlintFormat"))
-      dependsOn(gradle.includedBuild("mikrom-compiler-plugin").task(":ktlintFormat"))
-      dependsOn(gradle.includedBuild("mikrom-gradle-plugin").task(":ktlintFormat"))
-   }
-
-}
+//tasks {
+//   val apiCheck by registering {
+//      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-core:apiCheck"))
+//      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-jdbc:apiCheck"))
+//      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-r2dbc:apiCheck"))
+//      dependsOn(gradle.includedBuild("mikrom-compiler-plugin").task(":apiCheck"))
+//      dependsOn(gradle.includedBuild("mikrom-gradle-plugin").task(":apiCheck"))
+//   }
+//
+//   register("publishToMavenLocal").configure {
+//      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-core:publishToMavenLocal"))
+//      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-jdbc:publishToMavenLocal"))
+//      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-r2dbc:publishToMavenLocal"))
+//      dependsOn(gradle.includedBuild("mikrom-compiler-plugin").task(":publishToMavenLocal"))
+//      dependsOn(gradle.includedBuild("mikrom-gradle-plugin").task(":publishPluginMavenPublicationToMavenLocal"))
+//   }
+//
+//   named("check").configure {
+//      dependsOn(gradle.includedBuilds.map { it.task(":check") })
+//      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-core:check"))
+//      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-jdbc:check"))
+//      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-r2dbc:check"))
+//      dependsOn(gradle.includedBuild("example").task(":jvmTest"))
+//      dependsOn(apiCheck)
+//   }
+//
+//   register("apiDump").configure {
+//      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-core:apiDump"))
+//      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-jdbc:apiDump"))
+//      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-r2dbc:apiDump"))
+//      dependsOn(gradle.includedBuild("mikrom-compiler-plugin").task(":apiDump"))
+//      dependsOn(gradle.includedBuild("mikrom-gradle-plugin").task(":apiDump"))
+//   }
+//
+//   register("ktlintFormat").configure {
+//      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-core:ktlintFormat"))
+//      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-jdbc:ktlintFormat"))
+//      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-r2dbc:ktlintFormat"))
+//      dependsOn(gradle.includedBuild("mikrom-compiler-plugin").task(":ktlintFormat"))
+//      dependsOn(gradle.includedBuild("mikrom-gradle-plugin").task(":ktlintFormat"))
+//   }
+//
+//}

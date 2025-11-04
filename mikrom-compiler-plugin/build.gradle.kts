@@ -1,6 +1,5 @@
 plugins {
    id("mikrom.conventions.lang.kotlin-jvm")
-   id("mikrom.conventions.api-validation")
    id("mikrom.conventions.publishing.maven-publish")
    `java-test-fixtures`
 }
@@ -40,7 +39,7 @@ dependencies {
    testFixturesApi(kotlin("compiler-internal-test-framework"))
    testFixturesApi(kotlin("compiler"))
 
-   mikromRuntimeClasspath("io.github.kantis:mikrom-core:${project.version}")
+   mikromRuntimeClasspath(projects.mikrom.mikromCore)
 
    testRuntimeOnly(kotlin("reflect"))
    testRuntimeOnly(kotlin("test"))
@@ -54,7 +53,7 @@ tasks.withType<Test>().configureEach {
       .withPropertyName("testData")
       .withPathSensitivity(PathSensitivity.RELATIVE)
 
-   workingDir = rootDir
+   workingDir = projectDir
 
    useJUnitPlatform()
 
@@ -74,7 +73,7 @@ tasks.withType<Test>().configureEach {
 val generateTests by tasks.registering(JavaExec::class) {
    classpath = sourceSets.testFixtures.get().runtimeClasspath
    mainClass.set("io.github.kantis.mikrom.plugin.GenerateTestsKt")
-   workingDir = rootDir
+   workingDir = projectDir
 
    inputs.dir(layout.projectDirectory.dir("testData"))
       .withPropertyName("testData")

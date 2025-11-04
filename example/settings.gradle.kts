@@ -1,7 +1,8 @@
-includeBuild("../build-logic")
-includeBuild("../mikrom")
-includeBuild("../mikrom-compiler-plugin")
-includeBuild("../mikrom-gradle-plugin")
+includeBuild("..")
+
+pluginManagement {
+   includeBuild("..")
+}
 
 apply(from = "../build-logic/repositories.gradle.kts")
 

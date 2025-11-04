@@ -12,6 +12,13 @@ kotlin {
             implementation(libs.mikrom.jdbc)
          }
       }
+
+      jvmTest {
+         dependencies {
+            implementation(libs.kotest.assertionsCore)
+            implementation(libs.kotest.frameworkEngine)
+         }
+      }
    }
 }
 

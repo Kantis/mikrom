@@ -17,7 +17,7 @@ kotlin {
       if (mikromSettings.enableKotlinJvm.get()) {
          jvmMain {
             dependencies {
-               api(projects.mikromCore)
+               api(projects.mikrom.mikromCore)
                api(libs.r2dbc.pool)
                // Probably not needed.. keeping it around for now
 //               implementation(libs.kotlinxCoroutinesReactor)
