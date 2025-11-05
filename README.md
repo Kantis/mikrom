@@ -1,5 +1,11 @@
+![Stability Status - Experimental](https://kotl.in/badges/experimental.svg)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/kantis/ks3/ci.yaml?branch=main)
+
 ## What is Mikrom?
 Mikrom is inspired by [Dapper](https://github.com/DapperLib/Dapper), a popular micro ORM for .NET.
+
+> This library is in the concept stage. The API is highly likely to change, and the compiler plugin is work in progress.
+> Only get involved at this point if you are interested in helping shape the design.
 
 ## Philosophy
 - No automated tracking of changes
