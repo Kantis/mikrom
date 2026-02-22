@@ -3,11 +3,10 @@ dokka = "2.0.0"
 dokkatoo = "2.4.0"
 jvmToolchain = "21"
 
-kotlin = "2.1.21"
+kotlin = "2.3.10"
 mikrom = "0.1.0-SNAPSHOT"
 
-kotest = "5.9.1"
-kotest-propertyArbsExtension = "2.1.2"
+kotest = "6.1.3"
 
 gradlePlugin-ktlint = "12.1.2"
 gradlePlugin-testlogger = "4.0.0"
@@ -45,8 +44,8 @@ kotest-frameworkEngine = { module = "io.kotest:kotest-framework-engine", version
 kotest-frameworkDatatest = { module = "io.kotest:kotest-framework-datatest", version.ref = "kotest" }
 kotest-runnerJunit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 
-kotest-propertyArbsExtension = { module = "io.kotest.extensions:kotest-property-arbs", version.ref = "kotest-propertyArbsExtension" }
-kotestExtensions-testcontainers = { module = "io.kotest.extensions:kotest-extensions-testcontainers", version = "2.0.2" }
+kotest-propertyArbsExtension = { module = "io.kotest:kotest-property-arbs", version.ref = "kotest" }
+kotestExtensions-testcontainers = { module = "io.kotest:kotest-extensions-testcontainers", version.ref = "kotest" }
 
 testcontainers-postgresql = { module = "org.testcontainers:postgresql", version = "1.20.0" }
 hikari = { module = "com.zaxxer:HikariCP", version = "6.3.0" }
@@ -64,7 +63,7 @@ dokka-templating = { module = "org.jetbrains.dokka:templating-plugin", version.r
 # Maven coordinates of Gradle plugins. Used in ./build-logic/build.gradle.kts.
 gradlePlugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 gradlePlugin-testlogger = { module = "com.adarshr:gradle-test-logger-plugin", version.ref = "gradlePlugin-testlogger" }
-gradlePlugin-kotest = { module = "io.kotest:kotest-framework-multiplatform-plugin-gradle", version.ref = "kotest" }
+gradlePlugin-kotest = { module = "io.kotest:kotest-framework-plugin-gradle", version.ref = "kotest" }
 
 gradlePlugin-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 gradlePlugin-dokkatoo = { module = "dev.adamko.dokkatoo:dokkatoo-plugin", version.ref = "dokkatoo" }

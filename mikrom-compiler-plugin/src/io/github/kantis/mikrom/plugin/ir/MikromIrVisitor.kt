@@ -55,17 +55,14 @@ internal class MikromIrVisitor(
    private val illegalStateExceptionConstructor =
       context.referenceConstructors(ILLEGAL_STATE_EXCEPTION_CLASS_ID)
          .single { constructor ->
-            val parameter = constructor.owner.valueParameters.singleOrNull()
+            val parameter = constructor.owner.parameters.singleOrNull()
                ?: return@single false
             parameter.type == nullableStringType
          }
 
    private fun IrBuilderWithScope.irUninitializedProperty(property: IrDeclarationWithName): IrConstructorCall =
       irCall(illegalStateExceptionConstructor).apply {
-         putValueArgument(
-            0,
-            irString("Uninitialized property '${property.name}'."),
-         )
+         arguments[0] = irString("Uninitialized property '${property.name}'.")
       }
 
    override fun visitElement(element: IrElement) {
@@ -117,11 +114,11 @@ internal class MikromIrVisitor(
       return irBuilder.irBlockBody {
          // Map<String, Any>
          val row = function.parameters[1] // first will be the "this" reference..
-         val arguments = generateConstructorArguments(primaryConstructor.valueParameters, row)
+         val arguments = generateConstructorArguments(primaryConstructor.parameters, row)
 
          val constructorCall = irCall(primaryConstructor).apply {
             arguments.forEachIndexed { index, variable ->
-               putValueArgument(index, irGet(variable))
+               this.arguments[index] = irGet(variable)
             }
          }
 
@@ -145,13 +142,12 @@ internal class MikromIrVisitor(
                // Find the Map.get function
                val mapClass = context.irBuiltIns.mapClass
                val getFunction = mapClass.functions.single {
-                  it.owner.name == Name.identifier("get") &&
-                     it.owner.valueParameters.size == 1
+                  it.owner.name == Name.identifier("get")
                }
 
                +irCall(getFunction).apply {
                   dispatchReceiver = mapRef
-                  putValueArgument(0, keyLiteral)
+                  arguments[1] = keyLiteral
                }
             },
          )

@@ -1,5 +1,6 @@
 public final class io/github/kantis/mikrom/plugin/MikromCompilerPluginRegistrar : org/jetbrains/kotlin/compiler/plugin/CompilerPluginRegistrar {
 	public fun <init> ()V
+	public fun getPluginId ()Ljava/lang/String;
 	public fun getSupportsK2 ()Z
 	public fun registerExtensions (Lorg/jetbrains/kotlin/compiler/plugin/CompilerPluginRegistrar$ExtensionStorage;Lorg/jetbrains/kotlin/config/CompilerConfiguration;)V
 }
@@ -25,5 +26,7 @@ public final class io/github/kantis/mikrom/plugin/fir/MikromFirExtensionRegistra
 public final class io/github/kantis/mikrom/plugin/ir/MikromIrGenerationExtension : org/jetbrains/kotlin/backend/common/extensions/IrGenerationExtension {
 	public fun <init> ()V
 	public fun generate (Lorg/jetbrains/kotlin/ir/declarations/IrModuleFragment;Lorg/jetbrains/kotlin/backend/common/extensions/IrPluginContext;)V
+	public fun getPlatformIntrinsicExtension (Lorg/jetbrains/kotlin/backend/common/LoweringContext;)Lorg/jetbrains/kotlin/backend/common/extensions/IrIntrinsicExtension;
+	public fun getShouldAlsoBeAppliedInKaptStubGenerationMode ()Z
 }
 

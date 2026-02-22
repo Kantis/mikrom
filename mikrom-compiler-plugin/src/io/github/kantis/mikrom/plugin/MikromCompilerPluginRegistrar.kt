@@ -10,6 +10,7 @@ import org.jetbrains.kotlin.fir.extensions.FirExtensionRegistrarAdapter
 
 @OptIn(ExperimentalCompilerApi::class)
 public class MikromCompilerPluginRegistrar : CompilerPluginRegistrar() {
+   override val pluginId: String = "io.github.kantis.mikrom.plugin"
    override val supportsK2: Boolean = true
 
    override fun ExtensionStorage.registerExtensions(configuration: CompilerConfiguration) {

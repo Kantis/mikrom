@@ -1,7 +1,3 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## Project Overview
 
 Mikrom is a Kotlin multiplatform micro ORM inspired by Dapper.
@@ -60,5 +56,5 @@ The compiler plugin generates `RowMapper<T>` implementations for data classes an
 
 ## Testing
 - The project uses standard Kotlin test framework
-- JDBC tests use H2 in-memory database via `H2Helpers.kt`
+- JDBC tests use H2 in-memory database via `H2Helpers.kt`, as well as Postgres in a Docker container using Testcontainers
 - Compiler plugin tests use the Kotlin compiler testing infrastructure

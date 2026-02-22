@@ -21,8 +21,8 @@ public class DiagnosticTestGenerated extends AbstractDiagnosticTest {
   }
 
   @Test
-  @TestMetadata("Person.kt")
-  public void testPerson() {
-    runTest("testData/diagnostic/Person.kt");
+  @TestMetadata("Foo.kt")
+  public void testFoo() {
+    runTest("testData/diagnostic/Foo.kt");
   }
 }
