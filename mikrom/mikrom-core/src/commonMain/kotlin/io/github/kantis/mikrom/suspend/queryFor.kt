@@ -9,10 +9,10 @@ import kotlinx.coroutines.flow.map
 context(SuspendingTransaction)
 public suspend inline fun <reified T : Any> Mikrom.queryFor(query: Query): Flow<T> {
    if (T::class in nonMappedPrimitives) {
-      return query(query).map { it.values.single() as T }
+      return query(query).map { it.singleValue() as T }
    }
    val rowMapper = resolveRowMapper<T>()
-   return query(query).map(rowMapper::mapRow)
+   return query(query).map { rowMapper.mapRow(it) }
 }
 
 context(SuspendingTransaction)
@@ -27,8 +27,8 @@ public suspend inline fun <reified T : Any> Mikrom.queryFor(
    params: List<Any>,
 ): Flow<T> {
    if (T::class in nonMappedPrimitives) {
-      return query(query, params).map { it.values.single() as T }
+      return query(query, params).map { it.singleValue() as T }
    }
    val rowMapper = resolveRowMapper<T>()
-   return query(query, params).map(rowMapper::mapRow)
+   return query(query, params).map { rowMapper.mapRow(it) }
 }

@@ -2,6 +2,7 @@ package io.github.kantis.mikrom.r2dbc
 
 import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Query
+import io.github.kantis.mikrom.get
 import io.github.kantis.mikrom.r2dbc.helpers.preparePostgresDatabase
 import io.github.kantis.mikrom.suspend.executeStreaming
 import io.github.kantis.mikrom.suspend.queryFor
@@ -19,9 +20,9 @@ class MikromR2dbcTest : FunSpec(
          val mikrom = Mikrom {
             registerRowMapper { row ->
                Book(
-                  row["author"] as String,
-                  row["title"] as String,
-                  row["number_of_pages"] as Int,
+                  row.get("author"),
+                  row.get("title"),
+                  row.get("number_of_pages"),
                )
             }
          }

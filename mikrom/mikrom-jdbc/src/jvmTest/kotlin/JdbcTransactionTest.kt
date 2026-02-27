@@ -4,6 +4,7 @@ import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.Rollback
 import io.github.kantis.mikrom.execute
+import io.github.kantis.mikrom.get
 import io.github.kantis.mikrom.jdbc.h2.prepareH2Database
 import io.github.kantis.mikrom.queryFor
 import io.kotest.core.spec.style.FunSpec
@@ -16,7 +17,7 @@ data class TestRecord(val id: Int, val name: String)
 class JdbcTransactionTest : FunSpec(
    {
       val mikrom = Mikrom {
-         registerRowMapper { row -> TestRecord(row["id"] as Int, row["name"] as String) }
+         registerRowMapper { row -> TestRecord(row.get("id"), row.get("name")) }
       }
 
       val dataSource = prepareH2Database(

@@ -3,6 +3,7 @@ package io.github.kantis.mikrom.r2dbc
 import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.Rollback
+import io.github.kantis.mikrom.get
 import io.github.kantis.mikrom.r2dbc.helpers.preparePostgresDatabase
 import io.github.kantis.mikrom.suspend.execute
 import io.github.kantis.mikrom.suspend.queryFor
@@ -18,8 +19,8 @@ class R2dbcTransactionTest : FunSpec(
       val mikrom = Mikrom {
          registerRowMapper { row ->
             TestRecord(
-               row["id"] as Int,
-               row["name"] as String,
+               row.get("id"),
+               row.get("name"),
             )
          }
       }

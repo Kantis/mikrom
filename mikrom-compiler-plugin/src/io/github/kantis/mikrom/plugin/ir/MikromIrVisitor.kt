@@ -26,10 +26,14 @@ import org.jetbrains.kotlin.ir.declarations.IrValueParameter
 import org.jetbrains.kotlin.ir.declarations.IrVariable
 import org.jetbrains.kotlin.ir.expressions.IrBody
 import org.jetbrains.kotlin.ir.expressions.IrConstructorCall
+import org.jetbrains.kotlin.ir.expressions.impl.IrClassReferenceImpl
 import org.jetbrains.kotlin.ir.expressions.impl.IrInstanceInitializerCallImpl
 import org.jetbrains.kotlin.ir.types.classifierOrNull
+import org.jetbrains.kotlin.ir.types.makeNotNull
 import org.jetbrains.kotlin.ir.types.makeNullable
+import org.jetbrains.kotlin.ir.types.typeWith
 import org.jetbrains.kotlin.ir.util.functions
+import org.jetbrains.kotlin.ir.util.isNullable
 import org.jetbrains.kotlin.ir.util.primaryConstructor
 import org.jetbrains.kotlin.ir.visitors.IrVisitorVoid
 import org.jetbrains.kotlin.ir.visitors.acceptChildrenVoid
@@ -39,10 +43,12 @@ import org.jetbrains.kotlin.name.Name
 import kotlin.collections.forEachIndexed
 
 internal class MikromIrVisitor(
-   private val context: IrPluginContext,
+   private val pluginContext: IrPluginContext,
 ) : IrVisitorVoid() {
    private companion object {
       private val MIKROM_ORIGIN = IrDeclarationOrigin.GeneratedByPlugin(MikromGenerateRowMapperKey)
+
+      private val ROW_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom"), Name.identifier("Row"))
 
       private val ILLEGAL_STATE_EXCEPTION_FQ_NAME =
          FqName("kotlin.IllegalStateException")
@@ -51,9 +57,9 @@ internal class MikromIrVisitor(
          ClassId.topLevel(ILLEGAL_STATE_EXCEPTION_FQ_NAME)
    }
 
-   private val nullableStringType = context.irBuiltIns.stringType.makeNullable()
+   private val nullableStringType = pluginContext.irBuiltIns.stringType.makeNullable()
    private val illegalStateExceptionConstructor =
-      context.referenceConstructors(ILLEGAL_STATE_EXCEPTION_CLASS_ID)
+      pluginContext.referenceConstructors(ILLEGAL_STATE_EXCEPTION_CLASS_ID)
          .single { constructor ->
             val parameter = constructor.owner.parameters.singleOrNull()
                ?: return@single false
@@ -84,10 +90,10 @@ internal class MikromIrVisitor(
 
    private fun generateDefaultConstructor(declaration: IrConstructor): IrBody? {
       val parentClass = declaration.parent as? IrClass ?: return null
-      val anyConstructor = context.irBuiltIns.anyClass.owner.primaryConstructor
+      val anyConstructor = pluginContext.irBuiltIns.anyClass.owner.primaryConstructor
          ?: return null
 
-      val irBuilder = DeclarationIrBuilder(context, declaration.symbol)
+      val irBuilder = DeclarationIrBuilder(pluginContext, declaration.symbol)
       return irBuilder.irBlockBody {
          +irDelegatingConstructorCall(anyConstructor)
          +IrInstanceInitializerCallImpl(
@@ -106,10 +112,9 @@ internal class MikromIrVisitor(
    }
 
    private fun generateMapRowFunction(function: IrSimpleFunction): IrBody? {
-//      val rowMapperClass = function.parent as? IrClass ?: return null
       val mappedType = function.returnType.classifierOrNull?.owner as? IrClass ?: return null
       val primaryConstructor = mappedType.primaryConstructor ?: return null
-      val irBuilder = DeclarationIrBuilder(context, function.symbol)
+      val irBuilder = DeclarationIrBuilder(pluginContext, function.symbol)
 
       return irBuilder.irBlockBody {
          // Map<String, Any>
@@ -132,22 +137,41 @@ internal class MikromIrVisitor(
    ): List<IrVariable> {
       val variables = mutableListOf<IrVariable>()
 
+      val rowClass = pluginContext.referenceClass(ROW_CLASS_ID)!!
+      val getFunction = rowClass.functions.single {
+         it.owner.name == Name.identifier("get") && it.owner.parameters.size == 3
+      }
+      val getOrNullFunction = rowClass.functions.single {
+         it.owner.name == Name.identifier("getOrNull") && it.owner.parameters.size == 3
+      }
+      val kClassSymbol = pluginContext.referenceClass(
+         ClassId.topLevel(FqName("kotlin.reflect.KClass")),
+      )!!
+
       for (valueParameter in constructorParameters) {
+         val isNullable = valueParameter.type.isNullable()
+         val fn = if (isNullable) getOrNullFunction else getFunction
+         val baseType = valueParameter.type.makeNotNull()
+
          variables += irTemporary(
             nameHint = valueParameter.name.asString(),
             value = irBlock {
-               val mapRef = irGet(row)
+               val rowRef = irGet(row)
                val keyLiteral = irString(valueParameter.name.asString())
 
-               // Find the Map.get function
-               val mapClass = context.irBuiltIns.mapClass
-               val getFunction = mapClass.functions.single {
-                  it.owner.name == Name.identifier("get")
-               }
+               val classRef = IrClassReferenceImpl(
+                  startOffset,
+                  endOffset,
+                  type = kClassSymbol.typeWith(baseType),
+                  symbol = baseType.classifierOrNull!!,
+                  classType = baseType,
+               )
 
-               +irCall(getFunction).apply {
-                  dispatchReceiver = mapRef
+               +irCall(fn).apply {
+                  dispatchReceiver = rowRef
+                  typeArguments[0] = baseType
                   arguments[1] = keyLiteral
+                  arguments[2] = classRef
                }
             },
          )

@@ -2,6 +2,7 @@ package io.github.kantis.mikrom.r2dbc
 
 import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.Row
+import io.github.kantis.mikrom.buildRow
 import io.github.kantis.mikrom.suspend.SuspendingTransaction
 import io.r2dbc.spi.Connection
 import io.r2dbc.spi.Statement
@@ -59,8 +60,14 @@ public class R2dbcTransaction(private val connection: Connection, override val c
          .asFlow()
          .collect { result ->
             result.map { row, rowMetadata ->
-               rowMetadata.columnMetadatas.associate { metadata ->
-                  metadata.name to row.get(metadata.name)
+               buildRow {
+                  for (metadata in rowMetadata.columnMetadatas) {
+                     column(
+                        name = metadata.name,
+                        value = row.get(metadata.name),
+                        sqlTypeName = metadata.type?.name,
+                     )
+                  }
                }
             }.asFlow().collect(collector)
          }

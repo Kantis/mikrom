@@ -1,12 +1,13 @@
 // FIR_DUMP
 // DUMP_IR
 
+import io.github.kantis.mikrom.Row
 import io.github.kantis.mikrom.generator.RowMapped
 import kotlin.test.*
 
 fun box(): String {
    val person = Person.RowMapper.mapRow(
-      mapOf(
+      Row.of(
          "name" to "Brian",
          "nickname" to "bnorm",
          "age" to -1,

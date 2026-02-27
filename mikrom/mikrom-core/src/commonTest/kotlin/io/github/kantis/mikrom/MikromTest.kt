@@ -10,25 +10,25 @@ class MikromTest : FunSpec({
    test("Resolve mapper") {
       val mikrom =
          Mikrom {
-            registerRowMapper { row -> Foo(row["bar"] as String) }
+            registerRowMapper { row -> Foo(row.get("bar")) }
          }
 
       mikrom
          .resolveRowMapper<Foo>()
-         .mapRow(mapOf("bar" to "baz")) shouldBe Foo("baz")
+         .mapRow(Row.of("bar" to "baz")) shouldBe Foo("baz")
    }
 
    test("integrate with data sources") {
       val mikrom =
          Mikrom {
-            registerRowMapper { row -> Foo(row["bar"] as String) }
+            registerRowMapper { row -> Foo(row.get("bar")) }
          }
 
       val dataSource =
          InMemoryDataSource(
             listOf(
-               mapOf("bar" to "baz"),
-               mapOf("bar" to "qux"),
+               Row.of("bar" to "baz"),
+               Row.of("bar" to "qux"),
             ),
          )
 
