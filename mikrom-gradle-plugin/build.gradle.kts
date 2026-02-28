@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "io.github.kantis"
-version = "0.1.0-SNAPSHOT"
+version = project.property("version") ?: "0.2.0-SNAPSHOT"
 
 dependencies {
    implementation(kotlin("gradle-plugin-api"))
