@@ -1,7 +1,7 @@
 FILE: Person.kt
     public final fun box(): R|kotlin/String| {
         lval mikrom: R|io/github/kantis/mikrom/Mikrom| = R|io/github/kantis/mikrom/Mikrom.Mikrom|(R|kotlin/collections/mutableMapOf|<R|kotlin/reflect/KClass<*>|, R|io/github/kantis/mikrom/RowMapper<*>|>(), Q|io/github/kantis/mikrom/TypeConversions|.R|io/github/kantis/mikrom/TypeConversions.Companion.EMPTY|)
-        lval person: R|Person| = Q|Person.RowMapper|.R|/Person.RowMapper.mapRow|(Q|io/github/kantis/mikrom/Row|.R|io/github/kantis/mikrom/Row.Companion.of|(vararg(String(name).R|kotlin/to|<R|kotlin/String|, R|kotlin/String|>(String(Brian)), String(nickname).R|kotlin/to|<R|kotlin/String|, R|kotlin/String|>(String(bnorm)), String(age).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(-1)))), R|<local>/mikrom|)
+        lval person: R|Person| = Q|Person|.R|/Person.Companion.rowMapper|().R|SubstitutionOverride<io/github/kantis/mikrom/RowMapper.mapRow: R|Person|>|(Q|io/github/kantis/mikrom/Row|.R|io/github/kantis/mikrom/Row.Companion.of|(vararg(String(name).R|kotlin/to|<R|kotlin/String|, R|kotlin/String|>(String(Brian)), String(nickname).R|kotlin/to|<R|kotlin/String|, R|kotlin/String|>(String(bnorm)), String(age).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(-1)))), R|<local>/mikrom|)
         R|kotlin/test/assertEquals|<R|Person|>(R|<local>/person|, R|/Person.Person|(String(Brian), String(bnorm), Int(-1)))
         ^box String(OK)
     }
@@ -27,10 +27,17 @@ FILE: Person.kt
 
         public final fun copy(name: R|kotlin/String| = this@R|/Person|.R|/Person.name|, nickname: R|kotlin/String?| = this@R|/Person|.R|/Person.nickname|, age: R|kotlin/Int| = this@R|/Person|.R|/Person.age|): R|Person|
 
-        public final object RowMapper : R|io/github/kantis/mikrom/RowMapper<Person>| {
+        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<Person>| {
             public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|Person|
 
-            private constructor(): R|Person.RowMapper|
+            private constructor(): R|Person.$RowMapper|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun rowMapper(): R|io/github/kantis/mikrom/RowMapper<Person>|
+
+            private constructor(): R|Person.Companion|
 
         }
 
