@@ -14,6 +14,9 @@ import org.jetbrains.kotlin.ir.builders.irCall
 import org.jetbrains.kotlin.ir.builders.irDelegatingConstructorCall
 import org.jetbrains.kotlin.ir.builders.irGet
 import org.jetbrains.kotlin.ir.builders.irGetObject
+import org.jetbrains.kotlin.ir.builders.irIfThenElse
+import org.jetbrains.kotlin.ir.builders.irNotEquals
+import org.jetbrains.kotlin.ir.builders.irNull
 import org.jetbrains.kotlin.ir.builders.irReturn
 import org.jetbrains.kotlin.ir.builders.irString
 import org.jetbrains.kotlin.ir.builders.irTemporary
@@ -31,6 +34,7 @@ import org.jetbrains.kotlin.ir.expressions.IrBody
 import org.jetbrains.kotlin.ir.expressions.IrConstructorCall
 import org.jetbrains.kotlin.ir.expressions.impl.IrClassReferenceImpl
 import org.jetbrains.kotlin.ir.expressions.impl.IrInstanceInitializerCallImpl
+import org.jetbrains.kotlin.ir.types.IrType
 import org.jetbrains.kotlin.ir.types.classifierOrNull
 import org.jetbrains.kotlin.ir.types.makeNotNull
 import org.jetbrains.kotlin.ir.types.makeNullable
@@ -132,6 +136,7 @@ internal class MikromIrVisitor(
          key is MikromGenerateRowMapperAccessorKey -> {
             declaration.body = generateRowMapperAccessor(declaration)
          }
+
          key is MikromGenerateRowMapperKey -> {
             declaration.body = generateMapRowFunction(declaration)
          }
@@ -202,8 +207,10 @@ internal class MikromIrVisitor(
 
       for (valueParameter in constructorParameters) {
          val isNullable = valueParameter.type.isNullable()
-         val fn = if (isNullable) getOrNullFunction else getFunction
          val baseType = valueParameter.type.makeNotNull()
+         val valueClassInfo = resolveValueClass(baseType)
+         val fetchType = valueClassInfo?.first ?: baseType
+         val fn = if (isNullable) getOrNullFunction else getFunction
 
          variables += irTemporary(
             nameHint = valueParameter.name.asString(),
@@ -215,22 +222,51 @@ internal class MikromIrVisitor(
                val classRef = IrClassReferenceImpl(
                   startOffset,
                   endOffset,
-                  type = kClassSymbol.typeWith(baseType),
-                  symbol = baseType.classifierOrNull!!,
-                  classType = baseType,
+                  type = kClassSymbol.typeWith(fetchType),
+                  symbol = fetchType.classifierOrNull!!,
+                  classType = fetchType,
                )
 
-               +irCall(fn).apply {
+               val rowGetCall = irCall(fn).apply {
                   dispatchReceiver = rowRef
-                  typeArguments[0] = baseType
+                  typeArguments[0] = fetchType
                   arguments[1] = mikromRef
                   arguments[2] = keyLiteral
                   arguments[3] = classRef
+               }
+
+               if (valueClassInfo != null) {
+                  val valueClassConstructor = valueClassInfo.second
+                  if (isNullable) {
+                     val rawVar = irTemporary(rowGetCall)
+                     +irIfThenElse(
+                        type = valueParameter.type,
+                        condition = irNotEquals(irGet(rawVar), irNull()),
+                        thenPart = irCall(valueClassConstructor).apply {
+                           arguments[0] = irGet(rawVar)
+                        },
+                        elsePart = irNull(),
+                     )
+                  } else {
+                     +irCall(valueClassConstructor).apply {
+                        arguments[0] = rowGetCall
+                     }
+                  }
+               } else {
+                  +rowGetCall
                }
             },
          )
       }
 
       return variables
+   }
+
+   private fun resolveValueClass(type: IrType): Pair<IrType, IrConstructor>? {
+      val irClass = type.classifierOrNull?.owner as? IrClass ?: return null
+      if (!irClass.isValue) return null
+      val constructor = irClass.primaryConstructor ?: return null
+      val underlyingType = constructor.parameters.single().type
+      return underlyingType to constructor
    }
 }

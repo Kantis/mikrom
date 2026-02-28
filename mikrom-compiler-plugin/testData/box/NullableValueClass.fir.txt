@@ -1,0 +1,50 @@
+FILE: NullableValueClass.kt
+    @R|kotlin/jvm/JvmInline|() public final value class Email : R|kotlin/Any| {
+        public constructor(value: R|kotlin/String|): R|Email| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val value: R|kotlin/String| = R|<local>/value|
+            public get(): R|kotlin/String|
+
+    }
+    @R|io/github/kantis/mikrom/generator/RowMapped|() public final data class Contact : R|kotlin/Any| {
+        public constructor(name: R|kotlin/String|, email: R|Email?|): R|Contact| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val name: R|kotlin/String| = R|<local>/name|
+            public get(): R|kotlin/String|
+
+        public final val email: R|Email?| = R|<local>/email|
+            public get(): R|Email?|
+
+        public final operator fun component1(): R|kotlin/String|
+
+        public final operator fun component2(): R|Email?|
+
+        public final fun copy(name: R|kotlin/String| = this@R|/Contact|.R|/Contact.name|, email: R|Email?| = this@R|/Contact|.R|/Contact.email|): R|Contact|
+
+        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<Contact>| {
+            public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|Contact|
+
+            private constructor(): R|Contact.$RowMapper|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun rowMapper(): R|io/github/kantis/mikrom/RowMapper<Contact>|
+
+            private constructor(): R|Contact.Companion|
+
+        }
+
+    }
+    public final fun box(): R|kotlin/String| {
+        lval mikrom: R|io/github/kantis/mikrom/Mikrom| = R|io/github/kantis/mikrom/Mikrom.Mikrom|(R|kotlin/collections/mutableMapOf|<R|kotlin/reflect/KClass<*>|, R|io/github/kantis/mikrom/RowMapper<*>|>(), Q|io/github/kantis/mikrom/TypeConversions|.R|io/github/kantis/mikrom/TypeConversions.Companion.EMPTY|)
+        lval contact1: R|Contact| = Q|Contact|.R|/Contact.Companion.rowMapper|().R|SubstitutionOverride<io/github/kantis/mikrom/RowMapper.mapRow: R|Contact|>|(Q|io/github/kantis/mikrom/Row|.R|io/github/kantis/mikrom/Row.Companion.of|(vararg(String(name).R|kotlin/to|<R|kotlin/String|, R|kotlin/String|>(String(Alice)), String(email).R|kotlin/to|<R|kotlin/String|, R|kotlin/String|>(String(alice@example.com)))), R|<local>/mikrom|)
+        R|kotlin/test/assertEquals|<R|Contact|>(R|<local>/contact1|, R|/Contact.Contact|(String(Alice), R|/Email.Email|(String(alice@example.com))))
+        lval contact2: R|Contact| = Q|Contact|.R|/Contact.Companion.rowMapper|().R|SubstitutionOverride<io/github/kantis/mikrom/RowMapper.mapRow: R|Contact|>|(Q|io/github/kantis/mikrom/Row|.R|io/github/kantis/mikrom/Row.Companion.of|(vararg(String(name).R|kotlin/to|<R|kotlin/String|, R|kotlin/String|>(String(Bob)), String(email).R|kotlin/to|<R|kotlin/String|, R|kotlin/Nothing?|>(Null(null)))), R|<local>/mikrom|)
+        R|kotlin/test/assertEquals|<R|Contact|>(R|<local>/contact2|, R|/Contact.Contact|(String(Bob), Null(null)))
+        ^box String(OK)
+    }
