@@ -2,6 +2,8 @@ package io.github.kantis.mikrom.r2dbc
 
 import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Query
+import io.github.kantis.mikrom.get
+import io.github.kantis.mikrom.getOrNull
 import io.github.kantis.mikrom.r2dbc.helpers.preparePostgresDatabase
 import io.github.kantis.mikrom.suspend.execute
 import io.github.kantis.mikrom.suspend.queryFor
@@ -30,16 +32,16 @@ class R2dbcDataTypesTest : FunSpec({
    val mikrom = Mikrom {
       registerRowMapper { row ->
          DataTypeRecord(
-            id = row["id"] as Int,
-            stringField = row["string_field"] as String?,
-            intField = row["int_field"] as Int?,
-            longField = row["long_field"] as Long?,
-            booleanField = row["boolean_field"] as Boolean?,
-            doubleField = row["double_field"] as Double?,
-            decimalField = row["decimal_field"] as BigDecimal?,
-            dateField = row["date_field"] as LocalDate?,
-            timestampField = row["timestamp_field"] as LocalDateTime?,
-            uuidField = row["uuid_field"] as UUID?,
+            id = row.get("id"),
+            stringField = row.getOrNull("string_field"),
+            intField = row.getOrNull("int_field"),
+            longField = row.getOrNull("long_field"),
+            booleanField = row.getOrNull("boolean_field"),
+            doubleField = row.getOrNull("double_field"),
+            decimalField = row.getOrNull("decimal_field"),
+            dateField = row.getOrNull("date_field"),
+            timestampField = row.getOrNull("timestamp_field"),
+            uuidField = row.getOrNull("uuid_field"),
          )
       }
    }

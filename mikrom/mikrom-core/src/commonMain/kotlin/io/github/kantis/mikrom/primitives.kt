@@ -1,5 +1,6 @@
 package io.github.kantis.mikrom
 
+import java.math.BigDecimal
 import kotlin.reflect.KClass
 
 public val nonMappedPrimitives: Set<KClass<*>> = setOf(
@@ -9,4 +10,5 @@ public val nonMappedPrimitives: Set<KClass<*>> = setOf(
    Float::class,
    Double::class,
    Boolean::class,
+   BigDecimal::class,
 )

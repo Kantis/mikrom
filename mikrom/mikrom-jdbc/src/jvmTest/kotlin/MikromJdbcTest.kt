@@ -3,6 +3,7 @@ package io.github.kantis.mikrom.jdbc
 import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.execute
+import io.github.kantis.mikrom.get
 import io.github.kantis.mikrom.jdbc.h2.prepareH2Database
 import io.github.kantis.mikrom.queryFor
 import io.kotest.core.spec.style.FunSpec
@@ -17,9 +18,9 @@ class MikromJdbcTest : FunSpec(
             Mikrom {
                registerRowMapper { row ->
                   Book(
-                     row["author"] as String,
-                     row["title"] as String,
-                     row["number_of_pages"] as Int,
+                     row.get("author"),
+                     row.get("title"),
+                     row.get("number_of_pages"),
                   )
                }
             }

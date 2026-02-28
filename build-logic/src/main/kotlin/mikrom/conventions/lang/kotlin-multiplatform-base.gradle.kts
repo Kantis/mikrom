@@ -12,6 +12,10 @@ plugins {
    id("org.jlleitschuh.gradle.ktlint")
 }
 
+ktlint {
+   version.set("1.8.0")
+}
+
 // Base configuration for all Kotlin/Multiplatform conventions.
 // This plugin does not enable any Kotlin target. To enable a target in a subproject, prefer
 // applying specific Kotlin target convention plugins.
@@ -32,7 +36,7 @@ kotlin {
    }
 
    compilerOptions {
-      freeCompilerArgs.add("-Xcontext-receivers")
+      freeCompilerArgs.add("-Xcontext-parameters")
    }
 
    // configure all Kotlin/JVM Tests to use JUnit

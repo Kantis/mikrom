@@ -11,6 +11,10 @@ plugins {
    id("org.jlleitschuh.gradle.ktlint")
 }
 
+ktlint {
+   version.set("1.8.0")
+}
+
 val mikromSettings = extensions.getByType<MikromBuildLogicSettings>()
 
 extensions.configure<KotlinJvmExtension> {
@@ -23,7 +27,7 @@ extensions.configure<KotlinJvmExtension> {
    compilerOptions {
       optIn.add("kotlin.RequiresOptIn")
       optIn.add("io.github.kantis.mikrom.MikromInternal")
-      freeCompilerArgs.add("-Xcontext-receivers")
+      freeCompilerArgs.add("-Xcontext-parameters")
    }
 
    sourceSets.configureEach {

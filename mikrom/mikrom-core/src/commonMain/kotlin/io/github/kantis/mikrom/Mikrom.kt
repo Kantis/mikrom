@@ -5,6 +5,7 @@ import kotlin.reflect.KClass
 
 public class Mikrom(
    public val rowMappers: MutableMap<KClass<*>, RowMapper<*>>,
+   public val conversions: TypeConversions = defaultConversions(),
 ) {
    @Suppress("UNCHECKED_CAST")
    public inline fun <reified T : Any> resolveRowMapper(): RowMapper<T> =

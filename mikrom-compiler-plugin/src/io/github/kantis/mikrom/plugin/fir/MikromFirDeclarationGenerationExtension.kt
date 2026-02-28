@@ -28,7 +28,6 @@ import org.jetbrains.kotlin.name.ClassId
 import org.jetbrains.kotlin.name.FqName
 import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.name.SpecialNames
-import org.jetbrains.kotlin.name.StandardClassIds
 
 public class MikromFirDeclarationGenerationExtension(
    session: FirSession,
@@ -40,11 +39,18 @@ public class MikromFirDeclarationGenerationExtension(
          Name.identifier("RowMapper"),
       ).createConeType(session, typeArguments = arrayOf(typeArgument))
 
-   private val mapStringToAny by lazy {
-      StandardClassIds.Map.createConeType(
-         session,
-         typeArguments = arrayOf(session.builtinTypes.stringType.coneType, session.builtinTypes.anyType.coneType),
-      )
+   private val rowType by lazy {
+      ClassId(
+         FqName("io.github.kantis.mikrom"),
+         Name.identifier("Row"),
+      ).createConeType(session)
+   }
+
+   private val mikromType by lazy {
+      ClassId(
+         FqName("io.github.kantis.mikrom"),
+         Name.identifier("Mikrom"),
+      ).createConeType(session)
    }
 
    override fun FirDeclarationPredicateRegistrar.registerPredicates() {
@@ -134,7 +140,8 @@ public class MikromFirDeclarationGenerationExtension(
          name = callableId.callableName,
          returnType = key.ownerClassSymbol.constructType(),
       ) {
-         valueParameter(Name.identifier("row"), mapStringToAny)
+         valueParameter(Name.identifier("row"), rowType)
+         valueParameter(Name.identifier("mikrom"), mikromType)
       }
 
       return listOf(build.symbol)
