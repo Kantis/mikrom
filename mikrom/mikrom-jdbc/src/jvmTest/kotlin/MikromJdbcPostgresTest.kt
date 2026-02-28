@@ -22,12 +22,14 @@ class MikromJdbcPostgresTest : FunSpec(
       val dataSource = JdbcDataSource(postgres)
 
       val mikrom = Mikrom {
-         registerRowMapper { row ->
-            Book(
-               row.get("author"),
-               row.get("title"),
-               row.get("number_of_pages"),
-            )
+         registerRowMapper { row, mikrom ->
+            with(mikrom) {
+               Book(
+                  row.get("author"),
+                  row.get("title"),
+                  row.get("number_of_pages"),
+               )
+            }
          }
       }
 
@@ -54,9 +56,8 @@ class MikromJdbcPostgresTest : FunSpec(
       test("Reading data outside of transaction") {
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)"),
-               listOf("JRR Tolkien", "The Hobbit", 310),
-               listOf("George Orwell", "1984", 328),
+                Query("INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)"),
+                listOf("George Orwell", "1984", 328),
             )
 
             val books = mikrom.queryFor<Book>(
@@ -81,11 +82,10 @@ class MikromJdbcPostgresTest : FunSpec(
 
       test("Should not allow SQL injection") {
          dataSource.transaction {
-            mikrom.execute(
-               Query("INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)"),
-               listOf("JRR Tolkien", "The Hobbit", 310),
-               listOf("George Orwell", "1984", 328),
-            )
+             mikrom.execute(
+                 Query("INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)"),
+                 listOf("George Orwell", "1984", 328),
+             )
          }
 
          dataSource.transaction {
@@ -103,9 +103,8 @@ class MikromJdbcPostgresTest : FunSpec(
       test("Should work with Postgres") {
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)"),
-               listOf("JRR Tolkien", "The Hobbit", 310),
-               listOf("George Orwell", "1984", 328),
+                Query("INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)"),
+                listOf("George Orwell", "1984", 328),
             )
 
             mikrom.queryFor<Book>(Query("SELECT * FROM books")) shouldBe

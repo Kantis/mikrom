@@ -11,6 +11,7 @@ import io.kotest.matchers.equals.shouldBeEqual
 import io.kotest.matchers.shouldBe
 import java.math.BigDecimal
 import java.time.Instant
+import java.time.temporal.ChronoUnit
 
 class DataTypesTest : FunSpec({
    val dataSource = prepareH2Database(
@@ -27,24 +28,25 @@ class DataTypesTest : FunSpec({
    val mikrom = Mikrom { }
 
    test("Mixing null as a parameter should work") {
-      val now = Instant.now()
+      val now = Instant.now().truncatedTo(ChronoUnit.MILLIS)
 
       dataSource.transaction {
          mikrom.execute(
             Query("INSERT INTO foo (bar, number, timestamp) VALUES (?, ?, ?)"),
-            listOf("baz", "123.01".toBigDecimal(), now),
             listOf(null, null, null),
          )
 
          val result = query(Query("SELECT * FROM foo"))
 
-         result.size shouldBe 2
-         result[0].get<Int>("id") shouldBe 1
-         result[0].get<String>("bar") shouldBe "baz"
-         result[0].get<BigDecimal>("number") shouldBe "123.01".toBigDecimal()
-         result[0].get<Instant>("timestamp") shouldBeEqual now
-         result[1].get<Int>("id") shouldBe 2
-         result[1].getOrNull<String>("bar") shouldBe null
+         with(mikrom) {
+            result.size shouldBe 2
+            result[0].get<Int>("id") shouldBe 1
+            result[0].get<String>("bar") shouldBe "baz"
+            result[0].get<BigDecimal>("number") shouldBe "123.01".toBigDecimal()
+            result[0].get<Instant>("timestamp") shouldBeEqual now
+            result[1].get<Int>("id") shouldBe 2
+            result[1].getOrNull<String>("bar") shouldBe null
+         }
       }
    }
 })

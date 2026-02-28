@@ -1,9 +1,8 @@
 package io.github.kantis.mikrom
 
-import java.sql.Timestamp
-import java.time.Instant
 import kotlin.reflect.KClass
 
+@Suppress("UNCHECKED_CAST")
 public class Row
    @PublishedApi
    internal constructor(private val columns: Map<String, Column>) {
@@ -39,6 +38,7 @@ public class Row
             "cannot be read as $expected"
       }
 
+      context(mikrom: Mikrom)
       public fun <T : Any> get(
          column: String,
          clazz: KClass<*>,
@@ -51,9 +51,9 @@ public class Row
                   "but non-null ${clazz.simpleName} was expected",
             )
 
-         val coercedValue = (TypeCoercer.coerce(value, clazz) as? T) ?: value
+         val convertedValue = (mikrom.conversions.convert(value, clazz) as? T) ?: value
 
-         return coercedValue as? T
+         return convertedValue as? T
             ?: throw TypeMismatchException(
                typeMismatchMessage(
                   column,
@@ -64,15 +64,16 @@ public class Row
             )
       }
 
+      context(mikrom: Mikrom)
       public fun <T> getOrNull(
          column: String,
          clazz: KClass<*>,
       ): T? {
          val col = resolveColumn(column)
          val value = col.value ?: return null
-         val coercedValue = (TypeCoercer.coerce(value, clazz) as? T) ?: value
+         val convertedValue = (mikrom.conversions.convert(value, clazz) as? T) ?: value
 
-         return coercedValue as? T
+         return convertedValue as? T
             ?: throw TypeMismatchException(
                typeMismatchMessage(
                   column,
@@ -103,43 +104,8 @@ public class Row
       }
    }
 
+context(mikrom: Mikrom)
 public inline fun <reified T : Any> Row.get(column: String): T = get(column, T::class)
 
+context(mikrom: Mikrom)
 public inline fun <reified T> Row.getOrNull(column: String): T? = getOrNull(column, T::class)
-
-internal object TypeCoercer {
-   fun coerce(
-      value: Any,
-      target: KClass<*>,
-   ): Any? =
-      when (value) {
-         is Int -> coerceInt(value, target)
-
-         // TODO: JVM-only code in commonMain
-//         is Timestamp -> coerceTimestamp(value, target)
-
-         else -> null
-      }
-
-   fun coerceTimestamp(
-      value: Timestamp,
-      target: KClass<*>,
-   ): Any? =
-      when (target) {
-         Instant::class -> value.toInstant()
-         else -> null
-      }
-
-   fun coerceInt(
-      value: Int,
-      target: KClass<*>,
-   ): Any? =
-      when (target) {
-         UInt::class -> value.toUInt()
-         UByte::class -> value.toUByte()
-         UShort::class -> value.toUShort()
-         Byte::class -> value.toByte()
-         Short::class -> value.toShort()
-         else -> null
-      }
-}

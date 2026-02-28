@@ -17,7 +17,7 @@ data class TestRecord(val id: Int, val name: String)
 class JdbcTransactionTest : FunSpec(
    {
       val mikrom = Mikrom {
-         registerRowMapper { row -> TestRecord(row.get("id"), row.get("name")) }
+         registerRowMapper { row, mikrom -> with(mikrom) { TestRecord(row.get("id"), row.get("name")) } }
       }
 
       val dataSource = prepareH2Database(
@@ -38,10 +38,10 @@ class JdbcTransactionTest : FunSpec(
       test("transaction commits data when returning TransactionResult.Commit") {
          // Insert data and commit
          dataSource.transaction {
-            mikrom.execute(
-               Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
-               listOf(1, "committed_name"),
-            )
+             mikrom.execute(
+                 Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
+                 listOf(1, "committed_name"),
+             )
          }
 
          // Verify data persists after commit
@@ -55,17 +55,17 @@ class JdbcTransactionTest : FunSpec(
       test("transaction rolls back data when returning TransactionResult.Rollback") {
          // Insert initial data and commit
          dataSource.transaction {
-            mikrom.execute(
-               Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
-               listOf(1, "initial_name"),
-            )
+             mikrom.execute(
+                 Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
+                 listOf(1, "initial_name"),
+             )
          }
 
          // Insert more data but rollback
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
-               listOf(2, "rolled_back_name"),
+                Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
+                listOf(2, "rolled_back_name"),
             )
             Rollback
          }
@@ -80,18 +80,18 @@ class JdbcTransactionTest : FunSpec(
       test("transaction rolls back when exception is thrown") {
          // Insert initial data and commit
          dataSource.transaction {
-            mikrom.execute(
-               Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
-               listOf(1, "initial_name"),
-            )
+             mikrom.execute(
+                 Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
+                 listOf(1, "initial_name"),
+             )
          }
 
          // Attempt transaction that throws exception
          try {
             dataSource.transaction {
                mikrom.execute(
-                  Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
-                  listOf(2, "exception_name"),
+                   Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
+                   listOf(2, "exception_name"),
                )
                throw RuntimeException("Simulated error")
             }
@@ -110,18 +110,18 @@ class JdbcTransactionTest : FunSpec(
       test("transaction can update existing data and commit") {
          // Insert initial data
          dataSource.transaction {
-            mikrom.execute(
-               Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
-               listOf(1, "original_name"),
-            )
+             mikrom.execute(
+                 Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
+                 listOf(1, "original_name"),
+             )
          }
 
          // Update data and commit
          dataSource.transaction {
-            mikrom.execute(
-               Query("UPDATE test_records SET name = ? WHERE id = ?"),
-               listOf("updated_name", 1),
-            )
+             mikrom.execute(
+                 Query("UPDATE test_records SET name = ? WHERE id = ?"),
+                 listOf("updated_name", 1),
+             )
          }
 
          // Verify update was committed
@@ -136,17 +136,17 @@ class JdbcTransactionTest : FunSpec(
 
          // Insert initial data
          dataSource.transaction {
-            mikrom.execute(
-               Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
-               listOf(1, "original_name"),
-            )
+             mikrom.execute(
+                 Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
+                 listOf(1, "original_name"),
+             )
          }
 
          // Update data but rollback
          dataSource.transaction {
             mikrom.execute(
-               Query("UPDATE test_records SET name = ? WHERE id = ?"),
-               listOf("updated_name", 1),
+                Query("UPDATE test_records SET name = ? WHERE id = ?"),
+                listOf("updated_name", 1),
             )
             Rollback
          }

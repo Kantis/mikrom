@@ -46,6 +46,13 @@ public class MikromFirDeclarationGenerationExtension(
       ).createConeType(session)
    }
 
+   private val mikromType by lazy {
+      ClassId(
+         FqName("io.github.kantis.mikrom"),
+         Name.identifier("Mikrom"),
+      ).createConeType(session)
+   }
+
    override fun FirDeclarationPredicateRegistrar.registerPredicates() {
       register(ROW_MAPPED_PREDICATE)
       register(HAS_ROW_MAPPED_PREDICATE)
@@ -134,6 +141,7 @@ public class MikromFirDeclarationGenerationExtension(
          returnType = key.ownerClassSymbol.constructType(),
       ) {
          valueParameter(Name.identifier("row"), rowType)
+         valueParameter(Name.identifier("mikrom"), mikromType)
       }
 
       return listOf(build.symbol)

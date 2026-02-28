@@ -117,9 +117,12 @@ internal class MikromIrVisitor(
       val irBuilder = DeclarationIrBuilder(pluginContext, function.symbol)
 
       return irBuilder.irBlockBody {
-         // Map<String, Any>
-         val row = function.parameters[1] // first will be the "this" reference..
-         val arguments = generateConstructorArguments(primaryConstructor.parameters, row)
+         // parameters[0] = dispatch receiver (RowMapper this)
+         // parameters[1] = row: Row
+         // parameters[2] = mikrom: Mikrom
+         val row = function.parameters[1]
+         val mikrom = function.parameters[2]
+         val arguments = generateConstructorArguments(primaryConstructor.parameters, row, mikrom)
 
          val constructorCall = irCall(primaryConstructor).apply {
             arguments.forEachIndexed { index, variable ->
@@ -134,15 +137,21 @@ internal class MikromIrVisitor(
    private fun IrBlockBodyBuilder.generateConstructorArguments(
       constructorParameters: List<IrValueParameter>,
       row: IrValueParameter,
+      mikrom: IrValueParameter,
    ): List<IrVariable> {
       val variables = mutableListOf<IrVariable>()
 
       val rowClass = pluginContext.referenceClass(ROW_CLASS_ID)!!
+      // Row.get and Row.getOrNull now have 4 parameters:
+      // [0] = dispatch receiver (Row this)
+      // [1] = context parameter (Mikrom)
+      // [2] = column (String)
+      // [3] = clazz (KClass)
       val getFunction = rowClass.functions.single {
-         it.owner.name == Name.identifier("get") && it.owner.parameters.size == 3
+         it.owner.name == Name.identifier("get") && it.owner.parameters.size == 4
       }
       val getOrNullFunction = rowClass.functions.single {
-         it.owner.name == Name.identifier("getOrNull") && it.owner.parameters.size == 3
+         it.owner.name == Name.identifier("getOrNull") && it.owner.parameters.size == 4
       }
       val kClassSymbol = pluginContext.referenceClass(
          ClassId.topLevel(FqName("kotlin.reflect.KClass")),
@@ -157,6 +166,7 @@ internal class MikromIrVisitor(
             nameHint = valueParameter.name.asString(),
             value = irBlock {
                val rowRef = irGet(row)
+               val mikromRef = irGet(mikrom)
                val keyLiteral = irString(valueParameter.name.asString())
 
                val classRef = IrClassReferenceImpl(
@@ -170,8 +180,9 @@ internal class MikromIrVisitor(
                +irCall(fn).apply {
                   dispatchReceiver = rowRef
                   typeArguments[0] = baseType
-                  arguments[1] = keyLiteral
-                  arguments[2] = classRef
+                  arguments[1] = mikromRef
+                  arguments[2] = keyLiteral
+                  arguments[3] = classRef
                }
             },
          )

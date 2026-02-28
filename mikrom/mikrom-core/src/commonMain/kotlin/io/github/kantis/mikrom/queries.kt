@@ -5,58 +5,60 @@ import kotlin.collections.emptyList
 
 public inline fun <reified T> Mikrom.queryForSingleOrNull(query: Query): T? = null
 
-context(Transaction)
+context(transaction: Transaction)
 public inline fun <reified T : Any> Mikrom.queryFor(query: Query): List<T> {
    if (T::class in nonMappedPrimitives) {
-      return query(query).map { it.singleValue() as T }
+      return transaction.query(query).map { it.singleValue() as T }
    }
    val rowMapper = resolveRowMapper<T>()
-   return query(query).map(rowMapper::mapRow)
+   return transaction.query(query).map { rowMapper.mapRow(it, this@queryFor) }
 }
 
-context(Transaction)
+context(transaction: Transaction)
 public inline fun <reified T> Mikrom.queryFor(
    query: Query,
    param: Any,
 ): List<T> = queryFor(query, listOf(param))
 
-context(Transaction)
+context(transaction: Transaction)
 public inline fun <reified T : Any> Mikrom.queryFor(
    query: Query,
    params: List<Any>,
 ): List<T> {
    if (T::class in nonMappedPrimitives) {
-      return query(query, params).map { it.singleValue() as T }
+      return transaction.query(query, params).map { it.singleValue() as T }
    }
    val rowMapper = resolveRowMapper<T>()
-   return query(query, params).map(rowMapper::mapRow)
+   return transaction.query(query, params).map { rowMapper.mapRow(it, this@queryFor) }
 }
 
-context(Transaction)
-public inline fun Mikrom.execute(
+context(transaction: Transaction)
+public fun Mikrom.execute(
    query: Query,
    params: List<Any>,
 ) {
-   executeInTransaction(query, params)
+   transaction.executeInTransaction(query, params)
 }
 
-context(Transaction)
+context(transaction: Transaction)
 public fun Mikrom.execute(
    query: Query,
    vararg params: List<Any>,
 ) {
-   params.forEach { executeInTransaction(query, it) }
+   params.forEach { transaction.executeInTransaction(query, it) }
 }
 
-context(Transaction)
+context(transaction: Transaction)
 public fun <T : Any> Mikrom.execute(
    query: Query,
    vararg params: T,
 ) {
-   params.forEach { if (it is List<*>) executeInTransaction(query, it) else executeInTransaction(query, listOf(it)) }
+   params.forEach {
+      if (it is List<*>) transaction.executeInTransaction(query, it) else transaction.executeInTransaction(query, listOf(it))
+   }
 }
 
-context(Transaction)
+context(transaction: Transaction)
 public fun Mikrom.execute(query: Query) {
-   executeInTransaction(query, emptyList<Any>())
+   transaction.executeInTransaction(query, emptyList<Any>())
 }
