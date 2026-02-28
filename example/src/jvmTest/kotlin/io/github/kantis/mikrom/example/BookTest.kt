@@ -11,6 +11,7 @@ class BookTest : FunSpec(
       val mikrom = Mikrom(mutableMapOf(), TypeConversions.EMPTY)
 
       test("rowMapper() companion accessor returns generated mapper") {
+         val mikrom = Mikrom(mutableMapOf(), TypeConversions.EMPTY)
          val book: Book = Book.rowMapper().mapRow(
             Row.of(
                "author" to "JRR Tolkien",
