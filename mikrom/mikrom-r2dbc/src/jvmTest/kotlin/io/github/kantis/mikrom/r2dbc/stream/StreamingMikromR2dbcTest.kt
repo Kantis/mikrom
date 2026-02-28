@@ -18,14 +18,12 @@ class StreamingMikromR2dbcTest : FunSpec(
    {
       test("integrate with R2DBC PostgreSQL data source") {
          val mikrom = Mikrom {
-            registerRowMapper { row, mikrom ->
-               with(mikrom) {
-                  Book(
-                     row.get("author"),
-                     row.get("title"),
-                     row.get("number_of_pages"),
-                  )
-               }
+            registerRowMapper { row ->
+               Book(
+                  row.get("author"),
+                  row.get("title"),
+                  row.get("number_of_pages"),
+               )
             }
          }
 

@@ -17,13 +17,11 @@ private data class TestRecord(val id: Int, val name: String)
 class R2dbcTransactionTest : FunSpec(
    {
       val mikrom = Mikrom {
-         registerRowMapper { row, mikrom ->
-            with(mikrom) {
-               TestRecord(
-                  row.get("id"),
-                  row.get("name"),
-               )
-            }
+         registerRowMapper { row ->
+            TestRecord(
+               row.get("id"),
+               row.get("name"),
+            )
          }
       }
 

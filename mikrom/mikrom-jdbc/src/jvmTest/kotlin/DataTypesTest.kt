@@ -33,6 +33,7 @@ class DataTypesTest : FunSpec({
       dataSource.transaction {
          mikrom.execute(
             Query("INSERT INTO foo (bar, number, timestamp) VALUES (?, ?, ?)"),
+            listOf("baz", "123.01".toBigDecimal(), now),
             listOf(null, null, null),
          )
 

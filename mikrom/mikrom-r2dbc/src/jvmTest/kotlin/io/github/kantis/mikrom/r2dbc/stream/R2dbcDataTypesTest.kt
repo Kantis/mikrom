@@ -33,21 +33,19 @@ private data class DataTypeRecord(
 
 class R2dbcDataTypesTest : FunSpec({
    val mikrom = Mikrom {
-      registerRowMapper { row, mikrom ->
-         with(mikrom) {
-            DataTypeRecord(
-               id = row.get("id"),
-               stringField = row.getOrNull("string_field"),
-               intField = row.getOrNull("int_field"),
-               longField = row.getOrNull("long_field"),
-               booleanField = row.getOrNull("boolean_field"),
-               doubleField = row.getOrNull("double_field"),
-               decimalField = row.getOrNull("decimal_field"),
-               dateField = row.getOrNull("date_field"),
-               timestampField = row.getOrNull("timestamp_field"),
-               uuidField = row.getOrNull("uuid_field"),
-            )
-         }
+      registerRowMapper { row ->
+         DataTypeRecord(
+            id = row.get("id"),
+            stringField = row.getOrNull("string_field"),
+            intField = row.getOrNull("int_field"),
+            longField = row.getOrNull("long_field"),
+            booleanField = row.getOrNull("boolean_field"),
+            doubleField = row.getOrNull("double_field"),
+            decimalField = row.getOrNull("decimal_field"),
+            dateField = row.getOrNull("date_field"),
+            timestampField = row.getOrNull("timestamp_field"),
+            uuidField = row.getOrNull("uuid_field"),
+         )
       }
    }
 

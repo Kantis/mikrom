@@ -10,7 +10,7 @@ class MikromTest : FunSpec({
    test("Resolve mapper") {
       val mikrom =
          Mikrom {
-            registerRowMapper<Foo> { row, mikrom -> with(mikrom) { Foo(row.get("bar")) } }
+            registerRowMapper<Foo> { row -> Foo(row.get("bar")) }
          }
 
       mikrom
@@ -21,7 +21,7 @@ class MikromTest : FunSpec({
    test("integrate with data sources") {
       val mikrom =
          Mikrom {
-            registerRowMapper<Foo> { row, mikrom -> with(mikrom) { Foo(row.get("bar")) } }
+            registerRowMapper<Foo> { row -> Foo(row.get("bar")) }
          }
 
       val dataSource =

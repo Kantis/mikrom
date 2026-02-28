@@ -16,14 +16,12 @@ class MikromJdbcTest : FunSpec(
       test("integrate with H2 JDBC data source") {
          val mikrom =
             Mikrom {
-               registerRowMapper { row, mikrom ->
-                  with(mikrom) {
-                     Book(
-                        row.get("author"),
-                        row.get("title"),
-                        row.get("number_of_pages"),
-                     )
-                  }
+               registerRowMapper { row ->
+                  Book(
+                     row.get("author"),
+                     row.get("title"),
+                     row.get("number_of_pages"),
+                  )
                }
             }
 
@@ -40,6 +38,7 @@ class MikromJdbcTest : FunSpec(
          dataSource.transaction {
             mikrom.execute(
                Query("INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)"),
+               listOf("JRR Tolkien", "The Hobbit", 310),
                listOf("George Orwell", "1984", 328),
             )
 

@@ -32,6 +32,7 @@ class QueryingForPrimitivesTest : FunSpec({
       dataSource.transaction {
          mikrom.execute(
             Query("INSERT INTO foo (bar) VALUES (?)"),
+            listOf("baz"),
             listOf("qux"),
          )
 
@@ -45,6 +46,7 @@ class QueryingForPrimitivesTest : FunSpec({
       dataSource.transaction {
          mikrom.execute(
             Query("INSERT INTO foo (bar) VALUES (?)"),
+            listOf("baz"),
             listOf("qux"),
          )
 
