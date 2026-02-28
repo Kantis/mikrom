@@ -1,6 +1,6 @@
 plugins {
    `java-gradle-plugin`
-   id("com.gradle.plugin-publish") version "1.1.0"
+   id("com.gradle.plugin-publish") version "2.0.0"
    id("mikrom.conventions.lang.kotlin-jvm")
 }
 
