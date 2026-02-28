@@ -1,5 +1,7 @@
 package io.github.kantis.mikrom.plugin.ir
 
+import io.github.kantis.mikrom.plugin.MikromGenerateCompanionKey
+import io.github.kantis.mikrom.plugin.MikromGenerateRowMapperAccessorKey
 import io.github.kantis.mikrom.plugin.MikromGenerateRowMapperKey
 import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
 import org.jetbrains.kotlin.backend.common.lower.DeclarationIrBuilder
@@ -11,6 +13,7 @@ import org.jetbrains.kotlin.ir.builders.irBlockBody
 import org.jetbrains.kotlin.ir.builders.irCall
 import org.jetbrains.kotlin.ir.builders.irDelegatingConstructorCall
 import org.jetbrains.kotlin.ir.builders.irGet
+import org.jetbrains.kotlin.ir.builders.irGetObject
 import org.jetbrains.kotlin.ir.builders.irReturn
 import org.jetbrains.kotlin.ir.builders.irString
 import org.jetbrains.kotlin.ir.builders.irTemporary
@@ -32,8 +35,10 @@ import org.jetbrains.kotlin.ir.types.classifierOrNull
 import org.jetbrains.kotlin.ir.types.makeNotNull
 import org.jetbrains.kotlin.ir.types.makeNullable
 import org.jetbrains.kotlin.ir.types.typeWith
+import org.jetbrains.kotlin.ir.util.companionObject
 import org.jetbrains.kotlin.ir.util.functions
 import org.jetbrains.kotlin.ir.util.isNullable
+import org.jetbrains.kotlin.ir.util.parentAsClass
 import org.jetbrains.kotlin.ir.util.primaryConstructor
 import org.jetbrains.kotlin.ir.visitors.IrVisitorVoid
 import org.jetbrains.kotlin.ir.visitors.acceptChildrenVoid
@@ -46,9 +51,12 @@ internal class MikromIrVisitor(
    private val pluginContext: IrPluginContext,
 ) : IrVisitorVoid() {
    private companion object {
-      private val MIKROM_ORIGIN = IrDeclarationOrigin.GeneratedByPlugin(MikromGenerateRowMapperKey)
+      private val ROW_MAPPER_ORIGIN = IrDeclarationOrigin.GeneratedByPlugin(MikromGenerateRowMapperKey)
+      private val COMPANION_ORIGIN_PREFIX = "MikromGenerateCompanionKey"
+      private val ACCESSOR_ORIGIN_PREFIX = "MikromGenerateRowMapperAccessorKey"
 
       private val ROW_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom"), Name.identifier("Row"))
+      private val ROW_MAPPER_NESTED_NAME = Name.identifier("\$RowMapper")
 
       private val ILLEGAL_STATE_EXCEPTION_FQ_NAME =
          FqName("kotlin.IllegalStateException")
@@ -82,8 +90,16 @@ internal class MikromIrVisitor(
       }
    }
 
+   private fun IrDeclaration.isGeneratedByMikrom(): Boolean {
+      val origin = origin
+      if (origin == ROW_MAPPER_ORIGIN) return true
+      if (origin !is IrDeclarationOrigin.GeneratedByPlugin) return false
+      val key = origin.pluginKey
+      return key is MikromGenerateCompanionKey || key is MikromGenerateRowMapperAccessorKey
+   }
+
    override fun visitConstructor(declaration: IrConstructor) {
-      if (declaration.origin == MIKROM_ORIGIN && declaration.body == null) {
+      if (declaration.isGeneratedByMikrom() && declaration.body == null) {
          declaration.body = generateDefaultConstructor(declaration)
       }
    }
@@ -106,8 +122,35 @@ internal class MikromIrVisitor(
    }
 
    override fun visitSimpleFunction(declaration: IrSimpleFunction) {
-      if (declaration.origin == MIKROM_ORIGIN && declaration.body == null) {
-         declaration.body = generateMapRowFunction(declaration)
+      if (declaration.body != null) return
+      if (!declaration.isGeneratedByMikrom()) return
+
+      val origin = declaration.origin as? IrDeclarationOrigin.GeneratedByPlugin ?: return
+      val key = origin.pluginKey
+
+      when {
+         key is MikromGenerateRowMapperAccessorKey -> {
+            declaration.body = generateRowMapperAccessor(declaration)
+         }
+         key is MikromGenerateRowMapperKey -> {
+            declaration.body = generateMapRowFunction(declaration)
+         }
+      }
+   }
+
+   private fun generateRowMapperAccessor(function: IrSimpleFunction): IrBody? {
+      val companionClass = function.parentAsClass
+      val ownerClass = companionClass.parentAsClass
+
+      // Find the $RowMapper nested object in the owner class
+      val rowMapperObject = ownerClass.declarations
+         .filterIsInstance<IrClass>()
+         .singleOrNull { it.name == ROW_MAPPER_NESTED_NAME }
+         ?: return null
+
+      val irBuilder = DeclarationIrBuilder(pluginContext, function.symbol)
+      return irBuilder.irBlockBody {
+         +irReturn(irGetObject(rowMapperObject.symbol))
       }
    }
 

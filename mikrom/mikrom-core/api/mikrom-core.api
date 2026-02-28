@@ -166,7 +166,6 @@ public abstract interface annotation class io/github/kantis/mikrom/generator/Row
 
 public final class io/github/kantis/mikrom/internal/FindCompiledRowMapperKt {
 	public static final fun compiledRowMapper (Lkotlin/reflect/KClass;)Lio/github/kantis/mikrom/RowMapper;
-	public static final fun invokeRowMapperOnDefaultCompanion (Ljava/lang/Class;)Lio/github/kantis/mikrom/RowMapper;
 }
 
 public final class io/github/kantis/mikrom/suspend/SuspendQueriesKt {

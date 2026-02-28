@@ -9,7 +9,7 @@ import kotlin.test.*
 
 fun box(): String {
    val mikrom = Mikrom(mutableMapOf(), TypeConversions.EMPTY)
-   val person = Person.RowMapper.mapRow(
+   val person = Person.rowMapper().mapRow(
       Row.of(
          "name" to "Brian",
          "nickname" to "bnorm",
