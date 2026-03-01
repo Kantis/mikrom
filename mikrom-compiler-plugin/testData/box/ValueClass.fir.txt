@@ -1,0 +1,57 @@
+FILE: ValueClass.kt
+    @R|kotlin/jvm/JvmInline|() public final value class UserId : R|kotlin/Any| {
+        public constructor(value: R|kotlin/String|): R|UserId| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val value: R|kotlin/String| = R|<local>/value|
+            public get(): R|kotlin/String|
+
+    }
+    @R|kotlin/jvm/JvmInline|() public final value class Age : R|kotlin/Any| {
+        public constructor(value: R|kotlin/Int|): R|Age| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val value: R|kotlin/Int| = R|<local>/value|
+            public get(): R|kotlin/Int|
+
+    }
+    @R|io/github/kantis/mikrom/generator/RowMapped|() public final data class UserWithValueClass : R|kotlin/Any| {
+        public constructor(id: R|UserId|, age: R|Age|): R|UserWithValueClass| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val id: R|UserId| = R|<local>/id|
+            public get(): R|UserId|
+
+        public final val age: R|Age| = R|<local>/age|
+            public get(): R|Age|
+
+        public final operator fun component1(): R|UserId|
+
+        public final operator fun component2(): R|Age|
+
+        public final fun copy(id: R|UserId| = this@R|/UserWithValueClass|.R|/UserWithValueClass.id|, age: R|Age| = this@R|/UserWithValueClass|.R|/UserWithValueClass.age|): R|UserWithValueClass|
+
+        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<UserWithValueClass>| {
+            public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|UserWithValueClass|
+
+            private constructor(): R|UserWithValueClass.$RowMapper|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun rowMapper(): R|io/github/kantis/mikrom/RowMapper<UserWithValueClass>|
+
+            private constructor(): R|UserWithValueClass.Companion|
+
+        }
+
+    }
+    public final fun box(): R|kotlin/String| {
+        lval mikrom: R|io/github/kantis/mikrom/Mikrom| = R|io/github/kantis/mikrom/Mikrom.Mikrom|(R|kotlin/collections/mutableMapOf|<R|kotlin/reflect/KClass<*>|, R|io/github/kantis/mikrom/RowMapper<*>|>(), Q|io/github/kantis/mikrom/TypeConversions|.R|io/github/kantis/mikrom/TypeConversions.Companion.EMPTY|)
+        lval user: R|UserWithValueClass| = Q|UserWithValueClass|.R|/UserWithValueClass.Companion.rowMapper|().R|SubstitutionOverride<io/github/kantis/mikrom/RowMapper.mapRow: R|UserWithValueClass|>|(Q|io/github/kantis/mikrom/Row|.R|io/github/kantis/mikrom/Row.Companion.of|(vararg(String(id).R|kotlin/to|<R|kotlin/String|, R|kotlin/String|>(String(user-123)), String(age).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(42)))), R|<local>/mikrom|)
+        R|kotlin/test/assertEquals|<R|UserWithValueClass|>(R|<local>/user|, R|/UserWithValueClass.UserWithValueClass|(R|/UserId.UserId|(String(user-123)), R|/Age.Age|(Int(42))))
+        ^box String(OK)
+    }

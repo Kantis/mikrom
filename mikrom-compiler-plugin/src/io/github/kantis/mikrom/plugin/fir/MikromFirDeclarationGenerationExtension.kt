@@ -15,8 +15,8 @@ import org.jetbrains.kotlin.fir.extensions.MemberGenerationContext
 import org.jetbrains.kotlin.fir.extensions.NestedClassGenerationContext
 import org.jetbrains.kotlin.fir.extensions.predicate.DeclarationPredicate
 import org.jetbrains.kotlin.fir.extensions.predicateBasedProvider
-import org.jetbrains.kotlin.fir.plugin.createConeType
 import org.jetbrains.kotlin.fir.plugin.createCompanionObject
+import org.jetbrains.kotlin.fir.plugin.createConeType
 import org.jetbrains.kotlin.fir.plugin.createConstructor
 import org.jetbrains.kotlin.fir.plugin.createMemberFunction
 import org.jetbrains.kotlin.fir.plugin.createNestedClass
@@ -79,13 +79,12 @@ public class MikromFirDeclarationGenerationExtension(
       owner: FirClassSymbol<*>,
       name: Name,
       context: NestedClassGenerationContext,
-   ): FirClassLikeSymbol<*>? {
-      return when (name) {
+   ): FirClassLikeSymbol<*>? =
+      when (name) {
          SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT -> generateCompanion(owner)
          ROW_MAPPER_CLASS_NAME -> generateRowMapperClass(owner)
          else -> null
       }
-   }
 
    private fun generateCompanion(owner: FirClassSymbol<*>): FirClassLikeSymbol<*> =
       createCompanionObject(
@@ -136,6 +135,7 @@ public class MikromFirDeclarationGenerationExtension(
                }.symbol,
             )
          }
+
          is MikromGenerateCompanionKey -> {
             listOf(
                createConstructor(
@@ -147,7 +147,10 @@ public class MikromFirDeclarationGenerationExtension(
                }.symbol,
             )
          }
-         else -> emptyList()
+
+         else -> {
+            emptyList()
+         }
       }
    }
 
@@ -173,6 +176,7 @@ public class MikromFirDeclarationGenerationExtension(
                }.symbol,
             )
          }
+
          // rowMapper() on companion object
          callableId.callableName == ROW_MAPPER_FUN_NAME && key is MikromGenerateCompanionKey -> {
             val rowMapperType = rowMapperType(key.ownerClassSymbol.constructType())
@@ -185,7 +189,10 @@ public class MikromFirDeclarationGenerationExtension(
                ).symbol,
             )
          }
-         else -> emptyList()
+
+         else -> {
+            emptyList()
+         }
       }
    }
 

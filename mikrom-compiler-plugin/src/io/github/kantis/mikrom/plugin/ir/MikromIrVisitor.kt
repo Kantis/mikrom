@@ -132,6 +132,7 @@ internal class MikromIrVisitor(
          key is MikromGenerateRowMapperAccessorKey -> {
             declaration.body = generateRowMapperAccessor(declaration)
          }
+
          key is MikromGenerateRowMapperKey -> {
             declaration.body = generateMapRowFunction(declaration)
          }
