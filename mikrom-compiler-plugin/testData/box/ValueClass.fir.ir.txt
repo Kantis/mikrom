@@ -211,28 +211,26 @@ FILE fqName:<root> fileName:/ValueClass.kt
         overridden:
           public abstract fun mapRow (row: io.github.kantis.mikrom.Row, mikrom: io.github.kantis.mikrom.Mikrom): T of io.github.kantis.mikrom.RowMapper declared in io.github.kantis.mikrom.RowMapper
         BLOCK_BODY
-          VAR IR_TEMPORARY_VARIABLE name:tmp_2 type:<root>.UserId [val]
-            BLOCK type=<root>.UserId origin=null
-              CONSTRUCTOR_CALL 'public constructor <init> (value: kotlin.String) declared in <root>.UserId' type=<root>.UserId origin=null
-                ARG value: CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=T of io.github.kantis.mikrom.Row.get origin=null
-                  TYPE_ARG T: kotlin.String
-                  ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.UserWithValueClass.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
-                  ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.UserWithValueClass.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
-                  ARG column: CONST String type=kotlin.String value="id"
-                  ARG clazz: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:String modality:FINAL visibility:public superTypes:[kotlin.Comparable<kotlin.String>; kotlin.CharSequence; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.String>
-          VAR IR_TEMPORARY_VARIABLE name:tmp_3 type:<root>.Age [val]
-            BLOCK type=<root>.Age origin=null
-              CONSTRUCTOR_CALL 'public constructor <init> (value: kotlin.Int) declared in <root>.Age' type=<root>.Age origin=null
-                ARG value: CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=T of io.github.kantis.mikrom.Row.get origin=null
-                  TYPE_ARG T: kotlin.Int
-                  ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.UserWithValueClass.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
-                  ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.UserWithValueClass.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
-                  ARG column: CONST String type=kotlin.String value="age"
-                  ARG clazz: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:Int modality:FINAL visibility:public superTypes:[kotlin.Number; kotlin.Comparable<kotlin.Int>; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.Int>
+          VAR IR_TEMPORARY_VARIABLE name:tmp_2 type:T of io.github.kantis.mikrom.Row.get [val]
+            BLOCK type=T of io.github.kantis.mikrom.Row.get origin=null
+              CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=T of io.github.kantis.mikrom.Row.get origin=null
+                TYPE_ARG T: <root>.UserId
+                ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.UserWithValueClass.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
+                ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.UserWithValueClass.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
+                ARG column: CONST String type=kotlin.String value="id"
+                ARG clazz: CLASS_REFERENCE 'CLASS CLASS name:UserId modality:FINAL visibility:public [value] superTypes:[kotlin.Any]' type=kotlin.reflect.KClass<<root>.UserId>
+          VAR IR_TEMPORARY_VARIABLE name:tmp_3 type:T of io.github.kantis.mikrom.Row.get [val]
+            BLOCK type=T of io.github.kantis.mikrom.Row.get origin=null
+              CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=T of io.github.kantis.mikrom.Row.get origin=null
+                TYPE_ARG T: <root>.Age
+                ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.UserWithValueClass.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
+                ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.UserWithValueClass.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
+                ARG column: CONST String type=kotlin.String value="age"
+                ARG clazz: CLASS_REFERENCE 'CLASS CLASS name:Age modality:FINAL visibility:public [value] superTypes:[kotlin.Any]' type=kotlin.reflect.KClass<<root>.Age>
           RETURN type=kotlin.Nothing from='public final fun mapRow (row: io.github.kantis.mikrom.Row, mikrom: io.github.kantis.mikrom.Mikrom): <root>.UserWithValueClass declared in <root>.UserWithValueClass.$RowMapper'
             CONSTRUCTOR_CALL 'public constructor <init> (id: <root>.UserId, age: <root>.Age) declared in <root>.UserWithValueClass' type=<root>.UserWithValueClass origin=null
-              ARG id: GET_VAR 'val tmp_2: <root>.UserId declared in <root>.UserWithValueClass.$RowMapper.mapRow' type=<root>.UserId origin=null
-              ARG age: GET_VAR 'val tmp_3: <root>.Age declared in <root>.UserWithValueClass.$RowMapper.mapRow' type=<root>.Age origin=null
+              ARG id: GET_VAR 'val tmp_2: T of io.github.kantis.mikrom.Row.get declared in <root>.UserWithValueClass.$RowMapper.mapRow' type=T of io.github.kantis.mikrom.Row.get origin=null
+              ARG age: GET_VAR 'val tmp_3: T of io.github.kantis.mikrom.Row.get declared in <root>.UserWithValueClass.$RowMapper.mapRow' type=T of io.github.kantis.mikrom.Row.get origin=null
     CONSTRUCTOR visibility:public returnType:<root>.UserWithValueClass [primary]
       VALUE_PARAMETER kind:Regular name:id index:0 type:<root>.UserId
       VALUE_PARAMETER kind:Regular name:age index:1 type:<root>.Age

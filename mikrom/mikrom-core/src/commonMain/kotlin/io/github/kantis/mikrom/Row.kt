@@ -51,9 +51,7 @@ public class Row
                   "but non-null ${clazz.simpleName} was expected",
             )
 
-         val convertedValue = (mikrom.conversions.convert(value, clazz) as? T) ?: value
-
-         return convertedValue as? T
+         return resolveValue(value, clazz, mikrom.conversions)
             ?: throw TypeMismatchException(
                typeMismatchMessage(
                   column,
@@ -71,9 +69,8 @@ public class Row
       ): T? {
          val col = resolveColumn(column)
          val value = col.value ?: return null
-         val convertedValue = (mikrom.conversions.convert(value, clazz) as? T) ?: value
 
-         return convertedValue as? T
+         return resolveValue(value, clazz, mikrom.conversions)
             ?: throw TypeMismatchException(
                typeMismatchMessage(
                   column,
@@ -82,6 +79,20 @@ public class Row
                   clazz.simpleName ?: "Unknown",
                ),
             )
+      }
+
+      @Suppress("UNCHECKED_CAST")
+      private fun <T> resolveValue(
+         value: Any,
+         clazz: KClass<*>,
+         conversions: TypeConversions,
+      ): T? {
+         if (clazz.isInstance(value)) return value as T
+         val converted = conversions.convert(value, clazz)
+         if (converted != null && clazz.isInstance(converted)) return converted as T
+         val wrapped = tryWrapValueClass(value, clazz, conversions)
+         if (wrapped != null) return wrapped as T
+         return null
       }
 
       override fun equals(other: Any?): Boolean {

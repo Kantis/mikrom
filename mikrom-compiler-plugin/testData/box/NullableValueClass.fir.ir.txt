@@ -83,30 +83,18 @@ FILE fqName:<root> fileName:/NullableValueClass.kt
                 ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Contact.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
                 ARG column: CONST String type=kotlin.String value="name"
                 ARG clazz: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:String modality:FINAL visibility:public superTypes:[kotlin.Comparable<kotlin.String>; kotlin.CharSequence; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.String>
-          VAR IR_TEMPORARY_VARIABLE name:tmp_1 type:<root>.Email? [val]
-            BLOCK type=<root>.Email? origin=null
-              VAR IR_TEMPORARY_VARIABLE name:tmp_2 type:T of io.github.kantis.mikrom.Row.getOrNull? [val]
-                CALL 'public final fun getOrNull <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.getOrNull? declared in io.github.kantis.mikrom.Row' type=T of io.github.kantis.mikrom.Row.getOrNull? origin=null
-                  TYPE_ARG T: kotlin.String
-                  ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.Contact.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
-                  ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Contact.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
-                  ARG column: CONST String type=kotlin.String value="email"
-                  ARG clazz: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:String modality:FINAL visibility:public superTypes:[kotlin.Comparable<kotlin.String>; kotlin.CharSequence; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.String>
-              WHEN type=<root>.Email? origin=null
-                BRANCH
-                  if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
-                    ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
-                      ARG arg0: GET_VAR 'val tmp_2: T of io.github.kantis.mikrom.Row.getOrNull? declared in <root>.Contact.$RowMapper.mapRow' type=T of io.github.kantis.mikrom.Row.getOrNull? origin=null
-                      ARG arg1: CONST Null type=kotlin.Nothing? value=null
-                  then: CONSTRUCTOR_CALL 'public constructor <init> (value: kotlin.String) declared in <root>.Email' type=<root>.Email origin=null
-                    ARG value: GET_VAR 'val tmp_2: T of io.github.kantis.mikrom.Row.getOrNull? declared in <root>.Contact.$RowMapper.mapRow' type=T of io.github.kantis.mikrom.Row.getOrNull? origin=null
-                BRANCH
-                  if: CONST Boolean type=kotlin.Boolean value=true
-                  then: CONST Null type=kotlin.Nothing? value=null
+          VAR IR_TEMPORARY_VARIABLE name:tmp_1 type:T of io.github.kantis.mikrom.Row.getOrNull? [val]
+            BLOCK type=T of io.github.kantis.mikrom.Row.getOrNull? origin=null
+              CALL 'public final fun getOrNull <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.getOrNull? declared in io.github.kantis.mikrom.Row' type=T of io.github.kantis.mikrom.Row.getOrNull? origin=null
+                TYPE_ARG T: <root>.Email
+                ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.Contact.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
+                ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Contact.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
+                ARG column: CONST String type=kotlin.String value="email"
+                ARG clazz: CLASS_REFERENCE 'CLASS CLASS name:Email modality:FINAL visibility:public [value] superTypes:[kotlin.Any]' type=kotlin.reflect.KClass<<root>.Email>
           RETURN type=kotlin.Nothing from='public final fun mapRow (row: io.github.kantis.mikrom.Row, mikrom: io.github.kantis.mikrom.Mikrom): <root>.Contact declared in <root>.Contact.$RowMapper'
             CONSTRUCTOR_CALL 'public constructor <init> (name: kotlin.String, email: <root>.Email?) declared in <root>.Contact' type=<root>.Contact origin=null
               ARG name: GET_VAR 'val tmp_0: T of io.github.kantis.mikrom.Row.get declared in <root>.Contact.$RowMapper.mapRow' type=T of io.github.kantis.mikrom.Row.get origin=null
-              ARG email: GET_VAR 'val tmp_1: <root>.Email? declared in <root>.Contact.$RowMapper.mapRow' type=<root>.Email? origin=null
+              ARG email: GET_VAR 'val tmp_1: T of io.github.kantis.mikrom.Row.getOrNull? declared in <root>.Contact.$RowMapper.mapRow' type=T of io.github.kantis.mikrom.Row.getOrNull? origin=null
     CONSTRUCTOR visibility:public returnType:<root>.Contact [primary]
       VALUE_PARAMETER kind:Regular name:name index:0 type:kotlin.String
       VALUE_PARAMETER kind:Regular name:email index:1 type:<root>.Email?
@@ -159,7 +147,7 @@ FILE fqName:<root> fileName:/NullableValueClass.kt
               GET_VAR 'other: kotlin.Any? declared in <root>.Contact.equals' type=kotlin.Any? origin=null
             then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.Contact'
               CONST Boolean type=kotlin.Boolean value=false
-        VAR IR_TEMPORARY_VARIABLE name:tmp_3 type:<root>.Contact [val]
+        VAR IR_TEMPORARY_VARIABLE name:tmp_2 type:<root>.Contact [val]
           TYPE_OP type=<root>.Contact origin=IMPLICIT_CAST typeOperand=<root>.Contact
             GET_VAR 'other: kotlin.Any? declared in <root>.Contact.equals' type=kotlin.Any? origin=null
         WHEN type=kotlin.Unit origin=null
@@ -169,7 +157,7 @@ FILE fqName:<root> fileName:/NullableValueClass.kt
                 ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
                   receiver: GET_VAR '<this>: <root>.Contact declared in <root>.Contact.equals' type=<root>.Contact origin=null
                 ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
-                  receiver: GET_VAR 'val tmp_3: <root>.Contact declared in <root>.Contact.equals' type=<root>.Contact origin=null
+                  receiver: GET_VAR 'val tmp_2: <root>.Contact declared in <root>.Contact.equals' type=<root>.Contact origin=null
             then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.Contact'
               CONST Boolean type=kotlin.Boolean value=false
         WHEN type=kotlin.Unit origin=null
@@ -179,7 +167,7 @@ FILE fqName:<root> fileName:/NullableValueClass.kt
                 ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:email type:<root>.Email? visibility:private [final]' type=<root>.Email? origin=null
                   receiver: GET_VAR '<this>: <root>.Contact declared in <root>.Contact.equals' type=<root>.Contact origin=null
                 ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:email type:<root>.Email? visibility:private [final]' type=<root>.Email? origin=null
-                  receiver: GET_VAR 'val tmp_3: <root>.Contact declared in <root>.Contact.equals' type=<root>.Contact origin=null
+                  receiver: GET_VAR 'val tmp_2: <root>.Contact declared in <root>.Contact.equals' type=<root>.Contact origin=null
             then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.Contact'
               CONST Boolean type=kotlin.Boolean value=false
         RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.Contact'
@@ -260,7 +248,7 @@ FILE fqName:<root> fileName:/NullableValueClass.kt
               GET_VAR 'other: kotlin.Any? declared in <root>.Email.equals' type=kotlin.Any? origin=null
             then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.Email'
               CONST Boolean type=kotlin.Boolean value=false
-        VAR IR_TEMPORARY_VARIABLE name:tmp_4 type:<root>.Email [val]
+        VAR IR_TEMPORARY_VARIABLE name:tmp_3 type:<root>.Email [val]
           TYPE_OP type=<root>.Email origin=IMPLICIT_CAST typeOperand=<root>.Email
             GET_VAR 'other: kotlin.Any? declared in <root>.Email.equals' type=kotlin.Any? origin=null
         WHEN type=kotlin.Unit origin=null
@@ -270,7 +258,7 @@ FILE fqName:<root> fileName:/NullableValueClass.kt
                 ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
                   receiver: GET_VAR '<this>: <root>.Email declared in <root>.Email.equals' type=<root>.Email origin=null
                 ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
-                  receiver: GET_VAR 'val tmp_4: <root>.Email declared in <root>.Email.equals' type=<root>.Email origin=null
+                  receiver: GET_VAR 'val tmp_3: <root>.Email declared in <root>.Email.equals' type=<root>.Email origin=null
             then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.Email'
               CONST Boolean type=kotlin.Boolean value=false
         RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.Email'
