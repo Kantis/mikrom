@@ -4,6 +4,7 @@ import kotlin.reflect.KClass
 
 public class MikromBuilder {
    public val rowMappers: MutableMap<KClass<*>, RowMapper<*>> = mutableMapOf()
+   public var namingStrategy: NamingStrategy = NamingStrategy.SNAKE_CASE
 
    @PublishedApi
    internal val conversionsBuilder: TypeConversions.Builder = TypeConversions.Builder()
@@ -20,5 +21,5 @@ public class MikromBuilder {
       conversionsBuilder.register(conversion)
    }
 
-   public fun build(): Mikrom = Mikrom(rowMappers, defaultConversions() + conversionsBuilder.build())
+   public fun build(): Mikrom = Mikrom(rowMappers, defaultConversions() + conversionsBuilder.build(), namingStrategy)
 }
