@@ -8,9 +8,11 @@ import org.jetbrains.kotlin.gradle.plugin.SubpluginArtifact
 import org.jetbrains.kotlin.gradle.plugin.SubpluginOption
 
 public class MikromGradlePlugin : KotlinCompilerPluginSupportPlugin {
+   private lateinit var extension: MikromGradleExtension
+
    override fun apply(target: Project): Unit =
       with(target) {
-         extensions.create("template", MikromGradleExtension::class.java)
+         extension = extensions.create("mikrom", MikromGradleExtension::class.java)
       }
 
    override fun isApplicable(kotlinCompilation: KotlinCompilation<*>): Boolean = true
@@ -21,25 +23,13 @@ public class MikromGradlePlugin : KotlinCompilerPluginSupportPlugin {
       SubpluginArtifact(
          groupId = "io.github.kantis",
          artifactId = "mikrom-compiler-plugin",
-         version = "0.1.0-SNAPSHOT",
+         version = extension.compilerPluginVersion.get(),
       )
 
-//   override fun getPluginArtifactForNative(): SubpluginArtifact =
-//      SubpluginArtifact(
-//         groupId = "foo",
-//         artifactId = "bar-native",
-//         version = "1.1.0",
-//      )
-//
    override fun applyToCompilation(kotlinCompilation: KotlinCompilation<*>): Provider<List<SubpluginOption>> {
       val project = kotlinCompilation.target.project
-      val extension = project.extensions.getByType(MikromGradleExtension::class.java)
       return project.provider {
-         listOf(
-            // Nothing yet..
-//            SubpluginOption(key = "string", value = extension.stringProperty.get()),
-//            SubpluginOption(key = "file", value = extension.fileProperty.get().asFile.path),
-         )
+         listOf()
       }
    }
 }

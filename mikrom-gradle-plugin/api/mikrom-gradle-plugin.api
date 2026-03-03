@@ -1,5 +1,6 @@
 public class io/github/kantis/mikrom/gradle/MikromGradleExtension {
 	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun getCompilerPluginVersion ()Lorg/gradle/api/provider/Property;
 }
 
 public final class io/github/kantis/mikrom/gradle/MikromGradlePlugin : org/jetbrains/kotlin/gradle/plugin/KotlinCompilerPluginSupportPlugin {
