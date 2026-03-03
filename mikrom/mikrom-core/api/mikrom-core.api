@@ -152,6 +152,10 @@ public final class io/github/kantis/mikrom/datasource/Transaction$DefaultImpls {
 	public static synthetic fun query-Mwax8gE$default (Lio/github/kantis/mikrom/datasource/Transaction;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Ljava/util/List;
 }
 
+public abstract interface annotation class io/github/kantis/mikrom/generator/Column : java/lang/annotation/Annotation {
+	public abstract fun name ()Ljava/lang/String;
+}
+
 public abstract interface class io/github/kantis/mikrom/generator/GeneratedRowMapper : io/github/kantis/mikrom/RowMapper {
 }
 
