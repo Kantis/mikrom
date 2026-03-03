@@ -11,6 +11,22 @@ dependencies {
    implementation(kotlin("gradle-plugin-api"))
 }
 
+val generateVersionProperties by tasks.registering {
+   val outputDir = layout.buildDirectory.dir("generated/mikrom-resources")
+   val pluginVersion = project.version.toString()
+   inputs.property("version", pluginVersion)
+   outputs.dir(outputDir)
+   doLast {
+      val propsFile = outputDir.get().file("mikrom-gradle-plugin.properties").asFile
+      propsFile.parentFile.mkdirs()
+      propsFile.writeText("version=$pluginVersion\n")
+   }
+}
+
+sourceSets.main {
+   resources.srcDir(generateVersionProperties.map { it.outputs.files.singleFile })
+}
+
 gradlePlugin {
    website.set("https://github.com/kantis/mikrom")
    vcsUrl.set("https://github.com/kantis/mikrom.git")
