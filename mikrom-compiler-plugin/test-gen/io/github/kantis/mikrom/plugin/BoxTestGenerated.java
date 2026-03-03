@@ -27,6 +27,12 @@ public class BoxTestGenerated extends AbstractBoxTest {
   }
 
   @Test
+  @TestMetadata("NamingStrategy.kt")
+  public void testNamingStrategy() {
+    runTest("testData/box/NamingStrategy.kt");
+  }
+
+  @Test
   @TestMetadata("NullableValueClass.kt")
   public void testNullableValueClass() {
     runTest("testData/box/NullableValueClass.kt");
