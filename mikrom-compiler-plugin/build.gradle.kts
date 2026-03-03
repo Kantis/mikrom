@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "io.github.kantis"
-version = "0.1.0-SNAPSHOT"
+version = findProperty("version") ?: "0.1.0-SNAPSHOT"
 
 kotlin {
    compilerOptions {

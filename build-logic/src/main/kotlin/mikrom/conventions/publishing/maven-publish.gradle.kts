@@ -16,6 +16,17 @@ val javadocJarStub by tasks.registering(Jar::class) {
    archiveClassifier.set("javadoc")
 }
 
+// kotlin("jvm") doesn't create a MavenPublication automatically, unlike kotlin("multiplatform")
+plugins.withId("org.jetbrains.kotlin.jvm") {
+   publishing {
+      publications {
+         create<MavenPublication>("Jvm") {
+            from(components["java"])
+         }
+      }
+   }
+}
+
 publishing {
    repositories {
       // Publish to a project-local Maven directory, for verification. To test, run:
@@ -26,35 +37,32 @@ publishing {
       }
    }
 
-   publications.withType<MavenPublication>().forEach {
-      it.apply {
+   publications.withType<MavenPublication>().configureEach {
+      artifact(javadocJarStub)
 
-         artifact(javadocJarStub)
+      pom {
+         name.set("mikrom")
+         description.set("KotlinX Serialization standard serializers")
+         url.set("https://github.com/Kantis/mikrom")
 
-         pom {
-            name.set("mikrom")
-            description.set("KotlinX Serialization standard serializers")
+         scm {
+            connection.set("scm:git:https://github.com/Kantis/mikrom/")
+            developerConnection.set("scm:git:https://github.com/Kantis/")
             url.set("https://github.com/Kantis/mikrom")
+         }
 
-            scm {
-               connection.set("scm:git:https://github.com/Kantis/mikrom/")
-               developerConnection.set("scm:git:https://github.com/Kantis/")
-               url.set("https://github.com/Kantis/mikrom")
+         licenses {
+            license {
+               name.set("Apache-2.0")
+               url.set("https://opensource.org/licenses/Apache-2.0")
             }
+         }
 
-            licenses {
-               license {
-                  name.set("Apache-2.0")
-                  url.set("https://opensource.org/licenses/Apache-2.0")
-               }
-            }
-
-            developers {
-               developer {
-                  id.set("Kantis")
-                  name.set("Emil Kantis")
-                  email.set("emil.kantis@protonmail.com")
-               }
+         developers {
+            developer {
+               id.set("Kantis")
+               name.set("Emil Kantis")
+               email.set("emil.kantis@protonmail.com")
             }
          }
       }
