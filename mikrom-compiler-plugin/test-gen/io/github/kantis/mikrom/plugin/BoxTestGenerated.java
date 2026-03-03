@@ -21,6 +21,12 @@ public class BoxTestGenerated extends AbstractBoxTest {
   }
 
   @Test
+  @TestMetadata("ColumnAnnotation.kt")
+  public void testColumnAnnotation() {
+    runTest("testData/box/ColumnAnnotation.kt");
+  }
+
+  @Test
   @TestMetadata("NullableValueClass.kt")
   public void testNullableValueClass() {
     runTest("testData/box/NullableValueClass.kt");

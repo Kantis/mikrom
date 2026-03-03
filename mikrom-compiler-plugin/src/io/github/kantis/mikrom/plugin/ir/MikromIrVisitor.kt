@@ -58,6 +58,8 @@ internal class MikromIrVisitor(
       private val ROW_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom"), Name.identifier("Row"))
       private val ROW_MAPPER_NESTED_NAME = Name.identifier("\$RowMapper")
 
+      private val COLUMN_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom.generator"), Name.identifier("Column"))
+
       private val ILLEGAL_STATE_EXCEPTION_FQ_NAME =
          FqName("kotlin.IllegalStateException")
 
@@ -211,7 +213,7 @@ internal class MikromIrVisitor(
             value = irBlock {
                val rowRef = irGet(row)
                val mikromRef = irGet(mikrom)
-               val keyLiteral = irString(valueParameter.name.asString())
+               val keyLiteral = irString(columnName(valueParameter))
 
                val classRef = IrClassReferenceImpl(
                   startOffset,
@@ -233,5 +235,15 @@ internal class MikromIrVisitor(
       }
 
       return variables
+   }
+
+   private fun columnName(valueParameter: IrValueParameter): String {
+      val columnAnnotation = valueParameter.annotations.firstOrNull {
+         it.type.classifierOrNull == pluginContext.referenceClass(COLUMN_CLASS_ID)
+      } ?: return valueParameter.name.asString()
+
+      val nameArg = columnAnnotation.arguments[0]
+      return (nameArg as? org.jetbrains.kotlin.ir.expressions.IrConst)?.value as? String
+         ?: valueParameter.name.asString()
    }
 }
