@@ -1,0 +1,103 @@
+FILE: NamingStrategy.kt
+    public final fun box(): R|kotlin/String| {
+        lval snakeMikrom: R|io/github/kantis/mikrom/Mikrom| = R|io/github/kantis/mikrom/Mikrom.Mikrom|(R|kotlin/collections/mutableMapOf|<R|kotlin/reflect/KClass<*>|, R|io/github/kantis/mikrom/RowMapper<*>|>(), Q|io/github/kantis/mikrom/TypeConversions|.R|io/github/kantis/mikrom/TypeConversions.Companion.EMPTY|)
+        lval invoice: R|Invoice| = Q|Invoice|.R|/Invoice.Companion.rowMapper|().R|SubstitutionOverride<io/github/kantis/mikrom/RowMapper.mapRow: R|Invoice|>|(Q|io/github/kantis/mikrom/Row|.R|io/github/kantis/mikrom/Row.Companion.of|(vararg(String(invoice_id).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(42)), String(customer_name).R|kotlin/to|<R|kotlin/String|, R|kotlin/String|>(String(Alice)))), R|<local>/snakeMikrom|)
+        R|kotlin/test/assertEquals|<R|Invoice|>(R|/Invoice.Invoice|(Int(42), String(Alice)), R|<local>/invoice|)
+        lval overridden: R|OverriddenEntity| = Q|OverriddenEntity|.R|/OverriddenEntity.Companion.rowMapper|().R|SubstitutionOverride<io/github/kantis/mikrom/RowMapper.mapRow: R|OverriddenEntity|>|(Q|io/github/kantis/mikrom/Row|.R|io/github/kantis/mikrom/Row.Companion.of|(vararg(String(custom_col).R|kotlin/to|<R|kotlin/String|, R|kotlin/String|>(String(hello)), String(other_field).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(99)))), R|<local>/snakeMikrom|)
+        R|kotlin/test/assertEquals|<R|OverriddenEntity|>(R|/OverriddenEntity.OverriddenEntity|(String(hello), Int(99)), R|<local>/overridden|)
+        lval asIsMikrom: R|io/github/kantis/mikrom/Mikrom| = R|io/github/kantis/mikrom/Mikrom.Mikrom|(R|kotlin/collections/mutableMapOf|<R|kotlin/reflect/KClass<*>|, R|io/github/kantis/mikrom/RowMapper<*>|>(), Q|io/github/kantis/mikrom/TypeConversions|.R|io/github/kantis/mikrom/TypeConversions.Companion.EMPTY|, Q|io/github/kantis/mikrom/NamingStrategy|.R|io/github/kantis/mikrom/NamingStrategy.Companion.AS_IS|)
+        lval entity: R|AsIsEntity| = Q|AsIsEntity|.R|/AsIsEntity.Companion.rowMapper|().R|SubstitutionOverride<io/github/kantis/mikrom/RowMapper.mapRow: R|AsIsEntity|>|(Q|io/github/kantis/mikrom/Row|.R|io/github/kantis/mikrom/Row.Companion.of|(vararg(String(firstName).R|kotlin/to|<R|kotlin/String|, R|kotlin/String|>(String(Bob)))), R|<local>/asIsMikrom|)
+        R|kotlin/test/assertEquals|<R|AsIsEntity|>(R|/AsIsEntity.AsIsEntity|(String(Bob)), R|<local>/entity|)
+        ^box String(OK)
+    }
+    @R|io/github/kantis/mikrom/generator/RowMapped|() public final data class Invoice : R|kotlin/Any| {
+        public constructor(invoiceId: R|kotlin/Int|, customerName: R|kotlin/String|): R|Invoice| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val invoiceId: R|kotlin/Int| = R|<local>/invoiceId|
+            public get(): R|kotlin/Int|
+
+        public final val customerName: R|kotlin/String| = R|<local>/customerName|
+            public get(): R|kotlin/String|
+
+        public final operator fun component1(): R|kotlin/Int|
+
+        public final operator fun component2(): R|kotlin/String|
+
+        public final fun copy(invoiceId: R|kotlin/Int| = this@R|/Invoice|.R|/Invoice.invoiceId|, customerName: R|kotlin/String| = this@R|/Invoice|.R|/Invoice.customerName|): R|Invoice|
+
+        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<Invoice>| {
+            public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|Invoice|
+
+            private constructor(): R|Invoice.$RowMapper|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun rowMapper(): R|io/github/kantis/mikrom/RowMapper<Invoice>|
+
+            private constructor(): R|Invoice.Companion|
+
+        }
+
+    }
+    @R|io/github/kantis/mikrom/generator/RowMapped|() public final data class OverriddenEntity : R|kotlin/Any| {
+        public constructor(@R|io/github/kantis/mikrom/generator/Column|(name = String(custom_col)) name: R|kotlin/String|, otherField: R|kotlin/Int|): R|OverriddenEntity| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val name: R|kotlin/String| = R|<local>/name|
+            public get(): R|kotlin/String|
+
+        public final val otherField: R|kotlin/Int| = R|<local>/otherField|
+            public get(): R|kotlin/Int|
+
+        public final operator fun component1(): R|kotlin/String|
+
+        public final operator fun component2(): R|kotlin/Int|
+
+        public final fun copy(@R|io/github/kantis/mikrom/generator/Column|(name = String(custom_col)) name: R|kotlin/String| = this@R|/OverriddenEntity|.R|/OverriddenEntity.name|, otherField: R|kotlin/Int| = this@R|/OverriddenEntity|.R|/OverriddenEntity.otherField|): R|OverriddenEntity|
+
+        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<OverriddenEntity>| {
+            public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|OverriddenEntity|
+
+            private constructor(): R|OverriddenEntity.$RowMapper|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun rowMapper(): R|io/github/kantis/mikrom/RowMapper<OverriddenEntity>|
+
+            private constructor(): R|OverriddenEntity.Companion|
+
+        }
+
+    }
+    @R|io/github/kantis/mikrom/generator/RowMapped|() public final data class AsIsEntity : R|kotlin/Any| {
+        public constructor(firstName: R|kotlin/String|): R|AsIsEntity| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val firstName: R|kotlin/String| = R|<local>/firstName|
+            public get(): R|kotlin/String|
+
+        public final operator fun component1(): R|kotlin/String|
+
+        public final fun copy(firstName: R|kotlin/String| = this@R|/AsIsEntity|.R|/AsIsEntity.firstName|): R|AsIsEntity|
+
+        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<AsIsEntity>| {
+            public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|AsIsEntity|
+
+            private constructor(): R|AsIsEntity.$RowMapper|
+
+        }
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun rowMapper(): R|io/github/kantis/mikrom/RowMapper<AsIsEntity>|
+
+            private constructor(): R|AsIsEntity.Companion|
+
+        }
+
+    }

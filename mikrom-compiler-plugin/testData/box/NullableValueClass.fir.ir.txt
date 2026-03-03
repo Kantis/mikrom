@@ -81,7 +81,10 @@ FILE fqName:<root> fileName:/NullableValueClass.kt
                 TYPE_ARG T: kotlin.String
                 ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.Contact.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
                 ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Contact.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
-                ARG column: CONST String type=kotlin.String value="name"
+                ARG column: CALL 'public abstract fun toColumnName (parameterName: kotlin.String): kotlin.String declared in io.github.kantis.mikrom.NamingStrategy' type=kotlin.String origin=null
+                  ARG <this>: CALL 'public final fun <get-namingStrategy> (): io.github.kantis.mikrom.NamingStrategy declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.NamingStrategy origin=null
+                    ARG <this>: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Contact.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
+                  ARG parameterName: CONST String type=kotlin.String value="name"
                 ARG clazz: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:String modality:FINAL visibility:public superTypes:[kotlin.Comparable<kotlin.String>; kotlin.CharSequence; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.String>
           VAR IR_TEMPORARY_VARIABLE name:tmp_1 type:T of io.github.kantis.mikrom.Row.getOrNull? [val]
             BLOCK type=T of io.github.kantis.mikrom.Row.getOrNull? origin=null
@@ -89,7 +92,10 @@ FILE fqName:<root> fileName:/NullableValueClass.kt
                 TYPE_ARG T: <root>.Email
                 ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.Contact.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
                 ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Contact.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
-                ARG column: CONST String type=kotlin.String value="email"
+                ARG column: CALL 'public abstract fun toColumnName (parameterName: kotlin.String): kotlin.String declared in io.github.kantis.mikrom.NamingStrategy' type=kotlin.String origin=null
+                  ARG <this>: CALL 'public final fun <get-namingStrategy> (): io.github.kantis.mikrom.NamingStrategy declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.NamingStrategy origin=null
+                    ARG <this>: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Contact.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
+                  ARG parameterName: CONST String type=kotlin.String value="email"
                 ARG clazz: CLASS_REFERENCE 'CLASS CLASS name:Email modality:FINAL visibility:public [value] superTypes:[kotlin.Any]' type=kotlin.reflect.KClass<<root>.Email>
           RETURN type=kotlin.Nothing from='public final fun mapRow (row: io.github.kantis.mikrom.Row, mikrom: io.github.kantis.mikrom.Mikrom): <root>.Contact declared in <root>.Contact.$RowMapper'
             CONSTRUCTOR_CALL 'public constructor <init> (name: kotlin.String, email: <root>.Email?) declared in <root>.Contact' type=<root>.Contact origin=null
@@ -287,7 +293,7 @@ FILE fqName:<root> fileName:/NullableValueClass.kt
   FUN name:box visibility:public modality:FINAL returnType:kotlin.String
     BLOCK_BODY
       VAR name:mikrom type:io.github.kantis.mikrom.Mikrom [val]
-        CONSTRUCTOR_CALL 'public constructor <init> (rowMappers: kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.RowMapper<*>>, conversions: io.github.kantis.mikrom.TypeConversions) declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.Mikrom origin=null
+        CONSTRUCTOR_CALL 'public constructor <init> (rowMappers: kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.RowMapper<*>>, conversions: io.github.kantis.mikrom.TypeConversions, namingStrategy: io.github.kantis.mikrom.NamingStrategy) declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.Mikrom origin=null
           ARG rowMappers: CALL 'public final fun mutableMapOf <K, V> (): kotlin.collections.MutableMap<K of kotlin.collections.mutableMapOf, V of kotlin.collections.mutableMapOf> declared in kotlin.collections' type=kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.RowMapper<*>> origin=null
             TYPE_ARG K: kotlin.reflect.KClass<*>
             TYPE_ARG V: io.github.kantis.mikrom.RowMapper<*>

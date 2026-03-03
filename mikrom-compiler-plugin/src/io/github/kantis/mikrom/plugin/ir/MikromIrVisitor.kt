@@ -24,11 +24,13 @@ import org.jetbrains.kotlin.ir.declarations.IrDeclarationOrigin
 import org.jetbrains.kotlin.ir.declarations.IrDeclarationWithName
 import org.jetbrains.kotlin.ir.declarations.IrFile
 import org.jetbrains.kotlin.ir.declarations.IrModuleFragment
+import org.jetbrains.kotlin.ir.declarations.IrProperty
 import org.jetbrains.kotlin.ir.declarations.IrSimpleFunction
 import org.jetbrains.kotlin.ir.declarations.IrValueParameter
 import org.jetbrains.kotlin.ir.declarations.IrVariable
 import org.jetbrains.kotlin.ir.expressions.IrBody
 import org.jetbrains.kotlin.ir.expressions.IrConstructorCall
+import org.jetbrains.kotlin.ir.expressions.IrExpression
 import org.jetbrains.kotlin.ir.expressions.impl.IrClassReferenceImpl
 import org.jetbrains.kotlin.ir.expressions.impl.IrInstanceInitializerCallImpl
 import org.jetbrains.kotlin.ir.types.classifierOrNull
@@ -58,6 +60,8 @@ internal class MikromIrVisitor(
       private val ROW_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom"), Name.identifier("Row"))
       private val ROW_MAPPER_NESTED_NAME = Name.identifier("\$RowMapper")
 
+      private val MIKROM_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom"), Name.identifier("Mikrom"))
+      private val NAMING_STRATEGY_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom"), Name.identifier("NamingStrategy"))
       private val COLUMN_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom.generator"), Name.identifier("Column"))
 
       private val ILLEGAL_STATE_EXCEPTION_FQ_NAME =
@@ -65,6 +69,21 @@ internal class MikromIrVisitor(
 
       private val ILLEGAL_STATE_EXCEPTION_CLASS_ID =
          ClassId.topLevel(ILLEGAL_STATE_EXCEPTION_FQ_NAME)
+   }
+
+   private val namingStrategyGetter by lazy {
+      val mikromClass = pluginContext.referenceClass(MIKROM_CLASS_ID)!!
+      mikromClass.owner.declarations
+         .filterIsInstance<IrProperty>()
+         .single { it.name.asString() == "namingStrategy" }
+         .getter!!.symbol
+   }
+
+   private val toColumnNameFunction by lazy {
+      val nsClass = pluginContext.referenceClass(NAMING_STRATEGY_CLASS_ID)!!
+      nsClass.functions.single {
+         it.owner.name.asString() == "toColumnName"
+      }
    }
 
    private val nullableStringType = pluginContext.irBuiltIns.stringType.makeNullable()
@@ -213,7 +232,7 @@ internal class MikromIrVisitor(
             value = irBlock {
                val rowRef = irGet(row)
                val mikromRef = irGet(mikrom)
-               val keyLiteral = irString(columnName(valueParameter))
+               val keyExpr = columnNameExpression(valueParameter, mikrom)
 
                val classRef = IrClassReferenceImpl(
                   startOffset,
@@ -227,7 +246,7 @@ internal class MikromIrVisitor(
                   dispatchReceiver = rowRef
                   typeArguments[0] = baseType
                   arguments[1] = mikromRef
-                  arguments[2] = keyLiteral
+                  arguments[2] = keyExpr
                   arguments[3] = classRef
                }
             },
@@ -237,13 +256,25 @@ internal class MikromIrVisitor(
       return variables
    }
 
-   private fun columnName(valueParameter: IrValueParameter): String {
+   private fun IrBuilderWithScope.columnNameExpression(
+      valueParameter: IrValueParameter,
+      mikrom: IrValueParameter,
+   ): IrExpression {
       val columnAnnotation = valueParameter.annotations.firstOrNull {
          it.type.classifierOrNull == pluginContext.referenceClass(COLUMN_CLASS_ID)
-      } ?: return valueParameter.name.asString()
+      }
 
-      val nameArg = columnAnnotation.arguments[0]
-      return (nameArg as? org.jetbrains.kotlin.ir.expressions.IrConst)?.value as? String
-         ?: valueParameter.name.asString()
+      if (columnAnnotation != null) {
+         val nameArg = columnAnnotation.arguments[0]
+         val explicitName = (nameArg as? org.jetbrains.kotlin.ir.expressions.IrConst)?.value as? String
+         if (explicitName != null) return irString(explicitName)
+      }
+
+      return irCall(toColumnNameFunction).apply {
+         dispatchReceiver = irCall(namingStrategyGetter).apply {
+            dispatchReceiver = irGet(mikrom)
+         }
+         arguments[1] = irString(valueParameter.name.asString())
+      }
    }
 }
