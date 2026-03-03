@@ -31,25 +31,33 @@ Create a JDBC connection and construct a `Mikrom` instance:
 val dbConnection = DriverManager.getConnection("jdbc:your_database_url")
 val jdbcDataSource = JdbcDataSource(dbConnection)
 
-data class Book(val author: String, val title: String, val numberOfPages: Int)
+@JvmInline
+value class BookTitle(val title: String)
+
+data class Book(val author: String, val title: BookTitle, val numberOfPages: Int)
 
 val mikrom = Mikrom {
   registerMapper { row ->
     Book(
-      author = row["author"] as String,
-      title = row["title"] as String,
-      numberOfPages = row["number_of_pages"] as Int
+      // Type inference at work, there is no need to specify the type.
+      // If types mismatch, you will get an exception.
+      author = row.get("author"),
+
+      // Value classes are also supported, but the nested type must match the column type.
+      title = row.get("title"),
+      numberOfPages = row.get("number_of_pages")
     )
   }
 }
 
-// Compilation error, `execute` is only defined in the context of a transaction.
+// This would result in a compilation error, as `execute` is only defined in the context of a transaction.
 mikrom.execute(
   Query("INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)"),
   listOf("JRR Tolkien", "The Hobbit", 310),
   listOf("George Orwell", "1984", 328),
 )
 
+// This is OK!
 dataSource.transaction {
   mikrom.execute(
     Query("INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)"),
@@ -65,10 +73,6 @@ dataSource.transaction {
 
   mikrom.queryFor<Book>(Query("SELECT * FROM books WHERE number_of_pages > ?"), 320) shouldBe
     listOf(Book("George Orwell", "1984", 328))
-
-  // The transaction scope must result in either Commit or Rollback.
-  // If the block exits by throwing an exception, it will automatically roll back.
-  TransactionResult.Commit
 }
 ```
 
