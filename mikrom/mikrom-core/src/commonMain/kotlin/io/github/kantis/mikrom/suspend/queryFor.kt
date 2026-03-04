@@ -3,6 +3,8 @@ package io.github.kantis.mikrom.suspend
 import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.nonMappedPrimitives
+import io.github.kantis.mikrom.parseNamedParameters
+import io.github.kantis.mikrom.resolveParams
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -31,4 +33,13 @@ public suspend inline fun <reified T : Any> Mikrom.queryFor(
    }
    val rowMapper = resolveRowMapper<T>()
    return transaction.query(query, params).map { rowMapper.mapRow(it, this@queryFor) }
+}
+
+context(transaction: SuspendingTransaction)
+public suspend inline fun <reified T : Any> Mikrom.queryFor(
+   query: Query,
+   params: Map<String, Any?>,
+): Flow<T> {
+   val parsed = parseNamedParameters(query.value)
+   return queryFor(Query(parsed.sql), parsed.resolveParams(params).filterNotNull())
 }

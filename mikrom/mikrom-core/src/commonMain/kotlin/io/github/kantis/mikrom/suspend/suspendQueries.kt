@@ -2,6 +2,8 @@ package io.github.kantis.mikrom.suspend
 
 import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Query
+import io.github.kantis.mikrom.parseNamedParameters
+import io.github.kantis.mikrom.resolveParams
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlin.collections.emptyList
@@ -41,3 +43,12 @@ public suspend fun Mikrom.executeStreaming(
    query: Query,
    params: Flow<List<Any>>,
 ): Job = transaction.executeInTransaction(query, params)
+
+context(transaction: SuspendingTransaction)
+public suspend fun Mikrom.execute(
+   query: Query,
+   params: Map<String, Any?>,
+) {
+   val parsed = parseNamedParameters(query.value)
+   execute(Query(parsed.sql), parsed.resolveParams(params).filterNotNull())
+}

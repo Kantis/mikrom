@@ -62,3 +62,33 @@ context(transaction: Transaction)
 public fun Mikrom.execute(query: Query) {
    transaction.executeInTransaction(query, emptyList<Any>())
 }
+
+context(transaction: Transaction)
+public inline fun <reified T : Any> Mikrom.queryFor(
+   query: Query,
+   params: Map<String, Any?>,
+): List<T> {
+   val parsed = parseNamedParameters(query.value)
+   return queryFor(Query(parsed.sql), parsed.resolveParams(params).filterNotNull())
+}
+
+context(transaction: Transaction)
+public fun Mikrom.execute(
+   query: Query,
+   params: Map<String, Any?>,
+) {
+   val parsed = parseNamedParameters(query.value)
+   execute(Query(parsed.sql), parsed.resolveParams(params).filterNotNull())
+}
+
+context(transaction: Transaction)
+public fun Mikrom.execute(
+   query: Query,
+   vararg paramMaps: Map<String, Any?>,
+) {
+   val parsed = parseNamedParameters(query.value)
+   val parsedQuery = Query(parsed.sql)
+   paramMaps.forEach {
+      execute(parsedQuery, parsed.resolveParams(it).filterNotNull())
+   }
+}

@@ -32,6 +32,11 @@ public final class io/github/kantis/mikrom/MikromBuilder {
 public abstract interface annotation class io/github/kantis/mikrom/MikromInternal : java/lang/annotation/Annotation {
 }
 
+public final class io/github/kantis/mikrom/NamedParameterParserKt {
+	public static final fun parseNamedParameters (Ljava/lang/String;)Lio/github/kantis/mikrom/ParsedQuery;
+	public static final fun resolveParams (Lio/github/kantis/mikrom/ParsedQuery;Ljava/util/Map;)Ljava/util/List;
+}
+
 public abstract interface class io/github/kantis/mikrom/NamingStrategy {
 	public static final field Companion Lio/github/kantis/mikrom/NamingStrategy$Companion;
 	public abstract fun toColumnName (Ljava/lang/String;)Ljava/lang/String;
@@ -43,14 +48,29 @@ public final class io/github/kantis/mikrom/NamingStrategy$Companion {
 	public final fun getUPPER_SNAKE_CASE ()Lio/github/kantis/mikrom/NamingStrategy;
 }
 
+public final class io/github/kantis/mikrom/ParsedQuery {
+	public fun <init> (Ljava/lang/String;Ljava/util/List;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;)Lio/github/kantis/mikrom/ParsedQuery;
+	public static synthetic fun copy$default (Lio/github/kantis/mikrom/ParsedQuery;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lio/github/kantis/mikrom/ParsedQuery;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getParameterNames ()Ljava/util/List;
+	public final fun getSql ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class io/github/kantis/mikrom/PrimitivesKt {
 	public static final fun getNonMappedPrimitives ()Ljava/util/Set;
 }
 
 public final class io/github/kantis/mikrom/QueriesKt {
 	public static final fun execute-CQkImio (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/List;)V
+	public static final fun execute-CQkImio (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/Map;)V
 	public static final fun execute-CQkImio (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/lang/Object;)V
 	public static final fun execute-CQkImio (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/util/List;)V
+	public static final fun execute-CQkImio (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/util/Map;)V
 	public static final fun execute-lKpMjJE (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;)V
 }
 
@@ -189,6 +209,7 @@ public final class io/github/kantis/mikrom/internal/FindCompiledRowMapperKt {
 public final class io/github/kantis/mikrom/suspend/SuspendQueriesKt {
 	public static final fun execute-CQkImio (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun execute-DOpdqmY (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun execute-DOpdqmY (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/Map;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun execute-DOpdqmY (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun executeStreaming-DOpdqmY (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Lkotlinx/coroutines/flow/Flow;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
