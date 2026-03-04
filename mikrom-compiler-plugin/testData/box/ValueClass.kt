@@ -20,7 +20,7 @@ data class UserWithValueClass(
 )
 
 fun box(): String {
-   val mikrom = Mikrom(mutableMapOf(), TypeConversions.EMPTY)
+   val mikrom = Mikrom(mutableMapOf(), conversions = TypeConversions.EMPTY)
    val user = UserWithValueClass.rowMapper().mapRow(
       Row.of(
          "id" to "user-123",

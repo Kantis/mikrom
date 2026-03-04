@@ -17,7 +17,7 @@ data class Contact(
 )
 
 fun box(): String {
-   val mikrom = Mikrom(mutableMapOf(), TypeConversions.EMPTY)
+   val mikrom = Mikrom(mutableMapOf(), conversions = TypeConversions.EMPTY)
 
    // Test with non-null value
    val contact1 = Contact.rowMapper().mapRow(

@@ -8,7 +8,7 @@ import io.github.kantis.mikrom.generator.RowMapped
 import kotlin.test.*
 
 fun box(): String {
-   val mikrom = Mikrom(mutableMapOf(), TypeConversions.EMPTY)
+   val mikrom = Mikrom(mutableMapOf(), conversions = TypeConversions.EMPTY)
    val person = Person.rowMapper().mapRow(
       Row.of(
          "name" to "Brian",

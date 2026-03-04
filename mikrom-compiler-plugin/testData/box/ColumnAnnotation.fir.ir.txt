@@ -275,7 +275,7 @@ FILE fqName:<root> fileName:/ColumnAnnotation.kt
   FUN name:box visibility:public modality:FINAL returnType:kotlin.String
     BLOCK_BODY
       VAR name:mikrom type:io.github.kantis.mikrom.Mikrom [val]
-        CONSTRUCTOR_CALL 'public constructor <init> (rowMappers: kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.RowMapper<*>>, conversions: io.github.kantis.mikrom.convert.TypeConversions, namingStrategy: io.github.kantis.mikrom.generator.NamingStrategy) declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.Mikrom origin=null
+        CONSTRUCTOR_CALL 'public constructor <init> (rowMappers: kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.RowMapper<*>>, parameterMappers: kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.ParameterMapper<*>>, conversions: io.github.kantis.mikrom.convert.TypeConversions, namingStrategy: io.github.kantis.mikrom.generator.NamingStrategy) declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.Mikrom origin=null
           ARG rowMappers: CALL 'public final fun mutableMapOf <K, V> (): kotlin.collections.MutableMap<K of kotlin.collections.mutableMapOf, V of kotlin.collections.mutableMapOf> declared in kotlin.collections' type=kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.RowMapper<*>> origin=null
             TYPE_ARG K: kotlin.reflect.KClass<*>
             TYPE_ARG V: io.github.kantis.mikrom.RowMapper<*>
