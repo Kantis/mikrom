@@ -19,3 +19,15 @@ internal data class MikromGenerateRowMapperAccessorKey(
    val ownerClassSymbol: FirClassSymbol<*>,
    val rowMapperType: ConeClassLikeType,
 ) : GeneratedDeclarationKey()
+
+internal data object MikromGenerateParameterMapperKey : GeneratedDeclarationKey()
+
+internal data class MikromGenerateParameterMapperClassKey(
+   val ownerClassSymbol: FirClassSymbol<*>,
+   val parameterMapperType: ConeClassLikeType,
+) : GeneratedDeclarationKey()
+
+internal data class MikromGenerateParameterMapperAccessorKey(
+   val ownerClassSymbol: FirClassSymbol<*>,
+   val parameterMapperType: ConeClassLikeType,
+) : GeneratedDeclarationKey()

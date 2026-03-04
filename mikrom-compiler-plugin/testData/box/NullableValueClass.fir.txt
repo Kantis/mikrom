@@ -25,17 +25,17 @@ FILE: NullableValueClass.kt
 
         public final fun copy(name: R|kotlin/String| = this@R|/Contact|.R|/Contact.name|, email: R|Email?| = this@R|/Contact|.R|/Contact.email|): R|Contact|
 
-        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<Contact>| {
-            public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|Contact|
-
-            private constructor(): R|Contact.$RowMapper|
-
-        }
-
         public final companion object Companion : R|kotlin/Any| {
             public final fun rowMapper(): R|io/github/kantis/mikrom/RowMapper<Contact>|
 
             private constructor(): R|Contact.Companion|
+
+        }
+
+        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<Contact>| {
+            public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|Contact|
+
+            private constructor(): R|Contact.$RowMapper|
 
         }
 

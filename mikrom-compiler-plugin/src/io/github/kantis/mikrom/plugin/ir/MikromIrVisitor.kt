@@ -1,6 +1,8 @@
 package io.github.kantis.mikrom.plugin.ir
 
 import io.github.kantis.mikrom.plugin.MikromGenerateCompanionKey
+import io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperAccessorKey
+import io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperKey
 import io.github.kantis.mikrom.plugin.MikromGenerateRowMapperAccessorKey
 import io.github.kantis.mikrom.plugin.MikromGenerateRowMapperKey
 import org.jetbrains.kotlin.backend.common.extensions.IrPluginContext
@@ -33,6 +35,7 @@ import org.jetbrains.kotlin.ir.expressions.IrConstructorCall
 import org.jetbrains.kotlin.ir.expressions.IrExpression
 import org.jetbrains.kotlin.ir.expressions.impl.IrClassReferenceImpl
 import org.jetbrains.kotlin.ir.expressions.impl.IrInstanceInitializerCallImpl
+import org.jetbrains.kotlin.ir.expressions.impl.IrVarargImpl
 import org.jetbrains.kotlin.ir.types.classifierOrNull
 import org.jetbrains.kotlin.ir.types.makeNotNull
 import org.jetbrains.kotlin.ir.types.makeNullable
@@ -42,6 +45,7 @@ import org.jetbrains.kotlin.ir.util.functions
 import org.jetbrains.kotlin.ir.util.isNullable
 import org.jetbrains.kotlin.ir.util.parentAsClass
 import org.jetbrains.kotlin.ir.util.primaryConstructor
+import org.jetbrains.kotlin.ir.util.properties
 import org.jetbrains.kotlin.ir.visitors.IrVisitorVoid
 import org.jetbrains.kotlin.ir.visitors.acceptChildrenVoid
 import org.jetbrains.kotlin.name.ClassId
@@ -54,11 +58,14 @@ internal class MikromIrVisitor(
 ) : IrVisitorVoid() {
    private companion object {
       private val ROW_MAPPER_ORIGIN = IrDeclarationOrigin.GeneratedByPlugin(MikromGenerateRowMapperKey)
+      private val PARAMETER_MAPPER_ORIGIN = IrDeclarationOrigin.GeneratedByPlugin(MikromGenerateParameterMapperKey)
       private val COMPANION_ORIGIN_PREFIX = "MikromGenerateCompanionKey"
       private val ACCESSOR_ORIGIN_PREFIX = "MikromGenerateRowMapperAccessorKey"
+      private val PARAMETER_MAPPER_ACCESSOR_ORIGIN_PREFIX = "MikromGenerateParameterMapperAccessorKey"
 
       private val ROW_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom"), Name.identifier("Row"))
       private val ROW_MAPPER_NESTED_NAME = Name.identifier("\$RowMapper")
+      private val PARAMETER_MAPPER_NESTED_NAME = Name.identifier("\$ParameterMapper")
 
       private val MIKROM_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom"), Name.identifier("Mikrom"))
       private val NAMING_STRATEGY_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom.generator"), Name.identifier("NamingStrategy"))
@@ -69,6 +76,9 @@ internal class MikromIrVisitor(
 
       private val ILLEGAL_STATE_EXCEPTION_CLASS_ID =
          ClassId.topLevel(ILLEGAL_STATE_EXCEPTION_FQ_NAME)
+
+      private val PAIR_CLASS_ID = ClassId(FqName("kotlin"), Name.identifier("Pair"))
+      private val TO_FQ_NAME = FqName("kotlin.to")
    }
 
    private val namingStrategyGetter by lazy {
@@ -114,9 +124,12 @@ internal class MikromIrVisitor(
    private fun IrDeclaration.isGeneratedByMikrom(): Boolean {
       val origin = origin
       if (origin == ROW_MAPPER_ORIGIN) return true
+      if (origin == PARAMETER_MAPPER_ORIGIN) return true
       if (origin !is IrDeclarationOrigin.GeneratedByPlugin) return false
       val key = origin.pluginKey
-      return key is MikromGenerateCompanionKey || key is MikromGenerateRowMapperAccessorKey
+      return key is MikromGenerateCompanionKey ||
+         key is MikromGenerateRowMapperAccessorKey ||
+         key is MikromGenerateParameterMapperAccessorKey
    }
 
    override fun visitConstructor(declaration: IrConstructor) {
@@ -154,8 +167,16 @@ internal class MikromIrVisitor(
             declaration.body = generateRowMapperAccessor(declaration)
          }
 
+         key is MikromGenerateParameterMapperAccessorKey -> {
+            declaration.body = generateParameterMapperAccessor(declaration)
+         }
+
          key is MikromGenerateRowMapperKey -> {
             declaration.body = generateMapRowFunction(declaration)
+         }
+
+         key is MikromGenerateParameterMapperKey -> {
+            declaration.body = generateMapParametersFunction(declaration)
          }
       }
    }
@@ -173,6 +194,21 @@ internal class MikromIrVisitor(
       val irBuilder = DeclarationIrBuilder(pluginContext, function.symbol)
       return irBuilder.irBlockBody {
          +irReturn(irGetObject(rowMapperObject.symbol))
+      }
+   }
+
+   private fun generateParameterMapperAccessor(function: IrSimpleFunction): IrBody? {
+      val companionClass = function.parentAsClass
+      val ownerClass = companionClass.parentAsClass
+
+      val parameterMapperObject = ownerClass.declarations
+         .filterIsInstance<IrClass>()
+         .singleOrNull { it.name == PARAMETER_MAPPER_NESTED_NAME }
+         ?: return null
+
+      val irBuilder = DeclarationIrBuilder(pluginContext, function.symbol)
+      return irBuilder.irBlockBody {
+         +irReturn(irGetObject(parameterMapperObject.symbol))
       }
    }
 
@@ -196,6 +232,72 @@ internal class MikromIrVisitor(
          }
 
          +irReturn(constructorCall)
+      }
+   }
+
+   private fun generateMapParametersFunction(function: IrSimpleFunction): IrBody? {
+      // parameters[0] = dispatch receiver ($ParameterMapper this)
+      // parameters[1] = value: T
+      val valueParam = function.parameters[1]
+      val mappedType = valueParam.type.classifierOrNull?.owner as? IrClass ?: return null
+      val primaryConstructor = mappedType.primaryConstructor ?: return null
+      val irBuilder = DeclarationIrBuilder(pluginContext, function.symbol)
+
+      // Find the `to` extension function: fun <A, B> A.to(that: B): Pair<A, B>
+      val toFunction = pluginContext.referenceFunctions(
+         org.jetbrains.kotlin.name.CallableId(FqName("kotlin"), Name.identifier("to")),
+      ).single()
+
+      // Find mapOf(vararg pairs: Pair<K, V>): Map<K, V>
+      val mapOfFunction = pluginContext.referenceFunctions(
+         org.jetbrains.kotlin.name.CallableId(FqName("kotlin.collections"), Name.identifier("mapOf")),
+      ).single { ref ->
+         val fn = ref.owner
+         fn.typeParameters.size == 2 && fn.parameters.any { it.varargElementType != null }
+      }
+
+      val pairClass = pluginContext.referenceClass(PAIR_CLASS_ID)!!
+      val stringType = pluginContext.irBuiltIns.stringType
+      val anyNType = pluginContext.irBuiltIns.anyNType
+      val pairType = pairClass.typeWith(stringType, anyNType)
+      val arrayOfPairType = pluginContext.irBuiltIns.arrayClass.typeWith(pairType)
+
+      return irBuilder.irBlockBody {
+         // Build pairs: "propName" to value.propName for each constructor parameter
+         val pairExpressions = primaryConstructor.parameters.map { ctorParam ->
+            val propertyGetter = mappedType.properties
+               .single { it.name == ctorParam.name }
+               .getter!!
+
+            irCall(toFunction).apply {
+               typeArguments[0] = stringType
+               typeArguments[1] = anyNType
+               // `to` is an extension function: fun <A, B> A.to(that: B): Pair<A, B>
+               // parameters[0] = extension receiver (A), parameters[1] = that (B)
+               arguments[0] = irString(ctorParam.name.asString())
+               arguments[1] = irCall(propertyGetter).apply {
+                  dispatchReceiver = irGet(valueParam)
+               }
+            }
+         }
+
+         // Build: mapOf("name" to value.name, "age" to value.age)
+         val mapOfCall = irCall(mapOfFunction).apply {
+            typeArguments[0] = stringType
+            typeArguments[1] = anyNType
+
+            // Find the vararg parameter index
+            val varargParamIndex = mapOfFunction.owner.parameters.indexOfFirst { it.varargElementType != null }
+            arguments[varargParamIndex] = IrVarargImpl(
+               startOffset,
+               endOffset,
+               type = arrayOfPairType,
+               varargElementType = pairType,
+               elements = pairExpressions,
+            )
+         }
+
+         +irReturn(mapOfCall)
       }
    }
 

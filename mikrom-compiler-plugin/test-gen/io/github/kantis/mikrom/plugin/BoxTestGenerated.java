@@ -21,6 +21,12 @@ public class BoxTestGenerated extends AbstractBoxTest {
   }
 
   @Test
+  @TestMetadata("BothMapped.kt")
+  public void testBothMapped() {
+    runTest("testData/box/BothMapped.kt");
+  }
+
+  @Test
   @TestMetadata("ColumnAnnotation.kt")
   public void testColumnAnnotation() {
     runTest("testData/box/ColumnAnnotation.kt");
@@ -36,6 +42,12 @@ public class BoxTestGenerated extends AbstractBoxTest {
   @TestMetadata("NullableValueClass.kt")
   public void testNullableValueClass() {
     runTest("testData/box/NullableValueClass.kt");
+  }
+
+  @Test
+  @TestMetadata("ParameterMapped.kt")
+  public void testParameterMapped() {
+    runTest("testData/box/ParameterMapped.kt");
   }
 
   @Test

@@ -27,17 +27,17 @@ FILE: Person.kt
 
         public final fun copy(name: R|kotlin/String| = this@R|/Person|.R|/Person.name|, nickname: R|kotlin/String?| = this@R|/Person|.R|/Person.nickname|, age: R|kotlin/Int| = this@R|/Person|.R|/Person.age|): R|Person|
 
-        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<Person>| {
-            public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|Person|
-
-            private constructor(): R|Person.$RowMapper|
-
-        }
-
         public final companion object Companion : R|kotlin/Any| {
             public final fun rowMapper(): R|io/github/kantis/mikrom/RowMapper<Person>|
 
             private constructor(): R|Person.Companion|
+
+        }
+
+        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<Person>| {
+            public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|Person|
+
+            private constructor(): R|Person.$RowMapper|
 
         }
 

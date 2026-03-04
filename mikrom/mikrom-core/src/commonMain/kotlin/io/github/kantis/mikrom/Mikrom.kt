@@ -3,6 +3,7 @@ package io.github.kantis.mikrom
 import io.github.kantis.mikrom.convert.TypeConversions
 import io.github.kantis.mikrom.convert.defaultConversions
 import io.github.kantis.mikrom.generator.NamingStrategy
+import io.github.kantis.mikrom.internal.compiledParameterMapper
 import io.github.kantis.mikrom.internal.compiledRowMapper
 import kotlin.reflect.KClass
 
@@ -21,7 +22,10 @@ public class Mikrom(
    @Suppress("UNCHECKED_CAST")
    public inline fun <reified T : Any> resolveParameterMapper(): ParameterMapper<T> =
       parameterMappers[T::class] as? ParameterMapper<T>
-         ?: error("No ParameterMapper found for type ${T::class}. Please register a ParameterMapper.")
+         ?: T::class.compiledParameterMapper()
+         ?: error(
+            "No ParameterMapper found for type ${T::class}. Please register a ParameterMapper or ensure it is compiled with the Mikrom plugin.",
+         )
 
    public companion object {
       public operator fun invoke(builder: MikromBuilder.() -> Unit): Mikrom = MikromBuilder().apply(builder).build()

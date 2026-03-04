@@ -1,6 +1,7 @@
 package io.github.kantis.mikrom
 
 import io.github.kantis.mikrom.datasource.Transaction
+import io.github.kantis.mikrom.internal.compiledParameterMapper
 import kotlin.collections.emptyList
 
 public inline fun <reified T> Mikrom.queryForSingleOrNull(query: Query): T? = null
@@ -56,6 +57,7 @@ public fun <T : Any> Mikrom.execute(
 ) {
    params.forEach {
       val mapper = parameterMappers[it::class] as? ParameterMapper<T>
+         ?: it::class.compiledParameterMapper() as? ParameterMapper<T>
       if (mapper != null) {
          execute(query, mapper.mapParameters(it))
       } else if (it is List<*>) {
