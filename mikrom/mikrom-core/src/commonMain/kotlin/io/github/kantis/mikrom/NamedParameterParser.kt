@@ -5,6 +5,7 @@ package io.github.kantis.mikrom
  * [sql] contains the rewritten query with `?` placeholders.
  * [parameterNames] contains the ordered list of parameter names as they appear in the query.
  */
+@MikromInternal
 public data class ParsedQuery(
    val sql: String,
    val parameterNames: List<String>,
@@ -20,6 +21,7 @@ public data class ParsedQuery(
  * - `--` line comments and `/ * ... * /` block comments (parameters inside are not replaced)
  * - Repeated parameter names (same name appears multiple times, resolved from the same map entry)
  */
+@MikromInternal
 public fun parseNamedParameters(sql: String): ParsedQuery {
    val result = StringBuilder(sql.length)
    val parameterNames = mutableListOf<String>()
@@ -137,6 +139,7 @@ public fun parseNamedParameters(sql: String): ParsedQuery {
  *
  * @throws IllegalArgumentException if any named parameter from the query is missing in the map.
  */
+@MikromInternal
 public fun ParsedQuery.resolveParams(params: Map<String, Any?>): List<Any?> {
    val missing = parameterNames.filter { it !in params }
    if (missing.isNotEmpty()) {
