@@ -48,13 +48,21 @@ public fun Mikrom.execute(
    params.forEach { transaction.executeInTransaction(query, it) }
 }
 
+@Suppress("UNCHECKED_CAST")
 context(transaction: Transaction)
 public fun <T : Any> Mikrom.execute(
    query: Query,
    vararg params: T,
 ) {
    params.forEach {
-      if (it is List<*>) transaction.executeInTransaction(query, it) else transaction.executeInTransaction(query, listOf(it))
+      val mapper = parameterMappers[it::class] as? ParameterMapper<T>
+      if (mapper != null) {
+         execute(query, mapper.mapParameters(it))
+      } else if (it is List<*>) {
+         transaction.executeInTransaction(query, it)
+      } else {
+         transaction.executeInTransaction(query, listOf(it))
+      }
    }
 }
 

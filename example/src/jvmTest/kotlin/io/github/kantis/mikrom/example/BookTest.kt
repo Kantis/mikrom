@@ -8,10 +8,10 @@ import io.kotest.matchers.shouldBe
 
 class BookTest : FunSpec(
    {
-      val mikrom = Mikrom(mutableMapOf(), TypeConversions.EMPTY)
+      val mikrom = Mikrom(mutableMapOf(), conversions = TypeConversions.EMPTY)
 
       test("rowMapper() companion accessor returns generated mapper") {
-         val mikrom = Mikrom(mutableMapOf(), TypeConversions.EMPTY)
+         val mikrom = Mikrom(mutableMapOf(), conversions = TypeConversions.EMPTY)
          val book: Book = Book.rowMapper().mapRow(
             Row.of(
                "author" to "JRR Tolkien",

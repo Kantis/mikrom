@@ -1,9 +1,10 @@
 public final class io/github/kantis/mikrom/Mikrom {
 	public static final field Companion Lio/github/kantis/mikrom/Mikrom$Companion;
-	public fun <init> (Ljava/util/Map;Lio/github/kantis/mikrom/convert/TypeConversions;Lio/github/kantis/mikrom/generator/NamingStrategy;)V
-	public synthetic fun <init> (Ljava/util/Map;Lio/github/kantis/mikrom/convert/TypeConversions;Lio/github/kantis/mikrom/generator/NamingStrategy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/util/Map;Ljava/util/Map;Lio/github/kantis/mikrom/convert/TypeConversions;Lio/github/kantis/mikrom/generator/NamingStrategy;)V
+	public synthetic fun <init> (Ljava/util/Map;Ljava/util/Map;Lio/github/kantis/mikrom/convert/TypeConversions;Lio/github/kantis/mikrom/generator/NamingStrategy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getConversions ()Lio/github/kantis/mikrom/convert/TypeConversions;
 	public final fun getNamingStrategy ()Lio/github/kantis/mikrom/generator/NamingStrategy;
+	public final fun getParameterMappers ()Ljava/util/Map;
 	public final fun getRowMappers ()Ljava/util/Map;
 }
 
@@ -16,8 +17,17 @@ public final class io/github/kantis/mikrom/MikromBuilder {
 	public final fun build ()Lio/github/kantis/mikrom/Mikrom;
 	public final fun getConversionsBuilder ()Lio/github/kantis/mikrom/convert/TypeConversions$Builder;
 	public final fun getNamingStrategy ()Lio/github/kantis/mikrom/generator/NamingStrategy;
+	public final fun getParameterMappers ()Ljava/util/Map;
 	public final fun getRowMappers ()Ljava/util/Map;
 	public final fun setNamingStrategy (Lio/github/kantis/mikrom/generator/NamingStrategy;)V
+}
+
+public final class io/github/kantis/mikrom/MikromBuilder$sam$i$io_github_kantis_mikrom_ParameterMapper$0 : io/github/kantis/mikrom/ParameterMapper, kotlin/jvm/internal/FunctionAdapter {
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final fun equals (Ljava/lang/Object;)Z
+	public final fun getFunctionDelegate ()Lkotlin/Function;
+	public final fun hashCode ()I
+	public final synthetic fun mapParameters (Ljava/lang/Object;)Ljava/util/Map;
 }
 
 public abstract interface annotation class io/github/kantis/mikrom/MikromInternal : java/lang/annotation/Annotation {
@@ -26,6 +36,10 @@ public abstract interface annotation class io/github/kantis/mikrom/MikromInterna
 public final class io/github/kantis/mikrom/NamedParameterParserKt {
 	public static final fun parseNamedParameters (Ljava/lang/String;)Lio/github/kantis/mikrom/ParsedQuery;
 	public static final fun resolveParams (Lio/github/kantis/mikrom/ParsedQuery;Ljava/util/Map;)Ljava/util/List;
+}
+
+public abstract interface class io/github/kantis/mikrom/ParameterMapper {
+	public abstract fun mapParameters (Ljava/lang/Object;)Ljava/util/Map;
 }
 
 public final class io/github/kantis/mikrom/ParsedQuery {
