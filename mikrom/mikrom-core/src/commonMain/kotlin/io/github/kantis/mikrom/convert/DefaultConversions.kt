@@ -1,7 +1,5 @@
 package io.github.kantis.mikrom.convert
 
-import io.github.kantis.mikrom.convert.TypeConversions
-
 public fun commonDefaultConversions(): TypeConversions =
    TypeConversions.Builder().apply {
       register<Int, UInt> { it.toUInt() }
