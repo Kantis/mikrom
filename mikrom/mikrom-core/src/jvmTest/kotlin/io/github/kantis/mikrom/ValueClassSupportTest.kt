@@ -38,7 +38,7 @@ class ValueClassSupportTest : FunSpec({
    }
 
    test("Row.get supports value classes") {
-      val mikrom = Mikrom(mutableMapOf(), TypeConversions.EMPTY)
+      val mikrom = Mikrom(mutableMapOf(), conversions = TypeConversions.EMPTY)
       val row = Row.of("id" to "user-123")
       with(mikrom) {
          row.get<UserId>("id") shouldBe UserId("user-123")
@@ -46,7 +46,7 @@ class ValueClassSupportTest : FunSpec({
    }
 
    test("Row.getOrNull supports value classes with non-null value") {
-      val mikrom = Mikrom(mutableMapOf(), TypeConversions.EMPTY)
+      val mikrom = Mikrom(mutableMapOf(), conversions = TypeConversions.EMPTY)
       val row = Row.of("id" to "user-123")
       with(mikrom) {
          row.getOrNull<UserId>("id") shouldBe UserId("user-123")
@@ -54,7 +54,7 @@ class ValueClassSupportTest : FunSpec({
    }
 
    test("Row.getOrNull supports value classes with null value") {
-      val mikrom = Mikrom(mutableMapOf(), TypeConversions.EMPTY)
+      val mikrom = Mikrom(mutableMapOf(), conversions = TypeConversions.EMPTY)
       val row = Row.of("id" to null)
       with(mikrom) {
          row.getOrNull<UserId>("id") shouldBe null

@@ -7,6 +7,7 @@ import kotlin.reflect.KClass
 
 public class MikromBuilder {
    public val rowMappers: MutableMap<KClass<*>, RowMapper<*>> = mutableMapOf()
+   public val parameterMappers: MutableMap<KClass<*>, ParameterMapper<*>> = mutableMapOf()
    public var namingStrategy: NamingStrategy = NamingStrategy.SNAKE_CASE
 
    @PublishedApi
@@ -20,9 +21,17 @@ public class MikromBuilder {
       rowMappers[T::class] = RowMapper { row, mikrom -> mapper(mikrom, row) }
    }
 
+   public inline fun <reified T> registerParameterMapper(mapper: ParameterMapper<T>) {
+      parameterMappers[T::class] = mapper
+   }
+
+   public inline fun <reified T> registerParameterMapper(noinline mapper: (T) -> Map<String, Any?>) {
+      parameterMappers[T::class] = ParameterMapper(mapper)
+   }
+
    public inline fun <reified S : Any, reified T : Any> registerConversion(noinline conversion: (S) -> T) {
       conversionsBuilder.register(conversion)
    }
 
-   public fun build(): Mikrom = Mikrom(rowMappers, defaultConversions() + conversionsBuilder.build(), namingStrategy)
+   public fun build(): Mikrom = Mikrom(rowMappers, parameterMappers, defaultConversions() + conversionsBuilder.build(), namingStrategy)
 }

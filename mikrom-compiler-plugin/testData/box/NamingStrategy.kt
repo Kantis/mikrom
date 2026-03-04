@@ -11,7 +11,7 @@ import kotlin.test.*
 
 fun box(): String {
    // Test SNAKE_CASE (default)
-   val snakeMikrom = Mikrom(mutableMapOf(), TypeConversions.EMPTY)
+   val snakeMikrom = Mikrom(mutableMapOf(), conversions =TypeConversions.EMPTY)
    val invoice = Invoice.rowMapper().mapRow(
       Row.of(
          "invoice_id" to 42,
@@ -32,7 +32,7 @@ fun box(): String {
    assertEquals(OverriddenEntity("hello", 99), overridden)
 
    // Test AS_IS preserves parameter names
-   val asIsMikrom = Mikrom(mutableMapOf(), TypeConversions.EMPTY, NamingStrategy.AS_IS)
+   val asIsMikrom = Mikrom(mutableMapOf(), conversions = TypeConversions.EMPTY, namingStrategy = NamingStrategy.AS_IS)
    val entity = AsIsEntity.rowMapper().mapRow(
       Row.of(
          "firstName" to "Bob",

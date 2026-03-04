@@ -8,6 +8,7 @@ import kotlin.reflect.KClass
 
 public class Mikrom(
    public val rowMappers: MutableMap<KClass<*>, RowMapper<*>>,
+   public val parameterMappers: MutableMap<KClass<*>, ParameterMapper<*>> = mutableMapOf(),
    public val conversions: TypeConversions = defaultConversions(),
    public val namingStrategy: NamingStrategy = NamingStrategy.SNAKE_CASE,
 ) {
@@ -16,6 +17,11 @@ public class Mikrom(
       rowMappers[T::class] as? RowMapper<T>
          ?: T::class.compiledRowMapper()
          ?: error("No RowMapper found for type ${T::class}. Please register a RowMapper or ensure it is compiled with the Mikrom plugin.")
+
+   @Suppress("UNCHECKED_CAST")
+   public inline fun <reified T : Any> resolveParameterMapper(): ParameterMapper<T> =
+      parameterMappers[T::class] as? ParameterMapper<T>
+         ?: error("No ParameterMapper found for type ${T::class}. Please register a ParameterMapper.")
 
    public companion object {
       public operator fun invoke(builder: MikromBuilder.() -> Unit): Mikrom = MikromBuilder().apply(builder).build()
