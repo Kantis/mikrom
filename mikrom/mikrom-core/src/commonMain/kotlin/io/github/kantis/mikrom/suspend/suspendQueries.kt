@@ -11,7 +11,7 @@ import kotlin.collections.emptyList
 context(transaction: SuspendingTransaction)
 public suspend inline fun Mikrom.execute(
    query: Query,
-   params: List<Any>,
+   params: List<Any?>,
 ) {
    transaction.executeInTransaction(query, params)
 }
@@ -50,5 +50,5 @@ public suspend fun Mikrom.execute(
    params: Map<String, Any?>,
 ) {
    val parsed = parseNamedParameters(query.value)
-   execute(Query(parsed.sql), parsed.resolveParams(params).filterNotNull())
+   execute(Query(parsed.sql), parsed.resolveParams(params))
 }

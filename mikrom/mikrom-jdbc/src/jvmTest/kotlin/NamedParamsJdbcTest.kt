@@ -68,6 +68,100 @@ class NamedParamsJdbcTest : FunSpec(
          }
       }
 
+      test("insert with null named parameter") {
+         val mikrom =
+            Mikrom {
+               registerRowMapper { row ->
+                  Person(row.get("name"), row.get("age"))
+               }
+            }
+
+         val dataSource = prepareH2Database(
+            """
+               CREATE TABLE people_nullable (
+                  name VARCHAR(255),
+                  age INT
+               )
+            """.trimIndent(),
+         )
+
+         dataSource.transaction {
+            mikrom.execute(
+               Query("INSERT INTO people_nullable (name, age) VALUES (:name, :age)"),
+               mapOf("name" to "Alice", "age" to null),
+            )
+
+            mikrom.queryFor<Person>(
+               Query("SELECT * FROM people_nullable WHERE name = :name"),
+               mapOf("name" to "Alice"),
+            ) shouldBe listOf(Person("Alice", 0))
+         }
+      }
+
+      test("query with null named parameter in WHERE clause") {
+         val mikrom = Mikrom {}
+
+         val dataSource = prepareH2Database(
+            """
+               CREATE TABLE items_nullable (
+                  label VARCHAR(255),
+                  quantity INT
+               )
+            """.trimIndent(),
+         )
+
+         dataSource.transaction {
+            mikrom.execute(
+               Query("INSERT INTO items_nullable (label, quantity) VALUES (:label, :quantity)"),
+               mapOf("label" to "Apples", "quantity" to 5),
+               mapOf("label" to "Bananas", "quantity" to null),
+            )
+
+            mikrom.queryFor<Int>(
+               Query("SELECT COUNT(*) FROM items_nullable WHERE quantity IS NULL"),
+            ) shouldBe listOf(1)
+         }
+      }
+
+      test("batch execute with mix of null and non-null named parameters") {
+         val mikrom =
+            Mikrom {
+               registerRowMapper { row ->
+                  Person(row.get("name"), row.get("age"))
+               }
+            }
+
+         val dataSource = prepareH2Database(
+            """
+               CREATE TABLE people_mixed (
+                  name VARCHAR(255),
+                  age INT
+               )
+            """.trimIndent(),
+         )
+
+         dataSource.transaction {
+            mikrom.execute(
+               Query("INSERT INTO people_mixed (name, age) VALUES (:name, :age)"),
+               mapOf("name" to "Alice", "age" to 30),
+               mapOf("name" to "Bob", "age" to null),
+               mapOf("name" to null, "age" to 25),
+            )
+
+            mikrom.queryFor<Int>(
+               Query("SELECT COUNT(*) FROM people_mixed"),
+            ) shouldBe listOf(3)
+
+            mikrom.queryFor<Int>(
+               Query("SELECT COUNT(*) FROM people_mixed WHERE age IS NULL"),
+            ) shouldBe listOf(1)
+
+            mikrom.queryFor<Int>(
+               Query("SELECT COUNT(*) FROM people_mixed WHERE name IS NULL"),
+            ) shouldBe listOf(1)
+         }
+      }
+
       test("repeated named parameter in WHERE clause") {
          val mikrom =
             Mikrom {
