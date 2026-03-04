@@ -51,6 +51,12 @@ public class BoxTestGenerated extends AbstractBoxTest {
   }
 
   @Test
+  @TestMetadata("ParameterMappedValueClass.kt")
+  public void testParameterMappedValueClass() {
+    runTest("testData/box/ParameterMappedValueClass.kt");
+  }
+
+  @Test
   @TestMetadata("Person.kt")
   public void testPerson() {
     runTest("testData/box/Person.kt");

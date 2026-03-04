@@ -1,0 +1,370 @@
+FILE fqName:<root> fileName:/ParameterMappedValueClass.kt
+  CLASS CLASS name:Age modality:FINAL visibility:public [value] superTypes:[kotlin.Any]
+    annotations:
+      JvmInline
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.Age
+    PROPERTY name:value visibility:public modality:FINAL [val]
+      FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.Int visibility:private [final]
+        EXPRESSION_BODY
+          GET_VAR 'value: kotlin.Int declared in <root>.Age.<init>' type=kotlin.Int origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-value> visibility:public modality:FINAL returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.Age
+        correspondingProperty: PROPERTY name:value visibility:public modality:FINAL [val]
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun <get-value> (): kotlin.Int declared in <root>.Age'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+              receiver: GET_VAR '<this>: <root>.Age declared in <root>.Age.<get-value>' type=<root>.Age origin=null
+    CONSTRUCTOR visibility:public returnType:<root>.Age [primary]
+      VALUE_PARAMETER kind:Regular name:value index:0 type:kotlin.Int
+      BLOCK_BODY
+        DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+        INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:Age modality:FINAL visibility:public [value] superTypes:[kotlin.Any]' type=kotlin.Unit
+    FUN GENERATED_SINGLE_FIELD_VALUE_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.Age
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+      BLOCK_BODY
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: TYPE_OP type=kotlin.Boolean origin=NOT_INSTANCEOF typeOperand=<root>.Age
+              GET_VAR 'other: kotlin.Any? declared in <root>.Age.equals' type=kotlin.Any? origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.Age'
+              CONST Boolean type=kotlin.Boolean value=false
+        VAR IR_TEMPORARY_VARIABLE name:tmp_0 type:<root>.Age [val]
+          TYPE_OP type=<root>.Age origin=IMPLICIT_CAST typeOperand=<root>.Age
+            GET_VAR 'other: kotlin.Any? declared in <root>.Age.equals' type=kotlin.Any? origin=null
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+              ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                  receiver: GET_VAR '<this>: <root>.Age declared in <root>.Age.equals' type=<root>.Age origin=null
+                ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                  receiver: GET_VAR 'val tmp_0: <root>.Age declared in <root>.Age.equals' type=<root>.Age origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.Age'
+              CONST Boolean type=kotlin.Boolean value=false
+        RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.Age'
+          CONST Boolean type=kotlin.Boolean value=true
+    FUN GENERATED_SINGLE_FIELD_VALUE_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.Age
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public open fun hashCode (): kotlin.Int declared in <root>.Age'
+          CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+            ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+              receiver: GET_VAR '<this>: <root>.Age declared in <root>.Age.hashCode' type=<root>.Age origin=null
+    FUN GENERATED_SINGLE_FIELD_VALUE_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.Age
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public open fun toString (): kotlin.String declared in <root>.Age'
+          STRING_CONCATENATION type=kotlin.String
+            CONST String type=kotlin.String value="Age("
+            CONST String type=kotlin.String value="value="
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+              receiver: GET_VAR '<this>: <root>.Age declared in <root>.Age.toString' type=<root>.Age origin=null
+            CONST String type=kotlin.String value=")"
+  CLASS CLASS name:UserId modality:FINAL visibility:public [value] superTypes:[kotlin.Any]
+    annotations:
+      JvmInline
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.UserId
+    PROPERTY name:value visibility:public modality:FINAL [val]
+      FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.String visibility:private [final]
+        EXPRESSION_BODY
+          GET_VAR 'value: kotlin.String declared in <root>.UserId.<init>' type=kotlin.String origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-value> visibility:public modality:FINAL returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserId
+        correspondingProperty: PROPERTY name:value visibility:public modality:FINAL [val]
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun <get-value> (): kotlin.String declared in <root>.UserId'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: <root>.UserId declared in <root>.UserId.<get-value>' type=<root>.UserId origin=null
+    CONSTRUCTOR visibility:public returnType:<root>.UserId [primary]
+      VALUE_PARAMETER kind:Regular name:value index:0 type:kotlin.String
+      BLOCK_BODY
+        DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+        INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:UserId modality:FINAL visibility:public [value] superTypes:[kotlin.Any]' type=kotlin.Unit
+    FUN GENERATED_SINGLE_FIELD_VALUE_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserId
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+      BLOCK_BODY
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: TYPE_OP type=kotlin.Boolean origin=NOT_INSTANCEOF typeOperand=<root>.UserId
+              GET_VAR 'other: kotlin.Any? declared in <root>.UserId.equals' type=kotlin.Any? origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.UserId'
+              CONST Boolean type=kotlin.Boolean value=false
+        VAR IR_TEMPORARY_VARIABLE name:tmp_1 type:<root>.UserId [val]
+          TYPE_OP type=<root>.UserId origin=IMPLICIT_CAST typeOperand=<root>.UserId
+            GET_VAR 'other: kotlin.Any? declared in <root>.UserId.equals' type=kotlin.Any? origin=null
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+              ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                  receiver: GET_VAR '<this>: <root>.UserId declared in <root>.UserId.equals' type=<root>.UserId origin=null
+                ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                  receiver: GET_VAR 'val tmp_1: <root>.UserId declared in <root>.UserId.equals' type=<root>.UserId origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.UserId'
+              CONST Boolean type=kotlin.Boolean value=false
+        RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.UserId'
+          CONST Boolean type=kotlin.Boolean value=true
+    FUN GENERATED_SINGLE_FIELD_VALUE_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserId
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public open fun hashCode (): kotlin.Int declared in <root>.UserId'
+          CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.String' type=kotlin.Int origin=null
+            ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: <root>.UserId declared in <root>.UserId.hashCode' type=<root>.UserId origin=null
+    FUN GENERATED_SINGLE_FIELD_VALUE_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserId
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public open fun toString (): kotlin.String declared in <root>.UserId'
+          STRING_CONCATENATION type=kotlin.String
+            CONST String type=kotlin.String value="UserId("
+            CONST String type=kotlin.String value="value="
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: <root>.UserId declared in <root>.UserId.toString' type=<root>.UserId origin=null
+            CONST String type=kotlin.String value=")"
+  CLASS CLASS name:UserParams modality:FINAL visibility:public [data] superTypes:[kotlin.Any]
+    annotations:
+      ParameterMapped
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.UserParams
+    PROPERTY name:id visibility:public modality:FINAL [val]
+      FIELD PROPERTY_BACKING_FIELD name:id type:<root>.UserId visibility:private [final]
+        EXPRESSION_BODY
+          GET_VAR 'id: <root>.UserId declared in <root>.UserParams.<init>' type=<root>.UserId origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-id> visibility:public modality:FINAL returnType:<root>.UserId
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserParams
+        correspondingProperty: PROPERTY name:id visibility:public modality:FINAL [val]
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun <get-id> (): <root>.UserId declared in <root>.UserParams'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:id type:<root>.UserId visibility:private [final]' type=<root>.UserId origin=null
+              receiver: GET_VAR '<this>: <root>.UserParams declared in <root>.UserParams.<get-id>' type=<root>.UserParams origin=null
+    PROPERTY name:age visibility:public modality:FINAL [val]
+      FIELD PROPERTY_BACKING_FIELD name:age type:<root>.Age visibility:private [final]
+        EXPRESSION_BODY
+          GET_VAR 'age: <root>.Age declared in <root>.UserParams.<init>' type=<root>.Age origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-age> visibility:public modality:FINAL returnType:<root>.Age
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserParams
+        correspondingProperty: PROPERTY name:age visibility:public modality:FINAL [val]
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun <get-age> (): <root>.Age declared in <root>.UserParams'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:<root>.Age visibility:private [final]' type=<root>.Age origin=null
+              receiver: GET_VAR '<this>: <root>.UserParams declared in <root>.UserParams.<get-age>' type=<root>.UserParams origin=null
+    CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateCompanionKey] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.UserParams.Companion
+      CONSTRUCTOR GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateCompanionKey] visibility:private returnType:<root>.UserParams.Companion [primary]
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateCompanionKey] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=kotlin.Unit
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in kotlin.Any
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in kotlin.Any
+      FUN GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperAccessorKey] name:parameterMapper visibility:public modality:FINAL returnType:io.github.kantis.mikrom.ParameterMapper<<root>.UserParams>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserParams.Companion
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun parameterMapper (): io.github.kantis.mikrom.ParameterMapper<<root>.UserParams> declared in <root>.UserParams.Companion'
+            GET_OBJECT 'CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperClassKey] OBJECT name:$ParameterMapper modality:FINAL visibility:public superTypes:[io.github.kantis.mikrom.ParameterMapper<<root>.UserParams>]' type=<root>.UserParams.$ParameterMapper
+    CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperClassKey] OBJECT name:$ParameterMapper modality:FINAL visibility:public superTypes:[io.github.kantis.mikrom.ParameterMapper<<root>.UserParams>]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.UserParams.$ParameterMapper
+      CONSTRUCTOR GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperKey] visibility:private returnType:<root>.UserParams.$ParameterMapper [primary]
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperClassKey] OBJECT name:$ParameterMapper modality:FINAL visibility:public superTypes:[io.github.kantis.mikrom.ParameterMapper<<root>.UserParams>]' type=kotlin.Unit
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in io.github.kantis.mikrom.ParameterMapper
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in io.github.kantis.mikrom.ParameterMapper
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in io.github.kantis.mikrom.ParameterMapper
+      FUN GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperKey] name:mapParameters visibility:public modality:FINAL returnType:kotlin.collections.Map<kotlin.String, kotlin.Any?>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserParams.$ParameterMapper
+        VALUE_PARAMETER GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperKey] kind:Regular name:value index:1 type:<root>.UserParams
+        overridden:
+          public abstract fun mapParameters (value: T of io.github.kantis.mikrom.ParameterMapper): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in io.github.kantis.mikrom.ParameterMapper
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun mapParameters (value: <root>.UserParams): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.UserParams.$ParameterMapper'
+            CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> origin=null
+              TYPE_ARG K: kotlin.String
+              TYPE_ARG V: kotlin.Any?
+              ARG pairs: VARARG type=kotlin.Array<kotlin.Pair<kotlin.String, kotlin.Any?>> varargElementType=kotlin.Pair<kotlin.String, kotlin.Any?>
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                  TYPE_ARG A: kotlin.String
+                  TYPE_ARG B: kotlin.Any?
+                  ARG <this>: CONST String type=kotlin.String value="id"
+                  ARG that: CALL 'public final fun <get-value> (): kotlin.String declared in <root>.UserId' type=kotlin.String origin=null
+                    ARG <this>: CALL 'public final fun <get-id> (): <root>.UserId declared in <root>.UserParams' type=<root>.UserId origin=null
+                      ARG <this>: GET_VAR 'value: <root>.UserParams declared in <root>.UserParams.$ParameterMapper.mapParameters' type=<root>.UserParams origin=null
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                  TYPE_ARG A: kotlin.String
+                  TYPE_ARG B: kotlin.Any?
+                  ARG <this>: CONST String type=kotlin.String value="age"
+                  ARG that: CALL 'public final fun <get-value> (): kotlin.Int declared in <root>.Age' type=kotlin.Int origin=null
+                    ARG <this>: CALL 'public final fun <get-age> (): <root>.Age declared in <root>.UserParams' type=<root>.Age origin=null
+                      ARG <this>: GET_VAR 'value: <root>.UserParams declared in <root>.UserParams.$ParameterMapper.mapParameters' type=<root>.UserParams origin=null
+    CONSTRUCTOR visibility:public returnType:<root>.UserParams [primary]
+      VALUE_PARAMETER kind:Regular name:id index:0 type:<root>.UserId
+      VALUE_PARAMETER kind:Regular name:age index:1 type:<root>.Age
+      BLOCK_BODY
+        DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+        INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:UserParams modality:FINAL visibility:public [data] superTypes:[kotlin.Any]' type=kotlin.Unit
+    FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:<root>.UserId [operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserParams
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public final fun component1 (): <root>.UserId declared in <root>.UserParams'
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:id type:<root>.UserId visibility:private [final]' type=<root>.UserId origin=null
+            receiver: GET_VAR '<this>: <root>.UserParams declared in <root>.UserParams.component1' type=<root>.UserParams origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:component2 visibility:public modality:FINAL returnType:<root>.Age [operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserParams
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public final fun component2 (): <root>.Age declared in <root>.UserParams'
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:<root>.Age visibility:private [final]' type=<root>.Age origin=null
+            receiver: GET_VAR '<this>: <root>.UserParams declared in <root>.UserParams.component2' type=<root>.UserParams origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:copy visibility:public modality:FINAL returnType:<root>.UserParams
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserParams
+      VALUE_PARAMETER kind:Regular name:id index:1 type:<root>.UserId
+        EXPRESSION_BODY
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:id type:<root>.UserId visibility:private [final]' type=<root>.UserId origin=null
+            receiver: GET_VAR '<this>: <root>.UserParams declared in <root>.UserParams.copy' type=<root>.UserParams origin=null
+      VALUE_PARAMETER kind:Regular name:age index:2 type:<root>.Age
+        EXPRESSION_BODY
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:<root>.Age visibility:private [final]' type=<root>.Age origin=null
+            receiver: GET_VAR '<this>: <root>.UserParams declared in <root>.UserParams.copy' type=<root>.UserParams origin=null
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public final fun copy (id: <root>.UserId, age: <root>.Age): <root>.UserParams declared in <root>.UserParams'
+          CONSTRUCTOR_CALL 'public constructor <init> (id: <root>.UserId, age: <root>.Age) declared in <root>.UserParams' type=<root>.UserParams origin=null
+            ARG id: GET_VAR 'id: <root>.UserId declared in <root>.UserParams.copy' type=<root>.UserId origin=null
+            ARG age: GET_VAR 'age: <root>.Age declared in <root>.UserParams.copy' type=<root>.Age origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserParams
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+      BLOCK_BODY
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: CALL 'public final fun EQEQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQEQ
+              ARG arg0: GET_VAR '<this>: <root>.UserParams declared in <root>.UserParams.equals' type=<root>.UserParams origin=null
+              ARG arg1: GET_VAR 'other: kotlin.Any? declared in <root>.UserParams.equals' type=kotlin.Any? origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.UserParams'
+              CONST Boolean type=kotlin.Boolean value=true
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: TYPE_OP type=kotlin.Boolean origin=NOT_INSTANCEOF typeOperand=<root>.UserParams
+              GET_VAR 'other: kotlin.Any? declared in <root>.UserParams.equals' type=kotlin.Any? origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.UserParams'
+              CONST Boolean type=kotlin.Boolean value=false
+        VAR IR_TEMPORARY_VARIABLE name:tmp_2 type:<root>.UserParams [val]
+          TYPE_OP type=<root>.UserParams origin=IMPLICIT_CAST typeOperand=<root>.UserParams
+            GET_VAR 'other: kotlin.Any? declared in <root>.UserParams.equals' type=kotlin.Any? origin=null
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+              ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:id type:<root>.UserId visibility:private [final]' type=<root>.UserId origin=null
+                  receiver: GET_VAR '<this>: <root>.UserParams declared in <root>.UserParams.equals' type=<root>.UserParams origin=null
+                ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:id type:<root>.UserId visibility:private [final]' type=<root>.UserId origin=null
+                  receiver: GET_VAR 'val tmp_2: <root>.UserParams declared in <root>.UserParams.equals' type=<root>.UserParams origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.UserParams'
+              CONST Boolean type=kotlin.Boolean value=false
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+              ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:<root>.Age visibility:private [final]' type=<root>.Age origin=null
+                  receiver: GET_VAR '<this>: <root>.UserParams declared in <root>.UserParams.equals' type=<root>.UserParams origin=null
+                ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:<root>.Age visibility:private [final]' type=<root>.Age origin=null
+                  receiver: GET_VAR 'val tmp_2: <root>.UserParams declared in <root>.UserParams.equals' type=<root>.UserParams origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.UserParams'
+              CONST Boolean type=kotlin.Boolean value=false
+        RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.UserParams'
+          CONST Boolean type=kotlin.Boolean value=true
+    FUN GENERATED_DATA_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserParams
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+      BLOCK_BODY
+        VAR name:result type:kotlin.Int [var]
+          CALL 'public open fun hashCode (): kotlin.Int declared in <root>.UserId' type=kotlin.Int origin=null
+            ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:id type:<root>.UserId visibility:private [final]' type=<root>.UserId origin=null
+              receiver: GET_VAR '<this>: <root>.UserParams declared in <root>.UserParams.hashCode' type=<root>.UserParams origin=null
+        SET_VAR 'var result: kotlin.Int declared in <root>.UserParams.hashCode' type=kotlin.Unit origin=EQ
+          CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+            ARG <this>: CALL 'public final fun times (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+              ARG <this>: GET_VAR 'var result: kotlin.Int declared in <root>.UserParams.hashCode' type=kotlin.Int origin=null
+              ARG other: CONST Int type=kotlin.Int value=31
+            ARG other: CALL 'public open fun hashCode (): kotlin.Int declared in <root>.Age' type=kotlin.Int origin=null
+              ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:<root>.Age visibility:private [final]' type=<root>.Age origin=null
+                receiver: GET_VAR '<this>: <root>.UserParams declared in <root>.UserParams.hashCode' type=<root>.UserParams origin=null
+        RETURN type=kotlin.Nothing from='public open fun hashCode (): kotlin.Int declared in <root>.UserParams'
+          GET_VAR 'var result: kotlin.Int declared in <root>.UserParams.hashCode' type=kotlin.Int origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserParams
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public open fun toString (): kotlin.String declared in <root>.UserParams'
+          STRING_CONCATENATION type=kotlin.String
+            CONST String type=kotlin.String value="UserParams("
+            CONST String type=kotlin.String value="id="
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:id type:<root>.UserId visibility:private [final]' type=<root>.UserId origin=null
+              receiver: GET_VAR '<this>: <root>.UserParams declared in <root>.UserParams.toString' type=<root>.UserParams origin=null
+            CONST String type=kotlin.String value=", "
+            CONST String type=kotlin.String value="age="
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:<root>.Age visibility:private [final]' type=<root>.Age origin=null
+              receiver: GET_VAR '<this>: <root>.UserParams declared in <root>.UserParams.toString' type=<root>.UserParams origin=null
+            CONST String type=kotlin.String value=")"
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
+    BLOCK_BODY
+      VAR name:mapper type:io.github.kantis.mikrom.ParameterMapper<<root>.UserParams> [val]
+        CALL 'public final fun parameterMapper (): io.github.kantis.mikrom.ParameterMapper<<root>.UserParams> declared in <root>.UserParams.Companion' type=io.github.kantis.mikrom.ParameterMapper<<root>.UserParams> origin=null
+          ARG <this>: GET_OBJECT 'CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateCompanionKey] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=<root>.UserParams.Companion
+      VAR name:params type:kotlin.collections.Map<kotlin.String, kotlin.Any?> [val]
+        CALL 'public abstract fun mapParameters (value: T of io.github.kantis.mikrom.ParameterMapper): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in io.github.kantis.mikrom.ParameterMapper' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
+          ARG <this>: GET_VAR 'val mapper: io.github.kantis.mikrom.ParameterMapper<<root>.UserParams> declared in <root>.box' type=io.github.kantis.mikrom.ParameterMapper<<root>.UserParams> origin=null
+          ARG value: CONSTRUCTOR_CALL 'public constructor <init> (id: <root>.UserId, age: <root>.Age) declared in <root>.UserParams' type=<root>.UserParams origin=null
+            ARG id: CONSTRUCTOR_CALL 'public constructor <init> (value: kotlin.String) declared in <root>.UserId' type=<root>.UserId origin=null
+              ARG value: CONST String type=kotlin.String value="user-123"
+            ARG age: CONSTRUCTOR_CALL 'public constructor <init> (value: kotlin.Int) declared in <root>.Age' type=<root>.Age origin=null
+              ARG value: CONST Int type=kotlin.Int value=42
+      CALL 'public final fun assertEquals <T> (expected: T of kotlin.test.assertEquals, actual: T of kotlin.test.assertEquals, message: kotlin.String?): kotlin.Unit declared in kotlin.test' type=kotlin.Unit origin=null
+        TYPE_ARG T: kotlin.Any?
+        ARG expected: CONST String type=kotlin.String value="user-123"
+        ARG actual: CALL 'public abstract fun get (key: K of kotlin.collections.Map): V of kotlin.collections.Map? declared in kotlin.collections.Map' type=kotlin.Any? origin=GET_ARRAY_ELEMENT
+          ARG <this>: GET_VAR 'val params: kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.box' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
+          ARG key: CONST String type=kotlin.String value="id"
+      CALL 'public final fun assertEquals <T> (expected: T of kotlin.test.assertEquals, actual: T of kotlin.test.assertEquals, message: kotlin.String?): kotlin.Unit declared in kotlin.test' type=kotlin.Unit origin=null
+        TYPE_ARG T: kotlin.Any?
+        ARG expected: CONST Int type=kotlin.Int value=42
+        ARG actual: CALL 'public abstract fun get (key: K of kotlin.collections.Map): V of kotlin.collections.Map? declared in kotlin.collections.Map' type=kotlin.Any? origin=GET_ARRAY_ELEMENT
+          ARG <this>: GET_VAR 'val params: kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.box' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
+          ARG key: CONST String type=kotlin.String value="age"
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+        CONST String type=kotlin.String value="OK"

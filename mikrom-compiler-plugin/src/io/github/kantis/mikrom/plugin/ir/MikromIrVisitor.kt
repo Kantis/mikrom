@@ -269,15 +269,26 @@ internal class MikromIrVisitor(
                .single { it.name == ctorParam.name }
                .getter!!
 
+            var valueExpr: IrExpression = irCall(propertyGetter).apply {
+               dispatchReceiver = irGet(valueParam)
+            }
+
+            // Unwrap value classes to their underlying value
+            val paramClass = ctorParam.type.classifierOrNull?.owner as? IrClass
+            if (paramClass?.isValue == true) {
+               val underlyingGetter = paramClass.properties.single().getter!!
+               valueExpr = irCall(underlyingGetter).apply {
+                  dispatchReceiver = valueExpr
+               }
+            }
+
             irCall(toFunction).apply {
                typeArguments[0] = stringType
                typeArguments[1] = anyNType
                // `to` is an extension function: fun <A, B> A.to(that: B): Pair<A, B>
                // parameters[0] = extension receiver (A), parameters[1] = that (B)
                arguments[0] = irString(ctorParam.name.asString())
-               arguments[1] = irCall(propertyGetter).apply {
-                  dispatchReceiver = irGet(valueParam)
-               }
+               arguments[1] = valueExpr
             }
          }
 
