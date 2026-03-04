@@ -7,9 +7,12 @@ import io.github.kantis.mikrom.parseNamedParameters
 import io.github.kantis.mikrom.resolveParams
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import org.intellij.lang.annotations.Language
 
 context(transaction: SuspendingTransaction)
-public suspend inline fun <reified T : Any> Mikrom.queryFor(query: Query): Flow<T> {
+public suspend inline fun <reified T : Any> Mikrom.queryFor(
+   @Language("SQL") query: Query,
+): Flow<T> {
    if (T::class in nonMappedPrimitives) {
       return transaction.query(query).map { it.singleValue() as T }
    }
@@ -19,13 +22,13 @@ public suspend inline fun <reified T : Any> Mikrom.queryFor(query: Query): Flow<
 
 context(transaction: SuspendingTransaction)
 public suspend inline fun <reified T> Mikrom.queryFor(
-   query: Query,
+   @Language("SQL") query: Query,
    param: Any,
 ): Flow<T> = queryFor(query, listOf(param))
 
 context(transaction: SuspendingTransaction)
 public suspend inline fun <reified T : Any> Mikrom.queryFor(
-   query: Query,
+   @Language("SQL") query: Query,
    params: List<Any?>,
 ): Flow<T> {
    if (T::class in nonMappedPrimitives) {
@@ -37,9 +40,9 @@ public suspend inline fun <reified T : Any> Mikrom.queryFor(
 
 context(transaction: SuspendingTransaction)
 public suspend inline fun <reified T : Any> Mikrom.queryFor(
-   query: Query,
+   @Language("SQL") query: Query,
    params: Map<String, Any?>,
 ): Flow<T> {
-   val parsed = parseNamedParameters(query.value)
-   return queryFor(Query(parsed.sql), parsed.resolveParams(params))
+   val parsed = parseNamedParameters(query)
+   return queryFor(parsed.sql, parsed.resolveParams(params))
 }

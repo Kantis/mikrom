@@ -6,11 +6,12 @@ import io.github.kantis.mikrom.parseNamedParameters
 import io.github.kantis.mikrom.resolveParams
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
+import org.intellij.lang.annotations.Language
 import kotlin.collections.emptyList
 
 context(transaction: SuspendingTransaction)
 public suspend inline fun Mikrom.execute(
-   query: Query,
+   @Language("SQL") query: Query,
    params: List<Any?>,
 ) {
    transaction.executeInTransaction(query, params)
@@ -18,7 +19,7 @@ public suspend inline fun Mikrom.execute(
 
 context(transaction: SuspendingTransaction)
 public suspend fun <T : Any> Mikrom.execute(
-   query: Query,
+   @Language("SQL") query: Query,
    vararg params: T,
 ) {
    params.forEach {
@@ -30,7 +31,9 @@ public suspend fun <T : Any> Mikrom.execute(
 }
 
 context(transaction: SuspendingTransaction)
-public suspend fun Mikrom.execute(query: Query) {
+public suspend fun Mikrom.execute(
+   @Language("SQL") query: Query,
+) {
    transaction.executeInTransaction(query, emptyList<Any>())
 }
 
@@ -40,15 +43,15 @@ public suspend fun Mikrom.execute(query: Query) {
  */
 context(transaction: SuspendingTransaction)
 public suspend fun Mikrom.executeStreaming(
-   query: Query,
+   @Language("SQL") query: Query,
    params: Flow<List<Any>>,
 ): Job = transaction.executeInTransaction(query, params)
 
 context(transaction: SuspendingTransaction)
 public suspend fun Mikrom.execute(
-   query: Query,
+   @Language("SQL") query: Query,
    params: Map<String, Any?>,
 ) {
-   val parsed = parseNamedParameters(query.value)
-   execute(Query(parsed.sql), parsed.resolveParams(params))
+   val parsed = parseNamedParameters(query)
+   execute(parsed.sql, parsed.resolveParams(params))
 }

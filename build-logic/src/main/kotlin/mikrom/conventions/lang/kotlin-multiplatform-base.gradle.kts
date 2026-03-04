@@ -64,7 +64,7 @@ KotlinPlatformType.values().forEach { kotlinPlatform ->
    val kotlinPlatformName = kotlinPlatform.name.capitalize()
 
    val testKotlinTargetLifecycleTask =
-      tasks.create("allKotlin${kotlinPlatformName}Tests") {
+      tasks.register("allKotlin${kotlinPlatformName}Tests") {
          group = LifecycleBasePlugin.VERIFICATION_GROUP
          description = "Run all Kotlin/$kotlinPlatformName tests"
       }
@@ -74,7 +74,7 @@ KotlinPlatformType.values().forEach { kotlinPlatform ->
    }.configureEach {
       testRuns.configureEach {
          if (this is KotlinTaskTestRun<*, *>) {
-            testKotlinTargetLifecycleTask.dependsOn(executionTask)
+            testKotlinTargetLifecycleTask.configure { dependsOn(executionTask) }
          }
       }
    }

@@ -19,7 +19,7 @@ class InMemoryDataSource(
          query: Query,
          vararg params: List<*>,
       ) {
-         println("Received query ${query.value}")
+         println("Received query $query")
       }
 
       override fun query(

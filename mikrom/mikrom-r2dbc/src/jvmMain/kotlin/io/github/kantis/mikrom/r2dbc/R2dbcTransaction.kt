@@ -19,9 +19,9 @@ public class R2dbcTransaction(private val connection: Connection, override val c
       query: Query,
       vararg params: List<*>,
    ) {
-      val statement = connection.createStatement(query.value)
+      val statement = connection.createStatement(query)
       params.forEach { p ->
-         println("Executing query: ${query.value} with params: $p")
+         println("Executing query: $query with params: $p")
          bindParameters(statement, p)
          statement.execute {
             println("executeInTransaction returned result: $it")
@@ -35,9 +35,9 @@ public class R2dbcTransaction(private val connection: Connection, override val c
       params: Flow<List<*>>,
    ): Job =
       launch {
-         val statement = connection.createStatement(query.value)
+         val statement = connection.createStatement(query)
          params.collect { p ->
-            println("Executing query: ${query.value} with params: $p")
+            println("Executing query: $query with params: $p")
             bindParameters(statement, p)
             statement.execute {
                println("executeInTransaction returned result: $it")
@@ -50,7 +50,7 @@ public class R2dbcTransaction(private val connection: Connection, override val c
       params: List<*>,
    ): Flow<Row> =
       flow {
-         val statement = connection.createStatement(query.value)
+         val statement = connection.createStatement(query)
          bindParameters(statement, params)
          statement.execute { emit(it) }
       }

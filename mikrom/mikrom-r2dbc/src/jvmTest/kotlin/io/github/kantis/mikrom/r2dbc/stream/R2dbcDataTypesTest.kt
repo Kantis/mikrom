@@ -31,29 +31,30 @@ private data class DataTypeRecord(
    val uuidField: UUID?,
 )
 
-class R2dbcDataTypesTest : FunSpec({
-   val mikrom = Mikrom {
-      registerRowMapper { row ->
-         DataTypeRecord(
-            id = row.get("id"),
-            stringField = row.getOrNull("string_field"),
-            intField = row.getOrNull("int_field"),
-            longField = row.getOrNull("long_field"),
-            booleanField = row.getOrNull("boolean_field"),
-            doubleField = row.getOrNull("double_field"),
-            decimalField = row.getOrNull("decimal_field"),
-            dateField = row.getOrNull("date_field"),
-            timestampField = row.getOrNull("timestamp_field"),
-            uuidField = row.getOrNull("uuid_field"),
-         )
+class R2dbcDataTypesTest : FunSpec(
+   {
+      val mikrom = Mikrom {
+         registerRowMapper { row ->
+            DataTypeRecord(
+               id = row.get("id"),
+               stringField = row.getOrNull("string_field"),
+               intField = row.getOrNull("int_field"),
+               longField = row.getOrNull("long_field"),
+               booleanField = row.getOrNull("boolean_field"),
+               doubleField = row.getOrNull("double_field"),
+               decimalField = row.getOrNull("decimal_field"),
+               dateField = row.getOrNull("date_field"),
+               timestampField = row.getOrNull("timestamp_field"),
+               uuidField = row.getOrNull("uuid_field"),
+            )
+         }
       }
-   }
 
-   lateinit var dataSource: PooledR2dbcDataSource
+      lateinit var dataSource: PooledR2dbcDataSource
 
-   beforeSpec {
-      dataSource = preparePostgresDatabase(
-         """
+      beforeSpec {
+         dataSource = preparePostgresDatabase(
+            """
              CREATE TABLE data_types (
                  id SERIAL PRIMARY KEY,
                  string_field VARCHAR(255),
@@ -66,91 +67,88 @@ class R2dbcDataTypesTest : FunSpec({
                  timestamp_field TIMESTAMP,
                  uuid_field UUID
              )
-         """.trimIndent(),
-      )
-   }
-
-   beforeEach {
-      dataSource.suspendingTransaction {
-         println("Truncating data_types table")
-         mikrom.execute(Query("TRUNCATE TABLE data_types"))
-         println("Truncated data_types table")
-      }
-   }
-
-   test("handle various PostgreSQL data types") {
-      val testUuid = UUID.randomUUID()
-      val testDate = LocalDate.of(2023, 12, 25)
-      val testTimestamp = LocalDateTime.of(2023, 12, 25, 15, 30, 45)
-
-      dataSource.suspendingTransaction {
-         mikrom.executeStreaming(
-            Query(
-               """
-                    INSERT INTO data_types (
-                        string_field, int_field, long_field, boolean_field,
-                        double_field, decimal_field, date_field, timestamp_field, uuid_field
-                    ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-               """.trimIndent(),
-            ),
-            flowOf(
-               listOf(
-                  "test string",
-                  42,
-                  1234567890L,
-                  true,
-                  3.14159,
-                  BigDecimal("999.99"),
-                  testDate,
-                  testTimestamp,
-                  testUuid,
-               ),
-            ),
-         ).join()
-
-         val records = mikrom.queryFor<DataTypeRecord>(Query("SELECT * FROM data_types")).toList()
-         records.size shouldBe 1
-
-         val record = records[0]
-         record.stringField shouldBe "test string"
-         record.intField shouldBe 42
-         record.longField shouldBe 1234567890L
-         record.booleanField shouldBe true
-         record.doubleField shouldBe 3.14159
-         record.decimalField shouldBe BigDecimal("999.99")
-         record.dateField shouldBe testDate
-         record.timestampField shouldBe testTimestamp
-         record.uuidField shouldBe testUuid
-      }
-   }
-
-   test("handle null values") {
-      dataSource.suspendingTransaction {
-         mikrom.execute(
-            Query(
-               """
-                    INSERT INTO data_types (
-                        string_field, int_field, long_field, boolean_field,
-                        double_field, decimal_field, date_field, timestamp_field, uuid_field
-                    ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-               """.trimIndent(),
-            ),
-            listOf(null, null, null, null, null, null, null, null, null),
+            """.trimIndent(),
          )
-
-         val records = mikrom.queryFor<DataTypeRecord>(Query("SELECT * FROM data_types")).toList()
-         records.size shouldBe 1
-
-         val record = records[0]
-         record.stringField shouldBe null
-         record.intField shouldBe null
-         record.longField shouldBe null
-         record.booleanField shouldBe null
-         record.doubleField shouldBe null
-         record.decimalField shouldBe null
-         record.dateField shouldBe null
-         record.timestampField shouldBe null
-         record.uuidField shouldBe null
       }
-   }
-})
+
+      beforeEach {
+         dataSource.suspendingTransaction {
+            println("Truncating data_types table")
+            mikrom.execute("TRUNCATE TABLE data_types")
+            println("Truncated data_types table")
+         }
+      }
+
+      test("handle various PostgreSQL data types") {
+         val testUuid = UUID.randomUUID()
+         val testDate = LocalDate.of(2023, 12, 25)
+         val testTimestamp = LocalDateTime.of(2023, 12, 25, 15, 30, 45)
+
+         dataSource.suspendingTransaction {
+            mikrom.executeStreaming(
+               """
+                    INSERT INTO data_types (
+                        string_field, int_field, long_field, boolean_field,
+                        double_field, decimal_field, date_field, timestamp_field, uuid_field
+                    ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+               """.trimIndent(),
+               flowOf(
+                  listOf(
+                     "test string",
+                     42,
+                     1234567890L,
+                     true,
+                     3.14159,
+                     BigDecimal("999.99"),
+                     testDate,
+                     testTimestamp,
+                     testUuid,
+                  ),
+               ),
+            ).join()
+
+            val records = mikrom.queryFor<DataTypeRecord>("SELECT * FROM data_types").toList()
+            records.size shouldBe 1
+
+            val record = records[0]
+            record.stringField shouldBe "test string"
+            record.intField shouldBe 42
+            record.longField shouldBe 1234567890L
+            record.booleanField shouldBe true
+            record.doubleField shouldBe 3.14159
+            record.decimalField shouldBe BigDecimal("999.99")
+            record.dateField shouldBe testDate
+            record.timestampField shouldBe testTimestamp
+            record.uuidField shouldBe testUuid
+         }
+      }
+
+      test("handle null values") {
+         dataSource.suspendingTransaction {
+            mikrom.execute(
+               """
+                    INSERT INTO data_types (
+                        string_field, int_field, long_field, boolean_field,
+                        double_field, decimal_field, date_field, timestamp_field, uuid_field
+                    ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+               """.trimIndent(),
+               listOf(null, null, null, null, null, null, null, null, null),
+            )
+
+            val records = mikrom.queryFor<DataTypeRecord>("SELECT * FROM data_types").toList()
+            records.size shouldBe 1
+
+            val record = records[0]
+            record.stringField shouldBe null
+            record.intField shouldBe null
+            record.longField shouldBe null
+            record.booleanField shouldBe null
+            record.doubleField shouldBe null
+            record.decimalField shouldBe null
+            record.dateField shouldBe null
+            record.timestampField shouldBe null
+            record.uuidField shouldBe null
+         }
+      }
+   },
+)

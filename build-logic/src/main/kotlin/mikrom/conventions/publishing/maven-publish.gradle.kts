@@ -73,9 +73,9 @@ signing {
    val signingKey: String? by project
    val signingPassword: String? by project
 
-   logger.lifecycle("[maven-publish convention] signing is enabled for ${project.path}")
+   if (logger.isInfoEnabled) logger.lifecycle("[maven-publish convention] signing is enabled for ${project.path}")
    if (signingKey.isNullOrBlank() || signingPassword.isNullOrBlank()) {
-      logger.lifecycle("[maven-publish convention] signing key or password is not set, skipping signing")
+      if (logger.isInfoEnabled) logger.lifecycle("[maven-publish convention] signing key or password is not set, skipping signing")
       return@signing
    }
    useGpgCmd()
