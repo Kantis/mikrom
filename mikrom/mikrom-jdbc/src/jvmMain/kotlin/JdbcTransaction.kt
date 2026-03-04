@@ -14,10 +14,10 @@ import java.time.LocalDateTime
 public class JdbcTransaction(private val connection: Connection) : Transaction {
    override fun executeInTransaction(
       query: Query,
-      vararg parameterLists: List<*>,
+      vararg params: List<*>,
    ) {
-      connection.prepareStatement(query.value).use { statement ->
-         parameterLists.forEach { params ->
+      connection.prepareStatement(query).use { statement ->
+         params.forEach { params ->
             bindParameters(statement, params)
             statement.execute()
          }
@@ -28,7 +28,7 @@ public class JdbcTransaction(private val connection: Connection) : Transaction {
       query: Query,
       params: List<*>,
    ): List<Row> =
-      connection.prepareStatement(query.value).use { statement ->
+      connection.prepareStatement(query).use { statement ->
          bindParameters(statement, params)
          statement.executeQuery().let(ResultSetReader::loadResultSet)
       }

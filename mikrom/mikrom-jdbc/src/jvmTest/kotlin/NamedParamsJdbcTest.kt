@@ -32,12 +32,12 @@ class NamedParamsJdbcTest : FunSpec(
 
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO people (name, age) VALUES (:name, :age)"),
+               "INSERT INTO people (name, age) VALUES (:name, :age)",
                mapOf("name" to "Alice", "age" to 30),
             )
 
             mikrom.queryFor<Person>(
-               Query("SELECT * FROM people WHERE name = :name"),
+               "SELECT * FROM people WHERE name = :name",
                mapOf("name" to "Alice"),
             ) shouldBe listOf(Person("Alice", 30))
          }
@@ -57,13 +57,13 @@ class NamedParamsJdbcTest : FunSpec(
 
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO items (label, quantity) VALUES (:label, :quantity)"),
+               "INSERT INTO items (label, quantity) VALUES (:label, :quantity)",
                mapOf("label" to "Apples", "quantity" to 5),
                mapOf("label" to "Bananas", "quantity" to 12),
             )
 
             mikrom.queryFor<Int>(
-               Query("SELECT COUNT(*) FROM items"),
+               "SELECT COUNT(*) FROM items",
             ) shouldBe listOf(2)
          }
       }
@@ -87,12 +87,12 @@ class NamedParamsJdbcTest : FunSpec(
 
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO people_nullable (name, age) VALUES (:name, :age)"),
+               "INSERT INTO people_nullable (name, age) VALUES (:name, :age)",
                mapOf("name" to "Alice", "age" to null),
             )
 
             mikrom.queryFor<Person>(
-               Query("SELECT * FROM people_nullable WHERE name = :name"),
+               "SELECT * FROM people_nullable WHERE name = :name",
                mapOf("name" to "Alice"),
             ) shouldBe listOf(Person("Alice", 0))
          }
@@ -112,13 +112,13 @@ class NamedParamsJdbcTest : FunSpec(
 
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO items_nullable (label, quantity) VALUES (:label, :quantity)"),
+               "INSERT INTO items_nullable (label, quantity) VALUES (:label, :quantity)",
                mapOf("label" to "Apples", "quantity" to 5),
                mapOf("label" to "Bananas", "quantity" to null),
             )
 
             mikrom.queryFor<Int>(
-               Query("SELECT COUNT(*) FROM items_nullable WHERE quantity IS NULL"),
+               "SELECT COUNT(*) FROM items_nullable WHERE quantity IS NULL",
             ) shouldBe listOf(1)
          }
       }
@@ -142,22 +142,22 @@ class NamedParamsJdbcTest : FunSpec(
 
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO people_mixed (name, age) VALUES (:name, :age)"),
+               "INSERT INTO people_mixed (name, age) VALUES (:name, :age)",
                mapOf("name" to "Alice", "age" to 30),
                mapOf("name" to "Bob", "age" to null),
                mapOf("name" to null, "age" to 25),
             )
 
             mikrom.queryFor<Int>(
-               Query("SELECT COUNT(*) FROM people_mixed"),
+               "SELECT COUNT(*) FROM people_mixed",
             ) shouldBe listOf(3)
 
             mikrom.queryFor<Int>(
-               Query("SELECT COUNT(*) FROM people_mixed WHERE age IS NULL"),
+               "SELECT COUNT(*) FROM people_mixed WHERE age IS NULL",
             ) shouldBe listOf(1)
 
             mikrom.queryFor<Int>(
-               Query("SELECT COUNT(*) FROM people_mixed WHERE name IS NULL"),
+               "SELECT COUNT(*) FROM people_mixed WHERE name IS NULL",
             ) shouldBe listOf(1)
          }
       }
@@ -181,14 +181,14 @@ class NamedParamsJdbcTest : FunSpec(
 
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO contacts (name, age) VALUES (?, ?)"),
+               "INSERT INTO contacts (name, age) VALUES (?, ?)",
                listOf("Alice", 30),
                listOf("Bob", 25),
                listOf("Alice", 35),
             )
 
             mikrom.queryFor<Person>(
-               Query("SELECT * FROM contacts WHERE name = :name OR name = :name ORDER BY age"),
+               "SELECT * FROM contacts WHERE name = :name OR name = :name ORDER BY age",
                mapOf("name" to "Alice"),
             ) shouldBe listOf(
                Person("Alice", 30),

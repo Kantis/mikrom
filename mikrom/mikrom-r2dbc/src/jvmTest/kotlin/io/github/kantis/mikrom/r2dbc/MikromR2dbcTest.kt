@@ -39,7 +39,7 @@ class MikromR2dbcTest : FunSpec(
 
          dataSource.suspendingTransaction {
             mikrom.executeStreaming(
-               Query("INSERT INTO books (author, title, number_of_pages) VALUES ($1, $2, $3)"),
+               "INSERT INTO books (author, title, number_of_pages) VALUES ($1, $2, $3)",
                flowOf(
                   listOf("JRR Tolkien", "The Hobbit", 310),
                   listOf("George Orwell", "1984", 328),
@@ -47,14 +47,14 @@ class MikromR2dbcTest : FunSpec(
             ).join()
 
             mikrom
-               .queryFor<Book>(Query("SELECT * FROM books ORDER BY author ASC"))
+               .queryFor<Book>("SELECT * FROM books ORDER BY author ASC")
                .toList()
                .shouldContainExactly(
                   Book("George Orwell", "1984", 328),
                   Book("JRR Tolkien", "The Hobbit", 310),
                )
 
-            mikrom.queryFor<Book>(Query("SELECT * FROM books WHERE number_of_pages > $1"), listOf(320)).toList() shouldBe
+            mikrom.queryFor<Book>("SELECT * FROM books WHERE number_of_pages > $1", listOf(320)).toList() shouldBe
                listOf(Book("George Orwell", "1984", 328))
          }
       }

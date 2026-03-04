@@ -33,7 +33,7 @@ class MikromTest : FunSpec({
          )
 
       dataSource.transaction {
-         mikrom.queryFor<Foo>(Query("SELECT * FROM foo")) shouldBe
+         mikrom.queryFor<Foo>("SELECT * FROM foo") shouldBe
             listOf(
                Foo("baz"),
                Foo("qux"),

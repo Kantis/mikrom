@@ -60,26 +60,12 @@ public final class io/github/kantis/mikrom/PrimitivesKt {
 }
 
 public final class io/github/kantis/mikrom/QueriesKt {
-	public static final fun execute-CQkImio (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/List;)V
-	public static final fun execute-CQkImio (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/Map;)V
-	public static final fun execute-CQkImio (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/lang/Object;)V
-	public static final fun execute-CQkImio (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/util/List;)V
-	public static final fun execute-CQkImio (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/util/Map;)V
-	public static final fun execute-lKpMjJE (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;)V
-}
-
-public final class io/github/kantis/mikrom/Query {
-	public static final synthetic fun box-impl (Ljava/lang/String;)Lio/github/kantis/mikrom/Query;
-	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
-	public fun equals (Ljava/lang/Object;)Z
-	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
-	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
-	public final fun getValue ()Ljava/lang/String;
-	public fun hashCode ()I
-	public static fun hashCode-impl (Ljava/lang/String;)I
-	public fun toString ()Ljava/lang/String;
-	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
-	public final synthetic fun unbox-impl ()Ljava/lang/String;
+	public static final fun execute (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;)V
+	public static final fun execute (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/List;)V
+	public static final fun execute (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/Map;)V
+	public static final fun execute (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/lang/Object;)V
+	public static final fun execute (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/util/List;)V
+	public static final fun execute (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/util/Map;)V
 }
 
 public final class io/github/kantis/mikrom/Rollback {
@@ -181,12 +167,12 @@ public abstract interface class io/github/kantis/mikrom/datasource/DataSource {
 }
 
 public abstract interface class io/github/kantis/mikrom/datasource/Transaction {
-	public abstract fun executeInTransaction-Mwax8gE (Ljava/lang/String;[Ljava/util/List;)V
-	public abstract fun query-Mwax8gE (Ljava/lang/String;Ljava/util/List;)Ljava/util/List;
+	public abstract fun executeInTransaction (Ljava/lang/String;[Ljava/util/List;)V
+	public abstract fun query (Ljava/lang/String;Ljava/util/List;)Ljava/util/List;
 }
 
 public final class io/github/kantis/mikrom/datasource/Transaction$DefaultImpls {
-	public static synthetic fun query-Mwax8gE$default (Lio/github/kantis/mikrom/datasource/Transaction;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Ljava/util/List;
+	public static synthetic fun query$default (Lio/github/kantis/mikrom/datasource/Transaction;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Ljava/util/List;
 }
 
 public abstract interface annotation class io/github/kantis/mikrom/generator/Column : java/lang/annotation/Annotation {
@@ -231,11 +217,11 @@ public final class io/github/kantis/mikrom/internal/FindCompiledRowMapperKt {
 }
 
 public final class io/github/kantis/mikrom/suspend/SuspendQueriesKt {
-	public static final fun execute-CQkImio (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun execute-DOpdqmY (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun execute-DOpdqmY (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/Map;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun execute-DOpdqmY (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun executeStreaming-DOpdqmY (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Lkotlinx/coroutines/flow/Flow;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun execute (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun execute (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/Map;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun execute (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun execute (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun executeStreaming (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Lkotlinx/coroutines/flow/Flow;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public abstract interface class io/github/kantis/mikrom/suspend/SuspendingDataSource {
@@ -243,12 +229,12 @@ public abstract interface class io/github/kantis/mikrom/suspend/SuspendingDataSo
 }
 
 public abstract interface class io/github/kantis/mikrom/suspend/SuspendingTransaction : kotlinx/coroutines/CoroutineScope {
-	public abstract fun executeInTransaction-RFpYPog (Ljava/lang/String;Lkotlinx/coroutines/flow/Flow;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun executeInTransaction-RFpYPog (Ljava/lang/String;[Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun query-RFpYPog (Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun executeInTransaction (Ljava/lang/String;Lkotlinx/coroutines/flow/Flow;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun executeInTransaction (Ljava/lang/String;[Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun query (Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class io/github/kantis/mikrom/suspend/SuspendingTransaction$DefaultImpls {
-	public static synthetic fun query-RFpYPog$default (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun query$default (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 

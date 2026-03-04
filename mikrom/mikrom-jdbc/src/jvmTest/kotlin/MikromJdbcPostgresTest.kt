@@ -33,34 +33,32 @@ class MikromJdbcPostgresTest : FunSpec(
 
       dataSource.transaction {
          mikrom.execute(
-            Query(
-               """
+            """
                   CREATE TABLE books (
                      author VARCHAR(255),
                      title VARCHAR(255),
                      number_of_pages INT
                   )
-               """.trimIndent(),
-            ),
+            """.trimIndent(),
          )
       }
 
       afterEach {
          dataSource.transaction {
-            mikrom.execute(Query("TRUNCATE TABLE books"))
+            mikrom.execute("TRUNCATE TABLE books")
          }
       }
 
       test("Reading data outside of transaction") {
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)"),
+               "INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)",
                listOf("JRR Tolkien", "The Hobbit", 310),
                listOf("George Orwell", "1984", 328),
             )
 
             val books = mikrom.queryFor<Book>(
-               Query("SELECT * FROM books WHERE author = ?"),
+               "SELECT * FROM books WHERE author = ?",
                listOf("JRR Tolkien"),
             )
 
@@ -69,7 +67,7 @@ class MikromJdbcPostgresTest : FunSpec(
 
          val books = dataSource.transaction {
             mikrom.queryFor<Book>(
-               Query("SELECT * FROM books WHERE author = ?"),
+               "SELECT * FROM books WHERE author = ?",
                listOf("JRR Tolkien"),
             )
          }
@@ -82,7 +80,7 @@ class MikromJdbcPostgresTest : FunSpec(
       test("Should not allow SQL injection") {
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)"),
+               "INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)",
                listOf("JRR Tolkien", "The Hobbit", 310),
                listOf("George Orwell", "1984", 328),
             )
@@ -90,38 +88,38 @@ class MikromJdbcPostgresTest : FunSpec(
 
          dataSource.transaction {
             mikrom.queryFor<Book>(
-               Query("SELECT * FROM books WHERE author = ?"),
+               "SELECT * FROM books WHERE author = ?",
                listOf("JRR Tolkien; TRUNCATE TABLE books;"),
             )
          }
 
          dataSource.transaction {
-            mikrom.queryFor<Book>(Query("SELECT * FROM books")).shouldNotBeEmpty()
+            mikrom.queryFor<Book>("SELECT * FROM books").shouldNotBeEmpty()
          }
       }
 
       test("Should work with Postgres") {
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)"),
+               "INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)",
                listOf("JRR Tolkien", "The Hobbit", 310),
                listOf("George Orwell", "1984", 328),
             )
 
-            mikrom.queryFor<Book>(Query("SELECT * FROM books")) shouldBe
+            mikrom.queryFor<Book>("SELECT * FROM books") shouldBe
                listOf(
                   Book("JRR Tolkien", "The Hobbit", 310),
                   Book("George Orwell", "1984", 328),
                )
 
-            mikrom.queryFor<Book>(Query("SELECT * FROM books WHERE number_of_pages > ?"), 320) shouldBe
+            mikrom.queryFor<Book>("SELECT * FROM books WHERE number_of_pages > ?", 320) shouldBe
                listOf(Book("George Orwell", "1984", 328))
 
             Rollback
          }
 
          dataSource.transaction {
-            mikrom.queryFor<Book>(Query("SELECT * FROM books")).shouldBeEmpty()
+            mikrom.queryFor<Book>("SELECT * FROM books").shouldBeEmpty()
          }
       }
    },

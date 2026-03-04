@@ -9,8 +9,8 @@ public final class io/github/kantis/mikrom/jdbc/JdbcDataSource$Companion {
 
 public final class io/github/kantis/mikrom/jdbc/JdbcTransaction : io/github/kantis/mikrom/datasource/Transaction {
 	public fun <init> (Ljava/sql/Connection;)V
-	public fun executeInTransaction-Mwax8gE (Ljava/lang/String;[Ljava/util/List;)V
-	public fun query-Mwax8gE (Ljava/lang/String;Ljava/util/List;)Ljava/util/List;
+	public fun executeInTransaction (Ljava/lang/String;[Ljava/util/List;)V
+	public fun query (Ljava/lang/String;Ljava/util/List;)Ljava/util/List;
 }
 
 public final class io/github/kantis/mikrom/jdbc/ResultSetReader {

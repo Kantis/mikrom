@@ -31,7 +31,7 @@ class JdbcTransactionTest : FunSpec(
 
       afterEach {
          dataSource.transaction {
-            mikrom.execute(Query("TRUNCATE TABLE test_records"))
+            mikrom.execute("TRUNCATE TABLE test_records")
          }
       }
 
@@ -39,14 +39,14 @@ class JdbcTransactionTest : FunSpec(
          // Insert data and commit
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
+               "INSERT INTO test_records (id, name) VALUES (?, ?)",
                listOf(1, "committed_name"),
             )
          }
 
          // Verify data persists after commit
          dataSource.transaction {
-            val records = mikrom.queryFor<TestRecord>(Query("SELECT * FROM test_records"))
+            val records = mikrom.queryFor<TestRecord>("SELECT * FROM test_records")
             records shouldHaveSize 1
             records[0] shouldBe TestRecord(1, "committed_name")
          }
@@ -56,7 +56,7 @@ class JdbcTransactionTest : FunSpec(
          // Insert initial data and commit
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
+               "INSERT INTO test_records (id, name) VALUES (?, ?)",
                listOf(1, "initial_name"),
             )
          }
@@ -64,7 +64,7 @@ class JdbcTransactionTest : FunSpec(
          // Insert more data but rollback
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
+               "INSERT INTO test_records (id, name) VALUES (?, ?)",
                listOf(2, "rolled_back_name"),
             )
             Rollback
@@ -72,7 +72,7 @@ class JdbcTransactionTest : FunSpec(
 
          // Verify only initial data remains
          dataSource.transaction {
-            val records = mikrom.queryFor<TestRecord>(Query("SELECT * FROM test_records ORDER BY id"))
+            val records = mikrom.queryFor<TestRecord>("SELECT * FROM test_records ORDER BY id")
             records.shouldContainExactly(TestRecord(1, "initial_name"))
          }
       }
@@ -81,7 +81,7 @@ class JdbcTransactionTest : FunSpec(
          // Insert initial data and commit
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
+               "INSERT INTO test_records (id, name) VALUES (?, ?)",
                listOf(1, "initial_name"),
             )
          }
@@ -90,7 +90,7 @@ class JdbcTransactionTest : FunSpec(
          try {
             dataSource.transaction {
                mikrom.execute(
-                  Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
+                  "INSERT INTO test_records (id, name) VALUES (?, ?)",
                   listOf(2, "exception_name"),
                )
                throw RuntimeException("Simulated error")
@@ -101,7 +101,7 @@ class JdbcTransactionTest : FunSpec(
 
          // Verify data was rolled back due to exception
          dataSource.transaction {
-            val records = mikrom.queryFor<TestRecord>(Query("SELECT * FROM test_records ORDER BY id"))
+            val records = mikrom.queryFor<TestRecord>("SELECT * FROM test_records ORDER BY id")
             records shouldHaveSize 1
             records[0] shouldBe TestRecord(1, "initial_name")
          }
@@ -111,7 +111,7 @@ class JdbcTransactionTest : FunSpec(
          // Insert initial data
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
+               "INSERT INTO test_records (id, name) VALUES (?, ?)",
                listOf(1, "original_name"),
             )
          }
@@ -119,14 +119,14 @@ class JdbcTransactionTest : FunSpec(
          // Update data and commit
          dataSource.transaction {
             mikrom.execute(
-               Query("UPDATE test_records SET name = ? WHERE id = ?"),
+               "UPDATE test_records SET name = ? WHERE id = ?",
                listOf("updated_name", 1),
             )
          }
 
          // Verify update was committed
          dataSource.transaction {
-            val records = mikrom.queryFor<TestRecord>(Query("SELECT * FROM test_records"))
+            val records = mikrom.queryFor<TestRecord>("SELECT * FROM test_records")
             records shouldHaveSize 1
             records[0] shouldBe TestRecord(1, "updated_name")
          }
@@ -137,7 +137,7 @@ class JdbcTransactionTest : FunSpec(
          // Insert initial data
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO test_records (id, name) VALUES (?, ?)"),
+               "INSERT INTO test_records (id, name) VALUES (?, ?)",
                listOf(1, "original_name"),
             )
          }
@@ -145,7 +145,7 @@ class JdbcTransactionTest : FunSpec(
          // Update data but rollback
          dataSource.transaction {
             mikrom.execute(
-               Query("UPDATE test_records SET name = ? WHERE id = ?"),
+               "UPDATE test_records SET name = ? WHERE id = ?",
                listOf("updated_name", 1),
             )
             Rollback
@@ -153,7 +153,7 @@ class JdbcTransactionTest : FunSpec(
 
          // Verify update was rolled back
          dataSource.transaction {
-            val records = mikrom.queryFor<TestRecord>(Query("SELECT * FROM test_records"))
+            val records = mikrom.queryFor<TestRecord>("SELECT * FROM test_records")
             records shouldHaveSize 1
             records[0] shouldBe TestRecord(1, "original_name")
          }

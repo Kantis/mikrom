@@ -32,12 +32,12 @@ class DataTypesTest : FunSpec({
 
       dataSource.transaction {
          mikrom.execute(
-            Query("INSERT INTO foo (bar, number, timestamp) VALUES (?, ?, ?)"),
+            "INSERT INTO foo (bar, number, timestamp) VALUES (?, ?, ?)",
             listOf("baz", "123.01".toBigDecimal(), now),
             listOf(null, null, null),
          )
 
-         val result = query(Query("SELECT * FROM foo"))
+         val result = query("SELECT * FROM foo")
 
          with(mikrom) {
             result.size shouldBe 2

@@ -22,21 +22,19 @@ class QueryingForPrimitivesTest : FunSpec({
 
    beforeEach {
       dataSource.transaction {
-         mikrom.execute(
-            Query("TRUNCATE TABLE foo"),
-         )
+         mikrom.execute("TRUNCATE TABLE foo")
       }
    }
 
    test("Int values should work") {
       dataSource.transaction {
          mikrom.execute(
-            Query("INSERT INTO foo (bar) VALUES (?)"),
+            "INSERT INTO foo (bar) VALUES (?)",
             listOf("baz"),
             listOf("qux"),
          )
 
-         val result = mikrom.queryFor<Int>(Query("SELECT id FROM foo"))
+         val result = mikrom.queryFor<Int>("SELECT id FROM foo")
 
          result shouldBe listOf(1, 2)
       }
@@ -45,12 +43,12 @@ class QueryingForPrimitivesTest : FunSpec({
    test("String values should work") {
       dataSource.transaction {
          mikrom.execute(
-            Query("INSERT INTO foo (bar) VALUES (?)"),
+            "INSERT INTO foo (bar) VALUES (?)",
             listOf("baz"),
             listOf("qux"),
          )
 
-         val result = mikrom.queryFor<String>(Query("SELECT bar FROM foo"))
+         val result = mikrom.queryFor<String>("SELECT bar FROM foo")
 
          result shouldBe listOf("baz", "qux")
       }

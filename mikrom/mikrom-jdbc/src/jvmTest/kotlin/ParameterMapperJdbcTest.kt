@@ -36,12 +36,12 @@ class ParameterMapperJdbcTest : FunSpec(
 
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO employees (name, age) VALUES (:name, :age)"),
+               "INSERT INTO employees (name, age) VALUES (:name, :age)",
                Employee("Alice", 30),
             )
 
             mikrom.queryFor<Employee>(
-               Query("SELECT * FROM employees"),
+               "SELECT * FROM employees",
             ) shouldBe listOf(Employee("Alice", 30))
          }
       }
@@ -67,13 +67,13 @@ class ParameterMapperJdbcTest : FunSpec(
 
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO staff (name, age) VALUES (:name, :age)"),
+               "INSERT INTO staff (name, age) VALUES (:name, :age)",
                Employee("Alice", 30),
                Employee("Bob", 25),
             )
 
             mikrom.queryFor<Int>(
-               Query("SELECT COUNT(*) FROM staff"),
+               "SELECT COUNT(*) FROM staff",
             ) shouldBe listOf(2)
          }
       }
@@ -100,7 +100,7 @@ class ParameterMapperJdbcTest : FunSpec(
 
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO workers (name, age) VALUES (:name, :age)"),
+               "INSERT INTO workers (name, age) VALUES (:name, :age)",
                Employee("Alice", 30),
                Employee("Bob", 25),
             )
@@ -109,7 +109,7 @@ class ParameterMapperJdbcTest : FunSpec(
             val params = mikrom.resolveParameterMapper<Employee>().mapParameters(filter)
 
             mikrom.queryFor<Employee>(
-               Query("SELECT * FROM workers WHERE name = :name"),
+               "SELECT * FROM workers WHERE name = :name",
                params,
             ) shouldBe listOf(Employee("Alice", 30))
          }

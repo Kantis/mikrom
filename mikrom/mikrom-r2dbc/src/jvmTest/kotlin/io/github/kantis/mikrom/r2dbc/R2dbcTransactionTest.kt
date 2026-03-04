@@ -40,21 +40,21 @@ class R2dbcTransactionTest : FunSpec(
 
       beforeEach {
          dataSource.suspendingTransaction {
-            mikrom.execute(Query("TRUNCATE TABLE test_records"))
+            mikrom.execute("TRUNCATE TABLE test_records")
          }
       }
 
       test("transaction commits successfully") {
          dataSource.suspendingTransaction {
             mikrom.execute(
-               Query("INSERT INTO test_records (name) VALUES ($1)"),
+               "INSERT INTO test_records (name) VALUES ($1)",
                listOf("test record"),
             )
          }
 
          // Verify data persisted after transaction
          dataSource.suspendingTransaction {
-            val records = mikrom.queryFor<TestRecord>(Query("SELECT * FROM test_records")).toList()
+            val records = mikrom.queryFor<TestRecord>("SELECT * FROM test_records").toList()
             records.size shouldBe 1
             records[0].name shouldBe "test record"
          }
@@ -63,7 +63,7 @@ class R2dbcTransactionTest : FunSpec(
       test("transaction rolls back on explicit rollback") {
          val result = dataSource.suspendingTransaction {
             mikrom.execute(
-               Query("INSERT INTO test_records (name) VALUES ($1)"),
+               "INSERT INTO test_records (name) VALUES ($1)",
                listOf("record to rollback"),
             )
 
@@ -74,7 +74,7 @@ class R2dbcTransactionTest : FunSpec(
 
          // Verify data was not persisted
          dataSource.suspendingTransaction {
-            val records = mikrom.queryFor<TestRecord>(Query("SELECT * FROM test_records")).toList()
+            val records = mikrom.queryFor<TestRecord>("SELECT * FROM test_records").toList()
             records.shouldContainExactly()
          }
       }
@@ -83,7 +83,7 @@ class R2dbcTransactionTest : FunSpec(
          try {
             dataSource.suspendingTransaction {
                mikrom.execute(
-                  Query("INSERT INTO test_records (name) VALUES ($1)"),
+                  "INSERT INTO test_records (name) VALUES ($1)",
                   listOf("test record"),
                )
 
@@ -95,7 +95,7 @@ class R2dbcTransactionTest : FunSpec(
 
          // Verify data was not persisted due to rollback
          dataSource.suspendingTransaction {
-            val records = mikrom.queryFor<TestRecord>(Query("SELECT * FROM test_records")).toList()
+            val records = mikrom.queryFor<TestRecord>("SELECT * FROM test_records").toList()
             records.size shouldBe 0
          }
       }

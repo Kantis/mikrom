@@ -152,8 +152,14 @@ public class MikromFirDeclarationGenerationExtension(
       val key = (classSymbol.origin as? FirDeclarationOrigin.Plugin)?.key
 
       return when (key) {
-         is MikromGenerateRowMapperClassKey -> setOf(SpecialNames.INIT, MAP_ROW_FUN_NAME)
-         is MikromGenerateParameterMapperClassKey -> setOf(SpecialNames.INIT, MAP_PARAMETERS_FUN_NAME)
+         is MikromGenerateRowMapperClassKey -> {
+            setOf(SpecialNames.INIT, MAP_ROW_FUN_NAME)
+         }
+
+         is MikromGenerateParameterMapperClassKey -> {
+            setOf(SpecialNames.INIT, MAP_PARAMETERS_FUN_NAME)
+         }
+
          is MikromGenerateCompanionKey -> {
             val provider = session.predicateBasedProvider
             val ownerSymbol = key.ownerClassSymbol
@@ -166,7 +172,10 @@ public class MikromFirDeclarationGenerationExtension(
             }
             names
          }
-         else -> emptySet()
+
+         else -> {
+            emptySet()
+         }
       }
    }
 

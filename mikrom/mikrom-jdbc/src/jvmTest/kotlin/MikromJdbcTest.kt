@@ -37,18 +37,18 @@ class MikromJdbcTest : FunSpec(
 
          dataSource.transaction {
             mikrom.execute(
-               Query("INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)"),
+               "INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)",
                listOf("JRR Tolkien", "The Hobbit", 310),
                listOf("George Orwell", "1984", 328),
             )
 
-            mikrom.queryFor<Book>(Query("SELECT * FROM books")) shouldBe
+            mikrom.queryFor<Book>("SELECT * FROM books") shouldBe
                listOf(
                   Book("JRR Tolkien", "The Hobbit", 310),
                   Book("George Orwell", "1984", 328),
                )
 
-            mikrom.queryFor<Book>(Query("SELECT * FROM books WHERE number_of_pages > ?"), 320) shouldBe
+            mikrom.queryFor<Book>("SELECT * FROM books WHERE number_of_pages > ?", 320) shouldBe
                listOf(Book("George Orwell", "1984", 328))
          }
       }
