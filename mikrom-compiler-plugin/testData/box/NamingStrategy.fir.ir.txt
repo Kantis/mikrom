@@ -70,8 +70,8 @@ FILE fqName:<root> fileName:/NamingStrategy.kt
                 TYPE_ARG T: kotlin.String
                 ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.AsIsEntity.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
                 ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.AsIsEntity.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
-                ARG column: CALL 'public abstract fun toColumnName (parameterName: kotlin.String): kotlin.String declared in io.github.kantis.mikrom.NamingStrategy' type=kotlin.String origin=null
-                  ARG <this>: CALL 'public final fun <get-namingStrategy> (): io.github.kantis.mikrom.NamingStrategy declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.NamingStrategy origin=null
+                ARG column: CALL 'public abstract fun toColumnName (parameterName: kotlin.String): kotlin.String declared in io.github.kantis.mikrom.generator.NamingStrategy' type=kotlin.String origin=null
+                  ARG <this>: CALL 'public final fun <get-namingStrategy> (): io.github.kantis.mikrom.generator.NamingStrategy declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.generator.NamingStrategy origin=null
                     ARG <this>: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.AsIsEntity.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
                   ARG parameterName: CONST String type=kotlin.String value="firstName"
                 ARG clazz: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:String modality:FINAL visibility:public superTypes:[kotlin.Comparable<kotlin.String>; kotlin.CharSequence; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.String>
@@ -236,8 +236,8 @@ FILE fqName:<root> fileName:/NamingStrategy.kt
                 TYPE_ARG T: kotlin.Int
                 ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.Invoice.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
                 ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Invoice.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
-                ARG column: CALL 'public abstract fun toColumnName (parameterName: kotlin.String): kotlin.String declared in io.github.kantis.mikrom.NamingStrategy' type=kotlin.String origin=null
-                  ARG <this>: CALL 'public final fun <get-namingStrategy> (): io.github.kantis.mikrom.NamingStrategy declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.NamingStrategy origin=null
+                ARG column: CALL 'public abstract fun toColumnName (parameterName: kotlin.String): kotlin.String declared in io.github.kantis.mikrom.generator.NamingStrategy' type=kotlin.String origin=null
+                  ARG <this>: CALL 'public final fun <get-namingStrategy> (): io.github.kantis.mikrom.generator.NamingStrategy declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.generator.NamingStrategy origin=null
                     ARG <this>: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Invoice.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
                   ARG parameterName: CONST String type=kotlin.String value="invoiceId"
                 ARG clazz: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:Int modality:FINAL visibility:public superTypes:[kotlin.Number; kotlin.Comparable<kotlin.Int>; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.Int>
@@ -247,8 +247,8 @@ FILE fqName:<root> fileName:/NamingStrategy.kt
                 TYPE_ARG T: kotlin.String
                 ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.Invoice.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
                 ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Invoice.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
-                ARG column: CALL 'public abstract fun toColumnName (parameterName: kotlin.String): kotlin.String declared in io.github.kantis.mikrom.NamingStrategy' type=kotlin.String origin=null
-                  ARG <this>: CALL 'public final fun <get-namingStrategy> (): io.github.kantis.mikrom.NamingStrategy declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.NamingStrategy origin=null
+                ARG column: CALL 'public abstract fun toColumnName (parameterName: kotlin.String): kotlin.String declared in io.github.kantis.mikrom.generator.NamingStrategy' type=kotlin.String origin=null
+                  ARG <this>: CALL 'public final fun <get-namingStrategy> (): io.github.kantis.mikrom.generator.NamingStrategy declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.generator.NamingStrategy origin=null
                     ARG <this>: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Invoice.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
                   ARG parameterName: CONST String type=kotlin.String value="customerName"
                 ARG clazz: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:String modality:FINAL visibility:public superTypes:[kotlin.Comparable<kotlin.String>; kotlin.CharSequence; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.String>
@@ -458,8 +458,8 @@ FILE fqName:<root> fileName:/NamingStrategy.kt
                 TYPE_ARG T: kotlin.Int
                 ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.OverriddenEntity.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
                 ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.OverriddenEntity.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
-                ARG column: CALL 'public abstract fun toColumnName (parameterName: kotlin.String): kotlin.String declared in io.github.kantis.mikrom.NamingStrategy' type=kotlin.String origin=null
-                  ARG <this>: CALL 'public final fun <get-namingStrategy> (): io.github.kantis.mikrom.NamingStrategy declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.NamingStrategy origin=null
+                ARG column: CALL 'public abstract fun toColumnName (parameterName: kotlin.String): kotlin.String declared in io.github.kantis.mikrom.generator.NamingStrategy' type=kotlin.String origin=null
+                  ARG <this>: CALL 'public final fun <get-namingStrategy> (): io.github.kantis.mikrom.generator.NamingStrategy declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.generator.NamingStrategy origin=null
                     ARG <this>: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.OverriddenEntity.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
                   ARG parameterName: CONST String type=kotlin.String value="otherField"
                 ARG clazz: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:Int modality:FINAL visibility:public superTypes:[kotlin.Number; kotlin.Comparable<kotlin.Int>; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.Int>
@@ -586,12 +586,12 @@ FILE fqName:<root> fileName:/NamingStrategy.kt
   FUN name:box visibility:public modality:FINAL returnType:kotlin.String
     BLOCK_BODY
       VAR name:snakeMikrom type:io.github.kantis.mikrom.Mikrom [val]
-        CONSTRUCTOR_CALL 'public constructor <init> (rowMappers: kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.RowMapper<*>>, conversions: io.github.kantis.mikrom.TypeConversions, namingStrategy: io.github.kantis.mikrom.NamingStrategy) declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.Mikrom origin=null
+        CONSTRUCTOR_CALL 'public constructor <init> (rowMappers: kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.RowMapper<*>>, conversions: io.github.kantis.mikrom.convert.TypeConversions, namingStrategy: io.github.kantis.mikrom.generator.NamingStrategy) declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.Mikrom origin=null
           ARG rowMappers: CALL 'public final fun mutableMapOf <K, V> (): kotlin.collections.MutableMap<K of kotlin.collections.mutableMapOf, V of kotlin.collections.mutableMapOf> declared in kotlin.collections' type=kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.RowMapper<*>> origin=null
             TYPE_ARG K: kotlin.reflect.KClass<*>
             TYPE_ARG V: io.github.kantis.mikrom.RowMapper<*>
-          ARG conversions: CALL 'public final fun <get-EMPTY> (): io.github.kantis.mikrom.TypeConversions declared in io.github.kantis.mikrom.TypeConversions.Companion' type=io.github.kantis.mikrom.TypeConversions origin=GET_PROPERTY
-            ARG <this>: GET_OBJECT 'CLASS IR_EXTERNAL_DECLARATION_STUB OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=io.github.kantis.mikrom.TypeConversions.Companion
+          ARG conversions: CALL 'public final fun <get-EMPTY> (): io.github.kantis.mikrom.convert.TypeConversions declared in io.github.kantis.mikrom.convert.TypeConversions.Companion' type=io.github.kantis.mikrom.convert.TypeConversions origin=GET_PROPERTY
+            ARG <this>: GET_OBJECT 'CLASS IR_EXTERNAL_DECLARATION_STUB OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=io.github.kantis.mikrom.convert.TypeConversions.Companion
       VAR name:invoice type:<root>.Invoice [val]
         CALL 'public abstract fun mapRow (row: io.github.kantis.mikrom.Row, mikrom: io.github.kantis.mikrom.Mikrom): T of io.github.kantis.mikrom.RowMapper declared in io.github.kantis.mikrom.RowMapper' type=<root>.Invoice origin=null
           ARG <this>: CALL 'public final fun rowMapper (): io.github.kantis.mikrom.RowMapper<<root>.Invoice> declared in <root>.Invoice.Companion' type=io.github.kantis.mikrom.RowMapper<<root>.Invoice> origin=null
@@ -641,14 +641,14 @@ FILE fqName:<root> fileName:/NamingStrategy.kt
           ARG otherField: CONST Int type=kotlin.Int value=99
         ARG actual: GET_VAR 'val overridden: <root>.OverriddenEntity declared in <root>.box' type=<root>.OverriddenEntity origin=null
       VAR name:asIsMikrom type:io.github.kantis.mikrom.Mikrom [val]
-        CONSTRUCTOR_CALL 'public constructor <init> (rowMappers: kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.RowMapper<*>>, conversions: io.github.kantis.mikrom.TypeConversions, namingStrategy: io.github.kantis.mikrom.NamingStrategy) declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.Mikrom origin=null
+        CONSTRUCTOR_CALL 'public constructor <init> (rowMappers: kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.RowMapper<*>>, conversions: io.github.kantis.mikrom.convert.TypeConversions, namingStrategy: io.github.kantis.mikrom.generator.NamingStrategy) declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.Mikrom origin=null
           ARG rowMappers: CALL 'public final fun mutableMapOf <K, V> (): kotlin.collections.MutableMap<K of kotlin.collections.mutableMapOf, V of kotlin.collections.mutableMapOf> declared in kotlin.collections' type=kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.RowMapper<*>> origin=null
             TYPE_ARG K: kotlin.reflect.KClass<*>
             TYPE_ARG V: io.github.kantis.mikrom.RowMapper<*>
-          ARG conversions: CALL 'public final fun <get-EMPTY> (): io.github.kantis.mikrom.TypeConversions declared in io.github.kantis.mikrom.TypeConversions.Companion' type=io.github.kantis.mikrom.TypeConversions origin=GET_PROPERTY
-            ARG <this>: GET_OBJECT 'CLASS IR_EXTERNAL_DECLARATION_STUB OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=io.github.kantis.mikrom.TypeConversions.Companion
-          ARG namingStrategy: CALL 'public final fun <get-AS_IS> (): io.github.kantis.mikrom.NamingStrategy declared in io.github.kantis.mikrom.NamingStrategy.Companion' type=io.github.kantis.mikrom.NamingStrategy origin=GET_PROPERTY
-            ARG <this>: GET_OBJECT 'CLASS IR_EXTERNAL_DECLARATION_STUB OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=io.github.kantis.mikrom.NamingStrategy.Companion
+          ARG conversions: CALL 'public final fun <get-EMPTY> (): io.github.kantis.mikrom.convert.TypeConversions declared in io.github.kantis.mikrom.convert.TypeConversions.Companion' type=io.github.kantis.mikrom.convert.TypeConversions origin=GET_PROPERTY
+            ARG <this>: GET_OBJECT 'CLASS IR_EXTERNAL_DECLARATION_STUB OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=io.github.kantis.mikrom.convert.TypeConversions.Companion
+          ARG namingStrategy: CALL 'public final fun <get-AS_IS> (): io.github.kantis.mikrom.generator.NamingStrategy declared in io.github.kantis.mikrom.generator.NamingStrategy.Companion' type=io.github.kantis.mikrom.generator.NamingStrategy origin=GET_PROPERTY
+            ARG <this>: GET_OBJECT 'CLASS IR_EXTERNAL_DECLARATION_STUB OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=io.github.kantis.mikrom.generator.NamingStrategy.Companion
       VAR name:entity type:<root>.AsIsEntity [val]
         CALL 'public abstract fun mapRow (row: io.github.kantis.mikrom.Row, mikrom: io.github.kantis.mikrom.Mikrom): T of io.github.kantis.mikrom.RowMapper declared in io.github.kantis.mikrom.RowMapper' type=<root>.AsIsEntity origin=null
           ARG <this>: CALL 'public final fun rowMapper (): io.github.kantis.mikrom.RowMapper<<root>.AsIsEntity> declared in <root>.AsIsEntity.Companion' type=io.github.kantis.mikrom.RowMapper<<root>.AsIsEntity> origin=null

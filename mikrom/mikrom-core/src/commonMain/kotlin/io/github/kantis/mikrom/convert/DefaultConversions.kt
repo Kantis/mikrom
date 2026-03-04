@@ -1,4 +1,4 @@
-package io.github.kantis.mikrom
+package io.github.kantis.mikrom.convert
 
 public fun commonDefaultConversions(): TypeConversions =
    TypeConversions.Builder().apply {

@@ -1,11 +1,12 @@
-package io.github.kantis.mikrom
+package io.github.kantis.mikrom.generator
+
+import kotlin.text.iterator
 
 /**
  * Transforms Kotlin parameter names into database column names.
  *
- * Configure on a [Mikrom] instance to automatically map constructor parameter
- * names to column names. An explicit [@Column][io.github.kantis.mikrom.generator.Column]
- * annotation always takes precedence over the naming strategy.
+ * Configure on a [io.github.kantis.mikrom.Mikrom] instance to automatically map constructor parameter
+ * names to column names. An explicit [@Column][Column] annotation always takes precedence over the naming strategy.
  */
 public fun interface NamingStrategy {
    public fun toColumnName(parameterName: String): String

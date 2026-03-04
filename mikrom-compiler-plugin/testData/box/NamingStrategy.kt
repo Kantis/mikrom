@@ -2,9 +2,9 @@
 // DUMP_IR
 
 import io.github.kantis.mikrom.Mikrom
-import io.github.kantis.mikrom.NamingStrategy
 import io.github.kantis.mikrom.Row
-import io.github.kantis.mikrom.TypeConversions
+import io.github.kantis.mikrom.convert.TypeConversions
+import io.github.kantis.mikrom.generator.NamingStrategy
 import io.github.kantis.mikrom.generator.Column
 import io.github.kantis.mikrom.generator.RowMapped
 import kotlin.test.*

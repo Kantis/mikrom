@@ -2,6 +2,7 @@ package io.github.kantis.mikrom
 
 import kotlin.reflect.KClass
 
+@MikromInternal
 public class RowBuilder
    @PublishedApi
    internal constructor() {
@@ -18,6 +19,7 @@ public class RowBuilder
       }
    }
 
+@MikromInternal
 public inline fun buildRow(block: RowBuilder.() -> Unit): Row {
    val builder = RowBuilder()
    builder.block()

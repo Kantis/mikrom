@@ -1,4 +1,4 @@
-package io.github.kantis.mikrom
+package io.github.kantis.mikrom.convert
 
 import java.sql.Timestamp
 import java.time.Instant

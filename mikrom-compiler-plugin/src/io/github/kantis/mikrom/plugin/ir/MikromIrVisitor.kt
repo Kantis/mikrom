@@ -61,7 +61,7 @@ internal class MikromIrVisitor(
       private val ROW_MAPPER_NESTED_NAME = Name.identifier("\$RowMapper")
 
       private val MIKROM_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom"), Name.identifier("Mikrom"))
-      private val NAMING_STRATEGY_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom"), Name.identifier("NamingStrategy"))
+      private val NAMING_STRATEGY_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom.generator"), Name.identifier("NamingStrategy"))
       private val COLUMN_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom.generator"), Name.identifier("Column"))
 
       private val ILLEGAL_STATE_EXCEPTION_FQ_NAME =

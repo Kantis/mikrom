@@ -2,7 +2,7 @@ package io.github.kantis.mikrom.example
 
 import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Row
-import io.github.kantis.mikrom.TypeConversions
+import io.github.kantis.mikrom.convert.TypeConversions
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
