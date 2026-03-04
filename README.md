@@ -4,107 +4,73 @@
 ## What is Mikrom?
 Mikrom is inspired by [Dapper](https://github.com/DapperLib/Dapper), a popular micro ORM for .NET.
 
-> This library is in the concept stage. The API is highly likely to change, and the compiler plugin is work in progress.
-> Only get involved at this point if you are interested in helping shape the design.
-
-## Philosophy
-- No automated tracking of changes
-- No reflection-based mapping
-  - Note that reflection might be necessary on _some_ platforms, however. See for instance [KxS](https://github.com/search?q=repo:Kotlin/kotlinx.serialization%20findAssociatedObject&type=code) which uses reflection to find serializers on K/N and K/JS.
-- Provide convenient DSLs, so the explicitness doesn't become tedious
-- Explicit transaction management is mandatory
-- Multiplatform design, with JDBC and R2DBC (to-be-added) support added by separate modules.
-  - JS and Native variants not currently planned, raise an issue if you want them.
-
-I want to provide a simple way of working with databases, that does _not_ involve automatic change tracking in "entities".
-I want explicit control over what is being updated, and how. With Mikrom, you are in control and can write SQL that fits your exact needs.
-
-Command-query separation becomes natural, since there is no relationship between reading and writing data tied to some "entity" class.
-
 ## Usage
-> Note: This library is in the concept stage. The API is highly likely to change, and the compiler plugin is work in progress.
+> Note: This library is in an early, experimental stage. The API is highly likely to have breaking changes sometimes, but I
+> would value your feedback on the library design.
 
 ### JDBC
+Add the Gradle plugin and dependency:
+
+```kotlin
+plugins {
+  id("com.github.kantis.mikrom") version "0.4.0"
+}
+
+dependencies {
+  implementation("io.github.kantis.mikrom:mikrom-jdbc:0.4.0")
+}
+```
+
 Create a JDBC connection and construct a `Mikrom` instance:
 
 ```kotlin
-val dbConnection = DriverManager.getConnection("jdbc:your_database_url")
-val jdbcDataSource = JdbcDataSource(dbConnection)
+fun main() {
+  val dbConnection = DriverManager.getConnection("jdbc:your_database_url")
+  val dataSource = JdbcDataSource(dbConnection)
+  val mikrom = Mikrom {}
+
+  dataSource.transation {
+    // Using named parameters with a generated ParameterMapper
+    mikrom.execute(
+      """
+        INSERT INTO books(author, title, number_of_pages)
+        VALUES (:author, :title, :numberOfPages)
+    """,
+      CreateBookCommand("JRR Tolkien", BookTitle("The Hobbit"), 310),
+      CreateBookCommand("George Orwell", BookTitle("1984"), 328),
+    )
+
+    // or, using positional parameters
+    mikrom.execute(
+      "INSERT INTO books(author, title, number_of_pages) VALUES (?, ?, ?)",
+      listOf("JRR Tolkien", "The Hobbit", 310),
+      listOf("George Orwell", "1984", 328),
+    )
+
+    mikrom.queryFor<Book>(
+      "SELECT * FROM books WHERE number_of_pages > ?", 311
+    ) // Book("George Orwell", BookTitle("1984"), 328)
+  }
+}
+
+@ParameterMapped
+data class CreateBookCommand(val author: String, val title: BookTitle, val numberOfPages: Int)
 
 @JvmInline
 value class BookTitle(val title: String)
 
 data class Book(val author: String, val title: BookTitle, val numberOfPages: Int)
-
-val mikrom = Mikrom {
-  registerMapper { row ->
-    Book(
-      // Type inference at work, there is no need to specify the type.
-      // If types mismatch, you will get an exception.
-      author = row.get("author"),
-
-      // Value classes are also supported, but the nested type must match the column type.
-      title = row.get("title"),
-      numberOfPages = row.get("number_of_pages")
-    )
-  }
-}
-
-// This would result in a compilation error, as `execute` is only defined in the context of a transaction.
-mikrom.execute(
-  Query("INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)"),
-  listOf("JRR Tolkien", "The Hobbit", 310),
-  listOf("George Orwell", "1984", 328),
-)
-
-// This is OK!
-dataSource.transaction {
-  mikrom.execute(
-    Query("INSERT INTO books (author, title, number_of_pages) VALUES (?, ?, ?)"),
-    listOf("JRR Tolkien", "The Hobbit", 310),
-    listOf("George Orwell", "1984", 328),
-  )
-
-  mikrom.queryFor<Book>(Query("SELECT * FROM books")) shouldBe
-    listOf(
-      Book("JRR Tolkien", "The Hobbit", 310),
-      Book("George Orwell", "1984", 328),
-    )
-
-  mikrom.queryFor<Book>(Query("SELECT * FROM books WHERE number_of_pages > ?"), 320) shouldBe
-    listOf(Book("George Orwell", "1984", 328))
-}
 ```
 
-### Parameter mappers
-Building on our previous example, lets say we want structured Query types. We can leverage ParameterMappers to achieve this.
-
-```kotlin
-data class SearchBooksByNumberOfPages(val minPages: Int)
-
-val mikrom = Mikrom {
-  registerParameterMapper<SearchBooksByNumberOfPages> { request ->
-    mapOf("minPages" to request.minPages)
-  }
-}
-
-dataSource.transaction {
-  mikrom.queryFor<Book>(
-    Query("SELECT * FROM books WHERE number_of_pages > :minPages"),
-    SearchBooksbyNumberOfPages(320),
-  ) shouldBe listOf(Book("George Orwell", "1984", 328))
-}
-```
-
-### Compiler plugin
-Using the compiler plugin, you can annotate your data classes with `@RowMapped` to automatically generate row mappers.
-
-```kotlin
-// This will automatically generate a `RowMapper<Book>` implementation and register it with Mikrom.
-@RowMapped
-data class Book(val author: String, val title: String, val numberOfPages: Int)
-```
-
+## Philosophy
+- Multiplatform design, with JDBC support (R2DBC planned)
+  - JS and Native variants not currently planned, but possible. Raise an issue if you want them, also include which underlying driver would make sense to use for that platform.
+- Explicit transaction management
+- Explicit SQL, instead of generated SQL which might not perform well
+- Explicit updates, instead of automated tracking
+- Convenient DSLs, so explicitness doesn't become tedious
+- Code generation through compiler plugins, to support basic Row/Parameter mapping
+- Minimal reflection
 
 License
 -------
