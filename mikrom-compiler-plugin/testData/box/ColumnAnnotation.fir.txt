@@ -1,6 +1,6 @@
 FILE: ColumnAnnotation.kt
     public final fun box(): R|kotlin/String| {
-        lval mikrom: R|io/github/kantis/mikrom/Mikrom| = R|io/github/kantis/mikrom/Mikrom.Mikrom|(R|kotlin/collections/mutableMapOf|<R|kotlin/reflect/KClass<*>|, R|io/github/kantis/mikrom/RowMapper<*>|>(), Q|io/github/kantis/mikrom/TypeConversions|.R|io/github/kantis/mikrom/TypeConversions.Companion.EMPTY|)
+        lval mikrom: R|io/github/kantis/mikrom/Mikrom| = R|io/github/kantis/mikrom/Mikrom.Mikrom|(R|kotlin/collections/mutableMapOf|<R|kotlin/reflect/KClass<*>|, R|io/github/kantis/mikrom/RowMapper<*>|>(), Q|io/github/kantis/mikrom/convert/TypeConversions|.R|io/github/kantis/mikrom/convert/TypeConversions.Companion.EMPTY|)
         lval user: R|DbUser| = Q|DbUser|.R|/DbUser.Companion.rowMapper|().R|SubstitutionOverride<io/github/kantis/mikrom/RowMapper.mapRow: R|DbUser|>|(Q|io/github/kantis/mikrom/Row|.R|io/github/kantis/mikrom/Row.Companion.of|(vararg(String(user_name).R|kotlin/to|<R|kotlin/String|, R|kotlin/String|>(String(Alice)), String(email_address).R|kotlin/to|<R|kotlin/String|, R|kotlin/String|>(String(alice@example.com)), String(age).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(30)))), R|<local>/mikrom|)
         R|kotlin/test/assertEquals|<R|DbUser|>(R|<local>/user|, R|/DbUser.DbUser|(String(Alice), String(alice@example.com), Int(30)))
         ^box String(OK)

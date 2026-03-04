@@ -217,8 +217,8 @@ FILE fqName:<root> fileName:/ValueClass.kt
                 TYPE_ARG T: <root>.UserId
                 ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.UserWithValueClass.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
                 ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.UserWithValueClass.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
-                ARG column: CALL 'public abstract fun toColumnName (parameterName: kotlin.String): kotlin.String declared in io.github.kantis.mikrom.NamingStrategy' type=kotlin.String origin=null
-                  ARG <this>: CALL 'public final fun <get-namingStrategy> (): io.github.kantis.mikrom.NamingStrategy declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.NamingStrategy origin=null
+                ARG column: CALL 'public abstract fun toColumnName (parameterName: kotlin.String): kotlin.String declared in io.github.kantis.mikrom.generator.NamingStrategy' type=kotlin.String origin=null
+                  ARG <this>: CALL 'public final fun <get-namingStrategy> (): io.github.kantis.mikrom.generator.NamingStrategy declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.generator.NamingStrategy origin=null
                     ARG <this>: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.UserWithValueClass.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
                   ARG parameterName: CONST String type=kotlin.String value="id"
                 ARG clazz: CLASS_REFERENCE 'CLASS CLASS name:UserId modality:FINAL visibility:public [value] superTypes:[kotlin.Any]' type=kotlin.reflect.KClass<<root>.UserId>
@@ -228,8 +228,8 @@ FILE fqName:<root> fileName:/ValueClass.kt
                 TYPE_ARG T: <root>.Age
                 ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.UserWithValueClass.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
                 ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.UserWithValueClass.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
-                ARG column: CALL 'public abstract fun toColumnName (parameterName: kotlin.String): kotlin.String declared in io.github.kantis.mikrom.NamingStrategy' type=kotlin.String origin=null
-                  ARG <this>: CALL 'public final fun <get-namingStrategy> (): io.github.kantis.mikrom.NamingStrategy declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.NamingStrategy origin=null
+                ARG column: CALL 'public abstract fun toColumnName (parameterName: kotlin.String): kotlin.String declared in io.github.kantis.mikrom.generator.NamingStrategy' type=kotlin.String origin=null
+                  ARG <this>: CALL 'public final fun <get-namingStrategy> (): io.github.kantis.mikrom.generator.NamingStrategy declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.generator.NamingStrategy origin=null
                     ARG <this>: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.UserWithValueClass.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
                   ARG parameterName: CONST String type=kotlin.String value="age"
                 ARG clazz: CLASS_REFERENCE 'CLASS CLASS name:Age modality:FINAL visibility:public [value] superTypes:[kotlin.Any]' type=kotlin.reflect.KClass<<root>.Age>
@@ -352,12 +352,12 @@ FILE fqName:<root> fileName:/ValueClass.kt
   FUN name:box visibility:public modality:FINAL returnType:kotlin.String
     BLOCK_BODY
       VAR name:mikrom type:io.github.kantis.mikrom.Mikrom [val]
-        CONSTRUCTOR_CALL 'public constructor <init> (rowMappers: kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.RowMapper<*>>, conversions: io.github.kantis.mikrom.TypeConversions, namingStrategy: io.github.kantis.mikrom.NamingStrategy) declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.Mikrom origin=null
+        CONSTRUCTOR_CALL 'public constructor <init> (rowMappers: kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.RowMapper<*>>, conversions: io.github.kantis.mikrom.convert.TypeConversions, namingStrategy: io.github.kantis.mikrom.generator.NamingStrategy) declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.Mikrom origin=null
           ARG rowMappers: CALL 'public final fun mutableMapOf <K, V> (): kotlin.collections.MutableMap<K of kotlin.collections.mutableMapOf, V of kotlin.collections.mutableMapOf> declared in kotlin.collections' type=kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.RowMapper<*>> origin=null
             TYPE_ARG K: kotlin.reflect.KClass<*>
             TYPE_ARG V: io.github.kantis.mikrom.RowMapper<*>
-          ARG conversions: CALL 'public final fun <get-EMPTY> (): io.github.kantis.mikrom.TypeConversions declared in io.github.kantis.mikrom.TypeConversions.Companion' type=io.github.kantis.mikrom.TypeConversions origin=GET_PROPERTY
-            ARG <this>: GET_OBJECT 'CLASS IR_EXTERNAL_DECLARATION_STUB OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=io.github.kantis.mikrom.TypeConversions.Companion
+          ARG conversions: CALL 'public final fun <get-EMPTY> (): io.github.kantis.mikrom.convert.TypeConversions declared in io.github.kantis.mikrom.convert.TypeConversions.Companion' type=io.github.kantis.mikrom.convert.TypeConversions origin=GET_PROPERTY
+            ARG <this>: GET_OBJECT 'CLASS IR_EXTERNAL_DECLARATION_STUB OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=io.github.kantis.mikrom.convert.TypeConversions.Companion
       VAR name:user type:<root>.UserWithValueClass [val]
         CALL 'public abstract fun mapRow (row: io.github.kantis.mikrom.Row, mikrom: io.github.kantis.mikrom.Mikrom): T of io.github.kantis.mikrom.RowMapper declared in io.github.kantis.mikrom.RowMapper' type=<root>.UserWithValueClass origin=null
           ARG <this>: CALL 'public final fun rowMapper (): io.github.kantis.mikrom.RowMapper<<root>.UserWithValueClass> declared in <root>.UserWithValueClass.Companion' type=io.github.kantis.mikrom.RowMapper<<root>.UserWithValueClass> origin=null
