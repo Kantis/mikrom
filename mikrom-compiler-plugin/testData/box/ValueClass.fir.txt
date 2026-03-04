@@ -34,17 +34,17 @@ FILE: ValueClass.kt
 
         public final fun copy(id: R|UserId| = this@R|/UserWithValueClass|.R|/UserWithValueClass.id|, age: R|Age| = this@R|/UserWithValueClass|.R|/UserWithValueClass.age|): R|UserWithValueClass|
 
-        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<UserWithValueClass>| {
-            public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|UserWithValueClass|
-
-            private constructor(): R|UserWithValueClass.$RowMapper|
-
-        }
-
         public final companion object Companion : R|kotlin/Any| {
             public final fun rowMapper(): R|io/github/kantis/mikrom/RowMapper<UserWithValueClass>|
 
             private constructor(): R|UserWithValueClass.Companion|
+
+        }
+
+        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<UserWithValueClass>| {
+            public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|UserWithValueClass|
+
+            private constructor(): R|UserWithValueClass.$RowMapper|
 
         }
 

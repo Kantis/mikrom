@@ -1,0 +1,52 @@
+FILE: BothMapped.kt
+    public final fun box(): R|kotlin/String| {
+        lval mikrom: R|io/github/kantis/mikrom/Mikrom| = R|io/github/kantis/mikrom/Mikrom.Mikrom|(R|kotlin/collections/mutableMapOf|<R|kotlin/reflect/KClass<*>|, R|io/github/kantis/mikrom/RowMapper<*>|>(), Q|io/github/kantis/mikrom/convert/TypeConversions|.R|io/github/kantis/mikrom/convert/TypeConversions.Companion.EMPTY|)
+        lval person: R|Person| = Q|Person|.R|/Person.Companion.rowMapper|().R|SubstitutionOverride<io/github/kantis/mikrom/RowMapper.mapRow: R|Person|>|(Q|io/github/kantis/mikrom/Row|.R|io/github/kantis/mikrom/Row.Companion.of|(vararg(String(name).R|kotlin/to|<R|kotlin/String|, R|kotlin/String|>(String(Brian)), String(age).R|kotlin/to|<R|kotlin/String|, R|kotlin/Int|>(Int(42)))), R|<local>/mikrom|)
+        R|kotlin/test/assertEquals|<R|Person|>(R|/Person.Person|(String(Brian), Int(42)), R|<local>/person|)
+        lval params: R|kotlin/collections/Map<kotlin/String, kotlin/Any?>| = Q|Person|.R|/Person.Companion.parameterMapper|().R|SubstitutionOverride<io/github/kantis/mikrom/ParameterMapper.mapParameters: R|kotlin/collections/Map<kotlin/String, kotlin/Any?>|>|(R|/Person.Person|(String(Brian), Int(42)))
+        R|kotlin/test/assertEquals|<R|kotlin/Any?|>(String(Brian), R|<local>/params|.R|SubstitutionOverride<kotlin/collections/Map.get: R|kotlin/Any?|>|(String(name)))
+        R|kotlin/test/assertEquals|<R|kotlin/Any?|>(Int(42), R|<local>/params|.R|SubstitutionOverride<kotlin/collections/Map.get: R|kotlin/Any?|>|(String(age)))
+        R|kotlin/test/assertEquals|<R|kotlin/Int|>(Int(2), R|<local>/params|.R|SubstitutionOverride<kotlin/collections/Map.size: R|kotlin/Int|>|)
+        ^box String(OK)
+    }
+    @R|io/github/kantis/mikrom/generator/RowMapped|() @R|io/github/kantis/mikrom/generator/ParameterMapped|() public final data class Person : R|kotlin/Any| {
+        public constructor(name: R|kotlin/String|, age: R|kotlin/Int|): R|Person| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val name: R|kotlin/String| = R|<local>/name|
+            public get(): R|kotlin/String|
+
+        public final val age: R|kotlin/Int| = R|<local>/age|
+            public get(): R|kotlin/Int|
+
+        public final operator fun component1(): R|kotlin/String|
+
+        public final operator fun component2(): R|kotlin/Int|
+
+        public final fun copy(name: R|kotlin/String| = this@R|/Person|.R|/Person.name|, age: R|kotlin/Int| = this@R|/Person|.R|/Person.age|): R|Person|
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun rowMapper(): R|io/github/kantis/mikrom/RowMapper<Person>|
+
+            public final fun parameterMapper(): R|io/github/kantis/mikrom/ParameterMapper<Person>|
+
+            private constructor(): R|Person.Companion|
+
+        }
+
+        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<Person>| {
+            public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|Person|
+
+            private constructor(): R|Person.$RowMapper|
+
+        }
+
+        public final object $ParameterMapper : R|io/github/kantis/mikrom/ParameterMapper<Person>| {
+            public final fun mapParameters(value: R|Person|): R|kotlin/collections/Map<kotlin/String, kotlin/Any?>|
+
+            private constructor(): R|Person.$ParameterMapper|
+
+        }
+
+    }

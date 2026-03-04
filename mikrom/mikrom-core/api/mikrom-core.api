@@ -193,6 +193,9 @@ public abstract interface annotation class io/github/kantis/mikrom/generator/Col
 	public abstract fun name ()Ljava/lang/String;
 }
 
+public abstract interface class io/github/kantis/mikrom/generator/GeneratedParameterMapper : io/github/kantis/mikrom/ParameterMapper {
+}
+
 public abstract interface class io/github/kantis/mikrom/generator/GeneratedRowMapper : io/github/kantis/mikrom/RowMapper {
 }
 
@@ -210,10 +213,17 @@ public final class io/github/kantis/mikrom/generator/NamingStrategy$Companion {
 public abstract interface annotation class io/github/kantis/mikrom/generator/Parameter : java/lang/annotation/Annotation {
 }
 
+public abstract interface annotation class io/github/kantis/mikrom/generator/ParameterMapped : java/lang/annotation/Annotation {
+}
+
 public abstract interface annotation class io/github/kantis/mikrom/generator/QueryResult : java/lang/annotation/Annotation {
 }
 
 public abstract interface annotation class io/github/kantis/mikrom/generator/RowMapped : java/lang/annotation/Annotation {
+}
+
+public final class io/github/kantis/mikrom/internal/FindCompiledParameterMapperKt {
+	public static final fun compiledParameterMapper (Lkotlin/reflect/KClass;)Lio/github/kantis/mikrom/ParameterMapper;
 }
 
 public final class io/github/kantis/mikrom/internal/FindCompiledRowMapperKt {

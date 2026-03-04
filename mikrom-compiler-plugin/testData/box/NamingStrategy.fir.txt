@@ -27,17 +27,17 @@ FILE: NamingStrategy.kt
 
         public final fun copy(invoiceId: R|kotlin/Int| = this@R|/Invoice|.R|/Invoice.invoiceId|, customerName: R|kotlin/String| = this@R|/Invoice|.R|/Invoice.customerName|): R|Invoice|
 
-        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<Invoice>| {
-            public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|Invoice|
-
-            private constructor(): R|Invoice.$RowMapper|
-
-        }
-
         public final companion object Companion : R|kotlin/Any| {
             public final fun rowMapper(): R|io/github/kantis/mikrom/RowMapper<Invoice>|
 
             private constructor(): R|Invoice.Companion|
+
+        }
+
+        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<Invoice>| {
+            public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|Invoice|
+
+            private constructor(): R|Invoice.$RowMapper|
 
         }
 
@@ -59,17 +59,17 @@ FILE: NamingStrategy.kt
 
         public final fun copy(@R|io/github/kantis/mikrom/generator/Column|(name = String(custom_col)) name: R|kotlin/String| = this@R|/OverriddenEntity|.R|/OverriddenEntity.name|, otherField: R|kotlin/Int| = this@R|/OverriddenEntity|.R|/OverriddenEntity.otherField|): R|OverriddenEntity|
 
-        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<OverriddenEntity>| {
-            public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|OverriddenEntity|
-
-            private constructor(): R|OverriddenEntity.$RowMapper|
-
-        }
-
         public final companion object Companion : R|kotlin/Any| {
             public final fun rowMapper(): R|io/github/kantis/mikrom/RowMapper<OverriddenEntity>|
 
             private constructor(): R|OverriddenEntity.Companion|
+
+        }
+
+        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<OverriddenEntity>| {
+            public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|OverriddenEntity|
+
+            private constructor(): R|OverriddenEntity.$RowMapper|
 
         }
 
@@ -86,17 +86,17 @@ FILE: NamingStrategy.kt
 
         public final fun copy(firstName: R|kotlin/String| = this@R|/AsIsEntity|.R|/AsIsEntity.firstName|): R|AsIsEntity|
 
-        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<AsIsEntity>| {
-            public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|AsIsEntity|
-
-            private constructor(): R|AsIsEntity.$RowMapper|
-
-        }
-
         public final companion object Companion : R|kotlin/Any| {
             public final fun rowMapper(): R|io/github/kantis/mikrom/RowMapper<AsIsEntity>|
 
             private constructor(): R|AsIsEntity.Companion|
+
+        }
+
+        public final object $RowMapper : R|io/github/kantis/mikrom/RowMapper<AsIsEntity>| {
+            public final fun mapRow(row: R|io/github/kantis/mikrom/Row|, mikrom: R|io/github/kantis/mikrom/Mikrom|): R|AsIsEntity|
+
+            private constructor(): R|AsIsEntity.$RowMapper|
 
         }
 
