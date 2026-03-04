@@ -1,5 +1,7 @@
 package io.github.kantis.mikrom
 
+import io.github.kantis.mikrom.convert.TypeConversions
+import io.github.kantis.mikrom.convert.tryWrapValueClass
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 

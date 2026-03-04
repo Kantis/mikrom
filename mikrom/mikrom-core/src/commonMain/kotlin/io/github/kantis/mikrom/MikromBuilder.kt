@@ -1,5 +1,8 @@
 package io.github.kantis.mikrom
 
+import io.github.kantis.mikrom.convert.TypeConversions
+import io.github.kantis.mikrom.convert.defaultConversions
+import io.github.kantis.mikrom.generator.NamingStrategy
 import kotlin.reflect.KClass
 
 public class MikromBuilder {
