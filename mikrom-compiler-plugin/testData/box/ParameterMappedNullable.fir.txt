@@ -1,0 +1,54 @@
+FILE: ParameterMappedNullable.kt
+    @R|io/github/kantis/mikrom/generator/ParameterMapped|() public final data class NullableFields : R|kotlin/Any| {
+        public constructor(name: R|kotlin/String|, nickname: R|kotlin/String?|, age: R|kotlin/Int?|): R|NullableFields| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val name: R|kotlin/String| = R|<local>/name|
+            public get(): R|kotlin/String|
+
+        public final val nickname: R|kotlin/String?| = R|<local>/nickname|
+            public get(): R|kotlin/String?|
+
+        public final val age: R|kotlin/Int?| = R|<local>/age|
+            public get(): R|kotlin/Int?|
+
+        public final operator fun component1(): R|kotlin/String|
+
+        public final operator fun component2(): R|kotlin/String?|
+
+        public final operator fun component3(): R|kotlin/Int?|
+
+        public final fun copy(name: R|kotlin/String| = this@R|/NullableFields|.R|/NullableFields.name|, nickname: R|kotlin/String?| = this@R|/NullableFields|.R|/NullableFields.nickname|, age: R|kotlin/Int?| = this@R|/NullableFields|.R|/NullableFields.age|): R|NullableFields|
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun parameterMapper(): R|io/github/kantis/mikrom/ParameterMapper<NullableFields>|
+
+            private constructor(): R|NullableFields.Companion|
+
+        }
+
+        public final object $ParameterMapper : R|io/github/kantis/mikrom/ParameterMapper<NullableFields>| {
+            public final fun mapParameters(value: R|NullableFields|): R|kotlin/collections/Map<kotlin/String, kotlin/Any?>|
+
+            private constructor(): R|NullableFields.$ParameterMapper|
+
+        }
+
+    }
+    public final fun box(): R|kotlin/String| {
+        lval mapper: R|io/github/kantis/mikrom/ParameterMapper<NullableFields>| = Q|NullableFields|.R|/NullableFields.Companion.parameterMapper|()
+        lval params1: R|kotlin/collections/Map<kotlin/String, kotlin/Any?>| = R|<local>/mapper|.R|SubstitutionOverride<io/github/kantis/mikrom/ParameterMapper.mapParameters: R|kotlin/collections/Map<kotlin/String, kotlin/Any?>|>|(R|/NullableFields.NullableFields|(String(Alice), String(Ali), Int(30)))
+        R|kotlin/test/assertEquals|<R|kotlin/Any?|>(String(Alice), R|<local>/params1|.R|SubstitutionOverride<kotlin/collections/Map.get: R|kotlin/Any?|>|(String(name)))
+        R|kotlin/test/assertEquals|<R|kotlin/Any?|>(String(Ali), R|<local>/params1|.R|SubstitutionOverride<kotlin/collections/Map.get: R|kotlin/Any?|>|(String(nickname)))
+        R|kotlin/test/assertEquals|<R|kotlin/Any?|>(Int(30), R|<local>/params1|.R|SubstitutionOverride<kotlin/collections/Map.get: R|kotlin/Any?|>|(String(age)))
+        lval params2: R|kotlin/collections/Map<kotlin/String, kotlin/Any?>| = R|<local>/mapper|.R|SubstitutionOverride<io/github/kantis/mikrom/ParameterMapper.mapParameters: R|kotlin/collections/Map<kotlin/String, kotlin/Any?>|>|(R|/NullableFields.NullableFields|(String(Bob), Null(null), Null(null)))
+        R|kotlin/test/assertEquals|<R|kotlin/Any?|>(String(Bob), R|<local>/params2|.R|SubstitutionOverride<kotlin/collections/Map.get: R|kotlin/Any?|>|(String(name)))
+        lval nicknameValue: R|kotlin/Any?| = R|<local>/params2|.R|SubstitutionOverride<kotlin/collections/Map.get: R|kotlin/Any?|>|(String(nickname))
+        R|kotlin/test/assertTrue|((R|<local>/nicknameValue| is R|io/github/kantis/mikrom/TypedNull|), <strcat>(String(Expected TypedNull for null nickname, got: ), R|<local>/nicknameValue|))
+        R|kotlin/test/assertEquals|<R|kotlin/reflect/KClass<out kotlin/Any>|>(<getClass>(Q|kotlin/String|), R|<local>/nicknameValue|.R|io/github/kantis/mikrom/TypedNull.type|)
+        lval ageValue: R|kotlin/Any?| = R|<local>/params2|.R|SubstitutionOverride<kotlin/collections/Map.get: R|kotlin/Any?|>|(String(age))
+        R|kotlin/test/assertTrue|((R|<local>/ageValue| is R|io/github/kantis/mikrom/TypedNull|), <strcat>(String(Expected TypedNull for null age, got: ), R|<local>/ageValue|))
+        R|kotlin/test/assertEquals|<R|kotlin/reflect/KClass<out kotlin/Any>|>(<getClass>(Q|kotlin/Int|), R|<local>/ageValue|.R|io/github/kantis/mikrom/TypedNull.type|)
+        ^box String(OK)
+    }

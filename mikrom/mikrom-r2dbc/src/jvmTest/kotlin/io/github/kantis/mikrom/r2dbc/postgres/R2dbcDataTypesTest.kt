@@ -1,6 +1,7 @@
 package io.github.kantis.mikrom.r2dbc.postgres
 
 import io.github.kantis.mikrom.Mikrom
+import io.github.kantis.mikrom.TypedNull
 import io.github.kantis.mikrom.get
 import io.github.kantis.mikrom.getOrNull
 import io.github.kantis.mikrom.r2dbc.PooledR2dbcDataSource
@@ -127,6 +128,44 @@ class R2dbcDataTypesTest : FunSpec(
                     ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
                """.trimIndent(),
                listOf(null, null, null, null, null, null, null, null, null),
+            )
+
+            val records = mikrom.queryFor<DataTypeRecord>("SELECT * FROM data_types").toList()
+            records.size shouldBe 1
+
+            val record = records[0]
+            record.stringField shouldBe null
+            record.intField shouldBe null
+            record.longField shouldBe null
+            record.booleanField shouldBe null
+            record.doubleField shouldBe null
+            record.decimalField shouldBe null
+            record.dateField shouldBe null
+            record.timestampField shouldBe null
+            record.uuidField shouldBe null
+         }
+      }
+
+      test("handle TypedNull values with correct type binding") {
+         dataSource.suspendingTransaction {
+            mikrom.execute(
+               """
+                    INSERT INTO data_types (
+                        string_field, int_field, long_field, boolean_field,
+                        double_field, decimal_field, date_field, timestamp_field, uuid_field
+                    ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+               """.trimIndent(),
+               listOf(
+                  TypedNull(String::class),
+                  TypedNull(Int::class),
+                  TypedNull(Long::class),
+                  TypedNull(Boolean::class),
+                  TypedNull(Double::class),
+                  TypedNull(BigDecimal::class),
+                  TypedNull(LocalDate::class),
+                  TypedNull(LocalDateTime::class),
+                  TypedNull(UUID::class),
+               ),
             )
 
             val records = mikrom.queryFor<DataTypeRecord>("SELECT * FROM data_types").toList()

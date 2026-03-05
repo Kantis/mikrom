@@ -51,6 +51,18 @@ public class BoxTestGenerated extends AbstractBoxTest {
   }
 
   @Test
+  @TestMetadata("ParameterMappedNullable.kt")
+  public void testParameterMappedNullable() {
+    runTest("testData/box/ParameterMappedNullable.kt");
+  }
+
+  @Test
+  @TestMetadata("ParameterMappedNullableValueClass.kt")
+  public void testParameterMappedNullableValueClass() {
+    runTest("testData/box/ParameterMappedNullableValueClass.kt");
+  }
+
+  @Test
   @TestMetadata("ParameterMappedValueClass.kt")
   public void testParameterMappedValueClass() {
     runTest("testData/box/ParameterMappedValueClass.kt");

@@ -123,6 +123,11 @@ public final class io/github/kantis/mikrom/TypeMismatchException : java/lang/Run
 	public fun <init> (Ljava/lang/String;)V
 }
 
+public final class io/github/kantis/mikrom/TypedNull {
+	public fun <init> (Lkotlin/reflect/KClass;)V
+	public final fun getType ()Lkotlin/reflect/KClass;
+}
+
 public final class io/github/kantis/mikrom/convert/DefaultConversionsKt {
 	public static final fun commonDefaultConversions ()Lio/github/kantis/mikrom/convert/TypeConversions;
 	public static final fun defaultConversions ()Lio/github/kantis/mikrom/convert/TypeConversions;

@@ -36,6 +36,9 @@ Key architectural principles:
 - Generated test files are in `mikrom-compiler-plugin/test-gen/`
 - Test data is in `mikrom-compiler-plugin/testData/`
 
+When the compile plugin's IR output, the test's *.txt files will need to be regenerated.
+Delete them and then run the tests (which will fail once) then run them again to ensure they are working.
+
 ### Publishing
 - `./gradlew publishToMavenLocal` - Publish to local Maven repository
 - `./gradlew publish` - Publish to configured repositories
