@@ -3,6 +3,7 @@ package io.github.kantis.mikrom.r2dbc.h2
 import io.github.kantis.mikrom.r2dbc.H2Dialect
 import io.github.kantis.mikrom.r2dbc.PooledR2dbcDataSource
 import io.github.kantis.mikrom.r2dbc.factories.basicInsertQueryTests
+import io.github.kantis.mikrom.r2dbc.factories.dataTypeTests
 import io.github.kantis.mikrom.r2dbc.factories.streamingTestName
 import io.github.kantis.mikrom.r2dbc.factories.transactionTests
 import io.kotest.core.spec.style.FunSpec
@@ -26,6 +27,6 @@ class H2R2dbcTests : FunSpec(
       include(basicInsertQueryTests(dialect, streaming = false, dataSourceProvider))
       include(transactionTests(dialect, streaming = true, dataSourceProvider))
       include(transactionTests(dialect, streaming = false, dataSourceProvider))
-//      include(dataTypeTests(dialect, dataSourceProvider))
+      include(dataTypeTests(dialect, dataSourceProvider))
    },
 )

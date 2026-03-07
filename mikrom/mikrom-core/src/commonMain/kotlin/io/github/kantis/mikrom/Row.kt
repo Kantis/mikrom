@@ -7,7 +7,10 @@ import kotlin.reflect.KClass
 @Suppress("UNCHECKED_CAST")
 public class Row
    @PublishedApi
-   internal constructor(private val columns: Map<String, Column>) {
+   internal constructor(
+      private val columns: Map<String, Column>,
+      private val driverConversions: TypeConversions = TypeConversions.EMPTY,
+   ) {
       public data class Column(
          val value: Any?,
          val kotlinType: KClass<*>? = null,
@@ -90,9 +93,10 @@ public class Row
          conversions: TypeConversions,
       ): T? {
          if (clazz.isInstance(value)) return value as T
-         val converted = conversions.convert(value, clazz)
+         val allConversions = conversions + driverConversions
+         val converted = allConversions.convert(value, clazz)
          if (converted != null && clazz.isInstance(converted)) return converted as T
-         val wrapped = tryWrapValueClass(value, clazz, conversions)
+         val wrapped = tryWrapValueClass(value, clazz, allConversions)
          if (wrapped != null) return wrapped as T
          return null
       }
