@@ -79,8 +79,6 @@ public object ResultSetReader {
                Types.LONGVARBINARY,
                -> resultSet.getBytes(i)
 
-               Types.OTHER -> resultSet.getObject(i)
-
                else -> resultSet.getObject(i)
             }
 

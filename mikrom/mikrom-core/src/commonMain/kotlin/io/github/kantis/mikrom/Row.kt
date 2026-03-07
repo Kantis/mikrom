@@ -34,7 +34,8 @@ public class Row
          val value = singleValue()
             ?: throw TypeMismatchException("Single value is null, but non-null ${clazz.simpleName} was expected")
          if (clazz.isInstance(value)) return value as T
-         val converted = conversions.convert(value, clazz)
+         val allConversions = conversions + driverConversions
+         val converted = allConversions.convert(value, clazz)
          if (converted != null && clazz.isInstance(converted)) return converted as T
          throw TypeMismatchException(
             "Single value is ${value::class.simpleName}, cannot be read as ${clazz.simpleName}",

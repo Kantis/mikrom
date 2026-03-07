@@ -8,7 +8,9 @@ import io.github.kantis.mikrom.convert.TypeConversions
 import io.github.kantis.mikrom.datasource.Transaction
 import java.math.BigDecimal
 import java.sql.Connection
+import java.sql.ParameterMetaData
 import java.sql.PreparedStatement
+import java.sql.SQLException
 import java.sql.Timestamp
 import java.sql.Types
 import java.time.Instant
@@ -65,10 +67,17 @@ public class JdbcTransaction(
             is BigDecimal -> statement.setBigDecimal(index + 1, param)
             is Instant -> statement.setTimestamp(index + 1, Timestamp.from(param))
             is UUID -> statement.setObject(index + 1, param)
-            is TypedNull -> statement.setNull(index + 1, statementParams.getParameterType(index + 1))
-            null -> statement.setNull(index + 1, statementParams.getParameterType(index + 1))
+            is TypedNull -> statement.setNull(index + 1, statementParams.safeGetParameterType(index + 1))
+            null -> statement.setNull(index + 1, statementParams.safeGetParameterType(index + 1))
             else -> error("Unsupported parameter type: ${param::class.simpleName} at index ${index + 1} with value $param")
          }
       }
    }
 }
+
+private fun ParameterMetaData.safeGetParameterType(index: Int): Int =
+   try {
+      getParameterType(index)
+   } catch (_: SQLException) {
+      Types.NULL
+   }

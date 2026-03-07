@@ -8,6 +8,7 @@ import io.github.kantis.mikrom.jdbc.JdbcTestDialect
 import io.github.kantis.mikrom.queryFor
 import io.kotest.core.spec.style.funSpec
 import io.kotest.matchers.collections.shouldContainExactly
+import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.shouldBe
 
 private data class Book(val author: String, val title: String, val numberOfPages: Int)
@@ -60,6 +61,26 @@ fun basicInsertQueryTests(
             "SELECT * FROM books WHERE number_of_pages > ?",
             listOf(320),
          ) shouldBe listOf(Book("George Orwell", "1984", 328))
+      }
+   }
+
+   test("[${dialect.name}] parameterized queries prevent SQL injection") {
+      dataSourceProvider().transaction {
+         mikrom.execute(
+            dialect.insertBooks(),
+            listOf("JRR Tolkien", "The Hobbit", 310),
+         )
+      }
+
+      dataSourceProvider().transaction {
+         mikrom.queryFor<Book>(
+            "SELECT * FROM books WHERE author = ?",
+            listOf("JRR Tolkien'; DROP TABLE books;--"),
+         )
+      }
+
+      dataSourceProvider().transaction {
+         mikrom.queryFor<Book>("SELECT * FROM books").shouldNotBeEmpty()
       }
    }
 }

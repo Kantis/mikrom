@@ -20,7 +20,7 @@ fun queryingForPrimitivesTests(
       }
    }
 
-   test("[${dialect.name}] queryFor Int") {
+   test("[${dialect.name}] queryFor Long") {
       dataSourceProvider().transaction {
          mikrom.execute(
             dialect.insertTestRecord(),
@@ -28,8 +28,8 @@ fun queryingForPrimitivesTests(
             listOf("qux"),
          )
 
-         val result = mikrom.queryFor<Int>("SELECT id FROM test_records ORDER BY id")
-         result.size shouldBe 2
+         val result = mikrom.queryFor<Long>("SELECT COUNT(*) FROM test_records")
+         result shouldBe listOf(2L)
       }
    }
 
