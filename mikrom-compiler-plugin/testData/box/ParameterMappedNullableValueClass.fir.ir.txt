@@ -1,0 +1,348 @@
+FILE fqName:<root> fileName:/ParameterMappedNullableValueClass.kt
+  CLASS CLASS name:Email modality:FINAL visibility:public [value] superTypes:[kotlin.Any]
+    annotations:
+      JvmInline
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.Email
+    PROPERTY name:value visibility:public modality:FINAL [val]
+      FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.String visibility:private [final]
+        EXPRESSION_BODY
+          GET_VAR 'value: kotlin.String declared in <root>.Email.<init>' type=kotlin.String origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-value> visibility:public modality:FINAL returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.Email
+        correspondingProperty: PROPERTY name:value visibility:public modality:FINAL [val]
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun <get-value> (): kotlin.String declared in <root>.Email'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: <root>.Email declared in <root>.Email.<get-value>' type=<root>.Email origin=null
+    CONSTRUCTOR visibility:public returnType:<root>.Email [primary]
+      VALUE_PARAMETER kind:Regular name:value index:0 type:kotlin.String
+      BLOCK_BODY
+        DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+        INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:Email modality:FINAL visibility:public [value] superTypes:[kotlin.Any]' type=kotlin.Unit
+    FUN GENERATED_SINGLE_FIELD_VALUE_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.Email
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+      BLOCK_BODY
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: TYPE_OP type=kotlin.Boolean origin=NOT_INSTANCEOF typeOperand=<root>.Email
+              GET_VAR 'other: kotlin.Any? declared in <root>.Email.equals' type=kotlin.Any? origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.Email'
+              CONST Boolean type=kotlin.Boolean value=false
+        VAR IR_TEMPORARY_VARIABLE name:tmp_0 type:<root>.Email [val]
+          TYPE_OP type=<root>.Email origin=IMPLICIT_CAST typeOperand=<root>.Email
+            GET_VAR 'other: kotlin.Any? declared in <root>.Email.equals' type=kotlin.Any? origin=null
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+              ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                  receiver: GET_VAR '<this>: <root>.Email declared in <root>.Email.equals' type=<root>.Email origin=null
+                ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                  receiver: GET_VAR 'val tmp_0: <root>.Email declared in <root>.Email.equals' type=<root>.Email origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.Email'
+              CONST Boolean type=kotlin.Boolean value=false
+        RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.Email'
+          CONST Boolean type=kotlin.Boolean value=true
+    FUN GENERATED_SINGLE_FIELD_VALUE_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.Email
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public open fun hashCode (): kotlin.Int declared in <root>.Email'
+          CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.String' type=kotlin.Int origin=null
+            ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: <root>.Email declared in <root>.Email.hashCode' type=<root>.Email origin=null
+    FUN GENERATED_SINGLE_FIELD_VALUE_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.Email
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public open fun toString (): kotlin.String declared in <root>.Email'
+          STRING_CONCATENATION type=kotlin.String
+            CONST String type=kotlin.String value="Email("
+            CONST String type=kotlin.String value="value="
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: <root>.Email declared in <root>.Email.toString' type=<root>.Email origin=null
+            CONST String type=kotlin.String value=")"
+  CLASS CLASS name:UserWithEmail modality:FINAL visibility:public [data] superTypes:[kotlin.Any]
+    annotations:
+      ParameterMapped
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.UserWithEmail
+    PROPERTY name:name visibility:public modality:FINAL [val]
+      FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]
+        EXPRESSION_BODY
+          GET_VAR 'name: kotlin.String declared in <root>.UserWithEmail.<init>' type=kotlin.String origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-name> visibility:public modality:FINAL returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserWithEmail
+        correspondingProperty: PROPERTY name:name visibility:public modality:FINAL [val]
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun <get-name> (): kotlin.String declared in <root>.UserWithEmail'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: <root>.UserWithEmail declared in <root>.UserWithEmail.<get-name>' type=<root>.UserWithEmail origin=null
+    PROPERTY name:email visibility:public modality:FINAL [val]
+      FIELD PROPERTY_BACKING_FIELD name:email type:<root>.Email? visibility:private [final]
+        EXPRESSION_BODY
+          GET_VAR 'email: <root>.Email? declared in <root>.UserWithEmail.<init>' type=<root>.Email? origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-email> visibility:public modality:FINAL returnType:<root>.Email?
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserWithEmail
+        correspondingProperty: PROPERTY name:email visibility:public modality:FINAL [val]
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun <get-email> (): <root>.Email? declared in <root>.UserWithEmail'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:email type:<root>.Email? visibility:private [final]' type=<root>.Email? origin=null
+              receiver: GET_VAR '<this>: <root>.UserWithEmail declared in <root>.UserWithEmail.<get-email>' type=<root>.UserWithEmail origin=null
+    CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateCompanionKey] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.UserWithEmail.Companion
+      CONSTRUCTOR GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateCompanionKey] visibility:private returnType:<root>.UserWithEmail.Companion [primary]
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateCompanionKey] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=kotlin.Unit
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in kotlin.Any
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in kotlin.Any
+      FUN GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperAccessorKey] name:parameterMapper visibility:public modality:FINAL returnType:io.github.kantis.mikrom.ParameterMapper<<root>.UserWithEmail>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserWithEmail.Companion
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun parameterMapper (): io.github.kantis.mikrom.ParameterMapper<<root>.UserWithEmail> declared in <root>.UserWithEmail.Companion'
+            GET_OBJECT 'CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperClassKey] OBJECT name:$ParameterMapper modality:FINAL visibility:public superTypes:[io.github.kantis.mikrom.ParameterMapper<<root>.UserWithEmail>]' type=<root>.UserWithEmail.$ParameterMapper
+    CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperClassKey] OBJECT name:$ParameterMapper modality:FINAL visibility:public superTypes:[io.github.kantis.mikrom.ParameterMapper<<root>.UserWithEmail>]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.UserWithEmail.$ParameterMapper
+      CONSTRUCTOR GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperKey] visibility:private returnType:<root>.UserWithEmail.$ParameterMapper [primary]
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperClassKey] OBJECT name:$ParameterMapper modality:FINAL visibility:public superTypes:[io.github.kantis.mikrom.ParameterMapper<<root>.UserWithEmail>]' type=kotlin.Unit
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in io.github.kantis.mikrom.ParameterMapper
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in io.github.kantis.mikrom.ParameterMapper
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in io.github.kantis.mikrom.ParameterMapper
+      FUN GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperKey] name:mapParameters visibility:public modality:FINAL returnType:kotlin.collections.Map<kotlin.String, kotlin.Any?>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserWithEmail.$ParameterMapper
+        VALUE_PARAMETER GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperKey] kind:Regular name:value index:1 type:<root>.UserWithEmail
+        overridden:
+          public abstract fun mapParameters (value: T of io.github.kantis.mikrom.ParameterMapper): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in io.github.kantis.mikrom.ParameterMapper
+        BLOCK_BODY
+          VAR IR_TEMPORARY_VARIABLE name:tmp_1 type:<root>.Email? [val]
+            CALL 'public final fun <get-email> (): <root>.Email? declared in <root>.UserWithEmail' type=<root>.Email? origin=null
+              ARG <this>: GET_VAR 'value: <root>.UserWithEmail declared in <root>.UserWithEmail.$ParameterMapper.mapParameters' type=<root>.UserWithEmail origin=null
+          RETURN type=kotlin.Nothing from='public final fun mapParameters (value: <root>.UserWithEmail): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.UserWithEmail.$ParameterMapper'
+            CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> origin=null
+              TYPE_ARG K: kotlin.String
+              TYPE_ARG V: kotlin.Any?
+              ARG pairs: VARARG type=kotlin.Array<kotlin.Pair<kotlin.String, kotlin.Any?>> varargElementType=kotlin.Pair<kotlin.String, kotlin.Any?>
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                  TYPE_ARG A: kotlin.String
+                  TYPE_ARG B: kotlin.Any?
+                  ARG <this>: CONST String type=kotlin.String value="name"
+                  ARG that: CALL 'public final fun <get-name> (): kotlin.String declared in <root>.UserWithEmail' type=kotlin.String origin=null
+                    ARG <this>: GET_VAR 'value: <root>.UserWithEmail declared in <root>.UserWithEmail.$ParameterMapper.mapParameters' type=<root>.UserWithEmail origin=null
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                  TYPE_ARG A: kotlin.String
+                  TYPE_ARG B: kotlin.Any?
+                  ARG <this>: CONST String type=kotlin.String value="email"
+                  ARG that: WHEN type=kotlin.Any? origin=null
+                    BRANCH
+                      if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                        ARG arg0: GET_VAR 'val tmp_1: <root>.Email? declared in <root>.UserWithEmail.$ParameterMapper.mapParameters' type=<root>.Email? origin=null
+                        ARG arg1: CONST Null type=kotlin.Nothing? value=null
+                      then: CONSTRUCTOR_CALL 'public constructor <init> (type: kotlin.reflect.KClass<*>) declared in io.github.kantis.mikrom.TypedNull' type=io.github.kantis.mikrom.TypedNull origin=null
+                        ARG type: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:String modality:FINAL visibility:public superTypes:[kotlin.Comparable<kotlin.String>; kotlin.CharSequence; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.String>
+                    BRANCH
+                      if: CONST Boolean type=kotlin.Boolean value=true
+                      then: CALL 'public final fun <get-value> (): kotlin.String declared in <root>.Email' type=kotlin.String origin=null
+                        ARG <this>: GET_VAR 'val tmp_1: <root>.Email? declared in <root>.UserWithEmail.$ParameterMapper.mapParameters' type=<root>.Email? origin=null
+    CONSTRUCTOR visibility:public returnType:<root>.UserWithEmail [primary]
+      VALUE_PARAMETER kind:Regular name:name index:0 type:kotlin.String
+      VALUE_PARAMETER kind:Regular name:email index:1 type:<root>.Email?
+      BLOCK_BODY
+        DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+        INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:UserWithEmail modality:FINAL visibility:public [data] superTypes:[kotlin.Any]' type=kotlin.Unit
+    FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.String [operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserWithEmail
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public final fun component1 (): kotlin.String declared in <root>.UserWithEmail'
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+            receiver: GET_VAR '<this>: <root>.UserWithEmail declared in <root>.UserWithEmail.component1' type=<root>.UserWithEmail origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:component2 visibility:public modality:FINAL returnType:<root>.Email? [operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserWithEmail
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public final fun component2 (): <root>.Email? declared in <root>.UserWithEmail'
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:email type:<root>.Email? visibility:private [final]' type=<root>.Email? origin=null
+            receiver: GET_VAR '<this>: <root>.UserWithEmail declared in <root>.UserWithEmail.component2' type=<root>.UserWithEmail origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:copy visibility:public modality:FINAL returnType:<root>.UserWithEmail
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserWithEmail
+      VALUE_PARAMETER kind:Regular name:name index:1 type:kotlin.String
+        EXPRESSION_BODY
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+            receiver: GET_VAR '<this>: <root>.UserWithEmail declared in <root>.UserWithEmail.copy' type=<root>.UserWithEmail origin=null
+      VALUE_PARAMETER kind:Regular name:email index:2 type:<root>.Email?
+        EXPRESSION_BODY
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:email type:<root>.Email? visibility:private [final]' type=<root>.Email? origin=null
+            receiver: GET_VAR '<this>: <root>.UserWithEmail declared in <root>.UserWithEmail.copy' type=<root>.UserWithEmail origin=null
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public final fun copy (name: kotlin.String, email: <root>.Email?): <root>.UserWithEmail declared in <root>.UserWithEmail'
+          CONSTRUCTOR_CALL 'public constructor <init> (name: kotlin.String, email: <root>.Email?) declared in <root>.UserWithEmail' type=<root>.UserWithEmail origin=null
+            ARG name: GET_VAR 'name: kotlin.String declared in <root>.UserWithEmail.copy' type=kotlin.String origin=null
+            ARG email: GET_VAR 'email: <root>.Email? declared in <root>.UserWithEmail.copy' type=<root>.Email? origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserWithEmail
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+      BLOCK_BODY
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: CALL 'public final fun EQEQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQEQ
+              ARG arg0: GET_VAR '<this>: <root>.UserWithEmail declared in <root>.UserWithEmail.equals' type=<root>.UserWithEmail origin=null
+              ARG arg1: GET_VAR 'other: kotlin.Any? declared in <root>.UserWithEmail.equals' type=kotlin.Any? origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.UserWithEmail'
+              CONST Boolean type=kotlin.Boolean value=true
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: TYPE_OP type=kotlin.Boolean origin=NOT_INSTANCEOF typeOperand=<root>.UserWithEmail
+              GET_VAR 'other: kotlin.Any? declared in <root>.UserWithEmail.equals' type=kotlin.Any? origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.UserWithEmail'
+              CONST Boolean type=kotlin.Boolean value=false
+        VAR IR_TEMPORARY_VARIABLE name:tmp_2 type:<root>.UserWithEmail [val]
+          TYPE_OP type=<root>.UserWithEmail origin=IMPLICIT_CAST typeOperand=<root>.UserWithEmail
+            GET_VAR 'other: kotlin.Any? declared in <root>.UserWithEmail.equals' type=kotlin.Any? origin=null
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+              ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                  receiver: GET_VAR '<this>: <root>.UserWithEmail declared in <root>.UserWithEmail.equals' type=<root>.UserWithEmail origin=null
+                ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                  receiver: GET_VAR 'val tmp_2: <root>.UserWithEmail declared in <root>.UserWithEmail.equals' type=<root>.UserWithEmail origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.UserWithEmail'
+              CONST Boolean type=kotlin.Boolean value=false
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+              ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:email type:<root>.Email? visibility:private [final]' type=<root>.Email? origin=null
+                  receiver: GET_VAR '<this>: <root>.UserWithEmail declared in <root>.UserWithEmail.equals' type=<root>.UserWithEmail origin=null
+                ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:email type:<root>.Email? visibility:private [final]' type=<root>.Email? origin=null
+                  receiver: GET_VAR 'val tmp_2: <root>.UserWithEmail declared in <root>.UserWithEmail.equals' type=<root>.UserWithEmail origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.UserWithEmail'
+              CONST Boolean type=kotlin.Boolean value=false
+        RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.UserWithEmail'
+          CONST Boolean type=kotlin.Boolean value=true
+    FUN GENERATED_DATA_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserWithEmail
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+      BLOCK_BODY
+        VAR name:result type:kotlin.Int [var]
+          CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.String' type=kotlin.Int origin=null
+            ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: <root>.UserWithEmail declared in <root>.UserWithEmail.hashCode' type=<root>.UserWithEmail origin=null
+        SET_VAR 'var result: kotlin.Int declared in <root>.UserWithEmail.hashCode' type=kotlin.Unit origin=EQ
+          CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+            ARG <this>: CALL 'public final fun times (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+              ARG <this>: GET_VAR 'var result: kotlin.Int declared in <root>.UserWithEmail.hashCode' type=kotlin.Int origin=null
+              ARG other: CONST Int type=kotlin.Int value=31
+            ARG other: WHEN type=kotlin.Int origin=null
+              BRANCH
+                if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                  ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:email type:<root>.Email? visibility:private [final]' type=<root>.Email? origin=null
+                    receiver: GET_VAR '<this>: <root>.UserWithEmail declared in <root>.UserWithEmail.hashCode' type=<root>.UserWithEmail origin=null
+                  ARG arg1: CONST Null type=kotlin.Nothing? value=null
+                then: CONST Int type=kotlin.Int value=0
+              BRANCH
+                if: CONST Boolean type=kotlin.Boolean value=true
+                then: CALL 'public open fun hashCode (): kotlin.Int declared in <root>.Email' type=kotlin.Int origin=null
+                  ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:email type:<root>.Email? visibility:private [final]' type=<root>.Email? origin=null
+                    receiver: GET_VAR '<this>: <root>.UserWithEmail declared in <root>.UserWithEmail.hashCode' type=<root>.UserWithEmail origin=null
+        RETURN type=kotlin.Nothing from='public open fun hashCode (): kotlin.Int declared in <root>.UserWithEmail'
+          GET_VAR 'var result: kotlin.Int declared in <root>.UserWithEmail.hashCode' type=kotlin.Int origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.UserWithEmail
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public open fun toString (): kotlin.String declared in <root>.UserWithEmail'
+          STRING_CONCATENATION type=kotlin.String
+            CONST String type=kotlin.String value="UserWithEmail("
+            CONST String type=kotlin.String value="name="
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: <root>.UserWithEmail declared in <root>.UserWithEmail.toString' type=<root>.UserWithEmail origin=null
+            CONST String type=kotlin.String value=", "
+            CONST String type=kotlin.String value="email="
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:email type:<root>.Email? visibility:private [final]' type=<root>.Email? origin=null
+              receiver: GET_VAR '<this>: <root>.UserWithEmail declared in <root>.UserWithEmail.toString' type=<root>.UserWithEmail origin=null
+            CONST String type=kotlin.String value=")"
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
+    BLOCK_BODY
+      VAR name:mapper type:io.github.kantis.mikrom.ParameterMapper<<root>.UserWithEmail> [val]
+        CALL 'public final fun parameterMapper (): io.github.kantis.mikrom.ParameterMapper<<root>.UserWithEmail> declared in <root>.UserWithEmail.Companion' type=io.github.kantis.mikrom.ParameterMapper<<root>.UserWithEmail> origin=null
+          ARG <this>: GET_OBJECT 'CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateCompanionKey] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=<root>.UserWithEmail.Companion
+      VAR name:params1 type:kotlin.collections.Map<kotlin.String, kotlin.Any?> [val]
+        CALL 'public abstract fun mapParameters (value: T of io.github.kantis.mikrom.ParameterMapper): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in io.github.kantis.mikrom.ParameterMapper' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
+          ARG <this>: GET_VAR 'val mapper: io.github.kantis.mikrom.ParameterMapper<<root>.UserWithEmail> declared in <root>.box' type=io.github.kantis.mikrom.ParameterMapper<<root>.UserWithEmail> origin=null
+          ARG value: CONSTRUCTOR_CALL 'public constructor <init> (name: kotlin.String, email: <root>.Email?) declared in <root>.UserWithEmail' type=<root>.UserWithEmail origin=null
+            ARG name: CONST String type=kotlin.String value="Alice"
+            ARG email: CONSTRUCTOR_CALL 'public constructor <init> (value: kotlin.String) declared in <root>.Email' type=<root>.Email origin=null
+              ARG value: CONST String type=kotlin.String value="alice@example.com"
+      CALL 'public final fun assertEquals <T> (expected: T of kotlin.test.assertEquals, actual: T of kotlin.test.assertEquals, message: kotlin.String?): kotlin.Unit declared in kotlin.test' type=kotlin.Unit origin=null
+        TYPE_ARG T: kotlin.Any?
+        ARG expected: CONST String type=kotlin.String value="Alice"
+        ARG actual: CALL 'public abstract fun get (key: K of kotlin.collections.Map): V of kotlin.collections.Map? declared in kotlin.collections.Map' type=kotlin.Any? origin=GET_ARRAY_ELEMENT
+          ARG <this>: GET_VAR 'val params1: kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.box' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
+          ARG key: CONST String type=kotlin.String value="name"
+      CALL 'public final fun assertEquals <T> (expected: T of kotlin.test.assertEquals, actual: T of kotlin.test.assertEquals, message: kotlin.String?): kotlin.Unit declared in kotlin.test' type=kotlin.Unit origin=null
+        TYPE_ARG T: kotlin.Any?
+        ARG expected: CONST String type=kotlin.String value="alice@example.com"
+        ARG actual: CALL 'public abstract fun get (key: K of kotlin.collections.Map): V of kotlin.collections.Map? declared in kotlin.collections.Map' type=kotlin.Any? origin=GET_ARRAY_ELEMENT
+          ARG <this>: GET_VAR 'val params1: kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.box' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
+          ARG key: CONST String type=kotlin.String value="email"
+      VAR name:params2 type:kotlin.collections.Map<kotlin.String, kotlin.Any?> [val]
+        CALL 'public abstract fun mapParameters (value: T of io.github.kantis.mikrom.ParameterMapper): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in io.github.kantis.mikrom.ParameterMapper' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
+          ARG <this>: GET_VAR 'val mapper: io.github.kantis.mikrom.ParameterMapper<<root>.UserWithEmail> declared in <root>.box' type=io.github.kantis.mikrom.ParameterMapper<<root>.UserWithEmail> origin=null
+          ARG value: CONSTRUCTOR_CALL 'public constructor <init> (name: kotlin.String, email: <root>.Email?) declared in <root>.UserWithEmail' type=<root>.UserWithEmail origin=null
+            ARG name: CONST String type=kotlin.String value="Bob"
+            ARG email: CONST Null type=kotlin.Nothing? value=null
+      CALL 'public final fun assertEquals <T> (expected: T of kotlin.test.assertEquals, actual: T of kotlin.test.assertEquals, message: kotlin.String?): kotlin.Unit declared in kotlin.test' type=kotlin.Unit origin=null
+        TYPE_ARG T: kotlin.Any?
+        ARG expected: CONST String type=kotlin.String value="Bob"
+        ARG actual: CALL 'public abstract fun get (key: K of kotlin.collections.Map): V of kotlin.collections.Map? declared in kotlin.collections.Map' type=kotlin.Any? origin=GET_ARRAY_ELEMENT
+          ARG <this>: GET_VAR 'val params2: kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.box' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
+          ARG key: CONST String type=kotlin.String value="name"
+      VAR name:emailValue type:kotlin.Any? [val]
+        CALL 'public abstract fun get (key: K of kotlin.collections.Map): V of kotlin.collections.Map? declared in kotlin.collections.Map' type=kotlin.Any? origin=GET_ARRAY_ELEMENT
+          ARG <this>: GET_VAR 'val params2: kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.box' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
+          ARG key: CONST String type=kotlin.String value="email"
+      CALL 'public final fun assertTrue (actual: kotlin.Boolean, message: kotlin.String?): kotlin.Unit declared in kotlin.test' type=kotlin.Unit origin=null
+        ARG actual: TYPE_OP type=kotlin.Boolean origin=INSTANCEOF typeOperand=io.github.kantis.mikrom.TypedNull
+          GET_VAR 'val emailValue: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+        ARG message: STRING_CONCATENATION type=kotlin.String
+          CONST String type=kotlin.String value="Expected TypedNull for null email, got: "
+          GET_VAR 'val emailValue: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+      CALL 'public final fun assertEquals <T> (expected: T of kotlin.test.assertEquals, actual: T of kotlin.test.assertEquals, message: kotlin.String?): kotlin.Unit declared in kotlin.test' type=kotlin.Unit origin=null
+        TYPE_ARG T: kotlin.reflect.KClass<out kotlin.Any>
+        ARG expected: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:String modality:FINAL visibility:public superTypes:[kotlin.Comparable<kotlin.String>; kotlin.CharSequence; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.String>
+        ARG actual: CALL 'public final fun <get-type> (): kotlin.reflect.KClass<*> declared in io.github.kantis.mikrom.TypedNull' type=kotlin.reflect.KClass<*> origin=GET_PROPERTY
+          ARG <this>: TYPE_OP type=io.github.kantis.mikrom.TypedNull origin=IMPLICIT_CAST typeOperand=io.github.kantis.mikrom.TypedNull
+            GET_VAR 'val emailValue: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+        CONST String type=kotlin.String value="OK"

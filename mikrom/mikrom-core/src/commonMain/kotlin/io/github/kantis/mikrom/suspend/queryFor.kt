@@ -29,7 +29,7 @@ public suspend inline fun <reified T> Mikrom.queryFor(
 context(transaction: SuspendingTransaction)
 public suspend inline fun <reified T : Any> Mikrom.queryFor(
    @Language("SQL") query: Query,
-   params: List<Any?>,
+   params: List<Any>,
 ): Flow<T> {
    if (T::class in nonMappedPrimitives) {
       return transaction.query(query, params).map { it.singleValue() as T }
@@ -41,7 +41,7 @@ public suspend inline fun <reified T : Any> Mikrom.queryFor(
 context(transaction: SuspendingTransaction)
 public suspend inline fun <reified T : Any> Mikrom.queryFor(
    @Language("SQL") query: Query,
-   params: Map<String, Any?>,
+   params: Map<String, Any>,
 ): Flow<T> {
    val parsed = parseNamedParameters(query)
    return queryFor(parsed.sql, parsed.resolveParams(params))

@@ -2,6 +2,7 @@ package io.github.kantis.mikrom.r2dbc
 
 import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.Row
+import io.github.kantis.mikrom.TypedNull
 import io.github.kantis.mikrom.buildRow
 import io.github.kantis.mikrom.suspend.SuspendingTransaction
 import io.r2dbc.spi.Connection
@@ -82,11 +83,10 @@ public class R2dbcTransaction(private val connection: Connection, override val c
       params: List<*>,
    ) {
       params.forEachIndexed { index, param ->
-         if (param == null) {
-            // TODO: How can we know the type of the column?
-            statement.bindNull(index, Object::class.java)
-         } else {
-            statement.bind(index, param)
+         when (param) {
+            is TypedNull -> statement.bindNull(index, param.type.java)
+            null -> statement.bindNull(index, Any::class.java)
+            else -> statement.bind(index, param)
          }
       }
    }

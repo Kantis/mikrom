@@ -14,8 +14,10 @@ import org.jetbrains.kotlin.ir.builders.irBlock
 import org.jetbrains.kotlin.ir.builders.irBlockBody
 import org.jetbrains.kotlin.ir.builders.irCall
 import org.jetbrains.kotlin.ir.builders.irDelegatingConstructorCall
+import org.jetbrains.kotlin.ir.builders.irEqualsNull
 import org.jetbrains.kotlin.ir.builders.irGet
 import org.jetbrains.kotlin.ir.builders.irGetObject
+import org.jetbrains.kotlin.ir.builders.irIfThenElse
 import org.jetbrains.kotlin.ir.builders.irReturn
 import org.jetbrains.kotlin.ir.builders.irString
 import org.jetbrains.kotlin.ir.builders.irTemporary
@@ -76,6 +78,9 @@ internal class MikromIrVisitor(
 
       private val ILLEGAL_STATE_EXCEPTION_CLASS_ID =
          ClassId.topLevel(ILLEGAL_STATE_EXCEPTION_FQ_NAME)
+
+      private val TYPED_NULL_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom"), Name.identifier("TypedNull"))
+      private val KCLASS_CLASS_ID = ClassId.topLevel(FqName("kotlin.reflect.KClass"))
 
       private val PAIR_CLASS_ID = ClassId(FqName("kotlin"), Name.identifier("Pair"))
       private val TO_FQ_NAME = FqName("kotlin.to")
@@ -262,6 +267,11 @@ internal class MikromIrVisitor(
       val pairType = pairClass.typeWith(stringType, anyNType)
       val arrayOfPairType = pluginContext.irBuiltIns.arrayClass.typeWith(pairType)
 
+      // TypedNull constructor for wrapping nulls with type info
+      val typedNullClass = pluginContext.referenceClass(TYPED_NULL_CLASS_ID)!!
+      val typedNullConstructor = typedNullClass.owner.primaryConstructor!!
+      val kClassSymbol = pluginContext.referenceClass(KCLASS_CLASS_ID)!!
+
       return irBuilder.irBlockBody {
          // Build pairs: "propName" to value.propName for each constructor parameter
          val pairExpressions = primaryConstructor.parameters.map { ctorParam ->
@@ -269,16 +279,67 @@ internal class MikromIrVisitor(
                .single { it.name == ctorParam.name }
                .getter!!
 
-            var valueExpr: IrExpression = irCall(propertyGetter).apply {
-               dispatchReceiver = irGet(valueParam)
-            }
-
-            // Unwrap value classes to their underlying value
             val paramClass = ctorParam.type.classifierOrNull?.owner as? IrClass
-            if (paramClass?.isValue == true) {
-               val underlyingGetter = paramClass.properties.single().getter!!
-               valueExpr = irCall(underlyingGetter).apply {
-                  dispatchReceiver = valueExpr
+            val isValueClass = paramClass?.isValue == true
+
+            val valueExpr: IrExpression
+            if (ctorParam.type.isNullable()) {
+               // Determine the base type for TypedNull - use underlying type for value classes
+               val baseType = if (isValueClass) {
+                  paramClass.properties.single().getter!!.returnType.makeNotNull()
+               } else {
+                  ctorParam.type.makeNotNull()
+               }
+
+               val classRef = IrClassReferenceImpl(
+                  startOffset,
+                  endOffset,
+                  type = kClassSymbol.typeWith(baseType),
+                  symbol = baseType.classifierOrNull!!,
+                  classType = baseType,
+               )
+
+               val typedNullExpr = irCall(typedNullConstructor.symbol).apply {
+                  arguments[0] = classRef
+               }
+
+               // Store the property value in a temp to avoid duplicating the expression
+               val rawTemp = irTemporary(
+                  nameHint = "${ctorParam.name.asString()}\$raw",
+                  value = irCall(propertyGetter).apply {
+                     dispatchReceiver = irGet(valueParam)
+                  },
+               )
+
+               // For non-null branch: unwrap value class if needed
+               val nonNullExpr: IrExpression = if (isValueClass) {
+                  val underlyingGetter = paramClass!!.properties.single().getter!!
+                  irCall(underlyingGetter).apply {
+                     dispatchReceiver = irGet(rawTemp)
+                  }
+               } else {
+                  irGet(rawTemp)
+               }
+
+               // if (value == null) TypedNull(Type::class) else unwrappedValue
+               valueExpr = irIfThenElse(
+                  type = anyNType,
+                  condition = irEqualsNull(irGet(rawTemp)),
+                  thenPart = typedNullExpr,
+                  elsePart = nonNullExpr,
+               )
+            } else {
+               val rawValueExpr: IrExpression = irCall(propertyGetter).apply {
+                  dispatchReceiver = irGet(valueParam)
+               }
+               // Non-nullable: just unwrap value classes
+               valueExpr = if (isValueClass) {
+                  val underlyingGetter = paramClass.properties.single().getter!!
+                  irCall(underlyingGetter).apply {
+                     dispatchReceiver = rawValueExpr
+                  }
+               } else {
+                  rawValueExpr
                }
             }
 

@@ -50,7 +50,7 @@ public suspend fun Mikrom.executeStreaming(
 context(transaction: SuspendingTransaction)
 public suspend fun Mikrom.execute(
    @Language("SQL") query: Query,
-   params: Map<String, Any?>,
+   params: Map<String, Any>,
 ) {
    val parsed = parseNamedParameters(query)
    execute(parsed.sql, parsed.resolveParams(params))
