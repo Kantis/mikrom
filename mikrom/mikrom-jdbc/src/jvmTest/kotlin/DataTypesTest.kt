@@ -1,5 +1,6 @@
 package io.github.kantis.mikrom.jdbc
 
+import io.github.kantis.mikrom.AnsiString
 import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.execute
@@ -47,6 +48,22 @@ class DataTypesTest : FunSpec({
             result[0].get<Instant>("timestamp") shouldBeEqual now
             result[1].get<Int>("id") shouldBe 2
             result[1].getOrNull<String>("bar") shouldBe null
+         }
+      }
+   }
+
+   test("AnsiString parameter should bind as VARCHAR") {
+      dataSource.transaction {
+         mikrom.execute(
+            "INSERT INTO foo (bar) VALUES (?)",
+            listOf(AnsiString("ansi_value")),
+         )
+
+         val result = query("SELECT * FROM foo WHERE bar = 'ansi_value'")
+
+         with(mikrom) {
+            result.size shouldBe 1
+            result[0].get<String>("bar") shouldBe "ansi_value"
          }
       }
    }

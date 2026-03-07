@@ -1,6 +1,8 @@
 package io.github.kantis.mikrom.r2dbc.factories
 
+import io.github.kantis.mikrom.AnsiString
 import io.github.kantis.mikrom.Mikrom
+import io.github.kantis.mikrom.TypedNull
 import io.github.kantis.mikrom.get
 import io.github.kantis.mikrom.getOrNull
 import io.github.kantis.mikrom.r2dbc.PooledR2dbcDataSource
@@ -122,6 +124,63 @@ fun dataTypeTests(
          record.decimalField shouldBe null
          record.dateField shouldBe null
          record.timestampField shouldBe null
+      }
+   }
+
+   test("[${dialect.name}] handle TypedNull values with correct type binding") {
+      val typedNullParams = buildList<Any> {
+         add(TypedNull(String::class))
+         add(TypedNull(Int::class))
+         add(TypedNull(Long::class))
+         add(TypedNull(Boolean::class))
+         add(TypedNull(Double::class))
+         add(TypedNull(BigDecimal::class))
+         add(TypedNull(LocalDate::class))
+         add(TypedNull(LocalDateTime::class))
+         if (dialect.supportsUuid) add(TypedNull(UUID::class))
+      }
+
+      dataSource.suspendingTransaction {
+         mikrom.execute(
+            dialect.insertDataTypes(),
+            typedNullParams,
+         )
+
+         val records = mikrom.queryFor<DataTypeRecord>("SELECT * FROM data_types").toList()
+         records.size shouldBe 1
+
+         val record = records[0]
+         record.stringField shouldBe null
+         record.intField shouldBe null
+         record.longField shouldBe null
+         record.booleanField shouldBe null
+         record.doubleField shouldBe null
+         record.decimalField shouldBe null
+         record.dateField shouldBe null
+         record.timestampField shouldBe null
+      }
+   }
+
+   test("[${dialect.name}] handle AnsiString parameter binding") {
+      dataSource.suspendingTransaction {
+         mikrom.execute(
+            dialect.insertDataTypes(),
+            buildList {
+               add(AnsiString("ansi_value"))
+               add(1)
+               add(1L)
+               add(true)
+               add(1.0)
+               add(BigDecimal("1.00"))
+               add(LocalDate.of(2023, 1, 1))
+               add(LocalDateTime.of(2023, 1, 1, 0, 0, 0))
+               if (dialect.supportsUuid) add(UUID.randomUUID())
+            },
+         )
+
+         val records = mikrom.queryFor<DataTypeRecord>("SELECT * FROM data_types").toList()
+         records.size shouldBe 1
+         records[0].stringField shouldBe "ansi_value"
       }
    }
 

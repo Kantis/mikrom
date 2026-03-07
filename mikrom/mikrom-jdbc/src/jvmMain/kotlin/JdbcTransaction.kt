@@ -1,5 +1,6 @@
 package io.github.kantis.mikrom.jdbc
 
+import io.github.kantis.mikrom.AnsiString
 import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.Row
 import io.github.kantis.mikrom.TypedNull
@@ -45,6 +46,7 @@ public class JdbcTransaction(private val connection: Connection) : Transaction {
 
       params.forEachIndexed { index, param ->
          when (param) {
+            is AnsiString -> statement.setObject(index + 1, param.value, Types.VARCHAR)
             is String -> statement.setString(index + 1, param)
             is Int -> statement.setInt(index + 1, param)
             is Long -> statement.setLong(index + 1, param)

@@ -80,6 +80,9 @@ internal class MikromIrVisitor(
          ClassId.topLevel(ILLEGAL_STATE_EXCEPTION_FQ_NAME)
 
       private val TYPED_NULL_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom"), Name.identifier("TypedNull"))
+      private val ANSI_STRING_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom"), Name.identifier("AnsiString"))
+      private val SQL_TYPE_HINT_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom.generator"), Name.identifier("SqlTypeHint"))
+      private val SQL_TYPE_CLASS_ID = ClassId(FqName("io.github.kantis.mikrom.generator"), Name.identifier("SqlType"))
       private val KCLASS_CLASS_ID = ClassId.topLevel(FqName("kotlin.reflect.KClass"))
 
       private val PAIR_CLASS_ID = ClassId(FqName("kotlin"), Name.identifier("Pair"))
@@ -272,6 +275,10 @@ internal class MikromIrVisitor(
       val typedNullConstructor = typedNullClass.owner.primaryConstructor!!
       val kClassSymbol = pluginContext.referenceClass(KCLASS_CLASS_ID)!!
 
+      // AnsiString constructor for VARCHAR type hint wrapping
+      val ansiStringClass = pluginContext.referenceClass(ANSI_STRING_CLASS_ID)!!
+      val ansiStringConstructor = ansiStringClass.owner.primaryConstructor!!
+
       return irBuilder.irBlockBody {
          // Build pairs: "propName" to value.propName for each constructor parameter
          val pairExpressions = primaryConstructor.parameters.map { ctorParam ->
@@ -281,6 +288,9 @@ internal class MikromIrVisitor(
 
             val paramClass = ctorParam.type.classifierOrNull?.owner as? IrClass
             val isValueClass = paramClass?.isValue == true
+
+            // Check for @SqlTypeHint(SqlType.VARCHAR) annotation
+            val shouldWrapAnsiString = ctorParam.hasVarcharTypeHint()
 
             val valueExpr: IrExpression
             if (ctorParam.type.isNullable()) {
@@ -312,13 +322,20 @@ internal class MikromIrVisitor(
                )
 
                // For non-null branch: unwrap value class if needed
-               val nonNullExpr: IrExpression = if (isValueClass) {
+               var nonNullExpr: IrExpression = if (isValueClass) {
                   val underlyingGetter = paramClass!!.properties.single().getter!!
                   irCall(underlyingGetter).apply {
                      dispatchReceiver = irGet(rawTemp)
                   }
                } else {
                   irGet(rawTemp)
+               }
+
+               // Wrap in AnsiString if @SqlTypeHint(SqlType.VARCHAR) is present
+               if (shouldWrapAnsiString) {
+                  nonNullExpr = irCall(ansiStringConstructor.symbol).apply {
+                     arguments[0] = nonNullExpr
+                  }
                }
 
                // if (value == null) TypedNull(Type::class) else unwrappedValue
@@ -333,7 +350,7 @@ internal class MikromIrVisitor(
                   dispatchReceiver = irGet(valueParam)
                }
                // Non-nullable: just unwrap value classes
-               valueExpr = if (isValueClass) {
+               var unwrappedExpr: IrExpression = if (isValueClass) {
                   val underlyingGetter = paramClass.properties.single().getter!!
                   irCall(underlyingGetter).apply {
                      dispatchReceiver = rawValueExpr
@@ -341,6 +358,15 @@ internal class MikromIrVisitor(
                } else {
                   rawValueExpr
                }
+
+               // Wrap in AnsiString if @SqlTypeHint(SqlType.VARCHAR) is present
+               if (shouldWrapAnsiString) {
+                  unwrappedExpr = irCall(ansiStringConstructor.symbol).apply {
+                     arguments[0] = unwrappedExpr
+                  }
+               }
+
+               valueExpr = unwrappedExpr
             }
 
             irCall(toFunction).apply {
@@ -450,5 +476,15 @@ internal class MikromIrVisitor(
          }
          arguments[1] = irString(valueParameter.name.asString())
       }
+   }
+
+   private fun IrValueParameter.hasVarcharTypeHint(): Boolean {
+      val sqlTypeHintAnnotation = annotations.firstOrNull {
+         it.type.classifierOrNull == pluginContext.referenceClass(SQL_TYPE_HINT_CLASS_ID)
+      } ?: return false
+
+      val typeArg = sqlTypeHintAnnotation.arguments[0] as? org.jetbrains.kotlin.ir.expressions.IrGetEnumValue
+         ?: return false
+      return typeArg.symbol.owner.name.asString() == "VARCHAR"
    }
 }

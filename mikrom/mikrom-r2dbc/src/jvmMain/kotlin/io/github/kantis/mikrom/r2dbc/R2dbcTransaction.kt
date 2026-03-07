@@ -1,5 +1,6 @@
 package io.github.kantis.mikrom.r2dbc
 
+import io.github.kantis.mikrom.AnsiString
 import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.Row
 import io.github.kantis.mikrom.TypedNull
@@ -84,6 +85,7 @@ public class R2dbcTransaction(private val connection: Connection, override val c
    ) {
       params.forEachIndexed { index, param ->
          when (param) {
+            is AnsiString -> statement.bind(index, param.value)
             is TypedNull -> statement.bindNull(index, param.type.java)
             null -> statement.bindNull(index, Any::class.java)
             else -> statement.bind(index, param)

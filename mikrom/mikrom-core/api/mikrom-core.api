@@ -1,3 +1,17 @@
+public final class io/github/kantis/mikrom/AnsiString {
+	public static final synthetic fun box-impl (Ljava/lang/String;)Lio/github/kantis/mikrom/AnsiString;
+	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
+	public final fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Ljava/lang/String;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Ljava/lang/String;
+}
+
 public final class io/github/kantis/mikrom/Mikrom {
 	public static final field Companion Lio/github/kantis/mikrom/Mikrom$Companion;
 	public fun <init> (Ljava/util/Map;Ljava/util/Map;Lio/github/kantis/mikrom/convert/TypeConversions;Lio/github/kantis/mikrom/generator/NamingStrategy;)V
@@ -211,6 +225,18 @@ public abstract interface annotation class io/github/kantis/mikrom/generator/Que
 }
 
 public abstract interface annotation class io/github/kantis/mikrom/generator/RowMapped : java/lang/annotation/Annotation {
+}
+
+public final class io/github/kantis/mikrom/generator/SqlType : java/lang/Enum {
+	public static final field NVARCHAR Lio/github/kantis/mikrom/generator/SqlType;
+	public static final field VARCHAR Lio/github/kantis/mikrom/generator/SqlType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/github/kantis/mikrom/generator/SqlType;
+	public static fun values ()[Lio/github/kantis/mikrom/generator/SqlType;
+}
+
+public abstract interface annotation class io/github/kantis/mikrom/generator/SqlTypeHint : java/lang/annotation/Annotation {
+	public abstract fun type ()Lio/github/kantis/mikrom/generator/SqlType;
 }
 
 public final class io/github/kantis/mikrom/internal/FindCompiledParameterMapperKt {

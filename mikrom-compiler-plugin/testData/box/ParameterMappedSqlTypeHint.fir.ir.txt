@@ -1,0 +1,613 @@
+FILE fqName:<root> fileName:/ParameterMappedSqlTypeHint.kt
+  CLASS CLASS name:NullableVarcharUser modality:FINAL visibility:public [data] superTypes:[kotlin.Any]
+    annotations:
+      ParameterMapped
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.NullableVarcharUser
+    PROPERTY name:name visibility:public modality:FINAL [val]
+      FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String? visibility:private [final]
+        EXPRESSION_BODY
+          GET_VAR 'name: kotlin.String? declared in <root>.NullableVarcharUser.<init>' type=kotlin.String? origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-name> visibility:public modality:FINAL returnType:kotlin.String?
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.NullableVarcharUser
+        correspondingProperty: PROPERTY name:name visibility:public modality:FINAL [val]
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun <get-name> (): kotlin.String? declared in <root>.NullableVarcharUser'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String? visibility:private [final]' type=kotlin.String? origin=null
+              receiver: GET_VAR '<this>: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.<get-name>' type=<root>.NullableVarcharUser origin=null
+    PROPERTY name:age visibility:public modality:FINAL [val]
+      FIELD PROPERTY_BACKING_FIELD name:age type:kotlin.Int? visibility:private [final]
+        EXPRESSION_BODY
+          GET_VAR 'age: kotlin.Int? declared in <root>.NullableVarcharUser.<init>' type=kotlin.Int? origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-age> visibility:public modality:FINAL returnType:kotlin.Int?
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.NullableVarcharUser
+        correspondingProperty: PROPERTY name:age visibility:public modality:FINAL [val]
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun <get-age> (): kotlin.Int? declared in <root>.NullableVarcharUser'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:kotlin.Int? visibility:private [final]' type=kotlin.Int? origin=null
+              receiver: GET_VAR '<this>: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.<get-age>' type=<root>.NullableVarcharUser origin=null
+    CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateCompanionKey] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.NullableVarcharUser.Companion
+      CONSTRUCTOR GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateCompanionKey] visibility:private returnType:<root>.NullableVarcharUser.Companion [primary]
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateCompanionKey] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=kotlin.Unit
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in kotlin.Any
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in kotlin.Any
+      FUN GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperAccessorKey] name:parameterMapper visibility:public modality:FINAL returnType:io.github.kantis.mikrom.ParameterMapper<<root>.NullableVarcharUser>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.NullableVarcharUser.Companion
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun parameterMapper (): io.github.kantis.mikrom.ParameterMapper<<root>.NullableVarcharUser> declared in <root>.NullableVarcharUser.Companion'
+            GET_OBJECT 'CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperClassKey] OBJECT name:$ParameterMapper modality:FINAL visibility:public superTypes:[io.github.kantis.mikrom.ParameterMapper<<root>.NullableVarcharUser>]' type=<root>.NullableVarcharUser.$ParameterMapper
+    CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperClassKey] OBJECT name:$ParameterMapper modality:FINAL visibility:public superTypes:[io.github.kantis.mikrom.ParameterMapper<<root>.NullableVarcharUser>]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.NullableVarcharUser.$ParameterMapper
+      CONSTRUCTOR GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperKey] visibility:private returnType:<root>.NullableVarcharUser.$ParameterMapper [primary]
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperClassKey] OBJECT name:$ParameterMapper modality:FINAL visibility:public superTypes:[io.github.kantis.mikrom.ParameterMapper<<root>.NullableVarcharUser>]' type=kotlin.Unit
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in io.github.kantis.mikrom.ParameterMapper
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in io.github.kantis.mikrom.ParameterMapper
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in io.github.kantis.mikrom.ParameterMapper
+      FUN GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperKey] name:mapParameters visibility:public modality:FINAL returnType:kotlin.collections.Map<kotlin.String, kotlin.Any?>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.NullableVarcharUser.$ParameterMapper
+        VALUE_PARAMETER GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperKey] kind:Regular name:value index:1 type:<root>.NullableVarcharUser
+        overridden:
+          public abstract fun mapParameters (value: T of io.github.kantis.mikrom.ParameterMapper): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in io.github.kantis.mikrom.ParameterMapper
+        BLOCK_BODY
+          VAR IR_TEMPORARY_VARIABLE name:tmp_0 type:kotlin.String? [val]
+            CALL 'public final fun <get-name> (): kotlin.String? declared in <root>.NullableVarcharUser' type=kotlin.String? origin=null
+              ARG <this>: GET_VAR 'value: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.$ParameterMapper.mapParameters' type=<root>.NullableVarcharUser origin=null
+          VAR IR_TEMPORARY_VARIABLE name:tmp_1 type:kotlin.Int? [val]
+            CALL 'public final fun <get-age> (): kotlin.Int? declared in <root>.NullableVarcharUser' type=kotlin.Int? origin=null
+              ARG <this>: GET_VAR 'value: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.$ParameterMapper.mapParameters' type=<root>.NullableVarcharUser origin=null
+          RETURN type=kotlin.Nothing from='public final fun mapParameters (value: <root>.NullableVarcharUser): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.NullableVarcharUser.$ParameterMapper'
+            CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> origin=null
+              TYPE_ARG K: kotlin.String
+              TYPE_ARG V: kotlin.Any?
+              ARG pairs: VARARG type=kotlin.Array<kotlin.Pair<kotlin.String, kotlin.Any?>> varargElementType=kotlin.Pair<kotlin.String, kotlin.Any?>
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                  TYPE_ARG A: kotlin.String
+                  TYPE_ARG B: kotlin.Any?
+                  ARG <this>: CONST String type=kotlin.String value="name"
+                  ARG that: WHEN type=kotlin.Any? origin=null
+                    BRANCH
+                      if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                        ARG arg0: GET_VAR 'val tmp_0: kotlin.String? declared in <root>.NullableVarcharUser.$ParameterMapper.mapParameters' type=kotlin.String? origin=null
+                        ARG arg1: CONST Null type=kotlin.Nothing? value=null
+                      then: CONSTRUCTOR_CALL 'public constructor <init> (type: kotlin.reflect.KClass<*>) declared in io.github.kantis.mikrom.TypedNull' type=io.github.kantis.mikrom.TypedNull origin=null
+                        ARG type: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:String modality:FINAL visibility:public superTypes:[kotlin.Comparable<kotlin.String>; kotlin.CharSequence; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.String>
+                    BRANCH
+                      if: CONST Boolean type=kotlin.Boolean value=true
+                      then: CONSTRUCTOR_CALL 'public constructor <init> (value: kotlin.String) declared in io.github.kantis.mikrom.AnsiString' type=io.github.kantis.mikrom.AnsiString origin=null
+                        ARG value: GET_VAR 'val tmp_0: kotlin.String? declared in <root>.NullableVarcharUser.$ParameterMapper.mapParameters' type=kotlin.String? origin=null
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                  TYPE_ARG A: kotlin.String
+                  TYPE_ARG B: kotlin.Any?
+                  ARG <this>: CONST String type=kotlin.String value="age"
+                  ARG that: WHEN type=kotlin.Any? origin=null
+                    BRANCH
+                      if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                        ARG arg0: GET_VAR 'val tmp_1: kotlin.Int? declared in <root>.NullableVarcharUser.$ParameterMapper.mapParameters' type=kotlin.Int? origin=null
+                        ARG arg1: CONST Null type=kotlin.Nothing? value=null
+                      then: CONSTRUCTOR_CALL 'public constructor <init> (type: kotlin.reflect.KClass<*>) declared in io.github.kantis.mikrom.TypedNull' type=io.github.kantis.mikrom.TypedNull origin=null
+                        ARG type: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:Int modality:FINAL visibility:public superTypes:[kotlin.Number; kotlin.Comparable<kotlin.Int>; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.Int>
+                    BRANCH
+                      if: CONST Boolean type=kotlin.Boolean value=true
+                      then: GET_VAR 'val tmp_1: kotlin.Int? declared in <root>.NullableVarcharUser.$ParameterMapper.mapParameters' type=kotlin.Int? origin=null
+    CONSTRUCTOR visibility:public returnType:<root>.NullableVarcharUser [primary]
+      VALUE_PARAMETER kind:Regular name:name index:0 type:kotlin.String?
+        annotations:
+          SqlTypeHint(type = GET_ENUM 'ENUM_ENTRY IR_EXTERNAL_DECLARATION_STUB name:VARCHAR' type=io.github.kantis.mikrom.generator.SqlType)
+      VALUE_PARAMETER kind:Regular name:age index:1 type:kotlin.Int?
+      BLOCK_BODY
+        DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+        INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:NullableVarcharUser modality:FINAL visibility:public [data] superTypes:[kotlin.Any]' type=kotlin.Unit
+    FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.String? [operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.NullableVarcharUser
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public final fun component1 (): kotlin.String? declared in <root>.NullableVarcharUser'
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String? visibility:private [final]' type=kotlin.String? origin=null
+            receiver: GET_VAR '<this>: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.component1' type=<root>.NullableVarcharUser origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:component2 visibility:public modality:FINAL returnType:kotlin.Int? [operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.NullableVarcharUser
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public final fun component2 (): kotlin.Int? declared in <root>.NullableVarcharUser'
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:kotlin.Int? visibility:private [final]' type=kotlin.Int? origin=null
+            receiver: GET_VAR '<this>: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.component2' type=<root>.NullableVarcharUser origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:copy visibility:public modality:FINAL returnType:<root>.NullableVarcharUser
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.NullableVarcharUser
+      VALUE_PARAMETER kind:Regular name:name index:1 type:kotlin.String?
+        annotations:
+          SqlTypeHint(type = GET_ENUM 'ENUM_ENTRY IR_EXTERNAL_DECLARATION_STUB name:VARCHAR' type=io.github.kantis.mikrom.generator.SqlType)
+        EXPRESSION_BODY
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String? visibility:private [final]' type=kotlin.String? origin=null
+            receiver: GET_VAR '<this>: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.copy' type=<root>.NullableVarcharUser origin=null
+      VALUE_PARAMETER kind:Regular name:age index:2 type:kotlin.Int?
+        EXPRESSION_BODY
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:kotlin.Int? visibility:private [final]' type=kotlin.Int? origin=null
+            receiver: GET_VAR '<this>: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.copy' type=<root>.NullableVarcharUser origin=null
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public final fun copy (name: kotlin.String?, age: kotlin.Int?): <root>.NullableVarcharUser declared in <root>.NullableVarcharUser'
+          CONSTRUCTOR_CALL 'public constructor <init> (name: kotlin.String?, age: kotlin.Int?) declared in <root>.NullableVarcharUser' type=<root>.NullableVarcharUser origin=null
+            ARG name: GET_VAR 'name: kotlin.String? declared in <root>.NullableVarcharUser.copy' type=kotlin.String? origin=null
+            ARG age: GET_VAR 'age: kotlin.Int? declared in <root>.NullableVarcharUser.copy' type=kotlin.Int? origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.NullableVarcharUser
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+      BLOCK_BODY
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: CALL 'public final fun EQEQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQEQ
+              ARG arg0: GET_VAR '<this>: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.equals' type=<root>.NullableVarcharUser origin=null
+              ARG arg1: GET_VAR 'other: kotlin.Any? declared in <root>.NullableVarcharUser.equals' type=kotlin.Any? origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.NullableVarcharUser'
+              CONST Boolean type=kotlin.Boolean value=true
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: TYPE_OP type=kotlin.Boolean origin=NOT_INSTANCEOF typeOperand=<root>.NullableVarcharUser
+              GET_VAR 'other: kotlin.Any? declared in <root>.NullableVarcharUser.equals' type=kotlin.Any? origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.NullableVarcharUser'
+              CONST Boolean type=kotlin.Boolean value=false
+        VAR IR_TEMPORARY_VARIABLE name:tmp_2 type:<root>.NullableVarcharUser [val]
+          TYPE_OP type=<root>.NullableVarcharUser origin=IMPLICIT_CAST typeOperand=<root>.NullableVarcharUser
+            GET_VAR 'other: kotlin.Any? declared in <root>.NullableVarcharUser.equals' type=kotlin.Any? origin=null
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+              ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String? visibility:private [final]' type=kotlin.String? origin=null
+                  receiver: GET_VAR '<this>: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.equals' type=<root>.NullableVarcharUser origin=null
+                ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String? visibility:private [final]' type=kotlin.String? origin=null
+                  receiver: GET_VAR 'val tmp_2: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.equals' type=<root>.NullableVarcharUser origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.NullableVarcharUser'
+              CONST Boolean type=kotlin.Boolean value=false
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+              ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:kotlin.Int? visibility:private [final]' type=kotlin.Int? origin=null
+                  receiver: GET_VAR '<this>: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.equals' type=<root>.NullableVarcharUser origin=null
+                ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:kotlin.Int? visibility:private [final]' type=kotlin.Int? origin=null
+                  receiver: GET_VAR 'val tmp_2: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.equals' type=<root>.NullableVarcharUser origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.NullableVarcharUser'
+              CONST Boolean type=kotlin.Boolean value=false
+        RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.NullableVarcharUser'
+          CONST Boolean type=kotlin.Boolean value=true
+    FUN GENERATED_DATA_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.NullableVarcharUser
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+      BLOCK_BODY
+        VAR name:result type:kotlin.Int [var]
+          WHEN type=kotlin.Int origin=null
+            BRANCH
+              if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String? visibility:private [final]' type=kotlin.String? origin=null
+                  receiver: GET_VAR '<this>: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.hashCode' type=<root>.NullableVarcharUser origin=null
+                ARG arg1: CONST Null type=kotlin.Nothing? value=null
+              then: CONST Int type=kotlin.Int value=0
+            BRANCH
+              if: CONST Boolean type=kotlin.Boolean value=true
+              then: CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.String' type=kotlin.Int origin=null
+                ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String? visibility:private [final]' type=kotlin.String? origin=null
+                  receiver: GET_VAR '<this>: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.hashCode' type=<root>.NullableVarcharUser origin=null
+        SET_VAR 'var result: kotlin.Int declared in <root>.NullableVarcharUser.hashCode' type=kotlin.Unit origin=EQ
+          CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+            ARG <this>: CALL 'public final fun times (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+              ARG <this>: GET_VAR 'var result: kotlin.Int declared in <root>.NullableVarcharUser.hashCode' type=kotlin.Int origin=null
+              ARG other: CONST Int type=kotlin.Int value=31
+            ARG other: WHEN type=kotlin.Int origin=null
+              BRANCH
+                if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                  ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:kotlin.Int? visibility:private [final]' type=kotlin.Int? origin=null
+                    receiver: GET_VAR '<this>: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.hashCode' type=<root>.NullableVarcharUser origin=null
+                  ARG arg1: CONST Null type=kotlin.Nothing? value=null
+                then: CONST Int type=kotlin.Int value=0
+              BRANCH
+                if: CONST Boolean type=kotlin.Boolean value=true
+                then: CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+                  ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:kotlin.Int? visibility:private [final]' type=kotlin.Int? origin=null
+                    receiver: GET_VAR '<this>: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.hashCode' type=<root>.NullableVarcharUser origin=null
+        RETURN type=kotlin.Nothing from='public open fun hashCode (): kotlin.Int declared in <root>.NullableVarcharUser'
+          GET_VAR 'var result: kotlin.Int declared in <root>.NullableVarcharUser.hashCode' type=kotlin.Int origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.NullableVarcharUser
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public open fun toString (): kotlin.String declared in <root>.NullableVarcharUser'
+          STRING_CONCATENATION type=kotlin.String
+            CONST String type=kotlin.String value="NullableVarcharUser("
+            CONST String type=kotlin.String value="name="
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String? visibility:private [final]' type=kotlin.String? origin=null
+              receiver: GET_VAR '<this>: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.toString' type=<root>.NullableVarcharUser origin=null
+            CONST String type=kotlin.String value=", "
+            CONST String type=kotlin.String value="age="
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:kotlin.Int? visibility:private [final]' type=kotlin.Int? origin=null
+              receiver: GET_VAR '<this>: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.toString' type=<root>.NullableVarcharUser origin=null
+            CONST String type=kotlin.String value=")"
+  CLASS CLASS name:VarcharUser modality:FINAL visibility:public [data] superTypes:[kotlin.Any]
+    annotations:
+      ParameterMapped
+    thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.VarcharUser
+    PROPERTY name:name visibility:public modality:FINAL [val]
+      FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]
+        EXPRESSION_BODY
+          GET_VAR 'name: kotlin.String declared in <root>.VarcharUser.<init>' type=kotlin.String origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-name> visibility:public modality:FINAL returnType:kotlin.String
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.VarcharUser
+        correspondingProperty: PROPERTY name:name visibility:public modality:FINAL [val]
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun <get-name> (): kotlin.String declared in <root>.VarcharUser'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: <root>.VarcharUser declared in <root>.VarcharUser.<get-name>' type=<root>.VarcharUser origin=null
+    PROPERTY name:age visibility:public modality:FINAL [val]
+      FIELD PROPERTY_BACKING_FIELD name:age type:kotlin.Int visibility:private [final]
+        EXPRESSION_BODY
+          GET_VAR 'age: kotlin.Int declared in <root>.VarcharUser.<init>' type=kotlin.Int origin=INITIALIZE_PROPERTY_FROM_PARAMETER
+      FUN DEFAULT_PROPERTY_ACCESSOR name:<get-age> visibility:public modality:FINAL returnType:kotlin.Int
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.VarcharUser
+        correspondingProperty: PROPERTY name:age visibility:public modality:FINAL [val]
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun <get-age> (): kotlin.Int declared in <root>.VarcharUser'
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+              receiver: GET_VAR '<this>: <root>.VarcharUser declared in <root>.VarcharUser.<get-age>' type=<root>.VarcharUser origin=null
+    CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateCompanionKey] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.VarcharUser.Companion
+      CONSTRUCTOR GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateCompanionKey] visibility:private returnType:<root>.VarcharUser.Companion [primary]
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateCompanionKey] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=kotlin.Unit
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in kotlin.Any
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in kotlin.Any
+      FUN GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperAccessorKey] name:parameterMapper visibility:public modality:FINAL returnType:io.github.kantis.mikrom.ParameterMapper<<root>.VarcharUser>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.VarcharUser.Companion
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun parameterMapper (): io.github.kantis.mikrom.ParameterMapper<<root>.VarcharUser> declared in <root>.VarcharUser.Companion'
+            GET_OBJECT 'CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperClassKey] OBJECT name:$ParameterMapper modality:FINAL visibility:public superTypes:[io.github.kantis.mikrom.ParameterMapper<<root>.VarcharUser>]' type=<root>.VarcharUser.$ParameterMapper
+    CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperClassKey] OBJECT name:$ParameterMapper modality:FINAL visibility:public superTypes:[io.github.kantis.mikrom.ParameterMapper<<root>.VarcharUser>]
+      thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.VarcharUser.$ParameterMapper
+      CONSTRUCTOR GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperKey] visibility:private returnType:<root>.VarcharUser.$ParameterMapper [primary]
+        BLOCK_BODY
+          DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+          INSTANCE_INITIALIZER_CALL classDescriptor='CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperClassKey] OBJECT name:$ParameterMapper modality:FINAL visibility:public superTypes:[io.github.kantis.mikrom.ParameterMapper<<root>.VarcharUser>]' type=kotlin.Unit
+      FUN FAKE_OVERRIDE name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [fake_override,operator]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+        overridden:
+          public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in io.github.kantis.mikrom.ParameterMapper
+      FUN FAKE_OVERRIDE name:hashCode visibility:public modality:OPEN returnType:kotlin.Int [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun hashCode (): kotlin.Int declared in io.github.kantis.mikrom.ParameterMapper
+      FUN FAKE_OVERRIDE name:toString visibility:public modality:OPEN returnType:kotlin.String [fake_override]
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:kotlin.Any
+        overridden:
+          public open fun toString (): kotlin.String declared in io.github.kantis.mikrom.ParameterMapper
+      FUN GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperKey] name:mapParameters visibility:public modality:FINAL returnType:kotlin.collections.Map<kotlin.String, kotlin.Any?>
+        VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.VarcharUser.$ParameterMapper
+        VALUE_PARAMETER GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateParameterMapperKey] kind:Regular name:value index:1 type:<root>.VarcharUser
+        overridden:
+          public abstract fun mapParameters (value: T of io.github.kantis.mikrom.ParameterMapper): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in io.github.kantis.mikrom.ParameterMapper
+        BLOCK_BODY
+          RETURN type=kotlin.Nothing from='public final fun mapParameters (value: <root>.VarcharUser): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.VarcharUser.$ParameterMapper'
+            CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> origin=null
+              TYPE_ARG K: kotlin.String
+              TYPE_ARG V: kotlin.Any?
+              ARG pairs: VARARG type=kotlin.Array<kotlin.Pair<kotlin.String, kotlin.Any?>> varargElementType=kotlin.Pair<kotlin.String, kotlin.Any?>
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                  TYPE_ARG A: kotlin.String
+                  TYPE_ARG B: kotlin.Any?
+                  ARG <this>: CONST String type=kotlin.String value="name"
+                  ARG that: CONSTRUCTOR_CALL 'public constructor <init> (value: kotlin.String) declared in io.github.kantis.mikrom.AnsiString' type=io.github.kantis.mikrom.AnsiString origin=null
+                    ARG value: CALL 'public final fun <get-name> (): kotlin.String declared in <root>.VarcharUser' type=kotlin.String origin=null
+                      ARG <this>: GET_VAR 'value: <root>.VarcharUser declared in <root>.VarcharUser.$ParameterMapper.mapParameters' type=<root>.VarcharUser origin=null
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                  TYPE_ARG A: kotlin.String
+                  TYPE_ARG B: kotlin.Any?
+                  ARG <this>: CONST String type=kotlin.String value="age"
+                  ARG that: CALL 'public final fun <get-age> (): kotlin.Int declared in <root>.VarcharUser' type=kotlin.Int origin=null
+                    ARG <this>: GET_VAR 'value: <root>.VarcharUser declared in <root>.VarcharUser.$ParameterMapper.mapParameters' type=<root>.VarcharUser origin=null
+    CONSTRUCTOR visibility:public returnType:<root>.VarcharUser [primary]
+      VALUE_PARAMETER kind:Regular name:name index:0 type:kotlin.String
+        annotations:
+          SqlTypeHint(type = GET_ENUM 'ENUM_ENTRY IR_EXTERNAL_DECLARATION_STUB name:VARCHAR' type=io.github.kantis.mikrom.generator.SqlType)
+      VALUE_PARAMETER kind:Regular name:age index:1 type:kotlin.Int
+      BLOCK_BODY
+        DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
+        INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:VarcharUser modality:FINAL visibility:public [data] superTypes:[kotlin.Any]' type=kotlin.Unit
+    FUN GENERATED_DATA_CLASS_MEMBER name:component1 visibility:public modality:FINAL returnType:kotlin.String [operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.VarcharUser
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public final fun component1 (): kotlin.String declared in <root>.VarcharUser'
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+            receiver: GET_VAR '<this>: <root>.VarcharUser declared in <root>.VarcharUser.component1' type=<root>.VarcharUser origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:component2 visibility:public modality:FINAL returnType:kotlin.Int [operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.VarcharUser
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public final fun component2 (): kotlin.Int declared in <root>.VarcharUser'
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+            receiver: GET_VAR '<this>: <root>.VarcharUser declared in <root>.VarcharUser.component2' type=<root>.VarcharUser origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:copy visibility:public modality:FINAL returnType:<root>.VarcharUser
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.VarcharUser
+      VALUE_PARAMETER kind:Regular name:name index:1 type:kotlin.String
+        annotations:
+          SqlTypeHint(type = GET_ENUM 'ENUM_ENTRY IR_EXTERNAL_DECLARATION_STUB name:VARCHAR' type=io.github.kantis.mikrom.generator.SqlType)
+        EXPRESSION_BODY
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+            receiver: GET_VAR '<this>: <root>.VarcharUser declared in <root>.VarcharUser.copy' type=<root>.VarcharUser origin=null
+      VALUE_PARAMETER kind:Regular name:age index:2 type:kotlin.Int
+        EXPRESSION_BODY
+          GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+            receiver: GET_VAR '<this>: <root>.VarcharUser declared in <root>.VarcharUser.copy' type=<root>.VarcharUser origin=null
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public final fun copy (name: kotlin.String, age: kotlin.Int): <root>.VarcharUser declared in <root>.VarcharUser'
+          CONSTRUCTOR_CALL 'public constructor <init> (name: kotlin.String, age: kotlin.Int) declared in <root>.VarcharUser' type=<root>.VarcharUser origin=null
+            ARG name: GET_VAR 'name: kotlin.String declared in <root>.VarcharUser.copy' type=kotlin.String origin=null
+            ARG age: GET_VAR 'age: kotlin.Int declared in <root>.VarcharUser.copy' type=kotlin.Int origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.VarcharUser
+      VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
+      overridden:
+        public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in kotlin.Any
+      BLOCK_BODY
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: CALL 'public final fun EQEQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQEQ
+              ARG arg0: GET_VAR '<this>: <root>.VarcharUser declared in <root>.VarcharUser.equals' type=<root>.VarcharUser origin=null
+              ARG arg1: GET_VAR 'other: kotlin.Any? declared in <root>.VarcharUser.equals' type=kotlin.Any? origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.VarcharUser'
+              CONST Boolean type=kotlin.Boolean value=true
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: TYPE_OP type=kotlin.Boolean origin=NOT_INSTANCEOF typeOperand=<root>.VarcharUser
+              GET_VAR 'other: kotlin.Any? declared in <root>.VarcharUser.equals' type=kotlin.Any? origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.VarcharUser'
+              CONST Boolean type=kotlin.Boolean value=false
+        VAR IR_TEMPORARY_VARIABLE name:tmp_3 type:<root>.VarcharUser [val]
+          TYPE_OP type=<root>.VarcharUser origin=IMPLICIT_CAST typeOperand=<root>.VarcharUser
+            GET_VAR 'other: kotlin.Any? declared in <root>.VarcharUser.equals' type=kotlin.Any? origin=null
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+              ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                  receiver: GET_VAR '<this>: <root>.VarcharUser declared in <root>.VarcharUser.equals' type=<root>.VarcharUser origin=null
+                ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+                  receiver: GET_VAR 'val tmp_3: <root>.VarcharUser declared in <root>.VarcharUser.equals' type=<root>.VarcharUser origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.VarcharUser'
+              CONST Boolean type=kotlin.Boolean value=false
+        WHEN type=kotlin.Unit origin=null
+          BRANCH
+            if: CALL 'public final fun not (): kotlin.Boolean declared in kotlin.Boolean' type=kotlin.Boolean origin=EXCLEQ
+              ARG <this>: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EXCLEQ
+                ARG arg0: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                  receiver: GET_VAR '<this>: <root>.VarcharUser declared in <root>.VarcharUser.equals' type=<root>.VarcharUser origin=null
+                ARG arg1: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                  receiver: GET_VAR 'val tmp_3: <root>.VarcharUser declared in <root>.VarcharUser.equals' type=<root>.VarcharUser origin=null
+            then: RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.VarcharUser'
+              CONST Boolean type=kotlin.Boolean value=false
+        RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.VarcharUser'
+          CONST Boolean type=kotlin.Boolean value=true
+    FUN GENERATED_DATA_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.VarcharUser
+      overridden:
+        public open fun hashCode (): kotlin.Int declared in kotlin.Any
+      BLOCK_BODY
+        VAR name:result type:kotlin.Int [var]
+          CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.String' type=kotlin.Int origin=null
+            ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: <root>.VarcharUser declared in <root>.VarcharUser.hashCode' type=<root>.VarcharUser origin=null
+        SET_VAR 'var result: kotlin.Int declared in <root>.VarcharUser.hashCode' type=kotlin.Unit origin=EQ
+          CALL 'public final fun plus (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+            ARG <this>: CALL 'public final fun times (other: kotlin.Int): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+              ARG <this>: GET_VAR 'var result: kotlin.Int declared in <root>.VarcharUser.hashCode' type=kotlin.Int origin=null
+              ARG other: CONST Int type=kotlin.Int value=31
+            ARG other: CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.Int' type=kotlin.Int origin=null
+              ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+                receiver: GET_VAR '<this>: <root>.VarcharUser declared in <root>.VarcharUser.hashCode' type=<root>.VarcharUser origin=null
+        RETURN type=kotlin.Nothing from='public open fun hashCode (): kotlin.Int declared in <root>.VarcharUser'
+          GET_VAR 'var result: kotlin.Int declared in <root>.VarcharUser.hashCode' type=kotlin.Int origin=null
+    FUN GENERATED_DATA_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
+      VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.VarcharUser
+      overridden:
+        public open fun toString (): kotlin.String declared in kotlin.Any
+      BLOCK_BODY
+        RETURN type=kotlin.Nothing from='public open fun toString (): kotlin.String declared in <root>.VarcharUser'
+          STRING_CONCATENATION type=kotlin.String
+            CONST String type=kotlin.String value="VarcharUser("
+            CONST String type=kotlin.String value="name="
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
+              receiver: GET_VAR '<this>: <root>.VarcharUser declared in <root>.VarcharUser.toString' type=<root>.VarcharUser origin=null
+            CONST String type=kotlin.String value=", "
+            CONST String type=kotlin.String value="age="
+            GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:age type:kotlin.Int visibility:private [final]' type=kotlin.Int origin=null
+              receiver: GET_VAR '<this>: <root>.VarcharUser declared in <root>.VarcharUser.toString' type=<root>.VarcharUser origin=null
+            CONST String type=kotlin.String value=")"
+  FUN name:box visibility:public modality:FINAL returnType:kotlin.String
+    BLOCK_BODY
+      VAR name:mapper type:io.github.kantis.mikrom.ParameterMapper<<root>.VarcharUser> [val]
+        CALL 'public final fun parameterMapper (): io.github.kantis.mikrom.ParameterMapper<<root>.VarcharUser> declared in <root>.VarcharUser.Companion' type=io.github.kantis.mikrom.ParameterMapper<<root>.VarcharUser> origin=null
+          ARG <this>: GET_OBJECT 'CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateCompanionKey] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=<root>.VarcharUser.Companion
+      VAR name:params type:kotlin.collections.Map<kotlin.String, kotlin.Any?> [val]
+        CALL 'public abstract fun mapParameters (value: T of io.github.kantis.mikrom.ParameterMapper): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in io.github.kantis.mikrom.ParameterMapper' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
+          ARG <this>: GET_VAR 'val mapper: io.github.kantis.mikrom.ParameterMapper<<root>.VarcharUser> declared in <root>.box' type=io.github.kantis.mikrom.ParameterMapper<<root>.VarcharUser> origin=null
+          ARG value: CONSTRUCTOR_CALL 'public constructor <init> (name: kotlin.String, age: kotlin.Int) declared in <root>.VarcharUser' type=<root>.VarcharUser origin=null
+            ARG name: CONST String type=kotlin.String value="Alice"
+            ARG age: CONST Int type=kotlin.Int value=30
+      VAR name:nameValue type:kotlin.Any? [val]
+        CALL 'public abstract fun get (key: K of kotlin.collections.Map): V of kotlin.collections.Map? declared in kotlin.collections.Map' type=kotlin.Any? origin=GET_ARRAY_ELEMENT
+          ARG <this>: GET_VAR 'val params: kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.box' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
+          ARG key: CONST String type=kotlin.String value="name"
+      CALL 'public final fun assertTrue (actual: kotlin.Boolean, message: kotlin.String?): kotlin.Unit declared in kotlin.test' type=kotlin.Unit origin=null
+        ARG actual: TYPE_OP type=kotlin.Boolean origin=INSTANCEOF typeOperand=io.github.kantis.mikrom.AnsiString
+          GET_VAR 'val nameValue: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+        ARG message: STRING_CONCATENATION type=kotlin.String
+          CONST String type=kotlin.String value="Expected AnsiString for name, got: "
+          GET_VAR 'val nameValue: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+          CONST String type=kotlin.String value=" ("
+          BLOCK type=kotlin.reflect.KClass<out kotlin.Any>? origin=SAFE_CALL
+            VAR IR_TEMPORARY_VARIABLE name:tmp_4 type:kotlin.Any? [val]
+              GET_VAR 'val nameValue: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+            WHEN type=kotlin.reflect.KClass<out kotlin.Any>? origin=null
+              BRANCH
+                if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                  ARG arg0: GET_VAR 'val tmp_4: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+                  ARG arg1: CONST Null type=kotlin.Nothing? value=null
+                then: CONST Null type=kotlin.Nothing? value=null
+              BRANCH
+                if: CONST Boolean type=kotlin.Boolean value=true
+                then: CALL 'public final fun let <T, R> (<this>: T of kotlin.let, block: kotlin.Function1<T of kotlin.let, R of kotlin.let>): R of kotlin.let declared in kotlin' type=kotlin.reflect.KClass<out kotlin.Any> origin=null
+                  TYPE_ARG T: kotlin.Any
+                  TYPE_ARG R: kotlin.reflect.KClass<out kotlin.Any>
+                  ARG <this>: TYPE_OP type=kotlin.Any origin=IMPLICIT_CAST typeOperand=kotlin.Any
+                    GET_VAR 'val tmp_4: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+                  ARG block: FUN_EXPR type=kotlin.Function1<kotlin.Any, kotlin.reflect.KClass<out kotlin.Any>> origin=LAMBDA
+                    FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.reflect.KClass<out kotlin.Any>
+                      VALUE_PARAMETER kind:Regular name:it index:0 type:kotlin.Any
+                      BLOCK_BODY
+                        RETURN type=kotlin.Nothing from='local final fun <anonymous> (it: kotlin.Any): kotlin.reflect.KClass<out kotlin.Any> declared in <root>.box'
+                          GET_CLASS type=kotlin.reflect.KClass<out kotlin.Any>
+                            GET_VAR 'it: kotlin.Any declared in <root>.box.<anonymous>' type=kotlin.Any origin=null
+          CONST String type=kotlin.String value=")"
+      CALL 'public final fun assertEquals <T> (expected: T of kotlin.test.assertEquals, actual: T of kotlin.test.assertEquals, message: kotlin.String?): kotlin.Unit declared in kotlin.test' type=kotlin.Unit origin=null
+        TYPE_ARG T: kotlin.String
+        ARG expected: CONST String type=kotlin.String value="Alice"
+        ARG actual: CALL 'public final fun <get-value> (): kotlin.String declared in io.github.kantis.mikrom.AnsiString' type=kotlin.String origin=GET_PROPERTY
+          ARG <this>: TYPE_OP type=io.github.kantis.mikrom.AnsiString origin=IMPLICIT_CAST typeOperand=io.github.kantis.mikrom.AnsiString
+            GET_VAR 'val nameValue: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+      CALL 'public final fun assertEquals <T> (expected: T of kotlin.test.assertEquals, actual: T of kotlin.test.assertEquals, message: kotlin.String?): kotlin.Unit declared in kotlin.test' type=kotlin.Unit origin=null
+        TYPE_ARG T: kotlin.Any?
+        ARG expected: CONST Int type=kotlin.Int value=30
+        ARG actual: CALL 'public abstract fun get (key: K of kotlin.collections.Map): V of kotlin.collections.Map? declared in kotlin.collections.Map' type=kotlin.Any? origin=GET_ARRAY_ELEMENT
+          ARG <this>: GET_VAR 'val params: kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.box' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
+          ARG key: CONST String type=kotlin.String value="age"
+      VAR name:nullableMapper type:io.github.kantis.mikrom.ParameterMapper<<root>.NullableVarcharUser> [val]
+        CALL 'public final fun parameterMapper (): io.github.kantis.mikrom.ParameterMapper<<root>.NullableVarcharUser> declared in <root>.NullableVarcharUser.Companion' type=io.github.kantis.mikrom.ParameterMapper<<root>.NullableVarcharUser> origin=null
+          ARG <this>: GET_OBJECT 'CLASS GENERATED[io.github.kantis.mikrom.plugin.MikromGenerateCompanionKey] OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=<root>.NullableVarcharUser.Companion
+      VAR name:params2 type:kotlin.collections.Map<kotlin.String, kotlin.Any?> [val]
+        CALL 'public abstract fun mapParameters (value: T of io.github.kantis.mikrom.ParameterMapper): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in io.github.kantis.mikrom.ParameterMapper' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
+          ARG <this>: GET_VAR 'val nullableMapper: io.github.kantis.mikrom.ParameterMapper<<root>.NullableVarcharUser> declared in <root>.box' type=io.github.kantis.mikrom.ParameterMapper<<root>.NullableVarcharUser> origin=null
+          ARG value: CONSTRUCTOR_CALL 'public constructor <init> (name: kotlin.String?, age: kotlin.Int?) declared in <root>.NullableVarcharUser' type=<root>.NullableVarcharUser origin=null
+            ARG name: CONST String type=kotlin.String value="Bob"
+            ARG age: CONST Int type=kotlin.Int value=25
+      VAR name:nameValue2 type:kotlin.Any? [val]
+        CALL 'public abstract fun get (key: K of kotlin.collections.Map): V of kotlin.collections.Map? declared in kotlin.collections.Map' type=kotlin.Any? origin=GET_ARRAY_ELEMENT
+          ARG <this>: GET_VAR 'val params2: kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.box' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
+          ARG key: CONST String type=kotlin.String value="name"
+      CALL 'public final fun assertTrue (actual: kotlin.Boolean, message: kotlin.String?): kotlin.Unit declared in kotlin.test' type=kotlin.Unit origin=null
+        ARG actual: TYPE_OP type=kotlin.Boolean origin=INSTANCEOF typeOperand=io.github.kantis.mikrom.AnsiString
+          GET_VAR 'val nameValue2: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+        ARG message: STRING_CONCATENATION type=kotlin.String
+          CONST String type=kotlin.String value="Expected AnsiString for non-null nullable name, got: "
+          GET_VAR 'val nameValue2: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+          CONST String type=kotlin.String value=" ("
+          BLOCK type=kotlin.reflect.KClass<out kotlin.Any>? origin=SAFE_CALL
+            VAR IR_TEMPORARY_VARIABLE name:tmp_5 type:kotlin.Any? [val]
+              GET_VAR 'val nameValue2: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+            WHEN type=kotlin.reflect.KClass<out kotlin.Any>? origin=null
+              BRANCH
+                if: CALL 'public final fun EQEQ (arg0: kotlin.Any?, arg1: kotlin.Any?): kotlin.Boolean declared in kotlin.internal.ir' type=kotlin.Boolean origin=EQEQ
+                  ARG arg0: GET_VAR 'val tmp_5: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+                  ARG arg1: CONST Null type=kotlin.Nothing? value=null
+                then: CONST Null type=kotlin.Nothing? value=null
+              BRANCH
+                if: CONST Boolean type=kotlin.Boolean value=true
+                then: CALL 'public final fun let <T, R> (<this>: T of kotlin.let, block: kotlin.Function1<T of kotlin.let, R of kotlin.let>): R of kotlin.let declared in kotlin' type=kotlin.reflect.KClass<out kotlin.Any> origin=null
+                  TYPE_ARG T: kotlin.Any
+                  TYPE_ARG R: kotlin.reflect.KClass<out kotlin.Any>
+                  ARG <this>: TYPE_OP type=kotlin.Any origin=IMPLICIT_CAST typeOperand=kotlin.Any
+                    GET_VAR 'val tmp_5: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+                  ARG block: FUN_EXPR type=kotlin.Function1<kotlin.Any, kotlin.reflect.KClass<out kotlin.Any>> origin=LAMBDA
+                    FUN LOCAL_FUNCTION_FOR_LAMBDA name:<anonymous> visibility:local modality:FINAL returnType:kotlin.reflect.KClass<out kotlin.Any>
+                      VALUE_PARAMETER kind:Regular name:it index:0 type:kotlin.Any
+                      BLOCK_BODY
+                        RETURN type=kotlin.Nothing from='local final fun <anonymous> (it: kotlin.Any): kotlin.reflect.KClass<out kotlin.Any> declared in <root>.box'
+                          GET_CLASS type=kotlin.reflect.KClass<out kotlin.Any>
+                            GET_VAR 'it: kotlin.Any declared in <root>.box.<anonymous>' type=kotlin.Any origin=null
+          CONST String type=kotlin.String value=")"
+      CALL 'public final fun assertEquals <T> (expected: T of kotlin.test.assertEquals, actual: T of kotlin.test.assertEquals, message: kotlin.String?): kotlin.Unit declared in kotlin.test' type=kotlin.Unit origin=null
+        TYPE_ARG T: kotlin.String
+        ARG expected: CONST String type=kotlin.String value="Bob"
+        ARG actual: CALL 'public final fun <get-value> (): kotlin.String declared in io.github.kantis.mikrom.AnsiString' type=kotlin.String origin=GET_PROPERTY
+          ARG <this>: TYPE_OP type=io.github.kantis.mikrom.AnsiString origin=IMPLICIT_CAST typeOperand=io.github.kantis.mikrom.AnsiString
+            GET_VAR 'val nameValue2: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+      CALL 'public final fun assertEquals <T> (expected: T of kotlin.test.assertEquals, actual: T of kotlin.test.assertEquals, message: kotlin.String?): kotlin.Unit declared in kotlin.test' type=kotlin.Unit origin=null
+        TYPE_ARG T: kotlin.Any?
+        ARG expected: CONST Int type=kotlin.Int value=25
+        ARG actual: CALL 'public abstract fun get (key: K of kotlin.collections.Map): V of kotlin.collections.Map? declared in kotlin.collections.Map' type=kotlin.Any? origin=GET_ARRAY_ELEMENT
+          ARG <this>: GET_VAR 'val params2: kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.box' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
+          ARG key: CONST String type=kotlin.String value="age"
+      VAR name:params3 type:kotlin.collections.Map<kotlin.String, kotlin.Any?> [val]
+        CALL 'public abstract fun mapParameters (value: T of io.github.kantis.mikrom.ParameterMapper): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in io.github.kantis.mikrom.ParameterMapper' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
+          ARG <this>: GET_VAR 'val nullableMapper: io.github.kantis.mikrom.ParameterMapper<<root>.NullableVarcharUser> declared in <root>.box' type=io.github.kantis.mikrom.ParameterMapper<<root>.NullableVarcharUser> origin=null
+          ARG value: CONSTRUCTOR_CALL 'public constructor <init> (name: kotlin.String?, age: kotlin.Int?) declared in <root>.NullableVarcharUser' type=<root>.NullableVarcharUser origin=null
+            ARG name: CONST Null type=kotlin.Nothing? value=null
+            ARG age: CONST Null type=kotlin.Nothing? value=null
+      VAR name:nameValue3 type:kotlin.Any? [val]
+        CALL 'public abstract fun get (key: K of kotlin.collections.Map): V of kotlin.collections.Map? declared in kotlin.collections.Map' type=kotlin.Any? origin=GET_ARRAY_ELEMENT
+          ARG <this>: GET_VAR 'val params3: kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.box' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
+          ARG key: CONST String type=kotlin.String value="name"
+      CALL 'public final fun assertTrue (actual: kotlin.Boolean, message: kotlin.String?): kotlin.Unit declared in kotlin.test' type=kotlin.Unit origin=null
+        ARG actual: TYPE_OP type=kotlin.Boolean origin=INSTANCEOF typeOperand=io.github.kantis.mikrom.TypedNull
+          GET_VAR 'val nameValue3: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+        ARG message: STRING_CONCATENATION type=kotlin.String
+          CONST String type=kotlin.String value="Expected TypedNull for null name, got: "
+          GET_VAR 'val nameValue3: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+      CALL 'public final fun assertEquals <T> (expected: T of kotlin.test.assertEquals, actual: T of kotlin.test.assertEquals, message: kotlin.String?): kotlin.Unit declared in kotlin.test' type=kotlin.Unit origin=null
+        TYPE_ARG T: kotlin.reflect.KClass<out kotlin.Any>
+        ARG expected: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:String modality:FINAL visibility:public superTypes:[kotlin.Comparable<kotlin.String>; kotlin.CharSequence; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.String>
+        ARG actual: CALL 'public final fun <get-type> (): kotlin.reflect.KClass<*> declared in io.github.kantis.mikrom.TypedNull' type=kotlin.reflect.KClass<*> origin=GET_PROPERTY
+          ARG <this>: TYPE_OP type=io.github.kantis.mikrom.TypedNull origin=IMPLICIT_CAST typeOperand=io.github.kantis.mikrom.TypedNull
+            GET_VAR 'val nameValue3: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+      VAR name:ageValue3 type:kotlin.Any? [val]
+        CALL 'public abstract fun get (key: K of kotlin.collections.Map): V of kotlin.collections.Map? declared in kotlin.collections.Map' type=kotlin.Any? origin=GET_ARRAY_ELEMENT
+          ARG <this>: GET_VAR 'val params3: kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.box' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
+          ARG key: CONST String type=kotlin.String value="age"
+      CALL 'public final fun assertTrue (actual: kotlin.Boolean, message: kotlin.String?): kotlin.Unit declared in kotlin.test' type=kotlin.Unit origin=null
+        ARG actual: TYPE_OP type=kotlin.Boolean origin=INSTANCEOF typeOperand=io.github.kantis.mikrom.TypedNull
+          GET_VAR 'val ageValue3: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+        ARG message: STRING_CONCATENATION type=kotlin.String
+          CONST String type=kotlin.String value="Expected TypedNull for null age, got: "
+          GET_VAR 'val ageValue3: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+      CALL 'public final fun assertEquals <T> (expected: T of kotlin.test.assertEquals, actual: T of kotlin.test.assertEquals, message: kotlin.String?): kotlin.Unit declared in kotlin.test' type=kotlin.Unit origin=null
+        TYPE_ARG T: kotlin.reflect.KClass<out kotlin.Any>
+        ARG expected: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:Int modality:FINAL visibility:public superTypes:[kotlin.Number; kotlin.Comparable<kotlin.Int>; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.Int>
+        ARG actual: CALL 'public final fun <get-type> (): kotlin.reflect.KClass<*> declared in io.github.kantis.mikrom.TypedNull' type=kotlin.reflect.KClass<*> origin=GET_PROPERTY
+          ARG <this>: TYPE_OP type=io.github.kantis.mikrom.TypedNull origin=IMPLICIT_CAST typeOperand=io.github.kantis.mikrom.TypedNull
+            GET_VAR 'val ageValue3: kotlin.Any? declared in <root>.box' type=kotlin.Any? origin=null
+      RETURN type=kotlin.Nothing from='public final fun box (): kotlin.String declared in <root>'
+        CONST String type=kotlin.String value="OK"
