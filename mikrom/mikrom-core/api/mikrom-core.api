@@ -90,6 +90,7 @@ public final class io/github/kantis/mikrom/Row {
 	public static final field Companion Lio/github/kantis/mikrom/Row$Companion;
 	public fun <init> (Ljava/util/Map;Lio/github/kantis/mikrom/convert/TypeConversions;)V
 	public synthetic fun <init> (Ljava/util/Map;Lio/github/kantis/mikrom/convert/TypeConversions;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun convertSingleValue (Lkotlin/reflect/KClass;Lio/github/kantis/mikrom/convert/TypeConversions;)Ljava/lang/Object;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun get (Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Lkotlin/reflect/KClass;)Ljava/lang/Object;
 	public final fun getColumnNames ()Ljava/util/Set;

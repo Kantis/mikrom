@@ -4,6 +4,7 @@ import io.github.kantis.mikrom.AnsiString
 import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.Row
 import io.github.kantis.mikrom.TypedNull
+import io.github.kantis.mikrom.convert.TypeConversions
 import io.github.kantis.mikrom.datasource.Transaction
 import java.math.BigDecimal
 import java.sql.Connection
@@ -11,9 +12,14 @@ import java.sql.PreparedStatement
 import java.sql.Timestamp
 import java.sql.Types
 import java.time.Instant
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.util.UUID
 
-public class JdbcTransaction(private val connection: Connection) : Transaction {
+public class JdbcTransaction(
+   private val connection: Connection,
+   private val driverConversions: TypeConversions = TypeConversions.EMPTY,
+) : Transaction {
    override fun executeInTransaction(
       query: Query,
       vararg params: List<*>,
@@ -32,7 +38,7 @@ public class JdbcTransaction(private val connection: Connection) : Transaction {
    ): List<Row> =
       connection.prepareStatement(query).use { statement ->
          bindParameters(statement, params)
-         statement.executeQuery().let(ResultSetReader::loadResultSet)
+         statement.executeQuery().let { ResultSetReader.loadResultSet(it, driverConversions) }
       }
 
    private fun bindParameters(
@@ -54,11 +60,13 @@ public class JdbcTransaction(private val connection: Connection) : Transaction {
             is Float -> statement.setFloat(index + 1, param)
             is Boolean -> statement.setBoolean(index + 1, param)
             is ByteArray -> statement.setBytes(index + 1, param)
+            is LocalDate -> statement.setObject(index + 1, param)
             is LocalDateTime -> statement.setTimestamp(index + 1, Timestamp.valueOf(param))
             is BigDecimal -> statement.setBigDecimal(index + 1, param)
             is Instant -> statement.setTimestamp(index + 1, Timestamp.from(param))
-            is TypedNull -> statement.setNull(index + 1, Types.NULL)
-            null -> statement.setNull(index + 1, Types.NULL)
+            is UUID -> statement.setObject(index + 1, param)
+            is TypedNull -> statement.setNull(index + 1, statementParams.getParameterType(index + 1))
+            null -> statement.setNull(index + 1, statementParams.getParameterType(index + 1))
             else -> error("Unsupported parameter type: ${param::class.simpleName} at index ${index + 1} with value $param")
          }
       }
