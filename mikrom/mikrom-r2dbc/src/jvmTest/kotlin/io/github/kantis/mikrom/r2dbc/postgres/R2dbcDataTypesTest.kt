@@ -1,17 +1,13 @@
-package io.github.kantis.mikrom.r2dbc.stream
+package io.github.kantis.mikrom.r2dbc.postgres
 
 import io.github.kantis.mikrom.Mikrom
-import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.get
 import io.github.kantis.mikrom.getOrNull
 import io.github.kantis.mikrom.r2dbc.PooledR2dbcDataSource
-import io.github.kantis.mikrom.r2dbc.helpers.preparePostgresDatabase
 import io.github.kantis.mikrom.suspend.execute
-import io.github.kantis.mikrom.suspend.executeStreaming
 import io.github.kantis.mikrom.suspend.queryFor
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.toList
 import java.math.BigDecimal
 import java.time.LocalDate
@@ -85,27 +81,25 @@ class R2dbcDataTypesTest : FunSpec(
          val testTimestamp = LocalDateTime.of(2023, 12, 25, 15, 30, 45)
 
          dataSource.suspendingTransaction {
-            mikrom.executeStreaming(
+            mikrom.execute(
                """
                     INSERT INTO data_types (
                         string_field, int_field, long_field, boolean_field,
                         double_field, decimal_field, date_field, timestamp_field, uuid_field
                     ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
                """.trimIndent(),
-               flowOf(
-                  listOf(
-                     "test string",
-                     42,
-                     1234567890L,
-                     true,
-                     3.14159,
-                     BigDecimal("999.99"),
-                     testDate,
-                     testTimestamp,
-                     testUuid,
-                  ),
+               listOf(
+                  "test string",
+                  42,
+                  1234567890L,
+                  true,
+                  3.14159,
+                  BigDecimal("999.99"),
+                  testDate,
+                  testTimestamp,
+                  testUuid,
                ),
-            ).join()
+            )
 
             val records = mikrom.queryFor<DataTypeRecord>("SELECT * FROM data_types").toList()
             records.size shouldBe 1
