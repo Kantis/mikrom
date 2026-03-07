@@ -1,0 +1,93 @@
+FILE: ParameterMappedSqlTypeHint.kt
+    @R|io/github/kantis/mikrom/generator/ParameterMapped|() public final data class VarcharUser : R|kotlin/Any| {
+        public constructor(@R|io/github/kantis/mikrom/generator/SqlTypeHint|(type = Q|io/github/kantis/mikrom/generator/SqlType|.R|io/github/kantis/mikrom/generator/SqlType.VARCHAR|) name: R|kotlin/String|, age: R|kotlin/Int|): R|VarcharUser| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val name: R|kotlin/String| = R|<local>/name|
+            public get(): R|kotlin/String|
+
+        public final val age: R|kotlin/Int| = R|<local>/age|
+            public get(): R|kotlin/Int|
+
+        public final operator fun component1(): R|kotlin/String|
+
+        public final operator fun component2(): R|kotlin/Int|
+
+        public final fun copy(@R|io/github/kantis/mikrom/generator/SqlTypeHint|(type = Q|io/github/kantis/mikrom/generator/SqlType|.R|io/github/kantis/mikrom/generator/SqlType.VARCHAR|) name: R|kotlin/String| = this@R|/VarcharUser|.R|/VarcharUser.name|, age: R|kotlin/Int| = this@R|/VarcharUser|.R|/VarcharUser.age|): R|VarcharUser|
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun parameterMapper(): R|io/github/kantis/mikrom/ParameterMapper<VarcharUser>|
+
+            private constructor(): R|VarcharUser.Companion|
+
+        }
+
+        public final object $ParameterMapper : R|io/github/kantis/mikrom/ParameterMapper<VarcharUser>| {
+            public final fun mapParameters(value: R|VarcharUser|): R|kotlin/collections/Map<kotlin/String, kotlin/Any?>|
+
+            private constructor(): R|VarcharUser.$ParameterMapper|
+
+        }
+
+    }
+    @R|io/github/kantis/mikrom/generator/ParameterMapped|() public final data class NullableVarcharUser : R|kotlin/Any| {
+        public constructor(@R|io/github/kantis/mikrom/generator/SqlTypeHint|(type = Q|io/github/kantis/mikrom/generator/SqlType|.R|io/github/kantis/mikrom/generator/SqlType.VARCHAR|) name: R|kotlin/String?|, age: R|kotlin/Int?|): R|NullableVarcharUser| {
+            super<R|kotlin/Any|>()
+        }
+
+        public final val name: R|kotlin/String?| = R|<local>/name|
+            public get(): R|kotlin/String?|
+
+        public final val age: R|kotlin/Int?| = R|<local>/age|
+            public get(): R|kotlin/Int?|
+
+        public final operator fun component1(): R|kotlin/String?|
+
+        public final operator fun component2(): R|kotlin/Int?|
+
+        public final fun copy(@R|io/github/kantis/mikrom/generator/SqlTypeHint|(type = Q|io/github/kantis/mikrom/generator/SqlType|.R|io/github/kantis/mikrom/generator/SqlType.VARCHAR|) name: R|kotlin/String?| = this@R|/NullableVarcharUser|.R|/NullableVarcharUser.name|, age: R|kotlin/Int?| = this@R|/NullableVarcharUser|.R|/NullableVarcharUser.age|): R|NullableVarcharUser|
+
+        public final companion object Companion : R|kotlin/Any| {
+            public final fun parameterMapper(): R|io/github/kantis/mikrom/ParameterMapper<NullableVarcharUser>|
+
+            private constructor(): R|NullableVarcharUser.Companion|
+
+        }
+
+        public final object $ParameterMapper : R|io/github/kantis/mikrom/ParameterMapper<NullableVarcharUser>| {
+            public final fun mapParameters(value: R|NullableVarcharUser|): R|kotlin/collections/Map<kotlin/String, kotlin/Any?>|
+
+            private constructor(): R|NullableVarcharUser.$ParameterMapper|
+
+        }
+
+    }
+    public final fun box(): R|kotlin/String| {
+        lval mapper: R|io/github/kantis/mikrom/ParameterMapper<VarcharUser>| = Q|VarcharUser|.R|/VarcharUser.Companion.parameterMapper|()
+        lval params: R|kotlin/collections/Map<kotlin/String, kotlin/Any?>| = R|<local>/mapper|.R|SubstitutionOverride<io/github/kantis/mikrom/ParameterMapper.mapParameters: R|kotlin/collections/Map<kotlin/String, kotlin/Any?>|>|(R|/VarcharUser.VarcharUser|(String(Alice), Int(30)))
+        lval nameValue: R|kotlin/Any?| = R|<local>/params|.R|SubstitutionOverride<kotlin/collections/Map.get: R|kotlin/Any?|>|(String(name))
+        R|kotlin/test/assertTrue|((R|<local>/nameValue| is R|io/github/kantis/mikrom/AnsiString|), <strcat>(String(Expected AnsiString for name, got: ), R|<local>/nameValue|, String( (), R|<local>/nameValue|?.{ $subj$.R|kotlin/let|<R|kotlin/Any|, R|kotlin/reflect/KClass<out kotlin/Any>|>(<L> = let@fun <anonymous>(it: R|kotlin/Any|): R|kotlin/reflect/KClass<out kotlin/Any>| <inline=Inline, kind=EXACTLY_ONCE>  {
+            ^ <getClass>(R|<local>/it|)
+        }
+        ) }, String())))
+        R|kotlin/test/assertEquals|<R|kotlin/String|>(String(Alice), R|<local>/nameValue|.R|io/github/kantis/mikrom/AnsiString.value|)
+        R|kotlin/test/assertEquals|<R|kotlin/Any?|>(Int(30), R|<local>/params|.R|SubstitutionOverride<kotlin/collections/Map.get: R|kotlin/Any?|>|(String(age)))
+        lval nullableMapper: R|io/github/kantis/mikrom/ParameterMapper<NullableVarcharUser>| = Q|NullableVarcharUser|.R|/NullableVarcharUser.Companion.parameterMapper|()
+        lval params2: R|kotlin/collections/Map<kotlin/String, kotlin/Any?>| = R|<local>/nullableMapper|.R|SubstitutionOverride<io/github/kantis/mikrom/ParameterMapper.mapParameters: R|kotlin/collections/Map<kotlin/String, kotlin/Any?>|>|(R|/NullableVarcharUser.NullableVarcharUser|(String(Bob), Int(25)))
+        lval nameValue2: R|kotlin/Any?| = R|<local>/params2|.R|SubstitutionOverride<kotlin/collections/Map.get: R|kotlin/Any?|>|(String(name))
+        R|kotlin/test/assertTrue|((R|<local>/nameValue2| is R|io/github/kantis/mikrom/AnsiString|), <strcat>(String(Expected AnsiString for non-null nullable name, got: ), R|<local>/nameValue2|, String( (), R|<local>/nameValue2|?.{ $subj$.R|kotlin/let|<R|kotlin/Any|, R|kotlin/reflect/KClass<out kotlin/Any>|>(<L> = let@fun <anonymous>(it: R|kotlin/Any|): R|kotlin/reflect/KClass<out kotlin/Any>| <inline=Inline, kind=EXACTLY_ONCE>  {
+            ^ <getClass>(R|<local>/it|)
+        }
+        ) }, String())))
+        R|kotlin/test/assertEquals|<R|kotlin/String|>(String(Bob), R|<local>/nameValue2|.R|io/github/kantis/mikrom/AnsiString.value|)
+        R|kotlin/test/assertEquals|<R|kotlin/Any?|>(Int(25), R|<local>/params2|.R|SubstitutionOverride<kotlin/collections/Map.get: R|kotlin/Any?|>|(String(age)))
+        lval params3: R|kotlin/collections/Map<kotlin/String, kotlin/Any?>| = R|<local>/nullableMapper|.R|SubstitutionOverride<io/github/kantis/mikrom/ParameterMapper.mapParameters: R|kotlin/collections/Map<kotlin/String, kotlin/Any?>|>|(R|/NullableVarcharUser.NullableVarcharUser|(Null(null), Null(null)))
+        lval nameValue3: R|kotlin/Any?| = R|<local>/params3|.R|SubstitutionOverride<kotlin/collections/Map.get: R|kotlin/Any?|>|(String(name))
+        R|kotlin/test/assertTrue|((R|<local>/nameValue3| is R|io/github/kantis/mikrom/TypedNull|), <strcat>(String(Expected TypedNull for null name, got: ), R|<local>/nameValue3|))
+        R|kotlin/test/assertEquals|<R|kotlin/reflect/KClass<out kotlin/Any>|>(<getClass>(Q|kotlin/String|), R|<local>/nameValue3|.R|io/github/kantis/mikrom/TypedNull.type|)
+        lval ageValue3: R|kotlin/Any?| = R|<local>/params3|.R|SubstitutionOverride<kotlin/collections/Map.get: R|kotlin/Any?|>|(String(age))
+        R|kotlin/test/assertTrue|((R|<local>/ageValue3| is R|io/github/kantis/mikrom/TypedNull|), <strcat>(String(Expected TypedNull for null age, got: ), R|<local>/ageValue3|))
+        R|kotlin/test/assertEquals|<R|kotlin/reflect/KClass<out kotlin/Any>|>(<getClass>(Q|kotlin/Int|), R|<local>/ageValue3|.R|io/github/kantis/mikrom/TypedNull.type|)
+        ^box String(OK)
+    }

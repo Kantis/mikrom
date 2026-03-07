@@ -36,3 +36,4 @@ nav:
   - Home: index.md
   - Getting Started: getting-started.md
   - Core concepts: core-concepts.md
+  - Parameter Types: parameter-types.md

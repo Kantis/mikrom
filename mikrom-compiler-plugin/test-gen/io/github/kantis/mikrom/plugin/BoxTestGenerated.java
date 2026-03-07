@@ -63,6 +63,12 @@ public class BoxTestGenerated extends AbstractBoxTest {
   }
 
   @Test
+  @TestMetadata("ParameterMappedSqlTypeHint.kt")
+  public void testParameterMappedSqlTypeHint() {
+    runTest("testData/box/ParameterMappedSqlTypeHint.kt");
+  }
+
+  @Test
   @TestMetadata("ParameterMappedValueClass.kt")
   public void testParameterMappedValueClass() {
     runTest("testData/box/ParameterMappedValueClass.kt");
