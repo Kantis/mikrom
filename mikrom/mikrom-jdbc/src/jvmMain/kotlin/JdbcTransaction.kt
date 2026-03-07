@@ -4,6 +4,7 @@ import io.github.kantis.mikrom.AnsiString
 import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.Row
 import io.github.kantis.mikrom.TypedNull
+import io.github.kantis.mikrom.convert.TypeConversions
 import io.github.kantis.mikrom.datasource.Transaction
 import java.math.BigDecimal
 import java.sql.Connection
@@ -15,7 +16,10 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.UUID
 
-public class JdbcTransaction(private val connection: Connection) : Transaction {
+public class JdbcTransaction(
+   private val connection: Connection,
+   private val driverConversions: TypeConversions = TypeConversions.EMPTY,
+) : Transaction {
    override fun executeInTransaction(
       query: Query,
       vararg params: List<*>,
@@ -34,7 +38,7 @@ public class JdbcTransaction(private val connection: Connection) : Transaction {
    ): List<Row> =
       connection.prepareStatement(query).use { statement ->
          bindParameters(statement, params)
-         statement.executeQuery().let(ResultSetReader::loadResultSet)
+         statement.executeQuery().let { ResultSetReader.loadResultSet(it, driverConversions) }
       }
 
    private fun bindParameters(
@@ -61,27 +65,10 @@ public class JdbcTransaction(private val connection: Connection) : Transaction {
             is BigDecimal -> statement.setBigDecimal(index + 1, param)
             is Instant -> statement.setTimestamp(index + 1, Timestamp.from(param))
             is UUID -> statement.setObject(index + 1, param)
-            is TypedNull -> statement.setNull(index + 1, sqlTypeFor(param.type))
-            null -> statement.setNull(index + 1, Types.NULL)
+            is TypedNull -> statement.setNull(index + 1, statementParams.getParameterType(index + 1))
+            null -> statement.setNull(index + 1, statementParams.getParameterType(index + 1))
             else -> error("Unsupported parameter type: ${param::class.simpleName} at index ${index + 1} with value $param")
          }
       }
    }
-
-   private fun sqlTypeFor(type: kotlin.reflect.KClass<*>): Int =
-      when (type) {
-         String::class -> Types.VARCHAR
-         Int::class -> Types.INTEGER
-         Long::class -> Types.BIGINT
-         Double::class -> Types.DOUBLE
-         Float::class -> Types.FLOAT
-         Boolean::class -> Types.BOOLEAN
-         BigDecimal::class -> Types.DECIMAL
-         LocalDate::class -> Types.DATE
-         LocalDateTime::class -> Types.TIMESTAMP
-         Instant::class -> Types.TIMESTAMP
-         UUID::class -> Types.OTHER
-         ByteArray::class -> Types.BINARY
-         else -> Types.NULL
-      }
 }

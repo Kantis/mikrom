@@ -6,12 +6,14 @@ import io.github.kantis.mikrom.datasource.Transaction
 import org.slf4j.LoggerFactory
 
 public class JdbcDataSource(private val underlyingDataSource: javax.sql.DataSource) : DataSource {
+   private val driverConversions = jdbcConversions(underlyingDataSource)
+
    override fun <T> transaction(block: Transaction.() -> T): T {
       underlyingDataSource.connection.use { jdbcConnection ->
          jdbcConnection.autoCommit = false
          jdbcConnection.beginRequest()
          return try {
-            val transaction = JdbcTransaction(jdbcConnection)
+            val transaction = JdbcTransaction(jdbcConnection, driverConversions)
             val result = transaction.block()
 
             when (result) {
