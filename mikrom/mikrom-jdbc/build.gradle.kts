@@ -32,6 +32,14 @@ kotlin {
                implementation(libs.kotestExtensions.testcontainers)
                implementation(libs.testcontainers.postgresql)
                implementation(libs.hikari)
+               implementation(libs.mysql.connector)
+               implementation(libs.mariadb.connector)
+               implementation(libs.mssql.connector)
+               implementation(libs.oracle.connector)
+               implementation(libs.testcontainers.mysql)
+               implementation(libs.testcontainers.mariadb)
+               implementation(libs.testcontainers.mssql)
+               implementation(libs.testcontainers.oracle)
             }
          }
       }

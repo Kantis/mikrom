@@ -11,7 +11,9 @@ import java.sql.PreparedStatement
 import java.sql.Timestamp
 import java.sql.Types
 import java.time.Instant
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.util.UUID
 
 public class JdbcTransaction(private val connection: Connection) : Transaction {
    override fun executeInTransaction(
@@ -54,9 +56,11 @@ public class JdbcTransaction(private val connection: Connection) : Transaction {
             is Float -> statement.setFloat(index + 1, param)
             is Boolean -> statement.setBoolean(index + 1, param)
             is ByteArray -> statement.setBytes(index + 1, param)
+            is LocalDate -> statement.setObject(index + 1, param)
             is LocalDateTime -> statement.setTimestamp(index + 1, Timestamp.valueOf(param))
             is BigDecimal -> statement.setBigDecimal(index + 1, param)
             is Instant -> statement.setTimestamp(index + 1, Timestamp.from(param))
+            is UUID -> statement.setObject(index + 1, param)
             is TypedNull -> statement.setNull(index + 1, Types.NULL)
             null -> statement.setNull(index + 1, Types.NULL)
             else -> error("Unsupported parameter type: ${param::class.simpleName} at index ${index + 1} with value $param")

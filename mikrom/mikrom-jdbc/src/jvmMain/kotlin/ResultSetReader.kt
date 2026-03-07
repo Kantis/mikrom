@@ -33,12 +33,26 @@ public object ResultSetReader {
                Types.TINYINT,
                Types.SMALLINT,
                Types.INTEGER,
-               Types.BIGINT,
                -> resultSet.getInt(i)
 
-               Types.DECIMAL -> resultSet.getBigDecimal(i)
+               Types.BIGINT -> resultSet.getLong(i)
 
-               Types.VARCHAR -> resultSet.getString(i)
+               Types.FLOAT,
+               Types.DOUBLE,
+               Types.REAL,
+               -> resultSet.getDouble(i)
+
+               Types.NUMERIC,
+               Types.DECIMAL,
+               -> resultSet.getBigDecimal(i)
+
+               Types.CHAR,
+               Types.VARCHAR,
+               Types.LONGVARCHAR,
+               Types.NCHAR,
+               Types.NVARCHAR,
+               Types.LONGNVARCHAR,
+               -> resultSet.getString(i)
 
                Types.BOOLEAN -> resultSet.getBoolean(i)
 
@@ -52,18 +66,37 @@ public object ResultSetReader {
 
                Types.TIMESTAMP_WITH_TIMEZONE -> TODO("TIMESTAMP_WITH_TIMEZONE is not supported yet")
 
-               else -> error("Column $i is of unsupported type $columnType")
+               Types.BINARY,
+               Types.VARBINARY,
+               Types.LONGVARBINARY,
+               -> resultSet.getBytes(i)
+
+               Types.OTHER -> resultSet.getObject(i)
+
+               else -> error("Column $i ($columnName) is of unsupported type $columnType ($sqlTypeName)")
             }
 
+            val resolvedValue = if (resultSet.wasNull()) null else value
+
             val kotlinType = when (columnType) {
-               Types.BIT, Types.TINYINT, Types.SMALLINT, Types.INTEGER, Types.BIGINT -> Int::class
-               Types.VARCHAR -> String::class
+               Types.BIT, Types.TINYINT, Types.SMALLINT, Types.INTEGER -> Int::class
+
+               Types.BIGINT -> Long::class
+
+               Types.FLOAT, Types.DOUBLE, Types.REAL -> Double::class
+
+               Types.CHAR, Types.VARCHAR, Types.LONGVARCHAR,
+               Types.NCHAR, Types.NVARCHAR, Types.LONGNVARCHAR,
+               -> String::class
+
                Types.BOOLEAN -> Boolean::class
+
                Types.TIMESTAMP -> java.sql.Timestamp::class
+
                else -> null
             }
 
-            column(columnName, value, kotlinType, sqlTypeName)
+            column(columnName, resolvedValue, kotlinType, sqlTypeName)
          }
       }
    }
