@@ -27,6 +27,11 @@ fun Spec.prepareMariaDbDatabase(
       },
    )
 
+   afterSpec {
+      ds.close()
+      mariadb.stop()
+   }
+
    ds.connection.use { conn ->
       conn.autoCommit = true
       statements.forEach { sql ->

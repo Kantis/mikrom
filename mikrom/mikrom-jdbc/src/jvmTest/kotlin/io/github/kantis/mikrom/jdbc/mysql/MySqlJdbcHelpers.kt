@@ -27,6 +27,11 @@ fun Spec.prepareMySqlDatabase(
       },
    )
 
+   afterSpec {
+      ds.close()
+      mysql.stop()
+   }
+
    ds.connection.use { conn ->
       conn.autoCommit = true
       statements.forEach { sql ->

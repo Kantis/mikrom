@@ -25,6 +25,11 @@ fun Spec.prepareMssqlDatabase(
       },
    )
 
+   afterSpec {
+      ds.close()
+      mssql.stop()
+   }
+
    ds.connection.use { conn ->
       conn.autoCommit = true
       statements.forEach { sql ->

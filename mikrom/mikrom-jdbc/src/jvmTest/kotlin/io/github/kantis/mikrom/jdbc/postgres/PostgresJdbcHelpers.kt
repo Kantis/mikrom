@@ -27,6 +27,11 @@ fun Spec.preparePostgresDatabase(
       },
    )
 
+   afterSpec {
+      ds.close()
+      postgres.stop()
+   }
+
    ds.connection.use { conn ->
       conn.autoCommit = true
       statements.forEach { sql ->

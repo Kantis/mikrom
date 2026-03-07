@@ -22,10 +22,10 @@ public fun jdbcConversions(dataSource: DataSource): TypeConversions {
 
 private fun oracleJdbcConversions(): TypeConversions =
    TypeConversions.Builder().apply {
-      register<BigDecimal, Int> { it.toInt() }
-      register<BigDecimal, Long> { it.toLong() }
+      register<BigDecimal, Int> { it.intValueExact() }
+      register<BigDecimal, Long> { it.longValueExact() }
       register<BigDecimal, Double> { it.toDouble() }
-      register<BigDecimal, Boolean> { it.toInt() != 0 }
+      register<BigDecimal, Boolean> { it.intValueExact() != 0 }
       register<Timestamp, LocalDate> { it.toLocalDateTime().toLocalDate() }
       register<Timestamp, LocalDateTime> { it.toLocalDateTime() }
    }.build()

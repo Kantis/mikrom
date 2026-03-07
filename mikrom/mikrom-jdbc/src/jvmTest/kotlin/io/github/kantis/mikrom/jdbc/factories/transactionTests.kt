@@ -8,7 +8,6 @@ import io.github.kantis.mikrom.jdbc.JdbcDataSource
 import io.github.kantis.mikrom.jdbc.JdbcTestDialect
 import io.github.kantis.mikrom.queryFor
 import io.kotest.core.spec.style.funSpec
-import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 
@@ -66,7 +65,8 @@ fun transactionTests(
 
       dataSourceProvider().transaction {
          val records = mikrom.queryFor<TestRecord>("SELECT * FROM test_records")
-         records.shouldContainExactly(TestRecord(records[0].id, "initial record"))
+         records shouldHaveSize 1
+         records[0].name shouldBe "initial record"
       }
    }
 

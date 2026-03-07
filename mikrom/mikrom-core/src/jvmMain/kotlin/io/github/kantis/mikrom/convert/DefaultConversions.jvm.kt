@@ -14,6 +14,9 @@ public actual fun platformDefaultConversions(): TypeConversions =
       register<Timestamp, LocalDateTime> { it.toLocalDateTime() }
       register<Date, LocalDate> { it.toLocalDate() }
       register<ByteArray, UUID> {
+         require(it.size == 16) {
+            "Expected ByteArray of length 16 for UUID conversion, but was ${it.size}"
+         }
          val buf = ByteBuffer.wrap(it)
          UUID(buf.long, buf.long)
       }

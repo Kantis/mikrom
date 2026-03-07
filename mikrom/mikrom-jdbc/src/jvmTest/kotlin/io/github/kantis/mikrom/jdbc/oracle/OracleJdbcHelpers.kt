@@ -27,6 +27,11 @@ fun Spec.prepareOracleDatabase(
       },
    )
 
+   afterSpec {
+      ds.close()
+      oracle.stop()
+   }
+
    ds.connection.use { conn ->
       conn.autoCommit = true
       statements.forEach { sql ->

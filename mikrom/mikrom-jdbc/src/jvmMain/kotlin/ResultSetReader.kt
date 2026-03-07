@@ -32,7 +32,7 @@ public object ResultSetReader {
       val metaData = resultSet.metaData
       return buildRow(driverConversions) {
          for (i in 1..metaData.columnCount) {
-            val columnName = metaData.getColumnName(i).lowercase()
+            val columnName = metaData.getColumnLabel(i).lowercase()
             val columnType = metaData.getColumnType(i)
             val sqlTypeName = metaData.getColumnTypeName(i)
             val value = when (columnType) {
