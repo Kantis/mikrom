@@ -7,6 +7,8 @@ public fun commonDefaultConversions(): TypeConversions =
       register<Int, UShort> { it.toUShort() }
       register<Int, Byte> { it.toByte() }
       register<Int, Short> { it.toShort() }
+      register<Long, Int> { it.toInt() }
+      register<Int, Long> { it.toLong() }
    }.build()
 
 public expect fun platformDefaultConversions(): TypeConversions

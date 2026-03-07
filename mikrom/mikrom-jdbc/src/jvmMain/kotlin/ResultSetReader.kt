@@ -3,17 +3,21 @@ package io.github.kantis.mikrom.jdbc
 import io.github.kantis.mikrom.MikromInternal
 import io.github.kantis.mikrom.Row
 import io.github.kantis.mikrom.buildRow
+import io.github.kantis.mikrom.convert.TypeConversions
 import java.sql.ResultSet
 import java.sql.Types
 
 @MikromInternal
 public object ResultSetReader {
    @MikromInternal
-   public fun loadResultSet(resultSet: ResultSet): List<Row> {
+   public fun loadResultSet(
+      resultSet: ResultSet,
+      driverConversions: TypeConversions = TypeConversions.EMPTY,
+   ): List<Row> {
       val rows = mutableListOf<Row>()
       try {
          while (resultSet.next()) {
-            rows.add(loadRow(resultSet))
+            rows.add(loadRow(resultSet, driverConversions))
          }
       } finally {
          resultSet.close()
@@ -21,24 +25,42 @@ public object ResultSetReader {
       return rows
    }
 
-   private fun loadRow(resultSet: ResultSet): Row {
+   private fun loadRow(
+      resultSet: ResultSet,
+      driverConversions: TypeConversions,
+   ): Row {
       val metaData = resultSet.metaData
-      return buildRow {
+      return buildRow(driverConversions) {
          for (i in 1..metaData.columnCount) {
-            val columnName = metaData.getColumnName(i)
+            val columnName = metaData.getColumnLabel(i).lowercase()
             val columnType = metaData.getColumnType(i)
             val sqlTypeName = metaData.getColumnTypeName(i)
             val value = when (columnType) {
-               Types.BIT,
+               Types.BIT -> resultSet.getBoolean(i)
+
                Types.TINYINT,
                Types.SMALLINT,
                Types.INTEGER,
-               Types.BIGINT,
                -> resultSet.getInt(i)
 
-               Types.DECIMAL -> resultSet.getBigDecimal(i)
+               Types.BIGINT -> resultSet.getLong(i)
 
-               Types.VARCHAR -> resultSet.getString(i)
+               Types.FLOAT,
+               Types.DOUBLE,
+               Types.REAL,
+               -> resultSet.getDouble(i)
+
+               Types.NUMERIC,
+               Types.DECIMAL,
+               -> resultSet.getBigDecimal(i)
+
+               Types.CHAR,
+               Types.VARCHAR,
+               Types.LONGVARCHAR,
+               Types.NCHAR,
+               Types.NVARCHAR,
+               Types.LONGNVARCHAR,
+               -> resultSet.getString(i)
 
                Types.BOOLEAN -> resultSet.getBoolean(i)
 
@@ -52,18 +74,35 @@ public object ResultSetReader {
 
                Types.TIMESTAMP_WITH_TIMEZONE -> TODO("TIMESTAMP_WITH_TIMEZONE is not supported yet")
 
-               else -> error("Column $i is of unsupported type $columnType")
+               Types.BINARY,
+               Types.VARBINARY,
+               Types.LONGVARBINARY,
+               -> resultSet.getBytes(i)
+
+               else -> resultSet.getObject(i)
             }
 
+            val resolvedValue = if (resultSet.wasNull()) null else value
+
             val kotlinType = when (columnType) {
-               Types.BIT, Types.TINYINT, Types.SMALLINT, Types.INTEGER, Types.BIGINT -> Int::class
-               Types.VARCHAR -> String::class
-               Types.BOOLEAN -> Boolean::class
+               Types.BIT, Types.BOOLEAN -> Boolean::class
+
+               Types.TINYINT, Types.SMALLINT, Types.INTEGER -> Int::class
+
+               Types.BIGINT -> Long::class
+
+               Types.FLOAT, Types.DOUBLE, Types.REAL -> Double::class
+
+               Types.CHAR, Types.VARCHAR, Types.LONGVARCHAR,
+               Types.NCHAR, Types.NVARCHAR, Types.LONGNVARCHAR,
+               -> String::class
+
                Types.TIMESTAMP -> java.sql.Timestamp::class
+
                else -> null
             }
 
-            column(columnName, value, kotlinType, sqlTypeName)
+            column(columnName, resolvedValue, kotlinType, sqlTypeName)
          }
       }
    }
