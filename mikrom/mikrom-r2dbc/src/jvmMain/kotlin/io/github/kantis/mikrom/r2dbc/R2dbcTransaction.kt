@@ -5,22 +5,26 @@ import io.github.kantis.mikrom.Row
 import io.github.kantis.mikrom.buildRow
 import io.github.kantis.mikrom.suspend.SuspendingTransaction
 import io.r2dbc.spi.Connection
+import io.r2dbc.spi.Result
 import io.r2dbc.spi.Statement
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
 import kotlin.coroutines.CoroutineContext
 
+@OptIn(ExperimentalCoroutinesApi::class)
 public class R2dbcTransaction(private val connection: Connection, override val coroutineContext: CoroutineContext) : SuspendingTransaction {
    override suspend fun executeInTransaction(
       query: Query,
       vararg params: List<*>,
    ) {
-      val statement = connection.createStatement(query)
       params.forEach { p ->
+         val statement = connection.createStatement(query)
          println("Executing query: $query with params: $p")
          bindParameters(statement, p)
          statement.execute {
@@ -35,8 +39,8 @@ public class R2dbcTransaction(private val connection: Connection, override val c
       params: Flow<List<*>>,
    ): Job =
       launch {
-         val statement = connection.createStatement(query)
          params.collect { p ->
+            val statement = connection.createStatement(query)
             println("Executing query: $query with params: $p")
             bindParameters(statement, p)
             statement.execute {
@@ -58,19 +62,19 @@ public class R2dbcTransaction(private val connection: Connection, override val c
    private suspend fun Statement.execute(collector: FlowCollector<Row>) {
       execute()
          .asFlow()
-         .collect { result ->
+         .flatMapConcat { result ->
             result.map { row, rowMetadata ->
                buildRow {
                   for (metadata in rowMetadata.columnMetadatas) {
                      column(
-                        name = metadata.name,
+                        name = metadata.name.lowercase(),
                         value = row.get(metadata.name),
-                        sqlTypeName = metadata.type?.name,
+                        sqlTypeName = metadata.type.name,
                      )
                   }
                }
-            }.asFlow().collect(collector)
-         }
+            }.asFlow()
+         }.collect(collector)
    }
 
    private fun bindParameters(

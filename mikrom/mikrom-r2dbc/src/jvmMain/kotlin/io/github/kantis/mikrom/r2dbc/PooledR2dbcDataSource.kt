@@ -38,6 +38,7 @@ public class PooledR2dbcDataSource(private val underlyingConnectionPool: Connect
          throw e
       } finally {
          logger.debug("Closing R2DBC request")
+         connection.close().awaitFirstOrNull()
       }
    }
 

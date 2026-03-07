@@ -1,45 +1,40 @@
-package io.github.kantis.mikrom.r2dbc.helpers
+package io.github.kantis.mikrom.r2dbc.mssql
 
 import io.github.kantis.mikrom.r2dbc.PooledR2dbcDataSource
+import io.r2dbc.mssql.MssqlConnectionConfiguration
+import io.r2dbc.mssql.MssqlConnectionFactory
 import io.r2dbc.pool.ConnectionPool
 import io.r2dbc.pool.ConnectionPoolConfiguration
-import io.r2dbc.postgresql.PostgresqlConnectionConfiguration
-import io.r2dbc.postgresql.PostgresqlConnectionFactory
 import kotlinx.coroutines.reactive.awaitFirstOrNull
 import kotlinx.coroutines.reactive.awaitSingle
-import org.intellij.lang.annotations.Language
-import org.testcontainers.containers.PostgreSQLContainer
+import org.testcontainers.containers.MSSQLServerContainer
+import java.time.Duration
 
-suspend fun preparePostgresDatabase(
-   @Language("SQL")vararg statements: String,
-): PooledR2dbcDataSource {
-   val postgres = PostgreSQLContainer<Nothing>("postgres:16-alpine")
+suspend fun prepareMssqlDatabase(vararg statements: String): PooledR2dbcDataSource {
+   val mssql = MSSQLServerContainer<Nothing>("mcr.microsoft.com/mssql/server:2022-latest")
       .apply {
-         withDatabaseName("testdb")
-         withUsername("testuser")
-         withPassword("testpass")
+         acceptLicense()
          start()
       }
 
-   val connectionFactory = PostgresqlConnectionFactory(
-      PostgresqlConnectionConfiguration.builder()
-         .host(postgres.host)
-         .port(postgres.getMappedPort(5432))
-         .database(postgres.databaseName)
-         .username(postgres.username)
-         .password(postgres.password)
+   val connectionFactory = MssqlConnectionFactory(
+      MssqlConnectionConfiguration.builder()
+         .host(mssql.host)
+         .port(mssql.getMappedPort(1433))
+         .database("master")
+         .username(mssql.username)
+         .password(mssql.password)
          .build(),
    )
 
    val poolConfiguration = ConnectionPoolConfiguration.builder()
       .connectionFactory(connectionFactory)
-      .maxIdleTime(java.time.Duration.ofMinutes(30))
+      .maxIdleTime(Duration.ofMinutes(30))
       .maxSize(20)
       .build()
 
    val pool = ConnectionPool(poolConfiguration)
 
-   // Execute setup statements
    val connection = requireNotNull(pool.create().awaitSingle())
    connection.isAutoCommit = false
    connection.beginTransaction().awaitFirstOrNull()
