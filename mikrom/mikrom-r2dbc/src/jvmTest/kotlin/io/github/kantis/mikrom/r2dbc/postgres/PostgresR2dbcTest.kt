@@ -14,7 +14,7 @@ class PostgresR2dbcTest : FunSpec(
       lateinit var dataSource: PooledR2dbcDataSource
 
       beforeSpec {
-         dataSource = prepareH2Database(
+         dataSource = preparePostgresDatabase(
             dialect.createBooksTable(),
             dialect.createTestRecordsTable(),
             dialect.createDataTypesTable(),
@@ -24,9 +24,9 @@ class PostgresR2dbcTest : FunSpec(
       val dataSourceProvider = { dataSource }
 
       include(basicInsertQueryTests(dialect, streaming = true, dataSourceProvider))
-//      include(basicInsertQueryTests(dialect, streaming = false, dataSourceProvider))
+      include(basicInsertQueryTests(dialect, streaming = false, dataSourceProvider))
       include(transactionTests(dialect, streaming = true, dataSourceProvider))
-//      include(transactionTests(dialect, streaming = false, dataSourceProvider))
-//      include(dataTypeTests(dialect, dataSourceProvider))
+      include(transactionTests(dialect, streaming = false, dataSourceProvider))
+      include(dataTypeTests(dialect, dataSourceProvider))
    },
 )
