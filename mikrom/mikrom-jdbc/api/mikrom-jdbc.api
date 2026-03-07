@@ -1,3 +1,7 @@
+public final class io/github/kantis/mikrom/jdbc/JdbcConversionsKt {
+	public static final fun jdbcConversions (Ljavax/sql/DataSource;)Lio/github/kantis/mikrom/convert/TypeConversions;
+}
+
 public final class io/github/kantis/mikrom/jdbc/JdbcDataSource : io/github/kantis/mikrom/datasource/DataSource {
 	public static final field Companion Lio/github/kantis/mikrom/jdbc/JdbcDataSource$Companion;
 	public fun <init> (Ljavax/sql/DataSource;)V
@@ -8,13 +12,15 @@ public final class io/github/kantis/mikrom/jdbc/JdbcDataSource$Companion {
 }
 
 public final class io/github/kantis/mikrom/jdbc/JdbcTransaction : io/github/kantis/mikrom/datasource/Transaction {
-	public fun <init> (Ljava/sql/Connection;)V
+	public fun <init> (Ljava/sql/Connection;Lio/github/kantis/mikrom/convert/TypeConversions;)V
+	public synthetic fun <init> (Ljava/sql/Connection;Lio/github/kantis/mikrom/convert/TypeConversions;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun executeInTransaction (Ljava/lang/String;[Ljava/util/List;)V
 	public fun query (Ljava/lang/String;Ljava/util/List;)Ljava/util/List;
 }
 
 public final class io/github/kantis/mikrom/jdbc/ResultSetReader {
 	public static final field INSTANCE Lio/github/kantis/mikrom/jdbc/ResultSetReader;
-	public final fun loadResultSet (Ljava/sql/ResultSet;)Ljava/util/List;
+	public final fun loadResultSet (Ljava/sql/ResultSet;Lio/github/kantis/mikrom/convert/TypeConversions;)Ljava/util/List;
+	public static synthetic fun loadResultSet$default (Lio/github/kantis/mikrom/jdbc/ResultSetReader;Ljava/sql/ResultSet;Lio/github/kantis/mikrom/convert/TypeConversions;ILjava/lang/Object;)Ljava/util/List;
 }
 
