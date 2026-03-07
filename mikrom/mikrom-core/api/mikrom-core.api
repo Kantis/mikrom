@@ -88,7 +88,8 @@ public final class io/github/kantis/mikrom/Rollback {
 
 public final class io/github/kantis/mikrom/Row {
 	public static final field Companion Lio/github/kantis/mikrom/Row$Companion;
-	public fun <init> (Ljava/util/Map;)V
+	public fun <init> (Ljava/util/Map;Lio/github/kantis/mikrom/convert/TypeConversions;)V
+	public synthetic fun <init> (Ljava/util/Map;Lio/github/kantis/mikrom/convert/TypeConversions;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun get (Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Lkotlin/reflect/KClass;)Ljava/lang/Object;
 	public final fun getColumnNames ()Ljava/util/Set;
@@ -126,7 +127,8 @@ public final class io/github/kantis/mikrom/RowBuilder {
 }
 
 public final class io/github/kantis/mikrom/RowBuilderKt {
-	public static final fun buildRow (Lkotlin/jvm/functions/Function1;)Lio/github/kantis/mikrom/Row;
+	public static final fun buildRow (Lio/github/kantis/mikrom/convert/TypeConversions;Lkotlin/jvm/functions/Function1;)Lio/github/kantis/mikrom/Row;
+	public static synthetic fun buildRow$default (Lio/github/kantis/mikrom/convert/TypeConversions;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lio/github/kantis/mikrom/Row;
 }
 
 public abstract interface class io/github/kantis/mikrom/RowMapper {

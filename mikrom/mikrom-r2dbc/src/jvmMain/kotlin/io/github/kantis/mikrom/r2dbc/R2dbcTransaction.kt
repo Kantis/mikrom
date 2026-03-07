@@ -5,6 +5,7 @@ import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.Row
 import io.github.kantis.mikrom.TypedNull
 import io.github.kantis.mikrom.buildRow
+import io.github.kantis.mikrom.convert.TypeConversions
 import io.github.kantis.mikrom.suspend.SuspendingTransaction
 import io.r2dbc.spi.Connection
 import io.r2dbc.spi.Result
@@ -20,7 +21,11 @@ import kotlinx.coroutines.reactive.asFlow
 import kotlin.coroutines.CoroutineContext
 
 @OptIn(ExperimentalCoroutinesApi::class)
-public class R2dbcTransaction(private val connection: Connection, override val coroutineContext: CoroutineContext) : SuspendingTransaction {
+public class R2dbcTransaction(
+   private val connection: Connection,
+   override val coroutineContext: CoroutineContext,
+   private val driverConversions: TypeConversions = TypeConversions.EMPTY,
+) : SuspendingTransaction {
    override suspend fun executeInTransaction(
       query: Query,
       vararg params: List<*>,
@@ -66,7 +71,7 @@ public class R2dbcTransaction(private val connection: Connection, override val c
          .asFlow()
          .flatMapConcat { result ->
             result.map { row, rowMetadata ->
-               buildRow {
+               buildRow(driverConversions) {
                   for (metadata in rowMetadata.columnMetadatas) {
                      column(
                         name = metadata.name.lowercase(),
@@ -86,8 +91,8 @@ public class R2dbcTransaction(private val connection: Connection, override val c
       params.forEachIndexed { index, param ->
          when (param) {
             is AnsiString -> statement.bind(index, param.value)
-            is TypedNull -> statement.bindNull(index, param.type.java)
-            null -> statement.bindNull(index, Any::class.java)
+            is TypedNull -> statement.bindNull(index, param.type.javaObjectType)
+            null -> throw IllegalArgumentException("Null value for parameter at index $index, must be passed using TypedNull!")
             else -> statement.bind(index, param)
          }
       }

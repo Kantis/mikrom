@@ -22,10 +22,10 @@ class MariaDbR2dbcTests : FunSpec(
 
       val dataSourceProvider = { dataSource }
 
-//      include(dataTypeTests(dialect, dataSourceProvider))
       include(basicInsertQueryTests(dialect, streaming = true, dataSourceProvider))
-//      include(basicInsertQueryTests(dialect, streaming = false, dataSourceProvider))
+      include(basicInsertQueryTests(dialect, streaming = false, dataSourceProvider))
       include(transactionTests(dialect, streaming = true, dataSourceProvider))
-//      include(transactionTests(dialect, streaming = false, dataSourceProvider))
+      include(transactionTests(dialect, streaming = false, dataSourceProvider))
+      include(dataTypeTests(dialect, dataSourceProvider))
    },
 )

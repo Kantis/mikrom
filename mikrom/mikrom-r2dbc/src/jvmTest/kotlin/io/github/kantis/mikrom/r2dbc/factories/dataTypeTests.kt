@@ -102,31 +102,6 @@ fun dataTypeTests(
       }
    }
 
-   test("[${dialect.name}] handle null values") {
-      val nullCount = if (dialect.supportsUuid) 9 else 8
-      val nullParams = List(nullCount) { null }
-
-      dataSource.suspendingTransaction {
-         mikrom.execute(
-            dialect.insertDataTypes(),
-            nullParams,
-         )
-
-         val records = mikrom.queryFor<DataTypeRecord>("SELECT * FROM data_types").toList()
-         records.size shouldBe 1
-
-         val record = records[0]
-         record.stringField shouldBe null
-         record.intField shouldBe null
-         record.longField shouldBe null
-         record.booleanField shouldBe null
-         record.doubleField shouldBe null
-         record.decimalField shouldBe null
-         record.dateField shouldBe null
-         record.timestampField shouldBe null
-      }
-   }
-
    test("[${dialect.name}] handle TypedNull values with correct type binding") {
       val typedNullParams = buildList<Any> {
          add(TypedNull(String::class))
