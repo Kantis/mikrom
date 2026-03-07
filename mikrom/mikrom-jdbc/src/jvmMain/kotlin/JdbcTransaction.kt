@@ -61,10 +61,27 @@ public class JdbcTransaction(private val connection: Connection) : Transaction {
             is BigDecimal -> statement.setBigDecimal(index + 1, param)
             is Instant -> statement.setTimestamp(index + 1, Timestamp.from(param))
             is UUID -> statement.setObject(index + 1, param)
-            is TypedNull -> statement.setNull(index + 1, Types.NULL)
+            is TypedNull -> statement.setNull(index + 1, sqlTypeFor(param.type))
             null -> statement.setNull(index + 1, Types.NULL)
             else -> error("Unsupported parameter type: ${param::class.simpleName} at index ${index + 1} with value $param")
          }
       }
    }
+
+   private fun sqlTypeFor(type: kotlin.reflect.KClass<*>): Int =
+      when (type) {
+         String::class -> Types.VARCHAR
+         Int::class -> Types.INTEGER
+         Long::class -> Types.BIGINT
+         Double::class -> Types.DOUBLE
+         Float::class -> Types.FLOAT
+         Boolean::class -> Types.BOOLEAN
+         BigDecimal::class -> Types.DECIMAL
+         LocalDate::class -> Types.DATE
+         LocalDateTime::class -> Types.TIMESTAMP
+         Instant::class -> Types.TIMESTAMP
+         UUID::class -> Types.OTHER
+         ByteArray::class -> Types.BINARY
+         else -> Types.NULL
+      }
 }

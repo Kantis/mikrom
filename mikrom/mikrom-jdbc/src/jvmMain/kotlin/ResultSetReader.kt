@@ -25,11 +25,12 @@ public object ResultSetReader {
       val metaData = resultSet.metaData
       return buildRow {
          for (i in 1..metaData.columnCount) {
-            val columnName = metaData.getColumnName(i)
+            val columnName = metaData.getColumnName(i).lowercase()
             val columnType = metaData.getColumnType(i)
             val sqlTypeName = metaData.getColumnTypeName(i)
             val value = when (columnType) {
-               Types.BIT,
+               Types.BIT -> resultSet.getBoolean(i)
+
                Types.TINYINT,
                Types.SMALLINT,
                Types.INTEGER,
@@ -73,13 +74,15 @@ public object ResultSetReader {
 
                Types.OTHER -> resultSet.getObject(i)
 
-               else -> error("Column $i ($columnName) is of unsupported type $columnType ($sqlTypeName)")
+               else -> resultSet.getObject(i)
             }
 
             val resolvedValue = if (resultSet.wasNull()) null else value
 
             val kotlinType = when (columnType) {
-               Types.BIT, Types.TINYINT, Types.SMALLINT, Types.INTEGER -> Int::class
+               Types.BIT, Types.BOOLEAN -> Boolean::class
+
+               Types.TINYINT, Types.SMALLINT, Types.INTEGER -> Int::class
 
                Types.BIGINT -> Long::class
 
@@ -88,8 +91,6 @@ public object ResultSetReader {
                Types.CHAR, Types.VARCHAR, Types.LONGVARCHAR,
                Types.NCHAR, Types.NVARCHAR, Types.LONGNVARCHAR,
                -> String::class
-
-               Types.BOOLEAN -> Boolean::class
 
                Types.TIMESTAMP -> java.sql.Timestamp::class
 

@@ -14,7 +14,7 @@ public suspend inline fun <reified T : Any> Mikrom.queryFor(
    @Language("SQL") query: Query,
 ): Flow<T> {
    if (T::class in nonMappedPrimitives) {
-      return transaction.query(query).map { it.singleValue() as T }
+      return transaction.query(query).map { it.convertSingleValue(T::class, conversions) }
    }
    val rowMapper = resolveRowMapper<T>()
    return transaction.query(query).map { rowMapper.mapRow(it, this@queryFor) }
@@ -32,7 +32,7 @@ public suspend inline fun <reified T : Any> Mikrom.queryFor(
    params: List<Any>,
 ): Flow<T> {
    if (T::class in nonMappedPrimitives) {
-      return transaction.query(query, params).map { it.singleValue() as T }
+      return transaction.query(query, params).map { it.convertSingleValue(T::class, conversions) }
    }
    val rowMapper = resolveRowMapper<T>()
    return transaction.query(query, params).map { rowMapper.mapRow(it, this@queryFor) }

@@ -1,5 +1,6 @@
 package io.github.kantis.mikrom.convert
 
+import java.math.BigDecimal
 import java.nio.ByteBuffer
 import java.sql.Date
 import java.sql.Timestamp
@@ -13,6 +14,10 @@ public actual fun platformDefaultConversions(): TypeConversions =
       register<Timestamp, Instant> { it.toInstant() }
       register<Timestamp, LocalDateTime> { it.toLocalDateTime() }
       register<Date, LocalDate> { it.toLocalDate() }
+      register<BigDecimal, Int> { it.toInt() }
+      register<BigDecimal, Long> { it.toLong() }
+      register<BigDecimal, Double> { it.toDouble() }
+      register<BigDecimal, Boolean> { it.toInt() != 0 }
       register<ByteArray, UUID> {
          val buf = ByteBuffer.wrap(it)
          UUID(buf.long, buf.long)
