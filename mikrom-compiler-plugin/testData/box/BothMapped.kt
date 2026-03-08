@@ -4,8 +4,8 @@
 import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Row
 import io.github.kantis.mikrom.convert.TypeConversions
-import io.github.kantis.mikrom.generator.ParameterMapped
-import io.github.kantis.mikrom.generator.RowMapped
+import io.github.kantis.mikrom.generator.MikromParameter
+import io.github.kantis.mikrom.generator.MikromResult
 import kotlin.test.*
 
 fun box(): String {
@@ -27,8 +27,8 @@ fun box(): String {
    return "OK"
 }
 
-@RowMapped
-@ParameterMapped
+@MikromResult
+@MikromParameter
 data class Person(
    val name: String,
    val age: Int,

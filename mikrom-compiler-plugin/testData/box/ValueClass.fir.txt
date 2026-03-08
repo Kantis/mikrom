@@ -17,7 +17,7 @@ FILE: ValueClass.kt
             public get(): R|kotlin/Int|
 
     }
-    @R|io/github/kantis/mikrom/generator/RowMapped|() public final data class UserWithValueClass : R|kotlin/Any| {
+    @R|io/github/kantis/mikrom/generator/MikromResult|() public final data class UserWithValueClass : R|kotlin/Any| {
         public constructor(id: R|UserId|, age: R|Age|): R|UserWithValueClass| {
             super<R|kotlin/Any|>()
         }

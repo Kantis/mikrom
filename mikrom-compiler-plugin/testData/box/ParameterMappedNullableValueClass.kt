@@ -2,13 +2,13 @@
 // DUMP_IR
 
 import io.github.kantis.mikrom.TypedNull
-import io.github.kantis.mikrom.generator.ParameterMapped
+import io.github.kantis.mikrom.generator.MikromParameter
 import kotlin.test.*
 
 @JvmInline
 value class Email(val value: String)
 
-@ParameterMapped
+@MikromParameter
 data class UserWithEmail(
    val name: String,
    val email: Email?,

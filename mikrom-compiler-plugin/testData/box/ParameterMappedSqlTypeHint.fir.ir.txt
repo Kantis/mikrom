@@ -1,7 +1,7 @@
 FILE fqName:<root> fileName:/ParameterMappedSqlTypeHint.kt
   CLASS CLASS name:NullableVarcharUser modality:FINAL visibility:public [data] superTypes:[kotlin.Any]
     annotations:
-      ParameterMapped
+      MikromParameter
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.NullableVarcharUser
     PROPERTY name:name visibility:public modality:FINAL [val]
       FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String? visibility:private [final]
@@ -250,7 +250,7 @@ FILE fqName:<root> fileName:/ParameterMappedSqlTypeHint.kt
             CONST String type=kotlin.String value=")"
   CLASS CLASS name:VarcharUser modality:FINAL visibility:public [data] superTypes:[kotlin.Any]
     annotations:
-      ParameterMapped
+      MikromParameter
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.VarcharUser
     PROPERTY name:name visibility:public modality:FINAL [val]
       FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]

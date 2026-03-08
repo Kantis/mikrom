@@ -1,8 +1,8 @@
 FILE fqName:<root> fileName:/BothMapped.kt
   CLASS CLASS name:Person modality:FINAL visibility:public [data] superTypes:[kotlin.Any]
     annotations:
-      RowMapped
-      ParameterMapped
+      MikromResult
+      MikromParameter
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.Person
     PROPERTY name:name visibility:public modality:FINAL [val]
       FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]

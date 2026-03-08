@@ -1,7 +1,7 @@
 FILE fqName:<root> fileName:/NullableValueClass.kt
   CLASS CLASS name:Contact modality:FINAL visibility:public [data] superTypes:[kotlin.Any]
     annotations:
-      RowMapped
+      MikromResult
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.Contact
     PROPERTY name:name visibility:public modality:FINAL [val]
       FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]

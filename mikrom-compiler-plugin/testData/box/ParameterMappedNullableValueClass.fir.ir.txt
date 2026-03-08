@@ -69,7 +69,7 @@ FILE fqName:<root> fileName:/ParameterMappedNullableValueClass.kt
             CONST String type=kotlin.String value=")"
   CLASS CLASS name:UserWithEmail modality:FINAL visibility:public [data] superTypes:[kotlin.Any]
     annotations:
-      ParameterMapped
+      MikromParameter
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.UserWithEmail
     PROPERTY name:name visibility:public modality:FINAL [val]
       FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]

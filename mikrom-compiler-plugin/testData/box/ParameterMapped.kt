@@ -1,7 +1,7 @@
 // FIR_DUMP
 // DUMP_IR
 
-import io.github.kantis.mikrom.generator.ParameterMapped
+import io.github.kantis.mikrom.generator.MikromParameter
 import kotlin.test.*
 
 fun box(): String {
@@ -13,7 +13,7 @@ fun box(): String {
    return "OK"
 }
 
-@ParameterMapped
+@MikromParameter
 data class Employee(
    val name: String,
    val age: Int,

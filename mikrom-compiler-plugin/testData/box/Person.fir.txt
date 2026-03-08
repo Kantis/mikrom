@@ -5,7 +5,7 @@ FILE: Person.kt
         R|kotlin/test/assertEquals|<R|Person|>(R|<local>/person|, R|/Person.Person|(String(Brian), String(bnorm), Int(-1)))
         ^box String(OK)
     }
-    @R|io/github/kantis/mikrom/generator/RowMapped|() public final data class Person : R|kotlin/Any| {
+    @R|io/github/kantis/mikrom/generator/MikromResult|() public final data class Person : R|kotlin/Any| {
         public constructor(name: R|kotlin/String|, nickname: R|kotlin/String?| = R|<local>/name|, age: R|kotlin/Int| = Int(0)): R|Person| {
             super<R|kotlin/Any|>()
         }

@@ -5,4 +5,4 @@ package io.github.kantis.mikrom.generator
  */
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)
-public annotation class ParameterMapped
+public annotation class MikromParameter

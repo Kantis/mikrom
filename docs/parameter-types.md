@@ -2,10 +2,10 @@
 
 ## Nullable Parameters / TypedNull
 
-When using `@ParameterMapped` data classes with nullable properties, the compiler plugin automatically wraps null values in `TypedNull` to preserve type information during binding. This is especially important for R2DBC drivers that require explicit type information when binding null values.
+When using `@MikromParameter` data classes with nullable properties, the compiler plugin automatically wraps null values in `TypedNull` to preserve type information during binding. This is especially important for R2DBC drivers that require explicit type information when binding null values.
 
 ```kotlin
-@ParameterMapped
+@MikromParameter
 data class User(
     val name: String,
     val nickname: String?,  // null values are automatically wrapped in TypedNull(String::class)
@@ -42,10 +42,10 @@ This causes the JDBC binding layer to use `setObject(index, value, Types.VARCHAR
 
 ### Solution: `@SqlTypeHint` Annotation
 
-For `@ParameterMapped` data classes, annotate constructor parameters with `@SqlTypeHint`:
+For `@MikromParameter` data classes, annotate constructor parameters with `@SqlTypeHint`:
 
 ```kotlin
-@ParameterMapped
+@MikromParameter
 data class UserQuery(
     @SqlTypeHint(SqlType.VARCHAR)
     val login: String,
@@ -56,7 +56,7 @@ data class UserQuery(
 The compiler plugin will automatically wrap the `login` value in `AnsiString` in the generated parameter mapper. Nullable properties are also supported — null values still use `TypedNull`, while non-null values are wrapped in `AnsiString`.
 
 ```kotlin
-@ParameterMapped
+@MikromParameter
 data class UserSearch(
     @SqlTypeHint(SqlType.VARCHAR)
     val login: String?,  // null → TypedNull(String::class), non-null → AnsiString(value)

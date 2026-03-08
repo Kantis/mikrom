@@ -7,7 +7,7 @@ FILE: ParameterMapped.kt
         R|kotlin/test/assertEquals|<R|kotlin/Int|>(Int(2), R|<local>/params|.R|SubstitutionOverride<kotlin/collections/Map.size: R|kotlin/Int|>|)
         ^box String(OK)
     }
-    @R|io/github/kantis/mikrom/generator/ParameterMapped|() public final data class Employee : R|kotlin/Any| {
+    @R|io/github/kantis/mikrom/generator/MikromParameter|() public final data class Employee : R|kotlin/Any| {
         public constructor(name: R|kotlin/String|, age: R|kotlin/Int|): R|Employee| {
             super<R|kotlin/Any|>()
         }

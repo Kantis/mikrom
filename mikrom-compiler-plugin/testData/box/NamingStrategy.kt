@@ -6,7 +6,7 @@ import io.github.kantis.mikrom.Row
 import io.github.kantis.mikrom.convert.TypeConversions
 import io.github.kantis.mikrom.generator.NamingStrategy
 import io.github.kantis.mikrom.generator.Column
-import io.github.kantis.mikrom.generator.RowMapped
+import io.github.kantis.mikrom.generator.MikromResult
 import kotlin.test.*
 
 fun box(): String {
@@ -44,19 +44,19 @@ fun box(): String {
    return "OK"
 }
 
-@RowMapped
+@MikromResult
 data class Invoice(
    val invoiceId: Int,
    val customerName: String,
 )
 
-@RowMapped
+@MikromResult
 data class OverriddenEntity(
    @Column("custom_col") val name: String,
    val otherField: Int,
 )
 
-@RowMapped
+@MikromResult
 data class AsIsEntity(
    val firstName: String,
 )

@@ -3,19 +3,19 @@
 
 import io.github.kantis.mikrom.AnsiString
 import io.github.kantis.mikrom.TypedNull
-import io.github.kantis.mikrom.generator.ParameterMapped
+import io.github.kantis.mikrom.generator.MikromParameter
 import io.github.kantis.mikrom.generator.SqlType
 import io.github.kantis.mikrom.generator.SqlTypeHint
 import kotlin.test.*
 
-@ParameterMapped
+@MikromParameter
 data class VarcharUser(
    @SqlTypeHint(SqlType.VARCHAR)
    val name: String,
    val age: Int,
 )
 
-@ParameterMapped
+@MikromParameter
 data class NullableVarcharUser(
    @SqlTypeHint(SqlType.VARCHAR)
    val name: String?,

@@ -4,13 +4,13 @@
 import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Row
 import io.github.kantis.mikrom.convert.TypeConversions
-import io.github.kantis.mikrom.generator.RowMapped
+import io.github.kantis.mikrom.generator.MikromResult
 import kotlin.test.*
 
 @JvmInline
 value class Email(val value: String)
 
-@RowMapped
+@MikromResult
 data class Contact(
    val name: String,
    val email: Email?,

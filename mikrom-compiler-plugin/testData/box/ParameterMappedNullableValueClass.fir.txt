@@ -8,7 +8,7 @@ FILE: ParameterMappedNullableValueClass.kt
             public get(): R|kotlin/String|
 
     }
-    @R|io/github/kantis/mikrom/generator/ParameterMapped|() public final data class UserWithEmail : R|kotlin/Any| {
+    @R|io/github/kantis/mikrom/generator/MikromParameter|() public final data class UserWithEmail : R|kotlin/Any| {
         public constructor(name: R|kotlin/String|, email: R|Email?|): R|UserWithEmail| {
             super<R|kotlin/Any|>()
         }
