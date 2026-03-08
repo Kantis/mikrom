@@ -2,16 +2,16 @@ package io.github.kantis.mikrom.example
 
 import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Row
-import io.github.kantis.mikrom.convert.TypeConversions
+import io.github.kantis.mikrom.convert.TypeConverters
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
 class BookTest : FunSpec(
    {
-      val mikrom = Mikrom(mutableMapOf(), conversions = TypeConversions.EMPTY)
+      val mikrom = Mikrom(mutableMapOf(), converters = TypeConverters.EMPTY)
 
       test("rowMapper() companion accessor returns generated mapper") {
-         val mikrom = Mikrom(mutableMapOf(), conversions = TypeConversions.EMPTY)
+         val mikrom = Mikrom(mutableMapOf(), converters = TypeConverters.EMPTY)
          val book: Book = Book.rowMapper().mapRow(
             Row.of(
                "author" to "JRR Tolkien",

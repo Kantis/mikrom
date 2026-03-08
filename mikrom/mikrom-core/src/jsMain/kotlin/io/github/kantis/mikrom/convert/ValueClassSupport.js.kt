@@ -5,5 +5,5 @@ import kotlin.reflect.KClass
 internal actual fun tryWrapValueClass(
    value: Any,
    targetClass: KClass<*>,
-   conversions: TypeConversions,
+   converters: TypeConverters,
 ): Any? = null

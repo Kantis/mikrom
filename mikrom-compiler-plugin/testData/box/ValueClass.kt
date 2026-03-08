@@ -3,7 +3,7 @@
 
 import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Row
-import io.github.kantis.mikrom.convert.TypeConversions
+import io.github.kantis.mikrom.convert.TypeConverters
 import io.github.kantis.mikrom.generator.MikromResult
 import kotlin.test.*
 
@@ -20,7 +20,7 @@ data class UserWithValueClass(
 )
 
 fun box(): String {
-   val mikrom = Mikrom(mutableMapOf(), conversions = TypeConversions.EMPTY)
+   val mikrom = Mikrom(mutableMapOf(), converters = TypeConverters.EMPTY)
    val user = UserWithValueClass.rowMapper().mapRow(
       Row.of(
          "id" to "user-123",

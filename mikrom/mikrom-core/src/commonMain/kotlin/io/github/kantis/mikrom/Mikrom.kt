@@ -1,7 +1,7 @@
 package io.github.kantis.mikrom
 
-import io.github.kantis.mikrom.convert.TypeConversions
-import io.github.kantis.mikrom.convert.defaultConversions
+import io.github.kantis.mikrom.convert.TypeConverters
+import io.github.kantis.mikrom.convert.defaultConverters
 import io.github.kantis.mikrom.generator.NamingStrategy
 import io.github.kantis.mikrom.internal.compiledParameterMapper
 import io.github.kantis.mikrom.internal.compiledRowMapper
@@ -10,7 +10,7 @@ import kotlin.reflect.KClass
 public class Mikrom(
    public val rowMappers: MutableMap<KClass<*>, RowMapper<*>>,
    public val parameterMappers: MutableMap<KClass<*>, ParameterMapper<*>> = mutableMapOf(),
-   public val conversions: TypeConversions = defaultConversions(),
+   public val converters: TypeConverters = defaultConverters(),
    public val namingStrategy: NamingStrategy = NamingStrategy.SNAKE_CASE,
 ) {
    @Suppress("UNCHECKED_CAST")
