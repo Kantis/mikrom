@@ -4,7 +4,7 @@
 import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Row
 import io.github.kantis.mikrom.convert.TypeConversions
-import io.github.kantis.mikrom.generator.RowMapped
+import io.github.kantis.mikrom.generator.MikromResult
 import kotlin.test.*
 
 @JvmInline
@@ -13,7 +13,7 @@ value class UserId(val value: String)
 @JvmInline
 value class Age(val value: Int)
 
-@RowMapped
+@MikromResult
 data class UserWithValueClass(
    val id: UserId,
    val age: Age,

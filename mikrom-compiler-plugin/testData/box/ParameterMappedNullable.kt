@@ -2,10 +2,10 @@
 // DUMP_IR
 
 import io.github.kantis.mikrom.TypedNull
-import io.github.kantis.mikrom.generator.ParameterMapped
+import io.github.kantis.mikrom.generator.MikromParameter
 import kotlin.test.*
 
-@ParameterMapped
+@MikromParameter
 data class NullableFields(
    val name: String,
    val nickname: String?,

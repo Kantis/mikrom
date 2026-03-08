@@ -5,7 +5,7 @@ import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Row
 import io.github.kantis.mikrom.convert.TypeConversions
 import io.github.kantis.mikrom.generator.Column
-import io.github.kantis.mikrom.generator.RowMapped
+import io.github.kantis.mikrom.generator.MikromResult
 import kotlin.test.*
 
 fun box(): String {
@@ -23,7 +23,7 @@ fun box(): String {
    return "OK"
 }
 
-@RowMapped
+@MikromResult
 data class DbUser(
    @Column("user_name") val name: String,
    @Column("email_address") val email: String,

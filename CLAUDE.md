@@ -46,7 +46,11 @@ Delete them and then run the tests (which will fail once) then run them again to
 - All transactions must end by explicitly committing or rolling back.
 
 ### Row Mapping
-The compiler plugin generates `RowMapper<T>` implementations for data classes annotated with `@RowMapped`. Mappers are registered with `Mikrom` instances and used to convert database rows to Kotlin objects.
+The compiler plugin generates `RowMapper<T>` implementations for data classes annotated with `@MikromResult`. Mappers are registered with `Mikrom` instances and used to convert database rows to Kotlin objects.
+
+### Parameter Mapping
+Similarly, the compiler plugin generates `ParameterMapper<T>` for converting a Kotlin object into a map of String -> Any? (along with type
+information), that is used to bind parameters to queries.
 
 ### Parameter Mapping
 Similarly, the compiler plugin generates `ParameterMapper<T>` for converting a Kotlin object into a map of String -> Any? (along with type

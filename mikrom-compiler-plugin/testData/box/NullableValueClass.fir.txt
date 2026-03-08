@@ -8,7 +8,7 @@ FILE: NullableValueClass.kt
             public get(): R|kotlin/String|
 
     }
-    @R|io/github/kantis/mikrom/generator/RowMapped|() public final data class Contact : R|kotlin/Any| {
+    @R|io/github/kantis/mikrom/generator/MikromResult|() public final data class Contact : R|kotlin/Any| {
         public constructor(name: R|kotlin/String|, email: R|Email?|): R|Contact| {
             super<R|kotlin/Any|>()
         }

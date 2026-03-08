@@ -10,7 +10,7 @@ FILE: NamingStrategy.kt
         R|kotlin/test/assertEquals|<R|AsIsEntity|>(R|/AsIsEntity.AsIsEntity|(String(Bob)), R|<local>/entity|)
         ^box String(OK)
     }
-    @R|io/github/kantis/mikrom/generator/RowMapped|() public final data class Invoice : R|kotlin/Any| {
+    @R|io/github/kantis/mikrom/generator/MikromResult|() public final data class Invoice : R|kotlin/Any| {
         public constructor(invoiceId: R|kotlin/Int|, customerName: R|kotlin/String|): R|Invoice| {
             super<R|kotlin/Any|>()
         }
@@ -42,7 +42,7 @@ FILE: NamingStrategy.kt
         }
 
     }
-    @R|io/github/kantis/mikrom/generator/RowMapped|() public final data class OverriddenEntity : R|kotlin/Any| {
+    @R|io/github/kantis/mikrom/generator/MikromResult|() public final data class OverriddenEntity : R|kotlin/Any| {
         public constructor(@R|io/github/kantis/mikrom/generator/Column|(name = String(custom_col)) name: R|kotlin/String|, otherField: R|kotlin/Int|): R|OverriddenEntity| {
             super<R|kotlin/Any|>()
         }
@@ -74,7 +74,7 @@ FILE: NamingStrategy.kt
         }
 
     }
-    @R|io/github/kantis/mikrom/generator/RowMapped|() public final data class AsIsEntity : R|kotlin/Any| {
+    @R|io/github/kantis/mikrom/generator/MikromResult|() public final data class AsIsEntity : R|kotlin/Any| {
         public constructor(firstName: R|kotlin/String|): R|AsIsEntity| {
             super<R|kotlin/Any|>()
         }

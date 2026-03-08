@@ -1,7 +1,7 @@
 // FIR_DUMP
 // DUMP_IR
 
-import io.github.kantis.mikrom.generator.ParameterMapped
+import io.github.kantis.mikrom.generator.MikromParameter
 import kotlin.test.*
 
 @JvmInline
@@ -10,7 +10,7 @@ value class UserId(val value: String)
 @JvmInline
 value class Age(val value: Int)
 
-@ParameterMapped
+@MikromParameter
 data class UserParams(val id: UserId, val age: Age)
 
 fun box(): String {

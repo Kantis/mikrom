@@ -77,10 +77,10 @@ public class MikromFirDeclarationGenerationExtension(
    }
 
    override fun FirDeclarationPredicateRegistrar.registerPredicates() {
-      register(ROW_MAPPED_PREDICATE)
-      register(HAS_ROW_MAPPED_PREDICATE)
-      register(PARAMETER_MAPPED_PREDICATE)
-      register(HAS_PARAMETER_MAPPED_PREDICATE)
+      register(MIKROM_RESULT_PREDICATE)
+      register(HAS_MIKROM_RESULT_PREDICATE)
+      register(MIKROM_PARAMETER_PREDICATE)
+      register(HAS_MIKROM_PARAMETER_PREDICATE)
    }
 
    override fun getNestedClassifiersNames(
@@ -88,8 +88,8 @@ public class MikromFirDeclarationGenerationExtension(
       context: NestedClassGenerationContext,
    ): Set<Name> {
       val provider = session.predicateBasedProvider
-      val isRowMapped = provider.matches(ROW_MAPPED_PREDICATE, classSymbol)
-      val isParameterMapped = provider.matches(PARAMETER_MAPPED_PREDICATE, classSymbol)
+      val isRowMapped = provider.matches(MIKROM_RESULT_PREDICATE, classSymbol)
+      val isParameterMapped = provider.matches(MIKROM_PARAMETER_PREDICATE, classSymbol)
 
       if (!isRowMapped && !isParameterMapped) return emptySet()
 
@@ -164,10 +164,10 @@ public class MikromFirDeclarationGenerationExtension(
             val provider = session.predicateBasedProvider
             val ownerSymbol = key.ownerClassSymbol
             val names = mutableSetOf<Name>(SpecialNames.INIT)
-            if (provider.matches(ROW_MAPPED_PREDICATE, ownerSymbol)) {
+            if (provider.matches(MIKROM_RESULT_PREDICATE, ownerSymbol)) {
                names += ROW_MAPPER_FUN_NAME
             }
-            if (provider.matches(PARAMETER_MAPPED_PREDICATE, ownerSymbol)) {
+            if (provider.matches(MIKROM_PARAMETER_PREDICATE, ownerSymbol)) {
                names += PARAMETER_MAPPER_FUN_NAME
             }
             names
@@ -303,20 +303,20 @@ public class MikromFirDeclarationGenerationExtension(
       private val ROW_MAPPER_FUN_NAME = Name.identifier("rowMapper")
       private val PARAMETER_MAPPER_FUN_NAME = Name.identifier("parameterMapper")
 
-      private val ROW_MAPPED_PREDICATE = DeclarationPredicate.Companion.create {
-         annotated(FqName("io.github.kantis.mikrom.generator.RowMapped"))
+      private val MIKROM_RESULT_PREDICATE = DeclarationPredicate.Companion.create {
+         annotated(FqName("io.github.kantis.mikrom.generator.MikromResult"))
       }
 
-      private val HAS_ROW_MAPPED_PREDICATE = DeclarationPredicate.Companion.create {
-         hasAnnotated(FqName("io.github.kantis.mikrom.generator.RowMapped"))
+      private val HAS_MIKROM_RESULT_PREDICATE = DeclarationPredicate.Companion.create {
+         hasAnnotated(FqName("io.github.kantis.mikrom.generator.MikromResult"))
       }
 
-      private val PARAMETER_MAPPED_PREDICATE = DeclarationPredicate.Companion.create {
-         annotated(FqName("io.github.kantis.mikrom.generator.ParameterMapped"))
+      private val MIKROM_PARAMETER_PREDICATE = DeclarationPredicate.Companion.create {
+         annotated(FqName("io.github.kantis.mikrom.generator.MikromParameter"))
       }
 
-      private val HAS_PARAMETER_MAPPED_PREDICATE = DeclarationPredicate.Companion.create {
-         hasAnnotated(FqName("io.github.kantis.mikrom.generator.ParameterMapped"))
+      private val HAS_MIKROM_PARAMETER_PREDICATE = DeclarationPredicate.Companion.create {
+         hasAnnotated(FqName("io.github.kantis.mikrom.generator.MikromParameter"))
       }
    }
 }

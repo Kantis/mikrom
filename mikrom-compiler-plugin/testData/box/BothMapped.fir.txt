@@ -9,7 +9,7 @@ FILE: BothMapped.kt
         R|kotlin/test/assertEquals|<R|kotlin/Int|>(Int(2), R|<local>/params|.R|SubstitutionOverride<kotlin/collections/Map.size: R|kotlin/Int|>|)
         ^box String(OK)
     }
-    @R|io/github/kantis/mikrom/generator/RowMapped|() @R|io/github/kantis/mikrom/generator/ParameterMapped|() public final data class Person : R|kotlin/Any| {
+    @R|io/github/kantis/mikrom/generator/MikromResult|() @R|io/github/kantis/mikrom/generator/MikromParameter|() public final data class Person : R|kotlin/Any| {
         public constructor(name: R|kotlin/String|, age: R|kotlin/Int|): R|Person| {
             super<R|kotlin/Any|>()
         }

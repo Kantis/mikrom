@@ -1,5 +1,5 @@
 FILE: ParameterMappedNullable.kt
-    @R|io/github/kantis/mikrom/generator/ParameterMapped|() public final data class NullableFields : R|kotlin/Any| {
+    @R|io/github/kantis/mikrom/generator/MikromParameter|() public final data class NullableFields : R|kotlin/Any| {
         public constructor(name: R|kotlin/String|, nickname: R|kotlin/String?|, age: R|kotlin/Int?|): R|NullableFields| {
             super<R|kotlin/Any|>()
         }

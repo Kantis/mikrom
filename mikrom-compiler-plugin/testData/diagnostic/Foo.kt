@@ -1,8 +1,8 @@
-import io.github.kantis.mikrom.generator.RowMapped
+import io.github.kantis.mikrom.generator.MikromResult
 
 // TODO: Diagnostic tests get MISSING_DEPENDENCY_SUPERCLASS, MISSING_DEPENDENCY_SUPERCLASS_IN_TYPE_ARGUMENT
 
-// @RowMapped
+// @MikromResult
 // data class Foo(
 //   val name: String,
 //   val nickname: String? = name,

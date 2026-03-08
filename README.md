@@ -53,7 +53,7 @@ fun main() {
   }
 }
 
-@ParameterMapped
+@MikromParameter
 data class CreateBookCommand(val author: String, val title: BookTitle, val numberOfPages: Int)
 
 @JvmInline

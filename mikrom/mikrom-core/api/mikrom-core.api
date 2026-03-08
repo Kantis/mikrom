@@ -207,6 +207,12 @@ public abstract interface class io/github/kantis/mikrom/generator/GeneratedParam
 public abstract interface class io/github/kantis/mikrom/generator/GeneratedRowMapper : io/github/kantis/mikrom/RowMapper {
 }
 
+public abstract interface annotation class io/github/kantis/mikrom/generator/MikromParameter : java/lang/annotation/Annotation {
+}
+
+public abstract interface annotation class io/github/kantis/mikrom/generator/MikromResult : java/lang/annotation/Annotation {
+}
+
 public abstract interface class io/github/kantis/mikrom/generator/NamingStrategy {
 	public static final field Companion Lio/github/kantis/mikrom/generator/NamingStrategy$Companion;
 	public abstract fun toColumnName (Ljava/lang/String;)Ljava/lang/String;
@@ -216,18 +222,6 @@ public final class io/github/kantis/mikrom/generator/NamingStrategy$Companion {
 	public final fun getAS_IS ()Lio/github/kantis/mikrom/generator/NamingStrategy;
 	public final fun getSNAKE_CASE ()Lio/github/kantis/mikrom/generator/NamingStrategy;
 	public final fun getUPPER_SNAKE_CASE ()Lio/github/kantis/mikrom/generator/NamingStrategy;
-}
-
-public abstract interface annotation class io/github/kantis/mikrom/generator/Parameter : java/lang/annotation/Annotation {
-}
-
-public abstract interface annotation class io/github/kantis/mikrom/generator/ParameterMapped : java/lang/annotation/Annotation {
-}
-
-public abstract interface annotation class io/github/kantis/mikrom/generator/QueryResult : java/lang/annotation/Annotation {
-}
-
-public abstract interface annotation class io/github/kantis/mikrom/generator/RowMapped : java/lang/annotation/Annotation {
 }
 
 public final class io/github/kantis/mikrom/generator/SqlType : java/lang/Enum {

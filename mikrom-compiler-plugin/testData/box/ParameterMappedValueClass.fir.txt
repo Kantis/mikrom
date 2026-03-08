@@ -17,7 +17,7 @@ FILE: ParameterMappedValueClass.kt
             public get(): R|kotlin/Int|
 
     }
-    @R|io/github/kantis/mikrom/generator/ParameterMapped|() public final data class UserParams : R|kotlin/Any| {
+    @R|io/github/kantis/mikrom/generator/MikromParameter|() public final data class UserParams : R|kotlin/Any| {
         public constructor(id: R|UserId|, age: R|Age|): R|UserParams| {
             super<R|kotlin/Any|>()
         }

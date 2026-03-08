@@ -5,7 +5,7 @@ FILE: ColumnAnnotation.kt
         R|kotlin/test/assertEquals|<R|DbUser|>(R|<local>/user|, R|/DbUser.DbUser|(String(Alice), String(alice@example.com), Int(30)))
         ^box String(OK)
     }
-    @R|io/github/kantis/mikrom/generator/RowMapped|() public final data class DbUser : R|kotlin/Any| {
+    @R|io/github/kantis/mikrom/generator/MikromResult|() public final data class DbUser : R|kotlin/Any| {
         public constructor(@R|io/github/kantis/mikrom/generator/Column|(name = String(user_name)) name: R|kotlin/String|, @R|io/github/kantis/mikrom/generator/Column|(name = String(email_address)) email: R|kotlin/String|, age: R|kotlin/Int|): R|DbUser| {
             super<R|kotlin/Any|>()
         }

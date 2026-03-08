@@ -11,7 +11,7 @@
 ## Developer experience
 - [ ] Auto-discovery of generated RowMappers
   - [ ] Similar to how KotlinX serialization detects/registers serializers during initialization
-- [ ] Provide a check for `@RowMapped`-annotated class, if it already contains a `RowMapper` object (would cause compiler errors if we try to generate another)
+- [ ] Provide a check for `@MikromResult`-annotated class, if it already contains a `RowMapper` object (would cause compiler errors if we try to generate another)
 - [ ] Generate informative errors when auto-generated RowMapper tries to bind a property of wrong type to the constructor
 - [ ] Improve logging
 
@@ -33,9 +33,9 @@ object BookParameterMapper : ParameterMapper<Book> {
   // ..
 }
 
-@RowMapped(by = BookRowMapper::class)
+@MikromResult(by = BookRowMapper::class)
 // Now Mikrom should automatically figure that BookMapper should be used when dealing with queries returning Book
-@ParameterMapped(by = BookParameterMapper::class)
+@MikromParameter(by = BookParameterMapper::class)
 // Now Mikrom should automatically use BookParameterMapper when executing queries with Book-parameters.
 data class Book(val author: String, val title: String, val numberOfPages: Int)
 
@@ -68,10 +68,10 @@ mikrom.execute(
   - Example below
 
 ```kotlin
-@ParameterMapped
+@MikromParameter
 data class Person(val name: String, val age: Int)
 
-@ParameterMapped
+@MikromParameter
 data class Vehicle(val model: String, val owner: Person)
 
 val mikrom = Mikrom { }

@@ -1,8 +1,8 @@
 package io.github.kantis.mikrom.example
 
-import io.github.kantis.mikrom.generator.RowMapped
+import io.github.kantis.mikrom.generator.MikromResult
 
-@RowMapped
+@MikromResult
 public data class Book(val author: String, val title: String, val numberOfPages: Int)
 
 public fun main() {

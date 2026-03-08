@@ -1,7 +1,7 @@
 FILE fqName:<root> fileName:/NamingStrategy.kt
   CLASS CLASS name:AsIsEntity modality:FINAL visibility:public [data] superTypes:[kotlin.Any]
     annotations:
-      RowMapped
+      MikromResult
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.AsIsEntity
     PROPERTY name:firstName visibility:public modality:FINAL [val]
       FIELD PROPERTY_BACKING_FIELD name:firstName type:kotlin.String visibility:private [final]
@@ -156,7 +156,7 @@ FILE fqName:<root> fileName:/NamingStrategy.kt
             CONST String type=kotlin.String value=")"
   CLASS CLASS name:Invoice modality:FINAL visibility:public [data] superTypes:[kotlin.Any]
     annotations:
-      RowMapped
+      MikromResult
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.Invoice
     PROPERTY name:invoiceId visibility:public modality:FINAL [val]
       FIELD PROPERTY_BACKING_FIELD name:invoiceId type:kotlin.Int visibility:private [final]
@@ -370,7 +370,7 @@ FILE fqName:<root> fileName:/NamingStrategy.kt
             CONST String type=kotlin.String value=")"
   CLASS CLASS name:OverriddenEntity modality:FINAL visibility:public [data] superTypes:[kotlin.Any]
     annotations:
-      RowMapped
+      MikromResult
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.OverriddenEntity
     PROPERTY name:name visibility:public modality:FINAL [val]
       FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]

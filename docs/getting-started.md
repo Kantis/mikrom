@@ -23,7 +23,7 @@ Then, all you need is to create a JDBC connection (`javax.sql.DataSource`), a Mi
 @JvmInline
 value class BookTitle(val title: String)
 
-@RowMapped
+@MikromResult
 data class SavedBook(
   val id: Int,
   val author: String,
@@ -71,7 +71,7 @@ dataSource.transation {
 Use the `Mikrom.execute` method to insert data.
 
 ```kotlin
-@ParameterMapped
+@MikromParameter
 data class CreateBookCommand(val author: String, val title: BookTitle, val numberOfPages: Int)
 
 dataSource.transation {

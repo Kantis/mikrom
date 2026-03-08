@@ -137,7 +137,7 @@ FILE fqName:<root> fileName:/ParameterMappedValueClass.kt
             CONST String type=kotlin.String value=")"
   CLASS CLASS name:UserParams modality:FINAL visibility:public [data] superTypes:[kotlin.Any]
     annotations:
-      ParameterMapped
+      MikromParameter
     thisReceiver: VALUE_PARAMETER INSTANCE_RECEIVER kind:DispatchReceiver name:<this> type:<root>.UserParams
     PROPERTY name:id visibility:public modality:FINAL [val]
       FIELD PROPERTY_BACKING_FIELD name:id type:<root>.UserId visibility:private [final]
