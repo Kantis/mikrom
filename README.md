@@ -1,11 +1,11 @@
-![Stability Status - Experimental](https://kotl.in/badges/experimental.svg)
+![Stability Status - Alpha](https://kotl.in/badges/alpha.svg)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/kantis/ks3/ci.yaml?branch=main)
 
 ## What is Mikrom?
 Mikrom is inspired by [Dapper](https://github.com/DapperLib/Dapper), a popular micro ORM for .NET.
 
 ## Usage
-> Note: This library is in an early, experimental stage. The API is highly likely to have breaking changes sometimes, but I
+> Note: This library is in an early phase. The API is highly likely to have breaking changes sometimes, but I
 > would value your feedback on the library design.
 
 ### JDBC
