@@ -14,9 +14,9 @@ public final class io/github/kantis/mikrom/AnsiString {
 
 public final class io/github/kantis/mikrom/Mikrom {
 	public static final field Companion Lio/github/kantis/mikrom/Mikrom$Companion;
-	public fun <init> (Ljava/util/Map;Ljava/util/Map;Lio/github/kantis/mikrom/convert/TypeConversions;Lio/github/kantis/mikrom/generator/NamingStrategy;)V
-	public synthetic fun <init> (Ljava/util/Map;Ljava/util/Map;Lio/github/kantis/mikrom/convert/TypeConversions;Lio/github/kantis/mikrom/generator/NamingStrategy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getConversions ()Lio/github/kantis/mikrom/convert/TypeConversions;
+	public fun <init> (Ljava/util/Map;Ljava/util/Map;Lio/github/kantis/mikrom/convert/TypeConverters;Lio/github/kantis/mikrom/generator/NamingStrategy;)V
+	public synthetic fun <init> (Ljava/util/Map;Ljava/util/Map;Lio/github/kantis/mikrom/convert/TypeConverters;Lio/github/kantis/mikrom/generator/NamingStrategy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getConverters ()Lio/github/kantis/mikrom/convert/TypeConverters;
 	public final fun getNamingStrategy ()Lio/github/kantis/mikrom/generator/NamingStrategy;
 	public final fun getParameterMappers ()Ljava/util/Map;
 	public final fun getRowMappers ()Ljava/util/Map;
@@ -29,7 +29,7 @@ public final class io/github/kantis/mikrom/Mikrom$Companion {
 public final class io/github/kantis/mikrom/MikromBuilder {
 	public fun <init> ()V
 	public final fun build ()Lio/github/kantis/mikrom/Mikrom;
-	public final fun getConversionsBuilder ()Lio/github/kantis/mikrom/convert/TypeConversions$Builder;
+	public final fun getConvertersBuilder ()Lio/github/kantis/mikrom/convert/TypeConverters$Builder;
 	public final fun getNamingStrategy ()Lio/github/kantis/mikrom/generator/NamingStrategy;
 	public final fun getParameterMappers ()Ljava/util/Map;
 	public final fun getRowMappers ()Ljava/util/Map;
@@ -88,9 +88,9 @@ public final class io/github/kantis/mikrom/Rollback {
 
 public final class io/github/kantis/mikrom/Row {
 	public static final field Companion Lio/github/kantis/mikrom/Row$Companion;
-	public fun <init> (Ljava/util/Map;Lio/github/kantis/mikrom/convert/TypeConversions;)V
-	public synthetic fun <init> (Ljava/util/Map;Lio/github/kantis/mikrom/convert/TypeConversions;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun convertSingleValue (Lkotlin/reflect/KClass;Lio/github/kantis/mikrom/convert/TypeConversions;)Ljava/lang/Object;
+	public fun <init> (Ljava/util/Map;Lio/github/kantis/mikrom/convert/TypeConverters;)V
+	public synthetic fun <init> (Ljava/util/Map;Lio/github/kantis/mikrom/convert/TypeConverters;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun convertSingleValue (Lkotlin/reflect/KClass;Lio/github/kantis/mikrom/convert/TypeConverters;)Ljava/lang/Object;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun get (Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Lkotlin/reflect/KClass;)Ljava/lang/Object;
 	public final fun getColumnNames ()Ljava/util/Set;
@@ -128,8 +128,8 @@ public final class io/github/kantis/mikrom/RowBuilder {
 }
 
 public final class io/github/kantis/mikrom/RowBuilderKt {
-	public static final fun buildRow (Lio/github/kantis/mikrom/convert/TypeConversions;Lkotlin/jvm/functions/Function1;)Lio/github/kantis/mikrom/Row;
-	public static synthetic fun buildRow$default (Lio/github/kantis/mikrom/convert/TypeConversions;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lio/github/kantis/mikrom/Row;
+	public static final fun buildRow (Lio/github/kantis/mikrom/convert/TypeConverters;Lkotlin/jvm/functions/Function1;)Lio/github/kantis/mikrom/Row;
+	public static synthetic fun buildRow$default (Lio/github/kantis/mikrom/convert/TypeConverters;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lio/github/kantis/mikrom/Row;
 }
 
 public abstract interface class io/github/kantis/mikrom/RowMapper {
@@ -145,38 +145,38 @@ public final class io/github/kantis/mikrom/TypedNull {
 	public final fun getType ()Lkotlin/reflect/KClass;
 }
 
-public final class io/github/kantis/mikrom/convert/DefaultConversionsKt {
-	public static final fun commonDefaultConversions ()Lio/github/kantis/mikrom/convert/TypeConversions;
-	public static final fun defaultConversions ()Lio/github/kantis/mikrom/convert/TypeConversions;
+public final class io/github/kantis/mikrom/convert/DefaultConvertersKt {
+	public static final fun commonDefaultConverters ()Lio/github/kantis/mikrom/convert/TypeConverters;
+	public static final fun defaultConverters ()Lio/github/kantis/mikrom/convert/TypeConverters;
 }
 
-public final class io/github/kantis/mikrom/convert/DefaultConversions_jvmKt {
-	public static final fun platformDefaultConversions ()Lio/github/kantis/mikrom/convert/TypeConversions;
+public final class io/github/kantis/mikrom/convert/DefaultConverters_jvmKt {
+	public static final fun platformDefaultConverters ()Lio/github/kantis/mikrom/convert/TypeConverters;
 }
 
-public final class io/github/kantis/mikrom/convert/TypeConversions {
-	public static final field Companion Lio/github/kantis/mikrom/convert/TypeConversions$Companion;
+public final class io/github/kantis/mikrom/convert/TypeConverters {
+	public static final field Companion Lio/github/kantis/mikrom/convert/TypeConverters$Companion;
 	public fun <init> (Ljava/util/Map;)V
 	public final fun convert (Ljava/lang/Object;Lkotlin/reflect/KClass;)Ljava/lang/Object;
-	public final fun plus (Lio/github/kantis/mikrom/convert/TypeConversions;)Lio/github/kantis/mikrom/convert/TypeConversions;
+	public final fun plus (Lio/github/kantis/mikrom/convert/TypeConverters;)Lio/github/kantis/mikrom/convert/TypeConverters;
 }
 
-public final class io/github/kantis/mikrom/convert/TypeConversions$Builder {
+public final class io/github/kantis/mikrom/convert/TypeConverters$Builder {
 	public fun <init> ()V
-	public final fun build ()Lio/github/kantis/mikrom/convert/TypeConversions;
-	public final fun getConversions ()Ljava/util/Map;
+	public final fun build ()Lio/github/kantis/mikrom/convert/TypeConverters;
+	public final fun getConverters ()Ljava/util/Map;
 }
 
-public final class io/github/kantis/mikrom/convert/TypeConversions$Companion {
-	public final fun getEMPTY ()Lio/github/kantis/mikrom/convert/TypeConversions;
+public final class io/github/kantis/mikrom/convert/TypeConverters$Companion {
+	public final fun getEMPTY ()Lio/github/kantis/mikrom/convert/TypeConverters;
 }
 
-public final class io/github/kantis/mikrom/convert/TypeConversions$ConversionKey {
+public final class io/github/kantis/mikrom/convert/TypeConverters$ConverterKey {
 	public fun <init> (Lkotlin/reflect/KClass;Lkotlin/reflect/KClass;)V
 	public final fun component1 ()Lkotlin/reflect/KClass;
 	public final fun component2 ()Lkotlin/reflect/KClass;
-	public final fun copy (Lkotlin/reflect/KClass;Lkotlin/reflect/KClass;)Lio/github/kantis/mikrom/convert/TypeConversions$ConversionKey;
-	public static synthetic fun copy$default (Lio/github/kantis/mikrom/convert/TypeConversions$ConversionKey;Lkotlin/reflect/KClass;Lkotlin/reflect/KClass;ILjava/lang/Object;)Lio/github/kantis/mikrom/convert/TypeConversions$ConversionKey;
+	public final fun copy (Lkotlin/reflect/KClass;Lkotlin/reflect/KClass;)Lio/github/kantis/mikrom/convert/TypeConverters$ConverterKey;
+	public static synthetic fun copy$default (Lio/github/kantis/mikrom/convert/TypeConverters$ConverterKey;Lkotlin/reflect/KClass;Lkotlin/reflect/KClass;ILjava/lang/Object;)Lio/github/kantis/mikrom/convert/TypeConverters$ConverterKey;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getSource ()Lkotlin/reflect/KClass;
 	public final fun getTarget ()Lkotlin/reflect/KClass;

@@ -8,8 +8,8 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.UUID
 
-public actual fun platformDefaultConversions(): TypeConversions =
-   TypeConversions.Builder().apply {
+public actual fun platformDefaultConverters(): TypeConverters =
+   TypeConverters.Builder().apply {
       register<Timestamp, Instant> { it.toInstant() }
       register<Timestamp, LocalDateTime> { it.toLocalDateTime() }
       register<Date, LocalDate> { it.toLocalDate() }

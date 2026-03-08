@@ -5,7 +5,7 @@ import kotlin.reflect.KClass
 internal actual fun tryWrapValueClass(
    value: Any,
    targetClass: KClass<*>,
-   conversions: TypeConversions,
+   converters: TypeConverters,
 ): Any? {
    val javaClass = targetClass.java
 
@@ -20,7 +20,7 @@ internal actual fun tryWrapValueClass(
       return boxImpl.invoke(null, value)
    }
 
-   val converted = conversions.convert(value, paramType)
+   val converted = converters.convert(value, paramType)
    if (converted != null && paramType.isInstance(converted)) {
       return boxImpl.invoke(null, converted)
    }

@@ -3,7 +3,7 @@ package io.github.kantis.mikrom.jdbc
 import io.github.kantis.mikrom.MikromInternal
 import io.github.kantis.mikrom.Row
 import io.github.kantis.mikrom.buildRow
-import io.github.kantis.mikrom.convert.TypeConversions
+import io.github.kantis.mikrom.convert.TypeConverters
 import java.sql.ResultSet
 import java.sql.Types
 
@@ -12,12 +12,12 @@ public object ResultSetReader {
    @MikromInternal
    public fun loadResultSet(
       resultSet: ResultSet,
-      driverConversions: TypeConversions = TypeConversions.EMPTY,
+      driverConverters: TypeConverters = TypeConverters.EMPTY,
    ): List<Row> {
       val rows = mutableListOf<Row>()
       try {
          while (resultSet.next()) {
-            rows.add(loadRow(resultSet, driverConversions))
+            rows.add(loadRow(resultSet, driverConverters))
          }
       } finally {
          resultSet.close()
@@ -27,10 +27,10 @@ public object ResultSetReader {
 
    private fun loadRow(
       resultSet: ResultSet,
-      driverConversions: TypeConversions,
+      driverConverters: TypeConverters,
    ): Row {
       val metaData = resultSet.metaData
-      return buildRow(driverConversions) {
+      return buildRow(driverConverters) {
          for (i in 1..metaData.columnCount) {
             val columnName = metaData.getColumnLabel(i).lowercase()
             val columnType = metaData.getColumnType(i)
