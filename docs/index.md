@@ -2,12 +2,13 @@
 
 Mikrom is a Kotlin multiplatform micro ORM inspired by [Dapper](https://github.com/DapperLib/Dapper).
 
-!!! warning "Experimental"
-    This library is in the concept stage. The API is highly likely to change, and the compiler plugin is work in progress.
+!!! warning "Alpha"
+    This library is in an early stage. There will likely be breaking changes as the API evolves. Be prepared to put some effort into
+    migrating your code when updating to new versions.
 
 ## Philosophy
 
-- Multiplatform design, with JDBC support (R2DBC planned)
+- Multiplatform design, with JDBC and R2DBC support
 - Explicit transaction management
 - Explicit SQL, instead of generated SQL which might not perform well
 - Explicit updates, instead of automated tracking
