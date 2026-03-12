@@ -58,28 +58,57 @@ public abstract interface annotation class io/github/kantis/mikrom/MikromInterna
 
 public final class io/github/kantis/mikrom/NamedParameterParserKt {
 	public static final fun parseNamedParameters (Ljava/lang/String;)Lio/github/kantis/mikrom/ParsedQuery;
-	public static final fun resolveParams (Lio/github/kantis/mikrom/ParsedQuery;Ljava/util/Map;)Ljava/util/List;
+	public static final fun resolveQueryParams (Lio/github/kantis/mikrom/Mikrom;Lio/github/kantis/mikrom/ParsedQuery;Ljava/lang/Object;)Lio/github/kantis/mikrom/ResolvedQuery;
 }
 
 public abstract interface class io/github/kantis/mikrom/ParameterMapper {
 	public abstract fun mapParameters (Ljava/lang/Object;)Ljava/util/Map;
 }
 
-public final class io/github/kantis/mikrom/ParsedQuery {
+public abstract interface class io/github/kantis/mikrom/ParsedQuery {
+	public abstract fun getSql ()Ljava/lang/String;
+}
+
+public final class io/github/kantis/mikrom/ParsedQuery$Named : io/github/kantis/mikrom/ParsedQuery {
 	public fun <init> (Ljava/lang/String;Ljava/util/List;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/util/List;
-	public final fun copy (Ljava/lang/String;Ljava/util/List;)Lio/github/kantis/mikrom/ParsedQuery;
-	public static synthetic fun copy$default (Lio/github/kantis/mikrom/ParsedQuery;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lio/github/kantis/mikrom/ParsedQuery;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;)Lio/github/kantis/mikrom/ParsedQuery$Named;
+	public static synthetic fun copy$default (Lio/github/kantis/mikrom/ParsedQuery$Named;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lio/github/kantis/mikrom/ParsedQuery$Named;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getParameterNames ()Ljava/util/List;
-	public final fun getSql ()Ljava/lang/String;
+	public fun getSql ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun resolveParams (Ljava/util/Map;)Ljava/util/List;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/kantis/mikrom/ParsedQuery$Positional : io/github/kantis/mikrom/ParsedQuery {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lio/github/kantis/mikrom/ParsedQuery$Positional;
+	public static synthetic fun copy$default (Lio/github/kantis/mikrom/ParsedQuery$Positional;Ljava/lang/String;ILjava/lang/Object;)Lio/github/kantis/mikrom/ParsedQuery$Positional;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getSql ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kantis/mikrom/PrimitivesKt {
 	public static final fun getNonMappedPrimitives ()Ljava/util/Set;
+}
+
+public final class io/github/kantis/mikrom/ResolvedQuery {
+	public fun <init> (Ljava/lang/String;Ljava/util/List;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;)Lio/github/kantis/mikrom/ResolvedQuery;
+	public static synthetic fun copy$default (Lio/github/kantis/mikrom/ResolvedQuery;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lio/github/kantis/mikrom/ResolvedQuery;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getParams ()Ljava/util/List;
+	public final fun getSql ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class io/github/kantis/mikrom/Rollback {

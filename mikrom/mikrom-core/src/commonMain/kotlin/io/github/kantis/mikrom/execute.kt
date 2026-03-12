@@ -2,7 +2,6 @@ package io.github.kantis.mikrom
 
 import io.github.kantis.mikrom.datasource.Transaction
 import io.github.kantis.mikrom.execute
-import io.github.kantis.mikrom.internal.compiledParameterMapper
 import org.intellij.lang.annotations.Language
 
 context(transaction: Transaction)
@@ -27,16 +26,10 @@ public fun <T : Any> Mikrom.execute(
    @Language("SQL") query: Query,
    vararg params: T,
 ) {
+   val parsed = parseNamedParameters(query)
    params.forEach {
-      val mapper = parameterMappers[it::class] as? ParameterMapper<T>
-         ?: it::class.compiledParameterMapper() as? ParameterMapper<T>
-      if (mapper != null) {
-         execute(query, mapper.mapParameters(it))
-      } else if (it is List<*>) {
-         transaction.executeInTransaction(query, it)
-      } else {
-         transaction.executeInTransaction(query, listOf(it))
-      }
+      val resolved = resolveQueryParams(parsed, it)
+      transaction.executeInTransaction(resolved.sql, resolved.params)
    }
 }
 
@@ -53,7 +46,10 @@ public fun Mikrom.execute(
    params: Map<String, Any?>,
 ) {
    val parsed = parseNamedParameters(query)
-   execute(parsed.sql, parsed.resolveParams(params))
+   when (parsed) {
+      is ParsedQuery.Named -> execute(parsed.sql, parsed.resolveParams(params))
+      is ParsedQuery.Positional -> execute(parsed.sql, listOf(params))
+   }
 }
 
 context(transaction: Transaction)
@@ -62,7 +58,8 @@ public fun Mikrom.execute(
    vararg paramMaps: Map<String, Any?>,
 ) {
    val parsed = parseNamedParameters(query)
-   paramMaps.forEach {
-      execute(parsed.sql, parsed.resolveParams(it))
+   when (parsed) {
+      is ParsedQuery.Named -> paramMaps.forEach { execute(parsed.sql, parsed.resolveParams(it)) }
+      is ParsedQuery.Positional -> paramMaps.forEach { execute(parsed.sql, listOf(it)) }
    }
 }

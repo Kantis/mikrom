@@ -1,13 +1,12 @@
 package io.github.kantis.mikrom.suspend
 
 import io.github.kantis.mikrom.Mikrom
+import io.github.kantis.mikrom.ParsedQuery
 import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.parseNamedParameters
-import io.github.kantis.mikrom.resolveParams
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import org.intellij.lang.annotations.Language
-import kotlin.collections.emptyList
 
 context(transaction: SuspendingTransaction)
 public suspend inline fun Mikrom.execute(
@@ -53,5 +52,8 @@ public suspend fun Mikrom.execute(
    params: Map<String, Any>,
 ) {
    val parsed = parseNamedParameters(query)
-   execute(parsed.sql, parsed.resolveParams(params))
+   when (parsed) {
+      is ParsedQuery.Named -> execute(parsed.sql, parsed.resolveParams(params))
+      is ParsedQuery.Positional -> execute(parsed.sql, listOf(params))
+   }
 }
