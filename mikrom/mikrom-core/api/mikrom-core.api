@@ -12,6 +12,15 @@ public final class io/github/kantis/mikrom/AnsiString {
 	public final synthetic fun unbox-impl ()Ljava/lang/String;
 }
 
+public final class io/github/kantis/mikrom/ExecuteKt {
+	public static final fun execute (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;)V
+	public static final fun execute (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/List;)V
+	public static final fun execute (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/Map;)V
+	public static final fun execute (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/lang/Object;)V
+	public static final fun execute (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/util/List;)V
+	public static final fun execute (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/util/Map;)V
+}
+
 public final class io/github/kantis/mikrom/Mikrom {
 	public static final field Companion Lio/github/kantis/mikrom/Mikrom$Companion;
 	public fun <init> (Ljava/util/Map;Ljava/util/Map;Lio/github/kantis/mikrom/convert/TypeConversions;Lio/github/kantis/mikrom/generator/NamingStrategy;)V
@@ -71,15 +80,6 @@ public final class io/github/kantis/mikrom/ParsedQuery {
 
 public final class io/github/kantis/mikrom/PrimitivesKt {
 	public static final fun getNonMappedPrimitives ()Ljava/util/Set;
-}
-
-public final class io/github/kantis/mikrom/QueriesKt {
-	public static final fun execute (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;)V
-	public static final fun execute (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/List;)V
-	public static final fun execute (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/Map;)V
-	public static final fun execute (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/lang/Object;)V
-	public static final fun execute (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/util/List;)V
-	public static final fun execute (Lio/github/kantis/mikrom/datasource/Transaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/util/Map;)V
 }
 
 public final class io/github/kantis/mikrom/Rollback {

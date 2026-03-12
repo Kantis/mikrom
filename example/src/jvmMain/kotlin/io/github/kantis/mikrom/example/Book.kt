@@ -2,8 +2,8 @@ package io.github.kantis.mikrom.example
 
 import io.github.kantis.mikrom.generator.MikromResult
 
-@MikromResult
-public data class Book(val author: String, val title: String, val numberOfPages: Int)
+@JvmInline
+public value class BookId(public val value: Long)
 
-public fun main() {
-}
+@MikromResult
+public data class Book(val id: BookId, val author: String, val title: String, val numberOfPages: Int)

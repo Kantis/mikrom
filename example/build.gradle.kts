@@ -7,7 +7,6 @@ kotlin {
    sourceSets {
       jvmMain {
          dependencies {
-            implementation(libs.h2)
             implementation(libs.mikrom.core)
             implementation(libs.mikrom.jdbc)
          }
@@ -17,6 +16,10 @@ kotlin {
          dependencies {
             implementation(libs.kotest.assertionsCore)
             implementation(libs.kotest.frameworkEngine)
+            implementation(libs.kotest.runnerJunit5)
+            implementation(libs.testcontainers.postgresql)
+            implementation(libs.postgresql)
+            implementation(libs.hikari)
          }
       }
    }
