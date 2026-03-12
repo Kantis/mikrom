@@ -1,6 +1,6 @@
 package io.github.kantis.mikrom
 
-import io.github.kantis.mikrom.convert.TypeConversions
+import io.github.kantis.mikrom.convert.TypeConverters
 import kotlin.reflect.KClass
 
 @MikromInternal
@@ -22,10 +22,10 @@ public class RowBuilder
 
 @MikromInternal
 public inline fun buildRow(
-   driverConversions: TypeConversions = TypeConversions.EMPTY,
+   driverConverters: TypeConverters = TypeConverters.EMPTY,
    block: RowBuilder.() -> Unit,
 ): Row {
    val builder = RowBuilder()
    builder.block()
-   return Row(builder.columns.toMap(), driverConversions)
+   return Row(builder.columns.toMap(), driverConverters)
 }

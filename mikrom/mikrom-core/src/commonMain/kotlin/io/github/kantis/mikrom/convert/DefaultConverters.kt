@@ -1,7 +1,7 @@
 package io.github.kantis.mikrom.convert
 
-public fun commonDefaultConversions(): TypeConversions =
-   TypeConversions.Builder().apply {
+public fun commonDefaultConverters(): TypeConverters =
+   TypeConverters.Builder().apply {
       register<Int, UInt> { it.toUInt() }
       register<Int, UByte> { it.toUByte() }
       register<Int, UShort> { it.toUShort() }
@@ -11,6 +11,6 @@ public fun commonDefaultConversions(): TypeConversions =
       register<Int, Long> { it.toLong() }
    }.build()
 
-public expect fun platformDefaultConversions(): TypeConversions
+public expect fun platformDefaultConverters(): TypeConverters
 
-public fun defaultConversions(): TypeConversions = commonDefaultConversions() + platformDefaultConversions()
+public fun defaultConverters(): TypeConverters = commonDefaultConverters() + platformDefaultConverters()

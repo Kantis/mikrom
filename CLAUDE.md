@@ -8,7 +8,7 @@ The project uses a compiler plugin to generate row mappers at compile time.
 
 The project is structured as a multi-module Kotlin multiplatform project using Gradle composite builds:
 
-- **mikrom-core**: Core abstractions including `Mikrom`, `DataSource`, `Transaction`, `RowMapper` and `ParameterMapper interfaces
+- **mikrom-core**: Core abstractions including `Mikrom`, `DataSource`, `Transaction`, `RowMapper` and `ParameterMapper` interfaces
 - **mikrom-jdbc**: JDBC-specific implementation providing `JdbcDataSource` and result set mapping
 - **mikrom-r2dbc**: R2DBC-specific implementation providing `PooledR2dbcDataSource` and result set mapping
 - **mikrom-compiler-plugin**: Kotlin compiler plugin that generates `RowMapper` and `ParameterMapper` implementations at compile time
@@ -49,11 +49,7 @@ Delete them and then run the tests (which will fail once) then run them again to
 The compiler plugin generates `RowMapper<T>` implementations for data classes annotated with `@MikromResult`. Mappers are registered with `Mikrom` instances and used to convert database rows to Kotlin objects.
 
 ### Parameter Mapping
-Similarly, the compiler plugin generates `ParameterMapper<T>` for converting a Kotlin object into a map of String -> Any? (along with type
-information), that is used to bind parameters to queries.
-
-### Parameter Mapping
-Similarly, the compiler plugin generates `ParameterMapper<T>` for converting a Kotlin object into a map of String -> Any? (along with type
+Similarly, the compiler plugin generates `ParameterMapper<T>` for classes annotated with `@MikromParameter`, converting a Kotlin object into a map of String -> Any? (along with type
 information), that is used to bind parameters to queries.
 
 ### Query Execution

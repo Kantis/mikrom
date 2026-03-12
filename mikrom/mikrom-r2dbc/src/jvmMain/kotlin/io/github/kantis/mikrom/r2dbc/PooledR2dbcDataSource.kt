@@ -10,7 +10,7 @@ import kotlinx.coroutines.reactive.awaitSingle
 import org.slf4j.LoggerFactory
 
 public class PooledR2dbcDataSource(private val underlyingConnectionPool: ConnectionPool) : SuspendingDataSource {
-   private val driverConversions = r2dbcConversions(underlyingConnectionPool)
+   private val driverConverters = r2dbcConverters(underlyingConnectionPool)
 
    override suspend fun <T> suspendingTransaction(block: suspend SuspendingTransaction.() -> T): T {
       val connection = underlyingConnectionPool.create().awaitSingle()
@@ -18,7 +18,7 @@ public class PooledR2dbcDataSource(private val underlyingConnectionPool: Connect
       connection.beginTransaction().awaitFirstOrNull()
 
       return try {
-         val transaction = R2dbcTransaction(connection, currentCoroutineContext(), driverConversions)
+         val transaction = R2dbcTransaction(connection, currentCoroutineContext(), driverConverters)
          val result = transaction.block()
 
          when (result) {

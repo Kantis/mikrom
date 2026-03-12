@@ -4,7 +4,7 @@ import io.github.kantis.mikrom.AnsiString
 import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.Row
 import io.github.kantis.mikrom.TypedNull
-import io.github.kantis.mikrom.convert.TypeConversions
+import io.github.kantis.mikrom.convert.TypeConverters
 import io.github.kantis.mikrom.datasource.Transaction
 import java.math.BigDecimal
 import java.sql.Connection
@@ -20,7 +20,7 @@ import java.util.UUID
 
 public class JdbcTransaction(
    private val connection: Connection,
-   private val driverConversions: TypeConversions = TypeConversions.EMPTY,
+   private val driverConverters: TypeConverters = TypeConverters.EMPTY,
 ) : Transaction {
    override fun executeInTransaction(
       query: Query,
@@ -40,7 +40,7 @@ public class JdbcTransaction(
    ): List<Row> =
       connection.prepareStatement(query).use { statement ->
          bindParameters(statement, params)
-         statement.executeQuery().let { ResultSetReader.loadResultSet(it, driverConversions) }
+         statement.executeQuery().let { ResultSetReader.loadResultSet(it, driverConverters) }
       }
 
    private fun bindParameters(

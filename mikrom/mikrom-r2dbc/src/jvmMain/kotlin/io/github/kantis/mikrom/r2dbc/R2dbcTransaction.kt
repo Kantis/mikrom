@@ -5,7 +5,7 @@ import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.Row
 import io.github.kantis.mikrom.TypedNull
 import io.github.kantis.mikrom.buildRow
-import io.github.kantis.mikrom.convert.TypeConversions
+import io.github.kantis.mikrom.convert.TypeConverters
 import io.github.kantis.mikrom.suspend.SuspendingTransaction
 import io.r2dbc.spi.Connection
 import io.r2dbc.spi.Result
@@ -24,7 +24,7 @@ import kotlin.coroutines.CoroutineContext
 public class R2dbcTransaction(
    private val connection: Connection,
    override val coroutineContext: CoroutineContext,
-   private val driverConversions: TypeConversions = TypeConversions.EMPTY,
+   private val driverConverters: TypeConverters = TypeConverters.EMPTY,
 ) : SuspendingTransaction {
    override suspend fun executeInTransaction(
       query: Query,
@@ -71,7 +71,7 @@ public class R2dbcTransaction(
          .asFlow()
          .flatMapConcat { result ->
             result.map { row, rowMetadata ->
-               buildRow(driverConversions) {
+               buildRow(driverConverters) {
                   for (metadata in rowMetadata.columnMetadatas) {
                      column(
                         name = metadata.name.lowercase(),

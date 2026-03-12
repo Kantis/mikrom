@@ -11,7 +11,7 @@ Mikrom supports adding type converters, so that you can work with i.e. `java.tim
 
 ```kotlin
 val mikrom = Mikrom {
-  registerConversion<String, Int> { it.toIntOrNull() ?: error("Expected String $it to be convertible to Int") }
+  registerConverter<String, Int> { it.toIntOrNull() ?: error("Expected String $it to be convertible to Int") }
   // can be called multiple times to register further converters.
 }
 ```

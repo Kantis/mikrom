@@ -293,12 +293,12 @@ FILE fqName:<root> fileName:/NullableValueClass.kt
   FUN name:box visibility:public modality:FINAL returnType:kotlin.String
     BLOCK_BODY
       VAR name:mikrom type:io.github.kantis.mikrom.Mikrom [val]
-        CONSTRUCTOR_CALL 'public constructor <init> (rowMappers: kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.RowMapper<*>>, parameterMappers: kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.ParameterMapper<*>>, conversions: io.github.kantis.mikrom.convert.TypeConversions, namingStrategy: io.github.kantis.mikrom.generator.NamingStrategy) declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.Mikrom origin=null
+        CONSTRUCTOR_CALL 'public constructor <init> (rowMappers: kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.RowMapper<*>>, parameterMappers: kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.ParameterMapper<*>>, converters: io.github.kantis.mikrom.convert.TypeConverters, namingStrategy: io.github.kantis.mikrom.generator.NamingStrategy) declared in io.github.kantis.mikrom.Mikrom' type=io.github.kantis.mikrom.Mikrom origin=null
           ARG rowMappers: CALL 'public final fun mutableMapOf <K, V> (): kotlin.collections.MutableMap<K of kotlin.collections.mutableMapOf, V of kotlin.collections.mutableMapOf> declared in kotlin.collections' type=kotlin.collections.MutableMap<kotlin.reflect.KClass<*>, io.github.kantis.mikrom.RowMapper<*>> origin=null
             TYPE_ARG K: kotlin.reflect.KClass<*>
             TYPE_ARG V: io.github.kantis.mikrom.RowMapper<*>
-          ARG conversions: CALL 'public final fun <get-EMPTY> (): io.github.kantis.mikrom.convert.TypeConversions declared in io.github.kantis.mikrom.convert.TypeConversions.Companion' type=io.github.kantis.mikrom.convert.TypeConversions origin=GET_PROPERTY
-            ARG <this>: GET_OBJECT 'CLASS IR_EXTERNAL_DECLARATION_STUB OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=io.github.kantis.mikrom.convert.TypeConversions.Companion
+          ARG converters: CALL 'public final fun <get-EMPTY> (): io.github.kantis.mikrom.convert.TypeConverters declared in io.github.kantis.mikrom.convert.TypeConverters.Companion' type=io.github.kantis.mikrom.convert.TypeConverters origin=GET_PROPERTY
+            ARG <this>: GET_OBJECT 'CLASS IR_EXTERNAL_DECLARATION_STUB OBJECT name:Companion modality:FINAL visibility:public [companion] superTypes:[kotlin.Any]' type=io.github.kantis.mikrom.convert.TypeConverters.Companion
       VAR name:contact1 type:<root>.Contact [val]
         CALL 'public abstract fun mapRow (row: io.github.kantis.mikrom.Row, mikrom: io.github.kantis.mikrom.Mikrom): T of io.github.kantis.mikrom.RowMapper declared in io.github.kantis.mikrom.RowMapper' type=<root>.Contact origin=null
           ARG <this>: CALL 'public final fun rowMapper (): io.github.kantis.mikrom.RowMapper<<root>.Contact> declared in <root>.Contact.Companion' type=io.github.kantis.mikrom.RowMapper<<root>.Contact> origin=null

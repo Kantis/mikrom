@@ -3,13 +3,13 @@
 
 import io.github.kantis.mikrom.Mikrom
 import io.github.kantis.mikrom.Row
-import io.github.kantis.mikrom.convert.TypeConversions
+import io.github.kantis.mikrom.convert.TypeConverters
 import io.github.kantis.mikrom.generator.MikromParameter
 import io.github.kantis.mikrom.generator.MikromResult
 import kotlin.test.*
 
 fun box(): String {
-   val mikrom = Mikrom(mutableMapOf(), conversions = TypeConversions.EMPTY)
+   val mikrom = Mikrom(mutableMapOf(), converters = TypeConverters.EMPTY)
 
    // Test RowMapper
    val person = Person.rowMapper().mapRow(

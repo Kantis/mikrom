@@ -6,7 +6,7 @@ import java.sql.Timestamp
 import java.time.Instant
 import java.time.LocalDateTime
 
-class DefaultConversionsJvmTest : FunSpec({
+class DefaultConvertersJvmTest : FunSpec({
    val now = Instant.parse("2023-12-25T15:30:45.001Z")
    val timestamp = Timestamp.from(now)
    val mikrom = Mikrom(mutableMapOf())

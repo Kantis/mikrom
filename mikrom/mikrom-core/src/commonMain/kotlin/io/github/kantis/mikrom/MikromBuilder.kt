@@ -1,7 +1,7 @@
 package io.github.kantis.mikrom
 
-import io.github.kantis.mikrom.convert.TypeConversions
-import io.github.kantis.mikrom.convert.defaultConversions
+import io.github.kantis.mikrom.convert.TypeConverters
+import io.github.kantis.mikrom.convert.defaultConverters
 import io.github.kantis.mikrom.generator.NamingStrategy
 import kotlin.reflect.KClass
 
@@ -11,7 +11,7 @@ public class MikromBuilder {
    public var namingStrategy: NamingStrategy = NamingStrategy.SNAKE_CASE
 
    @PublishedApi
-   internal val conversionsBuilder: TypeConversions.Builder = TypeConversions.Builder()
+   internal val convertersBuilder: TypeConverters.Builder = TypeConverters.Builder()
 
    public inline fun <reified T> registerRowMapper(mapper: RowMapper<T>) {
       rowMappers[T::class] = mapper
@@ -29,9 +29,9 @@ public class MikromBuilder {
       parameterMappers[T::class] = ParameterMapper(mapper)
    }
 
-   public inline fun <reified S : Any, reified T : Any> registerConversion(noinline conversion: (S) -> T) {
-      conversionsBuilder.register(conversion)
+   public inline fun <reified S : Any, reified T : Any> registerConverter(noinline conversion: (S) -> T) {
+      convertersBuilder.register(conversion)
    }
 
-   public fun build(): Mikrom = Mikrom(rowMappers, parameterMappers, defaultConversions() + conversionsBuilder.build(), namingStrategy)
+   public fun build(): Mikrom = Mikrom(rowMappers, parameterMappers, defaultConverters() + convertersBuilder.build(), namingStrategy)
 }

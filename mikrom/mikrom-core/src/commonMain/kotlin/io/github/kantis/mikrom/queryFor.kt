@@ -25,7 +25,7 @@ public inline fun <reified T : Any> Mikrom.queryFor(
 @PublishedApi
 internal inline fun <reified T : Any> Mikrom.mapRows(rows: List<Row>): List<T> =
    if (T::class in nonMappedPrimitives) {
-      rows.map { it.convertSingleValue(T::class, conversions) }
+      rows.map { it.convertSingleValue(T::class, converters) }
    } else {
       val rowMapper = resolveRowMapper<T>()
       rows.map { rowMapper.mapRow(it, this) }
