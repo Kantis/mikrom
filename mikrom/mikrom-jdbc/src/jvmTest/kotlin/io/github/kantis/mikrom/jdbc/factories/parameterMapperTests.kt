@@ -85,7 +85,7 @@ fun parameterMapperTests(
          )
 
          val filter = Employee("Alice", 30)
-         mikrom.queryFor<Employee, _>(
+         mikrom.queryFor<Employee>(
             "SELECT * FROM people WHERE name = :name",
             filter,
          ) shouldBe listOf(Employee("Alice", 30))

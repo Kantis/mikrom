@@ -57,7 +57,7 @@ fun basicInsertQueryTests(
             listOf("George Orwell", "1984", 328),
          )
 
-         mikrom.queryFor<Book, Int>(
+         mikrom.queryFor<Book>(
             "SELECT * FROM books WHERE number_of_pages > ?",
             320,
          ) shouldBe listOf(Book("George Orwell", "1984", 328))
@@ -73,7 +73,7 @@ fun basicInsertQueryTests(
       }
 
       dataSourceProvider().transaction {
-         mikrom.queryFor<Book, String>(
+         mikrom.queryFor<Book>(
             "SELECT * FROM books WHERE author = ?",
             "JRR Tolkien'; DROP TABLE books;--",
          )

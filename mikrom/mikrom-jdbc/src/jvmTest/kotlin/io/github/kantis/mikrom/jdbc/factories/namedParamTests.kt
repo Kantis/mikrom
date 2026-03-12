@@ -35,7 +35,7 @@ fun namedParamTests(
             mapOf("name" to "Alice", "age" to 30),
          )
 
-         mikrom.queryFor<Person, _>(
+         mikrom.queryFor<Person>(
             "SELECT * FROM people WHERE name = :name",
             mapOf("name" to "Alice"),
          ) shouldBe listOf(Person("Alice", 30))
@@ -61,7 +61,7 @@ fun namedParamTests(
             mapOf("name" to "Alice", "age" to null),
          )
 
-         mikrom.queryFor<Person, _>(
+         mikrom.queryFor<Person>(
             "SELECT * FROM people WHERE name = :name",
             mapOf("name" to "Alice"),
          ) shouldBe listOf(Person("Alice", null))
@@ -77,7 +77,7 @@ fun namedParamTests(
             listOf("Alice", 35),
          )
 
-         mikrom.queryFor<Person, _>(
+         mikrom.queryFor<Person>(
             "SELECT * FROM people WHERE name = :name OR name = :name ORDER BY age",
             mapOf("name" to "Alice"),
          ) shouldBe listOf(
