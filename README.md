@@ -13,11 +13,11 @@ Add the Gradle plugin and dependency:
 
 ```kotlin
 plugins {
-  id("com.github.kantis.mikrom") version "0.4.0"
+  id("com.github.kantis.mikrom") version "0.5.0"
 }
 
 dependencies {
-  implementation("io.github.kantis.mikrom:mikrom-jdbc:0.4.0")
+  implementation("io.github.kantis.mikrom:mikrom-jdbc:0.5.0")
 }
 ```
 
@@ -59,6 +59,7 @@ data class CreateBookCommand(val author: String, val title: BookTitle, val numbe
 @JvmInline
 value class BookTitle(val title: String)
 
+@MikromResult
 data class Book(val author: String, val title: BookTitle, val numberOfPages: Int)
 ```
 
