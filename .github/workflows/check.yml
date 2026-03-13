@@ -22,7 +22,7 @@ jobs:
             uses: gradle/actions/setup-gradle@v4
 
          -  name: Run check
-            run: ./gradlew check
+            run: ./gradlew check -PtestAllDrivers
 
    check-docs:
       runs-on: ubuntu-latest

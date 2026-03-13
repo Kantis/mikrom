@@ -57,6 +57,12 @@ kotlin {
    }
 }
 
+tasks.withType<Test>().configureEach {
+   if (findProperty("testAllDrivers") == null) {
+      systemProperty("kotest.tags", "!mysql & !mariadb & !mssql & !oracle")
+   }
+}
+
 fun String.capitalize(): String = replaceFirstChar { if (it.isLowerCase()) it.titlecase() else this }
 
 // create lifecycle task for each Kotlin Platform, that will run all tests

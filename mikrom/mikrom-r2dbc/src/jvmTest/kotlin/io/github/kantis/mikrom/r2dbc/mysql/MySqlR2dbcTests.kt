@@ -6,8 +6,10 @@ import io.github.kantis.mikrom.r2dbc.factories.basicInsertQueryTests
 import io.github.kantis.mikrom.r2dbc.factories.dataTypeTests
 import io.github.kantis.mikrom.r2dbc.factories.transactionTests
 import io.github.kantis.mikrom.r2dbc.h2.prepareH2Database
+import io.kotest.core.annotation.Tags
 import io.kotest.core.spec.style.FunSpec
 
+@Tags("mysql")
 class MySqlR2dbcTests : FunSpec(
    {
       val dialect = MySqlDialect
