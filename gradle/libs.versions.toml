@@ -63,6 +63,7 @@ testcontainers-mariadb = { module = "org.testcontainers:testcontainers-mariadb",
 testcontainers-mssql = { module = "org.testcontainers:testcontainers-mssqlserver", version.ref = "testcontainers" }
 testcontainers-oracle = { module = "org.testcontainers:testcontainers-oracle-xe", version.ref = "testcontainers" }
 hikari = { module = "com.zaxxer:HikariCP", version = "6.3.0" }
+sqlite = { module = "org.xerial:sqlite-jdbc", version = "3.49.1.0" }
 
 kotestPlugin-embeddedCompiler = { module = "io.kotest:kotest-framework-multiplatform-plugin-embeddable-compiler" }
 kotestPlugin-multiplatform = { module = "io.kotest:kotest-framework-multiplatform-plugin-gradle" }

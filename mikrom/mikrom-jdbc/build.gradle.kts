@@ -40,6 +40,7 @@ kotlin {
                implementation(libs.testcontainers.mariadb)
                implementation(libs.testcontainers.mssql)
                implementation(libs.testcontainers.oracle)
+               implementation(libs.sqlite)
             }
          }
       }

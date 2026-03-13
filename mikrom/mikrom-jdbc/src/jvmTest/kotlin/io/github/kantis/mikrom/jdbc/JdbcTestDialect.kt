@@ -256,6 +256,53 @@ object MssqlJdbcDialect : JdbcTestDialect {
       """.trimIndent()
 }
 
+object SqliteJdbcDialect : JdbcTestDialect {
+   override val name = "SQLite"
+   override val supportsUuid = false
+
+   override fun truncateTable(table: String): String = "DELETE FROM $table"
+
+   override fun createBooksTable() =
+      """
+      CREATE TABLE books (
+          author TEXT,
+          title TEXT,
+          number_of_pages INTEGER
+      )
+      """.trimIndent()
+
+   override fun createTestRecordsTable() =
+      """
+      CREATE TABLE test_records (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          name TEXT
+      )
+      """.trimIndent()
+
+   override fun createDataTypesTable() =
+      """
+      CREATE TABLE data_types (
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
+          string_field TEXT,
+          int_field INTEGER,
+          long_field INTEGER,
+          boolean_field INTEGER,
+          double_field REAL,
+          decimal_field NUMERIC(10,2),
+          date_field TEXT,
+          timestamp_field TEXT
+      )
+      """.trimIndent()
+
+   override fun createPeopleTable() =
+      """
+      CREATE TABLE people (
+          name TEXT,
+          age INTEGER
+      )
+      """.trimIndent()
+}
+
 object OracleJdbcDialect : JdbcTestDialect {
    override val name = "Oracle"
    override val supportsUuid = false
