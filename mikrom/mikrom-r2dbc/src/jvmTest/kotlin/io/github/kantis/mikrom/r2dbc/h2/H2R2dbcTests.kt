@@ -6,8 +6,10 @@ import io.github.kantis.mikrom.r2dbc.factories.basicInsertQueryTests
 import io.github.kantis.mikrom.r2dbc.factories.dataTypeTests
 import io.github.kantis.mikrom.r2dbc.factories.streamingTestName
 import io.github.kantis.mikrom.r2dbc.factories.transactionTests
+import io.kotest.core.annotation.Tags
 import io.kotest.core.spec.style.FunSpec
 
+@Tags("h2")
 class H2R2dbcTests : FunSpec(
    {
       val dialect = H2Dialect

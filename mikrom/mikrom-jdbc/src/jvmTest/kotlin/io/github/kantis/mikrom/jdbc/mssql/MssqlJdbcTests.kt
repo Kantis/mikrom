@@ -8,8 +8,10 @@ import io.github.kantis.mikrom.jdbc.factories.namedParamTests
 import io.github.kantis.mikrom.jdbc.factories.parameterMapperTests
 import io.github.kantis.mikrom.jdbc.factories.queryingForPrimitivesTests
 import io.github.kantis.mikrom.jdbc.factories.transactionTests
+import io.kotest.core.annotation.Tags
 import io.kotest.core.spec.style.FunSpec
 
+@Tags("mssql")
 class MssqlJdbcTests : FunSpec(
    {
       val dialect = MssqlJdbcDialect

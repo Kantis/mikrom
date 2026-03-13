@@ -5,8 +5,10 @@ import io.github.kantis.mikrom.r2dbc.PooledR2dbcDataSource
 import io.github.kantis.mikrom.r2dbc.factories.basicInsertQueryTests
 import io.github.kantis.mikrom.r2dbc.factories.dataTypeTests
 import io.github.kantis.mikrom.r2dbc.factories.transactionTests
+import io.kotest.core.annotation.Tags
 import io.kotest.core.spec.style.FunSpec
 
+@Tags("mariadb")
 class MariaDbR2dbcTests : FunSpec(
    {
       val dialect = MariaDbDialect
