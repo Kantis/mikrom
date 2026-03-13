@@ -1,15 +1,40 @@
 package io.github.kantis.mikrom
 
+import io.github.kantis.mikrom.internal.compiledParameterMapper
+
 /**
- * Result of parsing a SQL query with named parameters.
- * [sql] contains the rewritten query with `?` placeholders.
- * [parameterNames] contains the ordered list of parameter names as they appear in the query.
+ * Result of parsing a SQL query for parameter placeholders.
  */
 @MikromInternal
-public data class ParsedQuery(
-   val sql: String,
-   val parameterNames: List<String>,
-)
+public sealed interface ParsedQuery {
+   public val sql: String
+
+   public data class Positional(override val sql: String) : ParsedQuery
+
+   public data class Named(
+      override val sql: String,
+      val parameterNames: List<String>,
+   ) : ParsedQuery {
+      /**
+       * Resolves named parameters using the provided [params] map.
+       * Returns an ordered list of parameter values matching the positional `?` placeholders.
+       *
+       * @throws IllegalArgumentException if any named parameter from the query is missing in the map.
+       */
+      public fun resolveParams(params: Map<String, Any?>): List<Any?> {
+         val missing = parameterNames.filter { it !in params }
+         if (missing.isNotEmpty()) {
+            val uniqueMissing = missing.distinct()
+            error(
+               "Missing named parameter${if (uniqueMissing.size > 1) "s" else ""}: " +
+                  "${uniqueMissing.joinToString(", ") { ":$it" }}. " +
+                  "Available parameters: ${params.keys.joinToString(", ") { ":$it" }}",
+            )
+         }
+         return parameterNames.map { params[it] }
+      }
+   }
+}
 
 /**
  * Parses a SQL string containing `:paramName` style named parameters and
@@ -130,28 +155,60 @@ public fun parseNamedParameters(sql: String): ParsedQuery {
       }
    }
 
-   return ParsedQuery(result.toString(), parameterNames)
+   return if (parameterNames.isEmpty()) {
+      ParsedQuery.Positional(result.toString())
+   } else {
+      ParsedQuery.Named(result.toString(), parameterNames)
+   }
 }
 
-/**
- * Resolves named parameters from a [ParsedQuery] using the provided [params] map.
- * Returns an ordered list of parameter values matching the positional `?` placeholders.
- *
- * @throws IllegalArgumentException if any named parameter from the query is missing in the map.
- */
 @MikromInternal
-public fun ParsedQuery.resolveParams(params: Map<String, Any?>): List<Any?> {
-   val missing = parameterNames.filter { it !in params }
-   if (missing.isNotEmpty()) {
-      val uniqueMissing = missing.distinct()
-      error(
-         "Missing named parameter${if (uniqueMissing.size > 1) "s" else ""}: " +
-            "${uniqueMissing.joinToString(", ") { ":$it" }}. " +
-            "Available parameters: ${params.keys.joinToString(", ") { ":$it" }}",
-      )
+public data class ResolvedQuery(val sql: String, val params: List<Any?>)
+
+@MikromInternal
+@Suppress("UNCHECKED_CAST")
+public fun Mikrom.resolveQueryParams(
+   parsed: ParsedQuery,
+   params: Any,
+): ResolvedQuery =
+   when (parsed) {
+      is ParsedQuery.Named -> resolveQueryParams(parsed, params)
+      is ParsedQuery.Positional -> resolveQueryParams(parsed, params)
    }
-   return parameterNames.map { params[it] }
-}
+
+@Suppress("UNCHECKED_CAST")
+private fun Mikrom.resolveQueryParams(
+   parsed: ParsedQuery.Positional,
+   params: Any,
+): ResolvedQuery =
+   when (params) {
+      is List<*> -> ResolvedQuery(parsed.sql, params)
+      else -> ResolvedQuery(parsed.sql, listOf(params))
+   }
+
+@Suppress("UNCHECKED_CAST")
+private fun Mikrom.resolveQueryParams(
+   parsed: ParsedQuery.Named,
+   params: Any,
+): ResolvedQuery =
+   when (params) {
+      is Map<*, *> -> {
+         val map = params as? Map<String, Any?> ?: error("Received non-string based map as parameter")
+         ResolvedQuery(parsed.sql, parsed.resolveParams(map))
+      }
+
+      else -> {
+         val parameterMapper = (parameterMappers[params::class] as? ParameterMapper<Any>)
+            ?: params::class.compiledParameterMapper() as? ParameterMapper<Any>
+
+         if (parameterMapper != null) {
+            val mapped = parameterMapper.mapParameters(params)
+            ResolvedQuery(parsed.sql, parsed.resolveParams(mapped))
+         } else {
+            error("Unsupported parameter type: ${params::class.simpleName}")
+         }
+      }
+   }
 
 private enum class ParserState {
    NORMAL,

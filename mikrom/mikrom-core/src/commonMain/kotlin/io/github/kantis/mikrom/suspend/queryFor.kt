@@ -1,10 +1,10 @@
 package io.github.kantis.mikrom.suspend
 
 import io.github.kantis.mikrom.Mikrom
+import io.github.kantis.mikrom.ParsedQuery
 import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.nonMappedPrimitives
 import io.github.kantis.mikrom.parseNamedParameters
-import io.github.kantis.mikrom.resolveParams
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.intellij.lang.annotations.Language
@@ -44,5 +44,8 @@ public suspend inline fun <reified T : Any> Mikrom.queryFor(
    params: Map<String, Any>,
 ): Flow<T> {
    val parsed = parseNamedParameters(query)
-   return queryFor(parsed.sql, parsed.resolveParams(params))
+   return when (parsed) {
+      is ParsedQuery.Named -> queryFor(parsed.sql, parsed.resolveParams(params))
+      is ParsedQuery.Positional -> queryFor(parsed.sql, listOf(params))
+   }
 }

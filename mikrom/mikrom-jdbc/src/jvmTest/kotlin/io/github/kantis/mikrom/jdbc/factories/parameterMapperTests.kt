@@ -67,7 +67,7 @@ fun parameterMapperTests(
       }
    }
 
-   test("[${dialect.name}] queryFor with resolveParameterMapper") {
+   test("[${dialect.name}] queryFor with ParameterMapper") {
       val mikrom = Mikrom {
          registerRowMapper { row ->
             Employee(row.get("name"), row.get("age"))
@@ -85,11 +85,9 @@ fun parameterMapperTests(
          )
 
          val filter = Employee("Alice", 30)
-         val params = mikrom.resolveParameterMapper<Employee>().mapParameters(filter)
-
          mikrom.queryFor<Employee>(
             "SELECT * FROM people WHERE name = :name",
-            params,
+            filter,
          ) shouldBe listOf(Employee("Alice", 30))
       }
    }
