@@ -26,7 +26,7 @@ plugins {
 }
 
 dependencies {
-  implementation("io.github.kantis.mikrom:mikrom-jdbc:0.6.0")
+  implementation("io.github.kantis:mikrom-jdbc:0.6.0")
 }
 ```
 
