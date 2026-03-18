@@ -5,7 +5,7 @@ plugins {
    idea
 }
 
-group = "io.github.kantis"
+group = "io.github.kantis.mikrom"
 version = findProperty("version") ?: "0.1.0-SNAPSHOT"
 
 nmcpAggregation {
@@ -17,7 +17,7 @@ nmcpAggregation {
    }
 }
 
-dependencies  {
+dependencies {
    nmcpAggregation(projects.mikrom.mikromCore)
    nmcpAggregation(projects.mikrom.mikromJdbc)
    nmcpAggregation(projects.mikrom.mikromR2dbc)
@@ -48,8 +48,7 @@ idea {
    }
 }
 
-
-//tasks {
+// tasks {
 //   val apiCheck by registering {
 //      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-core:apiCheck"))
 //      dependsOn(gradle.includedBuild("mikrom").task(":mikrom-jdbc:apiCheck"))
@@ -91,4 +90,4 @@ idea {
 //      dependsOn(gradle.includedBuild("mikrom-gradle-plugin").task(":ktlintFormat"))
 //   }
 //
-//}
+// }

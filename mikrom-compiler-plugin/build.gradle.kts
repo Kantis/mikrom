@@ -6,7 +6,7 @@ plugins {
    `java-test-fixtures`
 }
 
-group = "io.github.kantis"
+group = "io.github.kantis.mikrom"
 version = findProperty("version") ?: "0.1.0-SNAPSHOT"
 
 java {

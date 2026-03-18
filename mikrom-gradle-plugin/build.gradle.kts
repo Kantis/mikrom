@@ -4,7 +4,7 @@ plugins {
    id("mikrom.conventions.lang.kotlin-jvm")
 }
 
-group = "io.github.kantis"
+group = "io.github.kantis.mikrom"
 version = project.property("version") ?: "0.2.0-SNAPSHOT"
 
 dependencies {

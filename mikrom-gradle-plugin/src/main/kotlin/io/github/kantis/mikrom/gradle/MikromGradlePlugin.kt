@@ -21,7 +21,7 @@ public class MikromGradlePlugin : KotlinCompilerPluginSupportPlugin {
 
    override fun getPluginArtifact(): SubpluginArtifact =
       SubpluginArtifact(
-         groupId = "io.github.kantis",
+         groupId = "io.github.kantis.mikrom",
          artifactId = "mikrom-compiler-plugin",
          version = extension.compilerPluginVersion.get(),
       )
