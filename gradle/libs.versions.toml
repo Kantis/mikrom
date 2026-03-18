@@ -3,7 +3,7 @@ dokka = "2.0.0"
 dokkatoo = "2.4.0"
 jvmToolchain = "21"
 
-kotlin = "2.3.10"
+kotlin = "2.3.20"
 mikrom = "0.1.0-SNAPSHOT"
 
 kotest = "6.1.3"
