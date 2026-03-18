@@ -9,6 +9,10 @@ plugins {
 group = "io.github.kantis"
 version = findProperty("version") ?: "0.1.0-SNAPSHOT"
 
+java {
+   withSourcesJar()
+}
+
 kotlin {
    compilerOptions {
       optIn.add("org.jetbrains.kotlin.compiler.plugin.ExperimentalCompilerApi")
