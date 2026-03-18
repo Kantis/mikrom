@@ -21,6 +21,7 @@ dependencies  {
    nmcpAggregation(projects.mikrom.mikromCore)
    nmcpAggregation(projects.mikrom.mikromJdbc)
    nmcpAggregation(projects.mikrom.mikromR2dbc)
+   nmcpAggregation(projects.mikromCompilerPlugin)
 }
 
 idea {
