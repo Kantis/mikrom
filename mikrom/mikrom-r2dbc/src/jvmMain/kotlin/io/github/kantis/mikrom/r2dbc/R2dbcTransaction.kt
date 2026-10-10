@@ -32,11 +32,8 @@ public class R2dbcTransaction(
    ) {
       params.forEach { p ->
          val statement = connection.createStatement(query)
-         println("Executing query: $query with params: $p")
          bindParameters(statement, p)
-         statement.execute {
-            println("executeInTransaction returned result: $it")
-         }
+         statement.execute {}
       }
    }
 
@@ -48,11 +45,8 @@ public class R2dbcTransaction(
       launch {
          params.collect { p ->
             val statement = connection.createStatement(query)
-            println("Executing query: $query with params: $p")
             bindParameters(statement, p)
-            statement.execute {
-               println("executeInTransaction returned result: $it")
-            }
+            statement.execute {}
          }
       }
 

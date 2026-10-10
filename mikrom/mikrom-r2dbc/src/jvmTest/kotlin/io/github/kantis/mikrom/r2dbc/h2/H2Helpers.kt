@@ -26,7 +26,6 @@ suspend fun prepareH2Database(vararg statements: String): PooledR2dbcDataSource 
    val pool = ConnectionPool(poolConfiguration)
 
    val connection = requireNotNull(pool.create().awaitSingle())
-   connection.isAutoCommit = false
    connection.beginTransaction().awaitFirstOrNull()
 
    try {

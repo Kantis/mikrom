@@ -37,7 +37,6 @@ suspend fun prepareOracleDatabase(vararg statements: String): PooledR2dbcDataSou
    val pool = ConnectionPool(poolConfiguration)
 
    val connection = requireNotNull(pool.create().awaitSingle())
-   connection.isAutoCommit = false
    connection.beginTransaction().awaitFirstOrNull()
 
    try {

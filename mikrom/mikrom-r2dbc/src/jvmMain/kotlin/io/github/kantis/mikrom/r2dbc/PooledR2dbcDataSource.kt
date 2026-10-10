@@ -14,7 +14,6 @@ public class PooledR2dbcDataSource(private val underlyingConnectionPool: Connect
 
    override suspend fun <T> suspendingTransaction(block: suspend SuspendingTransaction.() -> T): T {
       val connection = underlyingConnectionPool.create().awaitSingle()
-      connection.isAutoCommit = false
       connection.beginTransaction().awaitFirstOrNull()
 
       return try {
@@ -23,12 +22,12 @@ public class PooledR2dbcDataSource(private val underlyingConnectionPool: Connect
 
          when (result) {
             is Rollback -> {
-               logger.info("Rolling back transaction, since transaction resulted in TransactionResult.Rollback")
+               logger.debug("Rolling back transaction, since transaction resulted in TransactionResult.Rollback")
                connection.rollbackTransaction().awaitFirstOrNull()
             }
 
             else -> {
-               logger.info("Committing transaction, since transaction resulted in TransactionResult.Commit")
+               logger.debug("Committing transaction, since transaction resulted in TransactionResult.Commit")
                connection.commitTransaction().awaitFirstOrNull()
             }
          }
