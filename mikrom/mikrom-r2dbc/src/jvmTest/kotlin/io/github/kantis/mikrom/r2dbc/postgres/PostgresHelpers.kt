@@ -42,7 +42,6 @@ suspend fun preparePostgresDatabase(
 
    // Execute setup statements
    val connection = requireNotNull(pool.create().awaitSingle())
-   connection.isAutoCommit = false
    connection.beginTransaction().awaitFirstOrNull()
 
    try {

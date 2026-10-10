@@ -13,7 +13,7 @@ suspend fun Mikrom.testExecute(
    vararg parameters: List<Any>,
 ) {
    if (streaming) {
-      executeStreaming(query, flowOf(*parameters)).join()
+      executeStreaming(query, flowOf(*parameters))
    } else {
       execute(query, *parameters)
    }

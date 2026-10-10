@@ -57,7 +57,8 @@ public abstract interface annotation class io/github/kantis/mikrom/MikromInterna
 }
 
 public final class io/github/kantis/mikrom/NamedParameterParserKt {
-	public static final fun parseNamedParameters (Ljava/lang/String;)Lio/github/kantis/mikrom/ParsedQuery;
+	public static final fun parseNamedParameters (Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lio/github/kantis/mikrom/ParsedQuery;
+	public static synthetic fun parseNamedParameters$default (Ljava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lio/github/kantis/mikrom/ParsedQuery;
 	public static final fun resolveQueryParams (Lio/github/kantis/mikrom/Mikrom;Lio/github/kantis/mikrom/ParsedQuery;Ljava/lang/Object;)Lio/github/kantis/mikrom/ResolvedQuery;
 }
 
@@ -279,6 +280,8 @@ public final class io/github/kantis/mikrom/suspend/SuspendQueriesKt {
 	public static final fun execute (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Ljava/util/Map;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun execute (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun execute (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun execute (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun execute (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;[Ljava/util/Map;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun executeStreaming (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Lio/github/kantis/mikrom/Mikrom;Ljava/lang/String;Lkotlinx/coroutines/flow/Flow;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
@@ -286,14 +289,20 @@ public abstract interface class io/github/kantis/mikrom/suspend/SuspendingDataSo
 	public abstract fun suspendingTransaction (Lkotlin/jvm/functions/Function2;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public abstract interface class io/github/kantis/mikrom/suspend/SuspendingTransaction : kotlinx/coroutines/CoroutineScope {
+public abstract interface class io/github/kantis/mikrom/suspend/SuspendingTransaction {
 	public abstract fun executeInTransaction (Ljava/lang/String;Lkotlinx/coroutines/flow/Flow;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public abstract fun executeInTransaction (Ljava/lang/String;[Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun query (Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun placeholder (I)Ljava/lang/String;
+	public fun query (Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun query$default (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun queryFlow (Ljava/lang/String;Ljava/util/List;)Lkotlinx/coroutines/flow/Flow;
+	public static synthetic fun queryFlow$default (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
 }
 
 public final class io/github/kantis/mikrom/suspend/SuspendingTransaction$DefaultImpls {
+	public static fun placeholder (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;I)Ljava/lang/String;
+	public static fun query (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun query$default (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun queryFlow$default (Lio/github/kantis/mikrom/suspend/SuspendingTransaction;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
 }
 

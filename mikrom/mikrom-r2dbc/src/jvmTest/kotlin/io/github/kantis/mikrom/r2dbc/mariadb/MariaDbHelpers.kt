@@ -38,7 +38,6 @@ suspend fun prepareMariaDbDatabase(vararg statements: String): PooledR2dbcDataSo
    val pool = ConnectionPool(poolConfiguration)
 
    val connection = requireNotNull(pool.create().awaitSingle())
-   connection.isAutoCommit = false
    connection.beginTransaction().awaitFirstOrNull()
 
    try {

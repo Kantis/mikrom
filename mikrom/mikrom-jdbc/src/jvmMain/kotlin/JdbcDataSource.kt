@@ -18,12 +18,12 @@ public class JdbcDataSource(private val underlyingDataSource: javax.sql.DataSour
 
             when (result) {
                is Rollback -> {
-                  logger.info("Rolling back transaction, since transaction resulted in TransactionResult.Rollback")
+                  logger.debug("Rolling back transaction, since transaction resulted in TransactionResult.Rollback")
                   jdbcConnection.rollback()
                }
 
                else -> {
-                  logger.info("Committing transaction, since transaction resulted in TransactionResult.Commit")
+                  logger.debug("Committing transaction, since transaction resulted in TransactionResult.Commit")
                   jdbcConnection.commit()
                }
             }

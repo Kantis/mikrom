@@ -36,7 +36,6 @@ suspend fun prepareMssqlDatabase(vararg statements: String): PooledR2dbcDataSour
    val pool = ConnectionPool(poolConfiguration)
 
    val connection = requireNotNull(pool.create().awaitSingle())
-   connection.isAutoCommit = false
    connection.beginTransaction().awaitFirstOrNull()
 
    try {

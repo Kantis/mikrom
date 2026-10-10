@@ -12,14 +12,22 @@ data class User(
 )
 ```
 
-For raw parameter lists, you can use `TypedNull` directly:
+For raw parameter lists and maps, you can use `TypedNull` directly:
 
 ```kotlin
 mikrom.execute(
     "INSERT INTO users (name, nickname) VALUES (?, ?)",
     listOf("Alice", TypedNull(String::class)),
 )
+
+mikrom.execute(
+    "INSERT INTO users (name, nickname) VALUES (:name, :nickname)",
+    mapOf("name" to "Alice", "nickname" to TypedNull(String::class)),
+)
 ```
+
+JDBC accepts a bare `null` as well, since it can ask the statement for the parameter's type. R2DBC cannot, so
+`mikrom-r2dbc` rejects bare `null` values with an `IllegalArgumentException` and requires `TypedNull`.
 
 ## VARCHAR vs NVARCHAR
 
@@ -39,6 +47,7 @@ mikrom.execute(
 ```
 
 This causes the JDBC binding layer to use `setObject(index, value, Types.VARCHAR)` instead of `setString()`, avoiding the implicit `NVARCHAR` conversion.
+With R2DBC the wrapped `String` is bound as-is; `AnsiString` is accepted so the same parameter classes work on both.
 
 ### Solution: `@SqlTypeHint` Annotation
 

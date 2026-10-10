@@ -7,9 +7,13 @@ import io.github.kantis.mikrom.r2dbc.PooledR2dbcDataSource
 import io.github.kantis.mikrom.r2dbc.R2dbcTestDialect
 import io.github.kantis.mikrom.suspend.execute
 import io.github.kantis.mikrom.suspend.queryFor
+import io.github.kantis.mikrom.suspend.queryForFlow
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.funSpec
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.toList
 
 private data class TestRecord(val id: Int, val name: String)
@@ -50,7 +54,7 @@ fun transactionTests(
       }
 
       dataSource.suspendingTransaction {
-         val records = mikrom.queryFor<TestRecord>("SELECT * FROM test_records").toList()
+         val records = mikrom.queryFor<TestRecord>("SELECT * FROM test_records")
          records.size shouldBe 1
          records[0].name shouldBe "test record"
       }
@@ -70,14 +74,13 @@ fun transactionTests(
       result shouldBe Rollback
 
       dataSource.suspendingTransaction {
-         val records = mikrom.queryFor<TestRecord>("SELECT * FROM test_records").toList()
+         val records = mikrom.queryFor<TestRecord>("SELECT * FROM test_records")
          records.shouldContainExactly()
       }
    }
 
-/*
    test("[${dialect.name}] ${streamingTestName(streaming)} transaction rolls back on exception") {
-      try {
+      val exception = shouldThrow<RuntimeException> {
          dataSource.suspendingTransaction {
             mikrom.testExecute(
                dialect.insertTestRecord(),
@@ -87,14 +90,41 @@ fun transactionTests(
 
             throw RuntimeException("Test exception")
          }
-      } catch (e: RuntimeException) {
-         e.message shouldBe "Test exception"
       }
+      exception.message shouldBe "Test exception"
 
       dataSource.suspendingTransaction {
-         val records = mikrom.queryFor<TestRecord>("SELECT * FROM test_records").toList()
-         records.size shouldBe 0
+         mikrom.queryFor<TestRecord>("SELECT * FROM test_records").shouldContainExactly()
       }
    }
-*/
+
+   test("[${dialect.name}] ${streamingTestName(streaming)} queryForFlow streams rows inside the transaction") {
+      dataSource.suspendingTransaction {
+         mikrom.testExecute(
+            dialect.insertTestRecord(),
+            streaming,
+            listOf("first"),
+            listOf("second"),
+         )
+
+         mikrom
+            .queryForFlow<TestRecord>("SELECT * FROM test_records ORDER BY id")
+            .toList()
+            .map { it.name } shouldBe listOf("first", "second")
+      }
+   }
+
+   test("[${dialect.name}] ${streamingTestName(streaming)} queryForFlow collected after the transaction fails") {
+      val escaped: Flow<TestRecord> = dataSource.suspendingTransaction {
+         mikrom.testExecute(
+            dialect.insertTestRecord(),
+            streaming,
+            listOf("escaped"),
+         )
+
+         mikrom.queryForFlow<TestRecord>("SELECT * FROM test_records")
+      }
+
+      shouldThrow<IllegalStateException> { escaped.toList() }.message shouldContain "closed"
+   }
 }

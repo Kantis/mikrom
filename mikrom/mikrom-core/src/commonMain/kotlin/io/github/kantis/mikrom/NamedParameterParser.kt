@@ -45,9 +45,15 @@ public sealed interface ParsedQuery {
  * - Single-quoted and double-quoted string literals (parameters inside are not replaced)
  * - `--` line comments and `/ * ... * /` block comments (parameters inside are not replaced)
  * - Repeated parameter names (same name appears multiple times, resolved from the same map entry)
+ *
+ * [placeholder] produces the positional placeholder emitted for the n:th parameter (1-based). Defaults to `?`,
+ * which JDBC and most R2DBC drivers accept; drivers such as PostgreSQL (`$1`) or SQL Server (`@P1`) need their own.
  */
 @MikromInternal
-public fun parseNamedParameters(sql: String): ParsedQuery {
+public fun parseNamedParameters(
+   sql: String,
+   placeholder: (index: Int) -> String = { "?" },
+): ParsedQuery {
    val result = StringBuilder(sql.length)
    val parameterNames = mutableListOf<String>()
    var i = 0
@@ -96,7 +102,7 @@ public fun parseNamedParameters(sql: String): ParsedQuery {
                      }
                      val name = sql.substring(nameStart, i)
                      parameterNames.add(name)
-                     result.append('?')
+                     result.append(placeholder(parameterNames.size))
                   } else {
                      result.append(c)
                      i++

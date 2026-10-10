@@ -22,6 +22,13 @@ class NamedParameterParserTest : FunSpec(
          parsed.parameterNames shouldBe listOf("name", "age")
       }
 
+      test("custom placeholder style") {
+         val parsed = parseNamedParameters("SELECT * FROM users WHERE name = :name AND age > :age") { "$$it" }
+         parsed.sql shouldBe "SELECT * FROM users WHERE name = $1 AND age > $2"
+         parsed.shouldBeInstanceOf<ParsedQuery.Named>()
+         parsed.parameterNames shouldBe listOf("name", "age")
+      }
+
       test("repeated named parameter") {
          val parsed = parseNamedParameters("SELECT * FROM users WHERE name = :name OR alias = :name")
          parsed.sql shouldBe "SELECT * FROM users WHERE name = ? OR alias = ?"

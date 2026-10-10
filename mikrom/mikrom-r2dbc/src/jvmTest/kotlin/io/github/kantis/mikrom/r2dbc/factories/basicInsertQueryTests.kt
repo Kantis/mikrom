@@ -9,7 +9,6 @@ import io.github.kantis.mikrom.suspend.queryFor
 import io.kotest.core.spec.style.funSpec
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.shouldBe
-import kotlinx.coroutines.flow.toList
 
 private data class Book(val author: String, val title: String, val numberOfPages: Int)
 
@@ -51,7 +50,6 @@ fun basicInsertQueryTests(
 
          mikrom
             .queryFor<Book>("SELECT * FROM books ORDER BY author ASC")
-            .toList()
             .shouldContainExactly(
                Book("George Orwell", "1984", 328),
                Book("JRR Tolkien", "The Hobbit", 310),
@@ -71,7 +69,7 @@ fun basicInsertQueryTests(
          mikrom.queryFor<Book>(
             "SELECT * FROM books WHERE number_of_pages > ${dialect.placeholder(1)}",
             listOf(320),
-         ).toList() shouldBe listOf(Book("George Orwell", "1984", 328))
+         ) shouldBe listOf(Book("George Orwell", "1984", 328))
       }
    }
 }

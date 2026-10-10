@@ -19,10 +19,7 @@ kotlin {
             dependencies {
                api(projects.mikrom.mikromCore)
                api(libs.r2dbc.pool)
-               // Probably not needed.. keeping it around for now
-//               implementation(libs.kotlinxCoroutinesReactor)
                implementation(libs.kotlinxCoroutinesReactive)
-               implementation(kotlin("reflect"))
                implementation(libs.slf4j.api)
             }
          }

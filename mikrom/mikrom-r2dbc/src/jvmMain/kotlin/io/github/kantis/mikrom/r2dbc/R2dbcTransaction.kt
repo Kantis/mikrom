@@ -8,81 +8,73 @@ import io.github.kantis.mikrom.buildRow
 import io.github.kantis.mikrom.convert.TypeConverters
 import io.github.kantis.mikrom.suspend.SuspendingTransaction
 import io.r2dbc.spi.Connection
-import io.r2dbc.spi.Result
 import io.r2dbc.spi.Statement
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
-import kotlin.coroutines.CoroutineContext
 
 @OptIn(ExperimentalCoroutinesApi::class)
 public class R2dbcTransaction(
    private val connection: Connection,
-   override val coroutineContext: CoroutineContext,
    private val driverConverters: TypeConverters = TypeConverters.EMPTY,
+   private val placeholderStyle: (Int) -> String = { "?" },
 ) : SuspendingTransaction {
+   override fun placeholder(index: Int): String = placeholderStyle(index)
+
+   /**
+    * Binds every parameter set to a single statement, separated by [Statement.add], so the driver can batch them in
+    * one round trip.
+    */
    override suspend fun executeInTransaction(
       query: Query,
       vararg params: List<*>,
    ) {
-      params.forEach { p ->
-         val statement = connection.createStatement(query)
-         println("Executing query: $query with params: $p")
+      if (params.isEmpty()) return
+      val statement = connection.createStatement(query)
+      params.forEachIndexed { index, p ->
+         if (index > 0) statement.add()
          bindParameters(statement, p)
-         statement.execute {
-            println("executeInTransaction returned result: $it")
-         }
       }
+      statement.execute()
+         .asFlow()
+         .flatMapConcat { it.rowsUpdated.asFlow() }
+         .collect()
    }
 
-   // This is probably a pretty niche use-case, streaming data into the DB... should probably just use a list of params..
    override suspend fun executeInTransaction(
       query: Query,
       params: Flow<List<*>>,
-   ): Job =
-      launch {
-         params.collect { p ->
-            val statement = connection.createStatement(query)
-            println("Executing query: $query with params: $p")
-            bindParameters(statement, p)
-            statement.execute {
-               println("executeInTransaction returned result: $it")
-            }
-         }
-      }
+   ) {
+      params.collect { p -> executeInTransaction(query, p) }
+   }
 
-   override suspend fun query(
+   override fun queryFlow(
       query: Query,
       params: List<*>,
    ): Flow<Row> =
       flow {
          val statement = connection.createStatement(query)
          bindParameters(statement, params)
-         statement.execute { emit(it) }
-      }
-
-   private suspend fun Statement.execute(collector: FlowCollector<Row>) {
-      execute()
-         .asFlow()
-         .flatMapConcat { result ->
-            result.map { row, rowMetadata ->
-               buildRow(driverConverters) {
-                  for (metadata in rowMetadata.columnMetadatas) {
-                     column(
-                        name = metadata.name.lowercase(),
-                        value = row.get(metadata.name),
-                        sqlTypeName = metadata.type.name,
-                     )
+         statement.execute()
+            .asFlow()
+            .flatMapConcat { result ->
+               result.map { row, rowMetadata ->
+                  buildRow(driverConverters) {
+                     for (metadata in rowMetadata.columnMetadatas) {
+                        column(
+                           name = metadata.name.lowercase(),
+                           value = row.get(metadata.name),
+                           sqlTypeName = metadata.type.name,
+                        )
+                     }
                   }
-               }
-            }.asFlow()
-         }.collect(collector)
-   }
+               }.asFlow()
+            }
+            .collect { emit(it) }
+      }
 
    private fun bindParameters(
       statement: Statement,
