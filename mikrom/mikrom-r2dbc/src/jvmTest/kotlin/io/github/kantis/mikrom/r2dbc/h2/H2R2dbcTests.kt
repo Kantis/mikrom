@@ -6,6 +6,7 @@ import io.github.kantis.mikrom.r2dbc.factories.basicInsertQueryTests
 import io.github.kantis.mikrom.r2dbc.factories.dataTypeTests
 import io.github.kantis.mikrom.r2dbc.factories.namedParameterTests
 import io.github.kantis.mikrom.r2dbc.factories.parameterMapperTests
+import io.github.kantis.mikrom.r2dbc.factories.queryingForPrimitivesTests
 import io.github.kantis.mikrom.r2dbc.factories.transactionTests
 import io.kotest.core.annotation.Tags
 import io.kotest.core.spec.style.FunSpec
@@ -34,5 +35,6 @@ class H2R2dbcTests : FunSpec(
       include(dataTypeTests(dialect, dataSourceProvider))
       include(namedParameterTests(dialect, dataSourceProvider))
       include(parameterMapperTests(dialect, dataSourceProvider))
+      include(queryingForPrimitivesTests(dialect, dataSourceProvider))
    },
 )
