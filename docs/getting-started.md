@@ -7,11 +7,11 @@ can use standard data classes to create ergonomic, yet type-safe, queries.
 Add the Mikrom dependency and Gradle plugin to your project:
 ```kotlin
 plugins {
-  id("io.github.kantis.mikrom") version "0.6.0"
+  id("io.github.kantis.mikrom") version "0.7.0"
 }
 
 dependencies {
-  implementation("io.github.kantis:mikrom-jdbc:0.6.0")
+  implementation("io.github.kantis:mikrom-jdbc:0.7.0")
 }
 ```
 
