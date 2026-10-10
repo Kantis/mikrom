@@ -56,6 +56,13 @@ information), that is used to bind parameters to queries.
 - Use `mikrom.queryFor<T>("SELECT ... FROM ..", ...paramSets)` for SELECT operations. A paramSet is a list of Any? that is bound to the
   parameters in the query. Both positional or named parameter binding is supported
 - Use `mikrom.execute("INSERT/UPDATE/DELETE ...", ...paramSets)` for INSERT/UPDATE/DELETE operations
+- The R2DBC module exposes the same operations as suspending functions in the `io.github.kantis.mikrom.suspend` package, used
+  inside `SuspendingDataSource.suspendingTransaction { }`. `queryFor` is `suspend` and returns `List<T>`; `queryForFlow` returns a
+  cold `Flow<T>` that must be collected inside the transaction; `executeStreaming` takes a `Flow` of parameter sets and suspends
+  until done. `:named` parameters are rewritten to the driver's placeholder syntax (`$1`, `@P1`, `?`) via
+  `SuspendingTransaction.placeholder(index)`. Nulls must be passed as `TypedNull` over R2DBC.
+- Driver-specific R2DBC tests are tagged (`mysql`, `mariadb`, `mssql`, `oracle`) and skipped locally unless `-PtestAllDrivers` is
+  passed. Filter to one class per Gradle invocation (`--tests <fqcn>`); two `--tests` filters match nothing with Kotest.
 
 
 ## Testing

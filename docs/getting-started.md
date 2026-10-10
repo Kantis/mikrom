@@ -130,7 +130,9 @@ Create an `io.r2dbc.pool.ConnectionPool` for your driver and wrap it in a `Poole
 
 ```kotlin
 import io.github.kantis.mikrom.suspend.execute
+import io.github.kantis.mikrom.suspend.executeStreaming
 import io.github.kantis.mikrom.suspend.queryFor
+import io.github.kantis.mikrom.suspend.queryForFlow
 
 val connectionFactory = PostgresqlConnectionFactory(
   PostgresqlConnectionConfiguration.builder()
@@ -147,8 +149,9 @@ val mikrom = Mikrom {}
 ```
 
 !!! note "Imports"
-    The suspending `execute` and `queryFor` live in the `io.github.kantis.mikrom.suspend` package, so they can
-    coexist with the blocking ones. Make sure you import the right variant.
+    The suspending `execute`, `executeStreaming`, `queryFor` and `queryForFlow` live in the
+    `io.github.kantis.mikrom.suspend` package, so they can coexist with the blocking ones. Make sure you import the
+    right variant.
 
 ### Transactions
 
