@@ -4,6 +4,8 @@ import io.github.kantis.mikrom.r2dbc.MariaDbDialect
 import io.github.kantis.mikrom.r2dbc.PooledR2dbcDataSource
 import io.github.kantis.mikrom.r2dbc.factories.basicInsertQueryTests
 import io.github.kantis.mikrom.r2dbc.factories.dataTypeTests
+import io.github.kantis.mikrom.r2dbc.factories.namedParameterTests
+import io.github.kantis.mikrom.r2dbc.factories.parameterMapperTests
 import io.github.kantis.mikrom.r2dbc.factories.transactionTests
 import io.kotest.core.annotation.Tags
 import io.kotest.core.spec.style.FunSpec
@@ -19,6 +21,7 @@ class MariaDbR2dbcTests : FunSpec(
             dialect.createBooksTable(),
             dialect.createTestRecordsTable(),
             dialect.createDataTypesTable(),
+            dialect.createPeopleTable(),
          )
       }
 
@@ -29,5 +32,7 @@ class MariaDbR2dbcTests : FunSpec(
       include(transactionTests(dialect, streaming = true, dataSourceProvider))
       include(transactionTests(dialect, streaming = false, dataSourceProvider))
       include(dataTypeTests(dialect, dataSourceProvider))
+      include(namedParameterTests(dialect, dataSourceProvider))
+      include(parameterMapperTests(dialect, dataSourceProvider))
    },
 )

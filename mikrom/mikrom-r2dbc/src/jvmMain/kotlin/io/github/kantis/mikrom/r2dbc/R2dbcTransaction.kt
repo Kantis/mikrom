@@ -25,7 +25,10 @@ public class R2dbcTransaction(
    private val connection: Connection,
    override val coroutineContext: CoroutineContext,
    private val driverConverters: TypeConverters = TypeConverters.EMPTY,
+   private val placeholderStyle: (Int) -> String = { "?" },
 ) : SuspendingTransaction {
+   override fun placeholder(index: Int): String = placeholderStyle(index)
+
    override suspend fun executeInTransaction(
       query: Query,
       vararg params: List<*>,

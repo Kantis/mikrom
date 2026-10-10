@@ -19,6 +19,7 @@ class OracleR2dbcTests : FunSpec(
             dialect.createBooksTable(),
             dialect.createTestRecordsTable(),
             dialect.createDataTypesTable(),
+            dialect.createPeopleTable(),
          )
       }
 

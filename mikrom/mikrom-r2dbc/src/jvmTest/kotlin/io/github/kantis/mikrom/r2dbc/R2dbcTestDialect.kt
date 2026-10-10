@@ -14,10 +14,14 @@ interface R2dbcTestDialect {
 
    fun createDataTypesTable(): String
 
+   fun createPeopleTable(): String
+
    fun insertBooks(): String =
       "INSERT INTO books (author, title, number_of_pages) VALUES (${placeholder(1)}, ${placeholder(2)}, ${placeholder(3)})"
 
    fun insertTestRecord(): String = "INSERT INTO test_records (name) VALUES (${placeholder(1)})"
+
+   fun insertPerson(): String = "INSERT INTO people (name, age) VALUES (${placeholder(1)}, ${placeholder(2)})"
 
    fun insertDataTypes(): String =
       """
@@ -74,6 +78,14 @@ object PostgresDialect : R2dbcTestDialect {
           uuid_field UUID
       )
       """.trimIndent()
+
+   override fun createPeopleTable() =
+      """
+      CREATE TABLE people (
+          name VARCHAR(255),
+          age INT
+      )
+      """.trimIndent()
 }
 
 object H2Dialect : R2dbcTestDialect {
@@ -112,6 +124,14 @@ object H2Dialect : R2dbcTestDialect {
           date_field DATE,
           timestamp_field TIMESTAMP,
           uuid_field UUID
+      )
+      """.trimIndent()
+
+   override fun createPeopleTable() =
+      """
+      CREATE TABLE people (
+          name VARCHAR(255),
+          age INT
       )
       """.trimIndent()
 }
@@ -153,6 +173,14 @@ object MySqlDialect : R2dbcTestDialect {
           timestamp_field TIMESTAMP
       )
       """.trimIndent()
+
+   override fun createPeopleTable() =
+      """
+      CREATE TABLE people (
+          name VARCHAR(255),
+          age INT
+      )
+      """.trimIndent()
 }
 
 object MariaDbDialect : R2dbcTestDialect {
@@ -190,6 +218,14 @@ object MariaDbDialect : R2dbcTestDialect {
           decimal_field DECIMAL(10,2),
           date_field DATE,
           timestamp_field TIMESTAMP
+      )
+      """.trimIndent()
+
+   override fun createPeopleTable() =
+      """
+      CREATE TABLE people (
+          name VARCHAR(255),
+          age INT
       )
       """.trimIndent()
 }
@@ -233,6 +269,14 @@ object MssqlDialect : R2dbcTestDialect {
           timestamp_field DATETIME2
       )
       """.trimIndent()
+
+   override fun createPeopleTable() =
+      """
+      CREATE TABLE people (
+          name VARCHAR(255),
+          age INT
+      )
+      """.trimIndent()
 }
 
 object OracleDialect : R2dbcTestDialect {
@@ -272,6 +316,14 @@ object OracleDialect : R2dbcTestDialect {
           decimal_field NUMBER(10,2),
           date_field DATE,
           timestamp_field TIMESTAMP
+      )
+      """.trimIndent()
+
+   override fun createPeopleTable() =
+      """
+      CREATE TABLE people (
+          name VARCHAR2(255),
+          age NUMBER(10)
       )
       """.trimIndent()
 }

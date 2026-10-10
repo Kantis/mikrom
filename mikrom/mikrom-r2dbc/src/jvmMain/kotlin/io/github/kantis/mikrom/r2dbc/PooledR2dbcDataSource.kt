@@ -11,13 +11,14 @@ import org.slf4j.LoggerFactory
 
 public class PooledR2dbcDataSource(private val underlyingConnectionPool: ConnectionPool) : SuspendingDataSource {
    private val driverConverters = r2dbcConverters(underlyingConnectionPool)
+   private val placeholder = r2dbcPlaceholder(underlyingConnectionPool)
 
    override suspend fun <T> suspendingTransaction(block: suspend SuspendingTransaction.() -> T): T {
       val connection = underlyingConnectionPool.create().awaitSingle()
       connection.beginTransaction().awaitFirstOrNull()
 
       return try {
-         val transaction = R2dbcTransaction(connection, currentCoroutineContext(), driverConverters)
+         val transaction = R2dbcTransaction(connection, currentCoroutineContext(), driverConverters, placeholder)
          val result = transaction.block()
 
          when (result) {

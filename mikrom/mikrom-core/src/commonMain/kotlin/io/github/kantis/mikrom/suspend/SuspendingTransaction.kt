@@ -32,4 +32,10 @@ public interface SuspendingTransaction : CoroutineScope {
       query: Query,
       params: List<*> = emptyList<Any>(),
    ): Flow<Row>
+
+   /**
+    * The positional placeholder the underlying driver expects for the [index]:th (1-based) parameter.
+    * Used when rewriting `:named` parameters into positional ones. Defaults to `?`.
+    */
+   public fun placeholder(index: Int): String = "?"
 }
