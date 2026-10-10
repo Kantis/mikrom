@@ -81,17 +81,17 @@ FILE fqName:<root> fileName:/BothMapped.kt
           public abstract fun mapParameters (value: T of io.github.kantis.mikrom.ParameterMapper): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in io.github.kantis.mikrom.ParameterMapper
         BLOCK_BODY
           RETURN type=kotlin.Nothing from='public final fun mapParameters (value: <root>.Person): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.Person.$ParameterMapper'
-            CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> origin=null
+            CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
               TYPE_ARG K: kotlin.String
               TYPE_ARG V: kotlin.Any?
               ARG pairs: VARARG type=kotlin.Array<kotlin.Pair<kotlin.String, kotlin.Any?>> varargElementType=kotlin.Pair<kotlin.String, kotlin.Any?>
-                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Any?> origin=null
                   TYPE_ARG A: kotlin.String
                   TYPE_ARG B: kotlin.Any?
                   ARG <this>: CONST String type=kotlin.String value="name"
                   ARG that: CALL 'public final fun <get-name> (): kotlin.String declared in <root>.Person' type=kotlin.String origin=null
                     ARG <this>: GET_VAR 'value: <root>.Person declared in <root>.Person.$ParameterMapper.mapParameters' type=<root>.Person origin=null
-                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Any?> origin=null
                   TYPE_ARG A: kotlin.String
                   TYPE_ARG B: kotlin.Any?
                   ARG <this>: CONST String type=kotlin.String value="age"
@@ -123,9 +123,9 @@ FILE fqName:<root> fileName:/BothMapped.kt
         overridden:
           public abstract fun mapRow (row: io.github.kantis.mikrom.Row, mikrom: io.github.kantis.mikrom.Mikrom): T of io.github.kantis.mikrom.RowMapper declared in io.github.kantis.mikrom.RowMapper
         BLOCK_BODY
-          VAR IR_TEMPORARY_VARIABLE name:tmp_0 type:T of io.github.kantis.mikrom.Row.get [val]
-            BLOCK type=T of io.github.kantis.mikrom.Row.get origin=null
-              CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=T of io.github.kantis.mikrom.Row.get origin=null
+          VAR IR_TEMPORARY_VARIABLE name:tmp_0 type:kotlin.String [val]
+            BLOCK type=kotlin.String origin=null
+              CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=kotlin.String origin=null
                 TYPE_ARG T: kotlin.String
                 ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.Person.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
                 ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Person.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
@@ -134,9 +134,9 @@ FILE fqName:<root> fileName:/BothMapped.kt
                     ARG <this>: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Person.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
                   ARG parameterName: CONST String type=kotlin.String value="name"
                 ARG clazz: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:String modality:FINAL visibility:public superTypes:[kotlin.Comparable<kotlin.String>; kotlin.CharSequence; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.String>
-          VAR IR_TEMPORARY_VARIABLE name:tmp_1 type:T of io.github.kantis.mikrom.Row.get [val]
-            BLOCK type=T of io.github.kantis.mikrom.Row.get origin=null
-              CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=T of io.github.kantis.mikrom.Row.get origin=null
+          VAR IR_TEMPORARY_VARIABLE name:tmp_1 type:kotlin.Int [val]
+            BLOCK type=kotlin.Int origin=null
+              CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=kotlin.Int origin=null
                 TYPE_ARG T: kotlin.Int
                 ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.Person.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
                 ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Person.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
@@ -147,8 +147,8 @@ FILE fqName:<root> fileName:/BothMapped.kt
                 ARG clazz: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:Int modality:FINAL visibility:public superTypes:[kotlin.Number; kotlin.Comparable<kotlin.Int>; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.Int>
           RETURN type=kotlin.Nothing from='public final fun mapRow (row: io.github.kantis.mikrom.Row, mikrom: io.github.kantis.mikrom.Mikrom): <root>.Person declared in <root>.Person.$RowMapper'
             CONSTRUCTOR_CALL 'public constructor <init> (name: kotlin.String, age: kotlin.Int) declared in <root>.Person' type=<root>.Person origin=null
-              ARG name: GET_VAR 'val tmp_0: T of io.github.kantis.mikrom.Row.get declared in <root>.Person.$RowMapper.mapRow' type=T of io.github.kantis.mikrom.Row.get origin=null
-              ARG age: GET_VAR 'val tmp_1: T of io.github.kantis.mikrom.Row.get declared in <root>.Person.$RowMapper.mapRow' type=T of io.github.kantis.mikrom.Row.get origin=null
+              ARG name: GET_VAR 'val tmp_0: kotlin.String declared in <root>.Person.$RowMapper.mapRow' type=kotlin.String origin=null
+              ARG age: GET_VAR 'val tmp_1: kotlin.Int declared in <root>.Person.$RowMapper.mapRow' type=kotlin.Int origin=null
     CONSTRUCTOR visibility:public returnType:<root>.Person [primary]
       VALUE_PARAMETER kind:Regular name:name index:0 type:kotlin.String
       VALUE_PARAMETER kind:Regular name:age index:1 type:kotlin.Int

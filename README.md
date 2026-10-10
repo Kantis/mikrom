@@ -13,8 +13,9 @@ Mikrom is inspired by [Dapper](https://github.com/DapperLib/Dapper), a popular m
 
 | Mikrom version | Kotlin version required |
 |----------------|-------------------------|
+| 0.7.x+         | 2.4.21                  |
+| 0.6.x          | 2.3.20                  |
 | 0.5.x          | 2.3.10                  |
-| 0.6.x+         | 2.3.20                  |
 
 
 ### JDBC
@@ -22,11 +23,11 @@ Add the Gradle plugin and dependency:
 
 ```kotlin
 plugins {
-  id("io.github.kantis.mikrom") version "0.6.0"
+  id("io.github.kantis.mikrom") version "0.7.0"
 }
 
 dependencies {
-  implementation("io.github.kantis:mikrom-jdbc:0.6.0")
+  implementation("io.github.kantis:mikrom-jdbc:0.7.0")
 }
 ```
 

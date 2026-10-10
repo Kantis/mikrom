@@ -15,7 +15,7 @@ abstract class MikromBuildLogicSettings
    constructor(
       private val providers: ProviderFactory,
    ) {
-      val kotlinTarget: Provider<String> = mikromSetting("kotlinTarget", "2.1")
+      val kotlinTarget: Provider<String> = mikromSetting("kotlinTarget", "2.2")
       val jvmTarget: Provider<String> = mikromSetting("jvmTarget", "21")
 
       /** Controls whether Kotlin Multiplatform JVM is enabled */

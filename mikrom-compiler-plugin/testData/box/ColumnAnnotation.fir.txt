@@ -6,7 +6,7 @@ FILE: ColumnAnnotation.kt
         ^box String(OK)
     }
     @R|io/github/kantis/mikrom/generator/MikromResult|() public final data class DbUser : R|kotlin/Any| {
-        public constructor(@R|io/github/kantis/mikrom/generator/Column|(name = String(user_name)) name: R|kotlin/String|, @R|io/github/kantis/mikrom/generator/Column|(name = String(email_address)) email: R|kotlin/String|, age: R|kotlin/Int|): R|DbUser| {
+        public constructor(@R|io/github/kantis/mikrom/generator/Column|(name = String(user_name) [evaluated = String(user_name)]) name: R|kotlin/String|, @R|io/github/kantis/mikrom/generator/Column|(name = String(email_address) [evaluated = String(email_address)]) email: R|kotlin/String|, age: R|kotlin/Int|): R|DbUser| {
             super<R|kotlin/Any|>()
         }
 
@@ -25,7 +25,7 @@ FILE: ColumnAnnotation.kt
 
         public final operator fun component3(): R|kotlin/Int|
 
-        public final fun copy(@R|io/github/kantis/mikrom/generator/Column|(name = String(user_name)) name: R|kotlin/String| = this@R|/DbUser|.R|/DbUser.name|, @R|io/github/kantis/mikrom/generator/Column|(name = String(email_address)) email: R|kotlin/String| = this@R|/DbUser|.R|/DbUser.email|, age: R|kotlin/Int| = this@R|/DbUser|.R|/DbUser.age|): R|DbUser|
+        public final fun copy(@R|io/github/kantis/mikrom/generator/Column|(name = String(user_name) [evaluated = String(user_name)]) name: R|kotlin/String| = this@R|/DbUser|.R|/DbUser.name|, @R|io/github/kantis/mikrom/generator/Column|(name = String(email_address) [evaluated = String(email_address)]) email: R|kotlin/String| = this@R|/DbUser|.R|/DbUser.email|, age: R|kotlin/Int| = this@R|/DbUser|.R|/DbUser.age|): R|DbUser|
 
         public final companion object Companion : R|kotlin/Any| {
             public final fun rowMapper(): R|io/github/kantis/mikrom/RowMapper<DbUser>|

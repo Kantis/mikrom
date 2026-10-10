@@ -75,9 +75,9 @@ FILE fqName:<root> fileName:/NullableValueClass.kt
         overridden:
           public abstract fun mapRow (row: io.github.kantis.mikrom.Row, mikrom: io.github.kantis.mikrom.Mikrom): T of io.github.kantis.mikrom.RowMapper declared in io.github.kantis.mikrom.RowMapper
         BLOCK_BODY
-          VAR IR_TEMPORARY_VARIABLE name:tmp_0 type:T of io.github.kantis.mikrom.Row.get [val]
-            BLOCK type=T of io.github.kantis.mikrom.Row.get origin=null
-              CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=T of io.github.kantis.mikrom.Row.get origin=null
+          VAR IR_TEMPORARY_VARIABLE name:tmp_0 type:kotlin.String [val]
+            BLOCK type=kotlin.String origin=null
+              CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=kotlin.String origin=null
                 TYPE_ARG T: kotlin.String
                 ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.Contact.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
                 ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Contact.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
@@ -86,9 +86,9 @@ FILE fqName:<root> fileName:/NullableValueClass.kt
                     ARG <this>: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Contact.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
                   ARG parameterName: CONST String type=kotlin.String value="name"
                 ARG clazz: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:String modality:FINAL visibility:public superTypes:[kotlin.Comparable<kotlin.String>; kotlin.CharSequence; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.String>
-          VAR IR_TEMPORARY_VARIABLE name:tmp_1 type:T of io.github.kantis.mikrom.Row.getOrNull? [val]
-            BLOCK type=T of io.github.kantis.mikrom.Row.getOrNull? origin=null
-              CALL 'public final fun getOrNull <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.getOrNull? declared in io.github.kantis.mikrom.Row' type=T of io.github.kantis.mikrom.Row.getOrNull? origin=null
+          VAR IR_TEMPORARY_VARIABLE name:tmp_1 type:<root>.Email? [val]
+            BLOCK type=<root>.Email? origin=null
+              CALL 'public final fun getOrNull <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.getOrNull? declared in io.github.kantis.mikrom.Row' type=<root>.Email? origin=null
                 TYPE_ARG T: <root>.Email
                 ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.Contact.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
                 ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Contact.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
@@ -99,8 +99,8 @@ FILE fqName:<root> fileName:/NullableValueClass.kt
                 ARG clazz: CLASS_REFERENCE 'CLASS CLASS name:Email modality:FINAL visibility:public [value] superTypes:[kotlin.Any]' type=kotlin.reflect.KClass<<root>.Email>
           RETURN type=kotlin.Nothing from='public final fun mapRow (row: io.github.kantis.mikrom.Row, mikrom: io.github.kantis.mikrom.Mikrom): <root>.Contact declared in <root>.Contact.$RowMapper'
             CONSTRUCTOR_CALL 'public constructor <init> (name: kotlin.String, email: <root>.Email?) declared in <root>.Contact' type=<root>.Contact origin=null
-              ARG name: GET_VAR 'val tmp_0: T of io.github.kantis.mikrom.Row.get declared in <root>.Contact.$RowMapper.mapRow' type=T of io.github.kantis.mikrom.Row.get origin=null
-              ARG email: GET_VAR 'val tmp_1: T of io.github.kantis.mikrom.Row.getOrNull? declared in <root>.Contact.$RowMapper.mapRow' type=T of io.github.kantis.mikrom.Row.getOrNull? origin=null
+              ARG name: GET_VAR 'val tmp_0: kotlin.String declared in <root>.Contact.$RowMapper.mapRow' type=kotlin.String origin=null
+              ARG email: GET_VAR 'val tmp_1: <root>.Email? declared in <root>.Contact.$RowMapper.mapRow' type=<root>.Email? origin=null
     CONSTRUCTOR visibility:public returnType:<root>.Contact [primary]
       VALUE_PARAMETER kind:Regular name:name index:0 type:kotlin.String
       VALUE_PARAMETER kind:Regular name:email index:1 type:<root>.Email?
@@ -242,7 +242,7 @@ FILE fqName:<root> fileName:/NullableValueClass.kt
       BLOCK_BODY
         DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
         INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:Email modality:FINAL visibility:public [value] superTypes:[kotlin.Any]' type=kotlin.Unit
-    FUN GENERATED_SINGLE_FIELD_VALUE_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
+    FUN GENERATED_INLINE_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
       VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.Email
       VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
       overridden:
@@ -269,7 +269,7 @@ FILE fqName:<root> fileName:/NullableValueClass.kt
               CONST Boolean type=kotlin.Boolean value=false
         RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.Email'
           CONST Boolean type=kotlin.Boolean value=true
-    FUN GENERATED_SINGLE_FIELD_VALUE_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
+    FUN GENERATED_INLINE_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
       VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.Email
       overridden:
         public open fun hashCode (): kotlin.Int declared in kotlin.Any
@@ -278,7 +278,7 @@ FILE fqName:<root> fileName:/NullableValueClass.kt
           CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.String' type=kotlin.Int origin=null
             ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
               receiver: GET_VAR '<this>: <root>.Email declared in <root>.Email.hashCode' type=<root>.Email origin=null
-    FUN GENERATED_SINGLE_FIELD_VALUE_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
+    FUN GENERATED_INLINE_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
       VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.Email
       overridden:
         public open fun toString (): kotlin.String declared in kotlin.Any

@@ -75,17 +75,17 @@ FILE fqName:<root> fileName:/ParameterMapped.kt
           public abstract fun mapParameters (value: T of io.github.kantis.mikrom.ParameterMapper): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in io.github.kantis.mikrom.ParameterMapper
         BLOCK_BODY
           RETURN type=kotlin.Nothing from='public final fun mapParameters (value: <root>.Employee): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.Employee.$ParameterMapper'
-            CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> origin=null
+            CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
               TYPE_ARG K: kotlin.String
               TYPE_ARG V: kotlin.Any?
               ARG pairs: VARARG type=kotlin.Array<kotlin.Pair<kotlin.String, kotlin.Any?>> varargElementType=kotlin.Pair<kotlin.String, kotlin.Any?>
-                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Any?> origin=null
                   TYPE_ARG A: kotlin.String
                   TYPE_ARG B: kotlin.Any?
                   ARG <this>: CONST String type=kotlin.String value="name"
                   ARG that: CALL 'public final fun <get-name> (): kotlin.String declared in <root>.Employee' type=kotlin.String origin=null
                     ARG <this>: GET_VAR 'value: <root>.Employee declared in <root>.Employee.$ParameterMapper.mapParameters' type=<root>.Employee origin=null
-                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Any?> origin=null
                   TYPE_ARG A: kotlin.String
                   TYPE_ARG B: kotlin.Any?
                   ARG <this>: CONST String type=kotlin.String value="age"

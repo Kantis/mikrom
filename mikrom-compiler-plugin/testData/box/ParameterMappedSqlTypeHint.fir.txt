@@ -1,6 +1,6 @@
 FILE: ParameterMappedSqlTypeHint.kt
     @R|io/github/kantis/mikrom/generator/MikromParameter|() public final data class VarcharUser : R|kotlin/Any| {
-        public constructor(@R|io/github/kantis/mikrom/generator/SqlTypeHint|(type = Q|io/github/kantis/mikrom/generator/SqlType|.R|io/github/kantis/mikrom/generator/SqlType.VARCHAR|) name: R|kotlin/String|, age: R|kotlin/Int|): R|VarcharUser| {
+        public constructor(@R|io/github/kantis/mikrom/generator/SqlTypeHint|(type = Q|io/github/kantis/mikrom/generator/SqlType|.R|io/github/kantis/mikrom/generator/SqlType.VARCHAR| [evaluated = Q|io/github/kantis/mikrom/generator/SqlType|.R|io/github/kantis/mikrom/generator/SqlType.VARCHAR|]) name: R|kotlin/String|, age: R|kotlin/Int|): R|VarcharUser| {
             super<R|kotlin/Any|>()
         }
 
@@ -14,7 +14,7 @@ FILE: ParameterMappedSqlTypeHint.kt
 
         public final operator fun component2(): R|kotlin/Int|
 
-        public final fun copy(@R|io/github/kantis/mikrom/generator/SqlTypeHint|(type = Q|io/github/kantis/mikrom/generator/SqlType|.R|io/github/kantis/mikrom/generator/SqlType.VARCHAR|) name: R|kotlin/String| = this@R|/VarcharUser|.R|/VarcharUser.name|, age: R|kotlin/Int| = this@R|/VarcharUser|.R|/VarcharUser.age|): R|VarcharUser|
+        public final fun copy(@R|io/github/kantis/mikrom/generator/SqlTypeHint|(type = Q|io/github/kantis/mikrom/generator/SqlType|.R|io/github/kantis/mikrom/generator/SqlType.VARCHAR| [evaluated = Q|io/github/kantis/mikrom/generator/SqlType|.R|io/github/kantis/mikrom/generator/SqlType.VARCHAR|]) name: R|kotlin/String| = this@R|/VarcharUser|.R|/VarcharUser.name|, age: R|kotlin/Int| = this@R|/VarcharUser|.R|/VarcharUser.age|): R|VarcharUser|
 
         public final companion object Companion : R|kotlin/Any| {
             public final fun parameterMapper(): R|io/github/kantis/mikrom/ParameterMapper<VarcharUser>|
@@ -32,7 +32,7 @@ FILE: ParameterMappedSqlTypeHint.kt
 
     }
     @R|io/github/kantis/mikrom/generator/MikromParameter|() public final data class NullableVarcharUser : R|kotlin/Any| {
-        public constructor(@R|io/github/kantis/mikrom/generator/SqlTypeHint|(type = Q|io/github/kantis/mikrom/generator/SqlType|.R|io/github/kantis/mikrom/generator/SqlType.VARCHAR|) name: R|kotlin/String?|, age: R|kotlin/Int?|): R|NullableVarcharUser| {
+        public constructor(@R|io/github/kantis/mikrom/generator/SqlTypeHint|(type = Q|io/github/kantis/mikrom/generator/SqlType|.R|io/github/kantis/mikrom/generator/SqlType.VARCHAR| [evaluated = Q|io/github/kantis/mikrom/generator/SqlType|.R|io/github/kantis/mikrom/generator/SqlType.VARCHAR|]) name: R|kotlin/String?|, age: R|kotlin/Int?|): R|NullableVarcharUser| {
             super<R|kotlin/Any|>()
         }
 
@@ -46,7 +46,7 @@ FILE: ParameterMappedSqlTypeHint.kt
 
         public final operator fun component2(): R|kotlin/Int?|
 
-        public final fun copy(@R|io/github/kantis/mikrom/generator/SqlTypeHint|(type = Q|io/github/kantis/mikrom/generator/SqlType|.R|io/github/kantis/mikrom/generator/SqlType.VARCHAR|) name: R|kotlin/String?| = this@R|/NullableVarcharUser|.R|/NullableVarcharUser.name|, age: R|kotlin/Int?| = this@R|/NullableVarcharUser|.R|/NullableVarcharUser.age|): R|NullableVarcharUser|
+        public final fun copy(@R|io/github/kantis/mikrom/generator/SqlTypeHint|(type = Q|io/github/kantis/mikrom/generator/SqlType|.R|io/github/kantis/mikrom/generator/SqlType.VARCHAR| [evaluated = Q|io/github/kantis/mikrom/generator/SqlType|.R|io/github/kantis/mikrom/generator/SqlType.VARCHAR|]) name: R|kotlin/String?| = this@R|/NullableVarcharUser|.R|/NullableVarcharUser.name|, age: R|kotlin/Int?| = this@R|/NullableVarcharUser|.R|/NullableVarcharUser.age|): R|NullableVarcharUser|
 
         public final companion object Companion : R|kotlin/Any| {
             public final fun parameterMapper(): R|io/github/kantis/mikrom/ParameterMapper<NullableVarcharUser>|

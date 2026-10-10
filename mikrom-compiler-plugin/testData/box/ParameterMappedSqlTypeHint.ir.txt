@@ -81,11 +81,11 @@ FILE fqName:<root> fileName:/ParameterMappedSqlTypeHint.kt
             CALL 'public final fun <get-age> (): kotlin.Int? declared in <root>.NullableVarcharUser' type=kotlin.Int? origin=null
               ARG <this>: GET_VAR 'value: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.$ParameterMapper.mapParameters' type=<root>.NullableVarcharUser origin=null
           RETURN type=kotlin.Nothing from='public final fun mapParameters (value: <root>.NullableVarcharUser): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.NullableVarcharUser.$ParameterMapper'
-            CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> origin=null
+            CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
               TYPE_ARG K: kotlin.String
               TYPE_ARG V: kotlin.Any?
               ARG pairs: VARARG type=kotlin.Array<kotlin.Pair<kotlin.String, kotlin.Any?>> varargElementType=kotlin.Pair<kotlin.String, kotlin.Any?>
-                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Any?> origin=null
                   TYPE_ARG A: kotlin.String
                   TYPE_ARG B: kotlin.Any?
                   ARG <this>: CONST String type=kotlin.String value="name"
@@ -100,7 +100,7 @@ FILE fqName:<root> fileName:/ParameterMappedSqlTypeHint.kt
                       if: CONST Boolean type=kotlin.Boolean value=true
                       then: CONSTRUCTOR_CALL 'public constructor <init> (value: kotlin.String) declared in io.github.kantis.mikrom.AnsiString' type=io.github.kantis.mikrom.AnsiString origin=null
                         ARG value: GET_VAR 'val tmp_0: kotlin.String? declared in <root>.NullableVarcharUser.$ParameterMapper.mapParameters' type=kotlin.String? origin=null
-                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Any?> origin=null
                   TYPE_ARG A: kotlin.String
                   TYPE_ARG B: kotlin.Any?
                   ARG <this>: CONST String type=kotlin.String value="age"
@@ -117,7 +117,7 @@ FILE fqName:<root> fileName:/ParameterMappedSqlTypeHint.kt
     CONSTRUCTOR visibility:public returnType:<root>.NullableVarcharUser [primary]
       VALUE_PARAMETER kind:Regular name:name index:0 type:kotlin.String?
         annotations:
-          SqlTypeHint(type = GET_ENUM 'ENUM_ENTRY IR_EXTERNAL_DECLARATION_STUB name:VARCHAR' type=io.github.kantis.mikrom.generator.SqlType)
+          SqlTypeHint(type = SqlType.VARCHAR)
       VALUE_PARAMETER kind:Regular name:age index:1 type:kotlin.Int?
       BLOCK_BODY
         DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
@@ -138,7 +138,7 @@ FILE fqName:<root> fileName:/ParameterMappedSqlTypeHint.kt
       VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.NullableVarcharUser
       VALUE_PARAMETER kind:Regular name:name index:1 type:kotlin.String?
         annotations:
-          SqlTypeHint(type = GET_ENUM 'ENUM_ENTRY IR_EXTERNAL_DECLARATION_STUB name:VARCHAR' type=io.github.kantis.mikrom.generator.SqlType)
+          SqlTypeHint(type = SqlType.VARCHAR)
         EXPRESSION_BODY
           GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String? visibility:private [final]' type=kotlin.String? origin=null
             receiver: GET_VAR '<this>: <root>.NullableVarcharUser declared in <root>.NullableVarcharUser.copy' type=<root>.NullableVarcharUser origin=null
@@ -324,18 +324,18 @@ FILE fqName:<root> fileName:/ParameterMappedSqlTypeHint.kt
           public abstract fun mapParameters (value: T of io.github.kantis.mikrom.ParameterMapper): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in io.github.kantis.mikrom.ParameterMapper
         BLOCK_BODY
           RETURN type=kotlin.Nothing from='public final fun mapParameters (value: <root>.VarcharUser): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.VarcharUser.$ParameterMapper'
-            CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> origin=null
+            CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
               TYPE_ARG K: kotlin.String
               TYPE_ARG V: kotlin.Any?
               ARG pairs: VARARG type=kotlin.Array<kotlin.Pair<kotlin.String, kotlin.Any?>> varargElementType=kotlin.Pair<kotlin.String, kotlin.Any?>
-                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Any?> origin=null
                   TYPE_ARG A: kotlin.String
                   TYPE_ARG B: kotlin.Any?
                   ARG <this>: CONST String type=kotlin.String value="name"
                   ARG that: CONSTRUCTOR_CALL 'public constructor <init> (value: kotlin.String) declared in io.github.kantis.mikrom.AnsiString' type=io.github.kantis.mikrom.AnsiString origin=null
                     ARG value: CALL 'public final fun <get-name> (): kotlin.String declared in <root>.VarcharUser' type=kotlin.String origin=null
                       ARG <this>: GET_VAR 'value: <root>.VarcharUser declared in <root>.VarcharUser.$ParameterMapper.mapParameters' type=<root>.VarcharUser origin=null
-                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Any?> origin=null
                   TYPE_ARG A: kotlin.String
                   TYPE_ARG B: kotlin.Any?
                   ARG <this>: CONST String type=kotlin.String value="age"
@@ -344,7 +344,7 @@ FILE fqName:<root> fileName:/ParameterMappedSqlTypeHint.kt
     CONSTRUCTOR visibility:public returnType:<root>.VarcharUser [primary]
       VALUE_PARAMETER kind:Regular name:name index:0 type:kotlin.String
         annotations:
-          SqlTypeHint(type = GET_ENUM 'ENUM_ENTRY IR_EXTERNAL_DECLARATION_STUB name:VARCHAR' type=io.github.kantis.mikrom.generator.SqlType)
+          SqlTypeHint(type = SqlType.VARCHAR)
       VALUE_PARAMETER kind:Regular name:age index:1 type:kotlin.Int
       BLOCK_BODY
         DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
@@ -365,7 +365,7 @@ FILE fqName:<root> fileName:/ParameterMappedSqlTypeHint.kt
       VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.VarcharUser
       VALUE_PARAMETER kind:Regular name:name index:1 type:kotlin.String
         annotations:
-          SqlTypeHint(type = GET_ENUM 'ENUM_ENTRY IR_EXTERNAL_DECLARATION_STUB name:VARCHAR' type=io.github.kantis.mikrom.generator.SqlType)
+          SqlTypeHint(type = SqlType.VARCHAR)
         EXPRESSION_BODY
           GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:name type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
             receiver: GET_VAR '<this>: <root>.VarcharUser declared in <root>.VarcharUser.copy' type=<root>.VarcharUser origin=null
