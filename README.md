@@ -39,7 +39,7 @@ fun main() {
   val dataSource = JdbcDataSource(dbConnection)
   val mikrom = Mikrom {}
 
-  dataSource.transation {
+  dataSource.transaction {
     // Using named parameters with a generated ParameterMapper
     mikrom.execute(
       """
@@ -73,8 +73,39 @@ value class BookTitle(val title: String)
 data class Book(val author: String, val title: BookTitle, val numberOfPages: Int)
 ```
 
+### R2DBC
+The same API is available as suspending functions on top of an R2DBC `ConnectionPool`:
+
+```kotlin
+dependencies {
+  implementation("io.github.kantis:mikrom-r2dbc:0.7.0")
+}
+```
+
+```kotlin
+import io.github.kantis.mikrom.suspend.execute
+import io.github.kantis.mikrom.suspend.queryFor
+
+suspend fun main() {
+  val dataSource = PooledR2dbcDataSource(connectionPool) // an io.r2dbc.pool.ConnectionPool
+  val mikrom = Mikrom {}
+
+  dataSource.suspendingTransaction {
+    mikrom.execute(
+      "INSERT INTO books(author, title, number_of_pages) VALUES (:author, :title, :numberOfPages)",
+      CreateBookCommand("JRR Tolkien", BookTitle("The Hobbit"), 310),
+    )
+
+    // queryFor returns a Flow that must be collected before the transaction block returns
+    mikrom.queryFor<Book>("SELECT * FROM books WHERE number_of_pages > :minPages", mapOf("minPages" to 300)).toList()
+  }
+}
+```
+
+See the [getting started guide](https://kantis.github.io/mikrom/getting-started/) for details on placeholders, null handling and streaming.
+
 ## Philosophy
-- Multiplatform design, with JDBC support (R2DBC planned)
+- Multiplatform design, with JDBC and R2DBC support
   - JS and Native variants not currently planned, but possible. Raise an issue if you want them, also include which underlying driver would make sense to use for that platform.
 - Explicit transaction management
 - Explicit SQL, instead of generated SQL which might not perform well
