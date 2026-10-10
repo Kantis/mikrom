@@ -85,6 +85,7 @@ dependencies {
 ```kotlin
 import io.github.kantis.mikrom.suspend.execute
 import io.github.kantis.mikrom.suspend.queryFor
+import io.github.kantis.mikrom.suspend.queryForFlow
 
 suspend fun main() {
   val dataSource = PooledR2dbcDataSource(connectionPool) // an io.r2dbc.pool.ConnectionPool
@@ -96,8 +97,11 @@ suspend fun main() {
       CreateBookCommand("JRR Tolkien", BookTitle("The Hobbit"), 310),
     )
 
-    // queryFor returns a Flow that must be collected before the transaction block returns
-    mikrom.queryFor<Book>("SELECT * FROM books WHERE number_of_pages > :minPages", mapOf("minPages" to 300)).toList()
+    // Loads the full result, like the blocking API
+    mikrom.queryFor<Book>("SELECT * FROM books WHERE number_of_pages > :minPages", mapOf("minPages" to 300))
+
+    // Or stream it; the Flow must be collected before the transaction block returns
+    mikrom.queryForFlow<Book>("SELECT * FROM books").collect { println(it) }
   }
 }
 ```

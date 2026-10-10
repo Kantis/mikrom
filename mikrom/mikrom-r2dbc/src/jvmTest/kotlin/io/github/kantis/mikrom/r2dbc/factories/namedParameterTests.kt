@@ -10,7 +10,6 @@ import io.github.kantis.mikrom.suspend.execute
 import io.github.kantis.mikrom.suspend.queryFor
 import io.kotest.core.spec.style.funSpec
 import io.kotest.matchers.shouldBe
-import kotlinx.coroutines.flow.toList
 
 private data class Person(val name: String, val age: Int?)
 
@@ -46,7 +45,7 @@ fun namedParameterTests(
          mikrom.queryFor<Person>(
             "SELECT * FROM people WHERE name = :name",
             mapOf("name" to "Alice"),
-         ).toList() shouldBe listOf(Person("Alice", 30))
+         ) shouldBe listOf(Person("Alice", 30))
       }
    }
 
@@ -58,7 +57,7 @@ fun namedParameterTests(
             mapOf("name" to "Bob", "age" to 25),
          )
 
-         mikrom.queryFor<Long>("SELECT COUNT(*) FROM people").toList() shouldBe listOf(2L)
+         mikrom.queryFor<Long>("SELECT COUNT(*) FROM people") shouldBe listOf(2L)
       }
    }
 
@@ -72,7 +71,7 @@ fun namedParameterTests(
          mikrom.queryFor<Person>(
             "SELECT * FROM people WHERE name = :name",
             mapOf("name" to "Alice"),
-         ).toList() shouldBe listOf(Person("Alice", null))
+         ) shouldBe listOf(Person("Alice", null))
       }
    }
 
@@ -88,7 +87,7 @@ fun namedParameterTests(
          mikrom.queryFor<Person>(
             "SELECT * FROM people WHERE name = :name OR name = :name ORDER BY age",
             mapOf("name" to "Alice"),
-         ).toList() shouldBe listOf(
+         ) shouldBe listOf(
             Person("Alice", 30),
             Person("Alice", 35),
          )

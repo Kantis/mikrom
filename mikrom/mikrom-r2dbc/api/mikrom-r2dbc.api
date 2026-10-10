@@ -12,12 +12,12 @@ public final class io/github/kantis/mikrom/r2dbc/R2dbcPlaceholdersKt {
 }
 
 public final class io/github/kantis/mikrom/r2dbc/R2dbcTransaction : io/github/kantis/mikrom/suspend/SuspendingTransaction {
-	public fun <init> (Lio/r2dbc/spi/Connection;Lkotlin/coroutines/CoroutineContext;Lio/github/kantis/mikrom/convert/TypeConverters;Lkotlin/jvm/functions/Function1;)V
-	public synthetic fun <init> (Lio/r2dbc/spi/Connection;Lkotlin/coroutines/CoroutineContext;Lio/github/kantis/mikrom/convert/TypeConverters;Lkotlin/jvm/functions/Function1;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Lio/r2dbc/spi/Connection;Lio/github/kantis/mikrom/convert/TypeConverters;Lkotlin/jvm/functions/Function1;)V
+	public synthetic fun <init> (Lio/r2dbc/spi/Connection;Lio/github/kantis/mikrom/convert/TypeConverters;Lkotlin/jvm/functions/Function1;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun executeInTransaction (Ljava/lang/String;Lkotlinx/coroutines/flow/Flow;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun executeInTransaction (Ljava/lang/String;[Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public fun getCoroutineContext ()Lkotlin/coroutines/CoroutineContext;
 	public fun placeholder (I)Ljava/lang/String;
 	public fun query (Ljava/lang/String;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun queryFlow (Ljava/lang/String;Ljava/util/List;)Lkotlinx/coroutines/flow/Flow;
 }
 

@@ -5,7 +5,6 @@ import io.github.kantis.mikrom.ParsedQuery
 import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.parseNamedParameters
 import io.github.kantis.mikrom.resolveQueryParams
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import org.intellij.lang.annotations.Language
 
@@ -74,11 +73,13 @@ public suspend fun Mikrom.execute(
 }
 
 /**
- * Allows streaming parameters for big inserts/updates.
- * Returns a [Job] that can be used to cancel the operation or await its completion.
+ * Executes [query] once per parameter set emitted by [params], and returns once the flow has completed.
+ * Lets big inserts/updates stream their positional parameters instead of materializing them up front.
  */
 context(transaction: SuspendingTransaction)
 public suspend fun Mikrom.executeStreaming(
    @Language("SQL") query: Query,
-   params: Flow<List<Any>>,
-): Job = transaction.executeInTransaction(query, params)
+   params: Flow<List<Any?>>,
+) {
+   transaction.executeInTransaction(query, params)
+}

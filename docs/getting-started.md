@@ -163,31 +163,41 @@ dataSource.suspendingTransaction {
     CreateBookCommand("George Orwell", BookTitle("1984"), 328),
   )
 
-  val longReads = mikrom
-    .queryFor<Book>("SELECT * FROM books WHERE number_of_pages > :minPages", mapOf("minPages" to 320))
-    .toList()
+  val longReads = mikrom.queryFor<Book>("SELECT * FROM books WHERE number_of_pages > :minPages", mapOf("minPages" to 320))
 }
 ```
 
-### Queries return a `Flow`
+If the block is cancelled, for example because the surrounding request timed out, the transaction is rolled back and
+the connection is still returned to the pool.
 
-The suspending `queryFor` returns a cold `Flow<T>`. Nothing is sent to the database until the flow is collected, and
-collecting it needs the transaction's connection.
+### Queries: `queryFor` versus `queryForFlow`
 
-!!! warning "Collect inside the transaction"
-    Collect the flow (`toList()`, `first()`, `collect { }` …) **before the `suspendingTransaction` block returns**.
-    A flow that escapes the block fails with `The connection is closed` when it is eventually collected, because the
-    connection has already been returned to the pool.
+The suspending `queryFor` loads the whole result and returns a `List<T>`, exactly like the blocking API. The list is
+plain data, so it is safe to return from the transaction block.
 
 ```kotlin
-// OK: the list is built while the transaction is open
-val books = dataSource.suspendingTransaction {
-  mikrom.queryFor<Book>("SELECT * FROM books").toList()
+val books: List<Book> = dataSource.suspendingTransaction {
+  mikrom.queryFor<Book>("SELECT * FROM books")
+}
+```
+
+For results too large to hold in memory, `queryForFlow` returns a cold `Flow<T>` instead. Nothing is sent to the
+database until the flow is collected, and collecting it uses the transaction's connection.
+
+!!! warning "Collect the flow inside the transaction"
+    Collect a `queryForFlow` result (`collect { }`, `toList()`, `first()` …) **before the `suspendingTransaction`
+    block returns**. A flow that escapes the block fails with `The connection is closed` when it is eventually
+    collected, because the connection has already been returned to the pool.
+
+```kotlin
+// OK: rows are streamed and processed while the transaction is open
+dataSource.suspendingTransaction {
+  mikrom.queryForFlow<Book>("SELECT * FROM books").collect { book -> index(book) }
 }
 
 // Broken: the flow is collected after the connection was released
 val flow = dataSource.suspendingTransaction {
-  mikrom.queryFor<Book>("SELECT * FROM books")
+  mikrom.queryForFlow<Book>("SELECT * FROM books")
 }
 flow.toList() // IllegalStateException: The connection is closed
 ```
@@ -216,15 +226,18 @@ mikrom.queryFor<Book>("SELECT * FROM books WHERE number_of_pages > @P1", listOf(
 
 ### Streaming parameters
 
-For large inserts, `executeStreaming` accepts the parameter sets as a `Flow<List<Any>>` and returns a `Job`.
-The job runs concurrently with the rest of the block, so `join()` it before the transaction block returns, otherwise
-the transaction commits while inserts are still in flight.
+For large inserts, `executeStreaming` accepts the positional parameter sets as a `Flow<List<Any?>>` and executes the
+statement once per emitted set. It suspends until the flow completes, so the transaction cannot commit with inserts
+still in flight.
 
 ```kotlin
 dataSource.suspendingTransaction {
   mikrom.executeStreaming(
     "INSERT INTO books (author, title, number_of_pages) VALUES ($1, $2, $3)",
     booksToImport.map { listOf(it.author, it.title, it.numberOfPages) },
-  ).join()
+  )
 }
 ```
+
+When the parameter sets are already in memory, prefer `execute` with several lists or objects: they are bound to a
+single statement and sent as one batch.

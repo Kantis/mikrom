@@ -2,13 +2,12 @@ package io.github.kantis.mikrom.suspend
 
 import io.github.kantis.mikrom.Query
 import io.github.kantis.mikrom.Row
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.toList
 
-public interface SuspendingTransaction : CoroutineScope {
+public interface SuspendingTransaction {
    /**
-    * Executes a query with the given parameters in a transaction.
+    * Executes [query] once per parameter set in [params].
     */
    public suspend fun executeInTransaction(
       query: Query,
@@ -16,19 +15,27 @@ public interface SuspendingTransaction : CoroutineScope {
    )
 
    /**
-    * Allows streaming parameters for big inserts/updates.
-    * Returns a [Job] that can be used to cancel the operation or await its completion.
+    * Executes [query] once per parameter set emitted by [params], and returns once the flow has completed.
+    * Lets big inserts/updates stream their parameters instead of materializing them up front.
     */
    public suspend fun executeInTransaction(
       query: Query,
       params: Flow<List<*>>,
-   ): Job
+   )
 
    /**
-    * Execute a query and stream the results as a [Flow] of [Row]. Mikrom will translate the Row's to the appropriate type
-    * when using the [queryFor] function.
+    * Executes [query] and loads every resulting [Row]. Mikrom translates the rows to the requested type in [queryFor].
     */
    public suspend fun query(
+      query: Query,
+      params: List<*> = emptyList<Any>(),
+   ): List<Row> = queryFlow(query, params).toList()
+
+   /**
+    * Executes [query] when the returned [Flow] is collected and streams the resulting [Row]s.
+    * The flow uses this transaction's connection, so it must be collected before the transaction completes.
+    */
+   public fun queryFlow(
       query: Query,
       params: List<*> = emptyList<Any>(),
    ): Flow<Row>

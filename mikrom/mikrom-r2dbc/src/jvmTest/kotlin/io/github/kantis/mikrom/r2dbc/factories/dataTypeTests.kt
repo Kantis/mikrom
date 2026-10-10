@@ -13,7 +13,6 @@ import io.github.kantis.mikrom.suspend.queryFor
 import io.kotest.core.spec.style.funSpec
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.toList
 import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -85,9 +84,9 @@ fun dataTypeTests(
          mikrom.executeStreaming(
             dialect.insertDataTypes(),
             flowOf(params),
-         ).join()
+         )
 
-         val records = mikrom.queryFor<DataTypeRecord>("SELECT * FROM data_types").toList()
+         val records = mikrom.queryFor<DataTypeRecord>("SELECT * FROM data_types")
          records.size shouldBe 1
 
          val record = records[0]
@@ -121,7 +120,7 @@ fun dataTypeTests(
             typedNullParams,
          )
 
-         val records = mikrom.queryFor<DataTypeRecord>("SELECT * FROM data_types").toList()
+         val records = mikrom.queryFor<DataTypeRecord>("SELECT * FROM data_types")
          records.size shouldBe 1
 
          val record = records[0]
@@ -153,7 +152,7 @@ fun dataTypeTests(
             },
          )
 
-         val records = mikrom.queryFor<DataTypeRecord>("SELECT * FROM data_types").toList()
+         val records = mikrom.queryFor<DataTypeRecord>("SELECT * FROM data_types")
          records.size shouldBe 1
          records[0].stringField shouldBe "ansi_value"
       }
@@ -179,9 +178,9 @@ fun dataTypeTests(
                      testUuid,
                   ),
                ),
-            ).join()
+            )
 
-            val records = mikrom.queryFor<DataTypeRecord>("SELECT * FROM data_types").toList()
+            val records = mikrom.queryFor<DataTypeRecord>("SELECT * FROM data_types")
             records.size shouldBe 1
             records[0].uuidField shouldBe testUuid
          }
