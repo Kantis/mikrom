@@ -64,9 +64,9 @@ FILE fqName:<root> fileName:/NamingStrategy.kt
         overridden:
           public abstract fun mapRow (row: io.github.kantis.mikrom.Row, mikrom: io.github.kantis.mikrom.Mikrom): T of io.github.kantis.mikrom.RowMapper declared in io.github.kantis.mikrom.RowMapper
         BLOCK_BODY
-          VAR IR_TEMPORARY_VARIABLE name:tmp_0 type:T of io.github.kantis.mikrom.Row.get [val]
-            BLOCK type=T of io.github.kantis.mikrom.Row.get origin=null
-              CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=T of io.github.kantis.mikrom.Row.get origin=null
+          VAR IR_TEMPORARY_VARIABLE name:tmp_0 type:kotlin.String [val]
+            BLOCK type=kotlin.String origin=null
+              CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=kotlin.String origin=null
                 TYPE_ARG T: kotlin.String
                 ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.AsIsEntity.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
                 ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.AsIsEntity.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
@@ -77,7 +77,7 @@ FILE fqName:<root> fileName:/NamingStrategy.kt
                 ARG clazz: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:String modality:FINAL visibility:public superTypes:[kotlin.Comparable<kotlin.String>; kotlin.CharSequence; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.String>
           RETURN type=kotlin.Nothing from='public final fun mapRow (row: io.github.kantis.mikrom.Row, mikrom: io.github.kantis.mikrom.Mikrom): <root>.AsIsEntity declared in <root>.AsIsEntity.$RowMapper'
             CONSTRUCTOR_CALL 'public constructor <init> (firstName: kotlin.String) declared in <root>.AsIsEntity' type=<root>.AsIsEntity origin=null
-              ARG firstName: GET_VAR 'val tmp_0: T of io.github.kantis.mikrom.Row.get declared in <root>.AsIsEntity.$RowMapper.mapRow' type=T of io.github.kantis.mikrom.Row.get origin=null
+              ARG firstName: GET_VAR 'val tmp_0: kotlin.String declared in <root>.AsIsEntity.$RowMapper.mapRow' type=kotlin.String origin=null
     CONSTRUCTOR visibility:public returnType:<root>.AsIsEntity [primary]
       VALUE_PARAMETER kind:Regular name:firstName index:0 type:kotlin.String
       BLOCK_BODY
@@ -230,9 +230,9 @@ FILE fqName:<root> fileName:/NamingStrategy.kt
         overridden:
           public abstract fun mapRow (row: io.github.kantis.mikrom.Row, mikrom: io.github.kantis.mikrom.Mikrom): T of io.github.kantis.mikrom.RowMapper declared in io.github.kantis.mikrom.RowMapper
         BLOCK_BODY
-          VAR IR_TEMPORARY_VARIABLE name:tmp_2 type:T of io.github.kantis.mikrom.Row.get [val]
-            BLOCK type=T of io.github.kantis.mikrom.Row.get origin=null
-              CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=T of io.github.kantis.mikrom.Row.get origin=null
+          VAR IR_TEMPORARY_VARIABLE name:tmp_2 type:kotlin.Int [val]
+            BLOCK type=kotlin.Int origin=null
+              CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=kotlin.Int origin=null
                 TYPE_ARG T: kotlin.Int
                 ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.Invoice.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
                 ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Invoice.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
@@ -241,9 +241,9 @@ FILE fqName:<root> fileName:/NamingStrategy.kt
                     ARG <this>: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Invoice.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
                   ARG parameterName: CONST String type=kotlin.String value="invoiceId"
                 ARG clazz: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:Int modality:FINAL visibility:public superTypes:[kotlin.Number; kotlin.Comparable<kotlin.Int>; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.Int>
-          VAR IR_TEMPORARY_VARIABLE name:tmp_3 type:T of io.github.kantis.mikrom.Row.get [val]
-            BLOCK type=T of io.github.kantis.mikrom.Row.get origin=null
-              CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=T of io.github.kantis.mikrom.Row.get origin=null
+          VAR IR_TEMPORARY_VARIABLE name:tmp_3 type:kotlin.String [val]
+            BLOCK type=kotlin.String origin=null
+              CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=kotlin.String origin=null
                 TYPE_ARG T: kotlin.String
                 ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.Invoice.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
                 ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.Invoice.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
@@ -254,8 +254,8 @@ FILE fqName:<root> fileName:/NamingStrategy.kt
                 ARG clazz: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:String modality:FINAL visibility:public superTypes:[kotlin.Comparable<kotlin.String>; kotlin.CharSequence; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.String>
           RETURN type=kotlin.Nothing from='public final fun mapRow (row: io.github.kantis.mikrom.Row, mikrom: io.github.kantis.mikrom.Mikrom): <root>.Invoice declared in <root>.Invoice.$RowMapper'
             CONSTRUCTOR_CALL 'public constructor <init> (invoiceId: kotlin.Int, customerName: kotlin.String) declared in <root>.Invoice' type=<root>.Invoice origin=null
-              ARG invoiceId: GET_VAR 'val tmp_2: T of io.github.kantis.mikrom.Row.get declared in <root>.Invoice.$RowMapper.mapRow' type=T of io.github.kantis.mikrom.Row.get origin=null
-              ARG customerName: GET_VAR 'val tmp_3: T of io.github.kantis.mikrom.Row.get declared in <root>.Invoice.$RowMapper.mapRow' type=T of io.github.kantis.mikrom.Row.get origin=null
+              ARG invoiceId: GET_VAR 'val tmp_2: kotlin.Int declared in <root>.Invoice.$RowMapper.mapRow' type=kotlin.Int origin=null
+              ARG customerName: GET_VAR 'val tmp_3: kotlin.String declared in <root>.Invoice.$RowMapper.mapRow' type=kotlin.String origin=null
     CONSTRUCTOR visibility:public returnType:<root>.Invoice [primary]
       VALUE_PARAMETER kind:Regular name:invoiceId index:0 type:kotlin.Int
       VALUE_PARAMETER kind:Regular name:customerName index:1 type:kotlin.String
@@ -444,17 +444,17 @@ FILE fqName:<root> fileName:/NamingStrategy.kt
         overridden:
           public abstract fun mapRow (row: io.github.kantis.mikrom.Row, mikrom: io.github.kantis.mikrom.Mikrom): T of io.github.kantis.mikrom.RowMapper declared in io.github.kantis.mikrom.RowMapper
         BLOCK_BODY
-          VAR IR_TEMPORARY_VARIABLE name:tmp_5 type:T of io.github.kantis.mikrom.Row.get [val]
-            BLOCK type=T of io.github.kantis.mikrom.Row.get origin=null
-              CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=T of io.github.kantis.mikrom.Row.get origin=null
+          VAR IR_TEMPORARY_VARIABLE name:tmp_5 type:kotlin.String [val]
+            BLOCK type=kotlin.String origin=null
+              CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=kotlin.String origin=null
                 TYPE_ARG T: kotlin.String
                 ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.OverriddenEntity.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
                 ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.OverriddenEntity.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
                 ARG column: CONST String type=kotlin.String value="custom_col"
                 ARG clazz: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:String modality:FINAL visibility:public superTypes:[kotlin.Comparable<kotlin.String>; kotlin.CharSequence; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.String>
-          VAR IR_TEMPORARY_VARIABLE name:tmp_6 type:T of io.github.kantis.mikrom.Row.get [val]
-            BLOCK type=T of io.github.kantis.mikrom.Row.get origin=null
-              CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=T of io.github.kantis.mikrom.Row.get origin=null
+          VAR IR_TEMPORARY_VARIABLE name:tmp_6 type:kotlin.Int [val]
+            BLOCK type=kotlin.Int origin=null
+              CALL 'public final fun get <T> (mikrom: io.github.kantis.mikrom.Mikrom, column: kotlin.String, clazz: kotlin.reflect.KClass<*>): T of io.github.kantis.mikrom.Row.get declared in io.github.kantis.mikrom.Row' type=kotlin.Int origin=null
                 TYPE_ARG T: kotlin.Int
                 ARG <this>: GET_VAR 'row: io.github.kantis.mikrom.Row declared in <root>.OverriddenEntity.$RowMapper.mapRow' type=io.github.kantis.mikrom.Row origin=null
                 ARG mikrom: GET_VAR 'mikrom: io.github.kantis.mikrom.Mikrom declared in <root>.OverriddenEntity.$RowMapper.mapRow' type=io.github.kantis.mikrom.Mikrom origin=null
@@ -465,8 +465,8 @@ FILE fqName:<root> fileName:/NamingStrategy.kt
                 ARG clazz: CLASS_REFERENCE 'CLASS IR_EXTERNAL_DECLARATION_STUB CLASS name:Int modality:FINAL visibility:public superTypes:[kotlin.Number; kotlin.Comparable<kotlin.Int>; java.io.Serializable]' type=kotlin.reflect.KClass<kotlin.Int>
           RETURN type=kotlin.Nothing from='public final fun mapRow (row: io.github.kantis.mikrom.Row, mikrom: io.github.kantis.mikrom.Mikrom): <root>.OverriddenEntity declared in <root>.OverriddenEntity.$RowMapper'
             CONSTRUCTOR_CALL 'public constructor <init> (name: kotlin.String, otherField: kotlin.Int) declared in <root>.OverriddenEntity' type=<root>.OverriddenEntity origin=null
-              ARG name: GET_VAR 'val tmp_5: T of io.github.kantis.mikrom.Row.get declared in <root>.OverriddenEntity.$RowMapper.mapRow' type=T of io.github.kantis.mikrom.Row.get origin=null
-              ARG otherField: GET_VAR 'val tmp_6: T of io.github.kantis.mikrom.Row.get declared in <root>.OverriddenEntity.$RowMapper.mapRow' type=T of io.github.kantis.mikrom.Row.get origin=null
+              ARG name: GET_VAR 'val tmp_5: kotlin.String declared in <root>.OverriddenEntity.$RowMapper.mapRow' type=kotlin.String origin=null
+              ARG otherField: GET_VAR 'val tmp_6: kotlin.Int declared in <root>.OverriddenEntity.$RowMapper.mapRow' type=kotlin.Int origin=null
     CONSTRUCTOR visibility:public returnType:<root>.OverriddenEntity [primary]
       VALUE_PARAMETER kind:Regular name:name index:0 type:kotlin.String
         annotations:

@@ -19,7 +19,7 @@ FILE fqName:<root> fileName:/ParameterMappedNullableValueClass.kt
       BLOCK_BODY
         DELEGATING_CONSTRUCTOR_CALL 'public constructor <init> () declared in kotlin.Any'
         INSTANCE_INITIALIZER_CALL classDescriptor='CLASS CLASS name:Email modality:FINAL visibility:public [value] superTypes:[kotlin.Any]' type=kotlin.Unit
-    FUN GENERATED_SINGLE_FIELD_VALUE_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
+    FUN GENERATED_INLINE_CLASS_MEMBER name:equals visibility:public modality:OPEN returnType:kotlin.Boolean [operator]
       VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.Email
       VALUE_PARAMETER kind:Regular name:other index:1 type:kotlin.Any?
       overridden:
@@ -46,7 +46,7 @@ FILE fqName:<root> fileName:/ParameterMappedNullableValueClass.kt
               CONST Boolean type=kotlin.Boolean value=false
         RETURN type=kotlin.Nothing from='public open fun equals (other: kotlin.Any?): kotlin.Boolean declared in <root>.Email'
           CONST Boolean type=kotlin.Boolean value=true
-    FUN GENERATED_SINGLE_FIELD_VALUE_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
+    FUN GENERATED_INLINE_CLASS_MEMBER name:hashCode visibility:public modality:OPEN returnType:kotlin.Int
       VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.Email
       overridden:
         public open fun hashCode (): kotlin.Int declared in kotlin.Any
@@ -55,7 +55,7 @@ FILE fqName:<root> fileName:/ParameterMappedNullableValueClass.kt
           CALL 'public open fun hashCode (): kotlin.Int declared in kotlin.String' type=kotlin.Int origin=null
             ARG <this>: GET_FIELD 'FIELD PROPERTY_BACKING_FIELD name:value type:kotlin.String visibility:private [final]' type=kotlin.String origin=null
               receiver: GET_VAR '<this>: <root>.Email declared in <root>.Email.hashCode' type=<root>.Email origin=null
-    FUN GENERATED_SINGLE_FIELD_VALUE_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
+    FUN GENERATED_INLINE_CLASS_MEMBER name:toString visibility:public modality:OPEN returnType:kotlin.String
       VALUE_PARAMETER kind:DispatchReceiver name:<this> index:0 type:<root>.Email
       overridden:
         public open fun toString (): kotlin.String declared in kotlin.Any
@@ -146,17 +146,17 @@ FILE fqName:<root> fileName:/ParameterMappedNullableValueClass.kt
             CALL 'public final fun <get-email> (): <root>.Email? declared in <root>.UserWithEmail' type=<root>.Email? origin=null
               ARG <this>: GET_VAR 'value: <root>.UserWithEmail declared in <root>.UserWithEmail.$ParameterMapper.mapParameters' type=<root>.UserWithEmail origin=null
           RETURN type=kotlin.Nothing from='public final fun mapParameters (value: <root>.UserWithEmail): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.UserWithEmail.$ParameterMapper'
-            CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> origin=null
+            CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
               TYPE_ARG K: kotlin.String
               TYPE_ARG V: kotlin.Any?
               ARG pairs: VARARG type=kotlin.Array<kotlin.Pair<kotlin.String, kotlin.Any?>> varargElementType=kotlin.Pair<kotlin.String, kotlin.Any?>
-                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Any?> origin=null
                   TYPE_ARG A: kotlin.String
                   TYPE_ARG B: kotlin.Any?
                   ARG <this>: CONST String type=kotlin.String value="name"
                   ARG that: CALL 'public final fun <get-name> (): kotlin.String declared in <root>.UserWithEmail' type=kotlin.String origin=null
                     ARG <this>: GET_VAR 'value: <root>.UserWithEmail declared in <root>.UserWithEmail.$ParameterMapper.mapParameters' type=<root>.UserWithEmail origin=null
-                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Any?> origin=null
                   TYPE_ARG A: kotlin.String
                   TYPE_ARG B: kotlin.Any?
                   ARG <this>: CONST String type=kotlin.String value="email"

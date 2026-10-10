@@ -92,17 +92,17 @@ FILE fqName:<root> fileName:/ParameterMappedNullable.kt
             CALL 'public final fun <get-age> (): kotlin.Int? declared in <root>.NullableFields' type=kotlin.Int? origin=null
               ARG <this>: GET_VAR 'value: <root>.NullableFields declared in <root>.NullableFields.$ParameterMapper.mapParameters' type=<root>.NullableFields origin=null
           RETURN type=kotlin.Nothing from='public final fun mapParameters (value: <root>.NullableFields): kotlin.collections.Map<kotlin.String, kotlin.Any?> declared in <root>.NullableFields.$ParameterMapper'
-            CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> origin=null
+            CALL 'public final fun mapOf <K, V> (vararg pairs: kotlin.Pair<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf>): kotlin.collections.Map<K of kotlin.collections.mapOf, V of kotlin.collections.mapOf> declared in kotlin.collections' type=kotlin.collections.Map<kotlin.String, kotlin.Any?> origin=null
               TYPE_ARG K: kotlin.String
               TYPE_ARG V: kotlin.Any?
               ARG pairs: VARARG type=kotlin.Array<kotlin.Pair<kotlin.String, kotlin.Any?>> varargElementType=kotlin.Pair<kotlin.String, kotlin.Any?>
-                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Any?> origin=null
                   TYPE_ARG A: kotlin.String
                   TYPE_ARG B: kotlin.Any?
                   ARG <this>: CONST String type=kotlin.String value="name"
                   ARG that: CALL 'public final fun <get-name> (): kotlin.String declared in <root>.NullableFields' type=kotlin.String origin=null
                     ARG <this>: GET_VAR 'value: <root>.NullableFields declared in <root>.NullableFields.$ParameterMapper.mapParameters' type=<root>.NullableFields origin=null
-                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Any?> origin=null
                   TYPE_ARG A: kotlin.String
                   TYPE_ARG B: kotlin.Any?
                   ARG <this>: CONST String type=kotlin.String value="nickname"
@@ -116,7 +116,7 @@ FILE fqName:<root> fileName:/ParameterMappedNullable.kt
                     BRANCH
                       if: CONST Boolean type=kotlin.Boolean value=true
                       then: GET_VAR 'val tmp_0: kotlin.String? declared in <root>.NullableFields.$ParameterMapper.mapParameters' type=kotlin.String? origin=null
-                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<A of kotlin.to, B of kotlin.to> origin=null
+                CALL 'public final fun to <A, B> (<this>: A of kotlin.to, that: B of kotlin.to): kotlin.Pair<A of kotlin.to, B of kotlin.to> declared in kotlin' type=kotlin.Pair<kotlin.String, kotlin.Any?> origin=null
                   TYPE_ARG A: kotlin.String
                   TYPE_ARG B: kotlin.Any?
                   ARG <this>: CONST String type=kotlin.String value="age"

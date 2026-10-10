@@ -369,7 +369,7 @@ internal class MikromIrVisitor(
                valueExpr = unwrappedExpr
             }
 
-            irCall(toFunction).apply {
+            irCall(toFunction, pairType).apply {
                typeArguments[0] = stringType
                typeArguments[1] = anyNType
                // `to` is an extension function: fun <A, B> A.to(that: B): Pair<A, B>
@@ -380,7 +380,7 @@ internal class MikromIrVisitor(
          }
 
          // Build: mapOf("name" to value.name, "age" to value.age)
-         val mapOfCall = irCall(mapOfFunction).apply {
+         val mapOfCall = irCall(mapOfFunction, function.returnType).apply {
             typeArguments[0] = stringType
             typeArguments[1] = anyNType
 
@@ -442,7 +442,7 @@ internal class MikromIrVisitor(
                   classType = baseType,
                )
 
-               +irCall(fn).apply {
+               +irCall(fn, valueParameter.type).apply {
                   dispatchReceiver = rowRef
                   typeArguments[0] = baseType
                   arguments[1] = mikromRef

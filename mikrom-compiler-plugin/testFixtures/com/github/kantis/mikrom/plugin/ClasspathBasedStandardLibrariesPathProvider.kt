@@ -1,5 +1,6 @@
 package io.github.kantis.mikrom.plugin
 
+import org.jetbrains.kotlin.platform.wasm.WasmTarget
 import org.jetbrains.kotlin.test.services.KotlinStandardLibrariesPathProvider
 import java.io.File
 import java.io.File.pathSeparator
@@ -51,6 +52,10 @@ object ClasspathBasedStandardLibrariesPathProvider : KotlinStandardLibrariesPath
    override fun kotlinTestJsKLib(): File = getFile("kotlin-test-js")
 
    override fun webStdlibForTests(): File = getFile("kotlin-stdlib-web")
+
+   override fun fullWasmStdlib(target: WasmTarget): File = getFile("kotlin-stdlib-${target.alias}")
+
+   override fun kotlinTestWasmKLib(target: WasmTarget): File = getFile("kotlin-test-${target.alias}")
 
    override fun commonStdlibForTests(): File = getFile("kotlin-stdlib-common")
 

@@ -15,6 +15,10 @@ import java.util.regex.Pattern;
 @TestMetadata("testData/box")
 @TestDataPath("$PROJECT_ROOT")
 public class BoxTestGenerated extends AbstractBoxTest {
+  private void run(String fileName) {
+    runTest("testData/box/" + fileName);
+  }
+
   @Test
   public void testAllFilesPresentInBox() {
     KtTestUtil.assertAllTestsPresentByMetadataWithExcluded(this.getClass(), new File("testData/box"), Pattern.compile("^(.+)\\.kt$"), null, true);
@@ -23,66 +27,66 @@ public class BoxTestGenerated extends AbstractBoxTest {
   @Test
   @TestMetadata("BothMapped.kt")
   public void testBothMapped() {
-    runTest("testData/box/BothMapped.kt");
+    run("BothMapped.kt");
   }
 
   @Test
   @TestMetadata("ColumnAnnotation.kt")
   public void testColumnAnnotation() {
-    runTest("testData/box/ColumnAnnotation.kt");
+    run("ColumnAnnotation.kt");
   }
 
   @Test
   @TestMetadata("NamingStrategy.kt")
   public void testNamingStrategy() {
-    runTest("testData/box/NamingStrategy.kt");
+    run("NamingStrategy.kt");
   }
 
   @Test
   @TestMetadata("NullableValueClass.kt")
   public void testNullableValueClass() {
-    runTest("testData/box/NullableValueClass.kt");
+    run("NullableValueClass.kt");
   }
 
   @Test
   @TestMetadata("ParameterMapped.kt")
   public void testParameterMapped() {
-    runTest("testData/box/ParameterMapped.kt");
+    run("ParameterMapped.kt");
   }
 
   @Test
   @TestMetadata("ParameterMappedNullable.kt")
   public void testParameterMappedNullable() {
-    runTest("testData/box/ParameterMappedNullable.kt");
+    run("ParameterMappedNullable.kt");
   }
 
   @Test
   @TestMetadata("ParameterMappedNullableValueClass.kt")
   public void testParameterMappedNullableValueClass() {
-    runTest("testData/box/ParameterMappedNullableValueClass.kt");
+    run("ParameterMappedNullableValueClass.kt");
   }
 
   @Test
   @TestMetadata("ParameterMappedSqlTypeHint.kt")
   public void testParameterMappedSqlTypeHint() {
-    runTest("testData/box/ParameterMappedSqlTypeHint.kt");
+    run("ParameterMappedSqlTypeHint.kt");
   }
 
   @Test
   @TestMetadata("ParameterMappedValueClass.kt")
   public void testParameterMappedValueClass() {
-    runTest("testData/box/ParameterMappedValueClass.kt");
+    run("ParameterMappedValueClass.kt");
   }
 
   @Test
   @TestMetadata("Person.kt")
   public void testPerson() {
-    runTest("testData/box/Person.kt");
+    run("Person.kt");
   }
 
   @Test
   @TestMetadata("ValueClass.kt")
   public void testValueClass() {
-    runTest("testData/box/ValueClass.kt");
+    run("ValueClass.kt");
   }
 }
